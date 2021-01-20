@@ -1,6 +1,6 @@
 {
   "name": "@tourmalinecore/tc-react-modal",
-  "version": "0.1.0",
+  "version": "0.1.1-alpha.7+424dee8",
   "description": "TC React Modal Component",
   "author": "Tourmaline Core",
   "keywords": [],
@@ -24,6 +24,7 @@
     "react-dom": "^17"
   },
   "dependencies": {
-    "@tourmalinecore/tc-react-ui-kit": "^0.1.0"
-  }
+    "@tourmalinecore/tc-react-ui-kit": "^0.1.1-alpha.7+424dee8"
+  },
+  "gitHead": "424dee8124d2577f00b7305754325bf4da00b0e0"
 }
