@@ -20,7 +20,7 @@ this command runs `lerna bootstrap`\
 it should create symlinks between packages and install all their dependencies\
 [More about lerna bootstrap](https://github.com/lerna/lerna/tree/main/commands/bootstrap#readme)
 ```
-npm run init-lerna
+npm run lerna:init
 ```
 
 ### Starting work
@@ -67,7 +67,12 @@ npm run build-packages
 ### Publishing
 build es5 and publish all changed and affected packages
 ```
-npm run publish
+npm run lerna:publish
+```
+
+this will publish canary version
+```
+npm run lerna:publish-canary
 ```
 
 ### Build storybook
