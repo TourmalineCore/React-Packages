@@ -1,0 +1,30 @@
+.tc-input {
+  display: inline-block;
+  border: 1px solid rgba(43, 53, 83, 0.24);
+  border-radius: 6px;
+  padding: 0 16px;
+  width: 100%;
+  height: 38px;
+  box-sizing: border-box;
+  box-shadow: none;
+  font-family: inherit;
+  font-size: 16px;
+  color: inherit;
+  background-color: transparent;
+}
+
+.tc-input:focus {
+  outline: none;
+  border-color: rgba(43, 53, 83, 0.5);
+}
+
+.tc-input[disabled] {
+  opacity: 0.4;
+}
+
+@media (min-width: 768px) {
+  .tc-input {
+    height: 42px;
+    font-size: 18px;
+  }
+}

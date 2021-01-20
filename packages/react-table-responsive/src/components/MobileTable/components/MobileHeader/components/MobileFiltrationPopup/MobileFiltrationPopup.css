@@ -1,0 +1,29 @@
+.tc-table-mobile-filtration {
+  padding: 8px 0;
+}
+
+.tc-table-mobile-filtration__column {
+  margin-bottom: 24px;
+}
+
+.tc-table-mobile-filtration__column:last-child {
+  margin-bottom: 0;
+}
+
+.tc-table-mobile-filtration__title {
+  margin-bottom: 4px;
+  font-size: 13px;
+  line-height: 1.15;
+  text-transform: uppercase;
+}
+
+.tc-table-mobile-filtration__field .tc-table-filter,
+.tc-table-mobile__header .tc-table-mobile-filtration__field .tc-table-filter,
+.tc-table-mobile-filtration__field .tc-table-desktop__select {
+  border-radius: 4px;
+  padding-left: 15px;
+  height: 40px;
+  max-width: 100%;
+  font-size: 13px;
+  color: rgba(0, 0, 0, 0.54);
+}
