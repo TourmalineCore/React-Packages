@@ -1,6 +1,6 @@
 {
   "name": "@tourmalinecore/tc-react-ui-kit",
-  "version": "0.1.1-alpha.7+424dee8",
+  "version": "0.1.1-alpha.8+0aeadb0",
   "description": "TC React UI-Kit",
   "author": "Tourmaline Core",
   "keywords": [],
@@ -23,5 +23,5 @@
     "react": "^17",
     "react-dom": "^17"
   },
-  "gitHead": "424dee8124d2577f00b7305754325bf4da00b0e0"
+  "gitHead": "0aeadb02e32f7daaa7a5f635cf266949f4fe0c59"
 }
