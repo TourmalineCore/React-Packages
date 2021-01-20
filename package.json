@@ -6,7 +6,7 @@
   "scripts": {
     "start": "start-storybook -p 6006",
     "init-lerna": "npx lerna bootstrap",
-    "publish": "npx lerna publish",
+    "publish-packages": "npx lerna publish",
     "build": "build-storybook",
     "build-packages": "npx lerna run build",
     "test": "echo \"Error: no test specified\" && exit 0",
