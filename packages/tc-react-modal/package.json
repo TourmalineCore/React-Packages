@@ -10,6 +10,9 @@
   "files": [
     "/es"
   ],
+  "publishConfig": {
+    "access": "public"
+  },
   "scripts": {
     "build": "run-s cleanup build-package",
     "cleanup": "rimraf dist es",
