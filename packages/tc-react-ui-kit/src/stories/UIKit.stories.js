@@ -45,7 +45,7 @@ export const InputExample = () => {
 
   return (
     <>
-      <h2>Input:</h2>
+      <h2>Simple Input:</h2>
 
       <Input
         type={text('inputType', 'text')}

@@ -1,7 +1,7 @@
 {
   "name": "@tourmalinecore/tc-react-ui-kit",
   "version": "0.1.0",
-  "description": "TC UI-Kit",
+  "description": "TC React UI-Kit",
   "author": "Tourmaline Core",
   "keywords": [],
   "main": "es/index.js",
