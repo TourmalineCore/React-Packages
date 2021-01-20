@@ -1,6 +1,6 @@
 {
   "name": "@tourmalinecore/react-table-responsive",
-  "version": "0.1.1-alpha.8+0aeadb0",
+  "version": "0.1.1-alpha.9+dd4e3d2",
   "description": "React Table Responsive",
   "author": "Tourmaline Core",
   "keywords": [],
@@ -27,11 +27,11 @@
     "@fortawesome/fontawesome-svg-core": "1.2.32",
     "@fortawesome/free-solid-svg-icons": "5.15.1",
     "@fortawesome/react-fontawesome": "0.1.13",
-    "@tourmalinecore/tc-react-modal": "^0.1.1-alpha.8+0aeadb0",
+    "@tourmalinecore/tc-react-modal": "^0.1.1-alpha.9+dd4e3d2",
     "axios": "0.21.0",
     "lodash": "4.17.20",
     "match-sorter": "6.0.2",
     "react-table": "7.6.2"
   },
-  "gitHead": "0aeadb02e32f7daaa7a5f635cf266949f4fe0c59"
+  "gitHead": "dd4e3d2567b38139c471e266e86385d8c7f35cc7"
 }
