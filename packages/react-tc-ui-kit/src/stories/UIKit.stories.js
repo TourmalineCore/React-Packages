@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { withKnobs, text, boolean } from '@storybook/addon-knobs';
+import { action } from '@storybook/addon-actions';
 
 import { Button, NativeSelect, Input } from '..';
 
@@ -17,6 +18,7 @@ export const Buttons = () => (
         marginRight: 16,
       }}
       disabled={boolean('disabled', false)}
+      onClick={action('onClick')}
     >
       {text('buttonText', 'Button')}
     </Button>
@@ -27,6 +29,7 @@ export const Buttons = () => (
       }}
       simple
       disabled={boolean('disabled', false)}
+      onClick={action('onClick')}
     >
       {text('buttonText', 'Button')}
     </Button>
@@ -34,6 +37,7 @@ export const Buttons = () => (
     <Button
       cancel
       disabled={boolean('disabled', false)}
+      onClick={action('onClick')}
     >
       {text('buttonText', 'Button')}
     </Button>
@@ -42,6 +46,7 @@ export const Buttons = () => (
 
 export const InputExample = () => {
   const [inputValue, setInputValue] = useState('');
+  const onChangeActionHandler = action('onChange');
 
   return (
     <>
@@ -52,7 +57,10 @@ export const InputExample = () => {
         placeholder=""
         value={inputValue}
         disabled={boolean('disabled', false)}
-        onChange={(e) => setInputValue(e.target.value)}
+        onChange={(e) => {
+          setInputValue(e.target.value);
+          onChangeActionHandler(e);
+        }}
       />
     </>
   );
@@ -60,6 +68,7 @@ export const InputExample = () => {
 
 export const NativeSelectExample = () => {
   const [selectedValue, setSelectedValue] = useState();
+  const onChangeActionHandler = action('onChange');
 
   return (
     <>
@@ -68,7 +77,10 @@ export const NativeSelectExample = () => {
       <NativeSelect
         value={selectedValue}
         options={[{ label: 'option1', value: 1 }, { label: 'option2', value: 2 }]}
-        onChange={(option) => { setSelectedValue(option.value); }}
+        onChange={(option) => {
+          setSelectedValue(option.value);
+          onChangeActionHandler(option);
+        }}
       />
     </>
   );
