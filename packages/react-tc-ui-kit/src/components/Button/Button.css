@@ -45,6 +45,11 @@
   cursor: auto;
 }
 
+.tc-button[disabled]:hover,
+.tc-button[disabled]:focus {
+  box-shadow: none;
+}
+
 @media (min-width: 768px) {
   .tc-button {
     padding-top: 12px;
