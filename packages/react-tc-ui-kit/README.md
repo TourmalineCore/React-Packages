@@ -3,7 +3,7 @@
 
 Button
 ```JSX
-import { Button } from '@tourmalinecore/tc-react-ui-kit';
+import { Button } from '@tourmalinecore/react-tc-ui-kit';
 
 <Button
   style={}
@@ -40,7 +40,7 @@ const [inputValue, setInputValue] = useState('');
 
 Native Select
 ```JSX
-import { NativeSelect } from '@tourmalinecore/tc-react-ui-kit';
+import { NativeSelect } from '@tourmalinecore/react-tc-ui-kit';
 
 <NativeSelect
   style={}
@@ -53,5 +53,5 @@ import { NativeSelect } from '@tourmalinecore/tc-react-ui-kit';
 
 ## Do not forget to import styles if needed
 ```JSX
-import '@tourmalinecore/tc-react-ui-kit/index.css';
+import '@tourmalinecore/react-tc-ui-kit/index.css';
 ```

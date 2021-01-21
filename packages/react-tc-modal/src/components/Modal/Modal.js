@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import ReactDOM from 'react-dom';
 
-import { Button } from '@tourmalinecore/tc-react-ui-kit';
+import { Button } from '@tourmalinecore/react-tc-ui-kit';
 
 import * as classList from '../../helpers/classList';
 

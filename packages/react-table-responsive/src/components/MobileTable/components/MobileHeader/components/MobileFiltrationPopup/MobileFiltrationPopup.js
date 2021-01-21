@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFilter } from '@fortawesome/free-solid-svg-icons';
 
-import { Modal } from '@tourmalinecore/tc-react-modal';
+import { Modal } from '@tourmalinecore/react-tc-modal';
 
 import './MobileFiltrationPopup.css';
 

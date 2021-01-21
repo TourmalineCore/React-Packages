@@ -1,7 +1,7 @@
 # Tourmaline Core react modal component
 
 ```JSX
-import { Modal } from '@tourmalinecore/tc-react-modal';
+import { Modal } from '@tourmalinecore/react-tc-modal';
 
 <Modal
   customHeader={(onClose) => {}} // it will replace title and subtitle
@@ -27,6 +27,6 @@ import { Modal } from '@tourmalinecore/tc-react-modal';
 
 ## Do not forget to import styles if needed
 ```JSX
-import '@tourmalinecore/tc-react-modal/index.css';
-import '@tourmalinecore/tc-react-ui-kit/index.css';
+import '@tourmalinecore/react-tc-modal/index.css';
+import '@tourmalinecore/react-tc-ui-kit/index.css';
 ```

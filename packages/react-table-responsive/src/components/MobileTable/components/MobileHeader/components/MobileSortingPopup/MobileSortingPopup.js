@@ -2,7 +2,7 @@ import React, { useState, useMemo } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSort } from '@fortawesome/free-solid-svg-icons';
 
-import { Modal } from '@tourmalinecore/tc-react-modal';
+import { Modal } from '@tourmalinecore/react-tc-modal';
 
 import CheckField from '../../../../../CheckField/CheckField';
 
