@@ -3,8 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSort } from '@fortawesome/free-solid-svg-icons';
 
 import { Modal } from '@tourmalinecore/react-tc-modal';
-
-import CheckField from '../../../../../CheckField/CheckField';
+import { CheckField } from '@tourmalinecore/react-tc-ui-kit';
 
 import './MobileSortingPopup.css';
 
@@ -44,6 +43,7 @@ export default function MobileSortingPopup({
                 <CheckField
                   key={option.value}
                   className="tc-table-mobile-sorting__checkfield"
+                  viewType="radio"
                   label={option.label}
                   checked={draftSortById === option.value}
                   onChange={() => setDraftSortById(option.value)}
@@ -57,6 +57,7 @@ export default function MobileSortingPopup({
                 <CheckField
                   key={option.value}
                   className="tc-table-mobile-sorting__checkfield"
+                  viewType="radio"
                   label={option.label}
                   checked={draftSortByDesc === option.value}
                   onChange={() => setSortByDesc(option.value)}

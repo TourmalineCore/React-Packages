@@ -28,6 +28,7 @@
     "@fortawesome/free-solid-svg-icons": "5.15.1",
     "@fortawesome/react-fontawesome": "0.1.13",
     "@tourmalinecore/react-tc-modal": "^0.1.0",
+    "@tourmalinecore/react-tc-ui-kit": "^0.1.0",
     "axios": "0.21.0",
     "lodash": "4.17.20",
     "match-sorter": "6.0.2",
