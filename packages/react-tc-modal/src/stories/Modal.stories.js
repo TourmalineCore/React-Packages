@@ -35,7 +35,7 @@ export const Standard = () => (
         Text content
       </div>
     )}
-    maxWidth={number('maxWidth', undefined)}
+    maxWidth={number('maxWidth', 600)}
     noPaddingBody={boolean('noPaddingBody', false)}
     onClose={action('onClose')}
     showApply={boolean('showApply', true)}

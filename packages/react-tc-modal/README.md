@@ -10,7 +10,7 @@ import { Modal } from '@tourmalinecore/react-tc-modal';
   content="content text or jsx"
   icon={() => ()} // heading title icon
   overlay={true}
-  maxWidth={600} // max width for modal body
+  maxWidth={600} // max width for modal body, pass null for no style
   noPaddingBody={false} // should modal body have padding?
   portalTarget={document.body} // portal target
   parentOpenClassName="tc-modal-opened" // className for portalTarget on modal opened
