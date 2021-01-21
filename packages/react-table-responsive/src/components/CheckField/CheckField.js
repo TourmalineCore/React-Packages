@@ -10,16 +10,16 @@ export default function CheckField({
   onChange,
 }) {
   return (
-    <label className={`tc-checkfield ${className}`}>
+    <label className={`tc-table-checkfield ${className}`}>
       <input
         type="checkbox"
-        className="tc-checkfield__input"
+        className="tc-table-checkfield__input"
         disabled={disabled}
         checked={checked}
         onChange={onChange}
       />
-      <span className="tc-checkfield__box" />
-      <span className="tc-checkfield__label">{label}</span>
+      <span className="tc-table-checkfield__box" />
+      <span className="tc-table-checkfield__label">{label}</span>
     </label>
   );
 }
