@@ -75,6 +75,13 @@ this will publish canary version
 npm run lerna:publish-canary
 ```
 
+### Test run versions update (versions bump and changelogs generation)
+it can be useful if you not sure about result\
+after it you can simply discard all changes
+```
+npx lerna version --no-git-tag-version --no-push
+```
+
 ### Build storybook
 this command creates storybook build (ex: to deploy demo page with stories)
 ```
