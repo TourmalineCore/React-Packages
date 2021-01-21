@@ -8,18 +8,9 @@ import * as classList from '../../helpers/classList';
 import IconCross from '../../assets/images/icon-cross.svg';
 import Overlay from '../Overlay/Overlay';
 
-import './Modal.css';
+import { i18n } from '../../i18n/i18n';
 
-const strings = {
-  ru: {
-    cancelLabel: 'Отмена',
-    applyLabel: 'Применить',
-  },
-  en: {
-    cancelLabel: 'Cancel',
-    applyLabel: 'Apply',
-  },
-};
+import './Modal.css';
 
 const OPENED_CLASSNAME = 'tc-modal-opened';
 
@@ -62,7 +53,8 @@ export default function Modal({
   const {
     cancelLabel,
     applyLabel,
-  } = strings[language];
+    closeIconTitle,
+  } = i18n(language);
 
   const noPaddingBodyClass = noPaddingBody ? 'tc-modal__body--no-padding' : '';
 
@@ -103,7 +95,7 @@ export default function Modal({
                       <button
                         type="button"
                         className="tc-modal__close-button"
-                        title="Close tc-modal window"
+                        title={closeIconTitle}
                         onClick={onClose}
                       >
                         <img src={IconCross} alt="close popup" />

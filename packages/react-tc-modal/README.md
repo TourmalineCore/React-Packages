@@ -21,7 +21,7 @@ import { Modal } from '@tourmalinecore/react-tc-modal';
   showCancel={true} // show cancel button
   onCancel={() => {}} // defaults to onClose
   cancelText="text for cancel button"
-  language = 'en' // ru/en
+  language = 'en' // en/ru or Object, see example here(TODO file link)
 />
 ```
 
