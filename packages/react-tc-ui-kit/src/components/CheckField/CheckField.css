@@ -29,8 +29,8 @@
   justify-content: center;
   border: 2px solid currentColor;
   border-radius: 5px;
-  width: 20px;
-  height: 20px;
+  width: 18px;
+  height: 18px;
   color: rgba(43, 53, 83, 0.24);
   cursor: pointer;
   transition-property: border-color, border-width;
@@ -81,6 +81,11 @@
 }
 
 @media (min-width: 768px) {
+  .tc-checkfield__box {
+    width: 20px;
+    height: 20px;
+  }
+
   .tc-checkfield {
     font-size: 18px;
   }
