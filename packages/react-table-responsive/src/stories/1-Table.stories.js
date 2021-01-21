@@ -10,7 +10,7 @@ import SelectColumnFilter from '../components/Filters/SelectColumnFilter';
 import { ClientTable } from '..';
 
 export default {
-  title: 'Client Side Table',
+  title: 'Table',
   decorators: [withKnobs],
   component: ClientTable,
 };
@@ -32,21 +32,21 @@ const all = {
 
 const someTypesOptions = Object.keys(someTypes).map((x) => ({ label: someTypesStrings[x], value: x }));
 
-export const Desktop = () => (
+export const ClientSideDesktop = () => (
   <SineDataTable
     loading={boolean('loading', false)}
     language={text('Language', 'en')}
   />
 );
 
-export const Mobile = () => (
+export const ClientSideMobile = () => (
   <SineDataTable
     loading={boolean('loading', false)}
     language={text('Language', 'en')}
   />
 );
 
-Mobile.parameters = {
+ClientSideMobile.parameters = {
   viewport: { defaultViewport: 'iphone5' },
 };
 
