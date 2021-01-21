@@ -135,7 +135,7 @@ const SineDataTable = ({
         // Use our custom `fuzzyText` filter on this column
         filter: 'fuzzyText',
         Cell: ({ row }) => renderBonusObject(row),
-        Footer: () => <strong>Итого</strong>,
+        Footer: () => <strong>Total</strong>,
         nonMobileColumn: true,
         principalFilterableColumn: true,
       },
