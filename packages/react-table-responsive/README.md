@@ -104,4 +104,6 @@ import {ServerTable} from '@tourmalinecore/react-table-responsive'
 ## Do not forget to import styles if needed
 ```JSX
 import '@tourmalinecore/react-table-responsive/index.css';
+import '@tourmalinecore/react-tc-modal/index.css';
+import '@tourmalinecore/react-tc-ui-kit/index.css';
 ```
