@@ -2,7 +2,9 @@ import React, { useState } from 'react';
 import { withKnobs, text, boolean } from '@storybook/addon-knobs';
 import { action } from '@storybook/addon-actions';
 
-import { Button, NativeSelect, Input } from '..';
+import {
+  Button, NativeSelect, Input, CheckField,
+} from '..';
 
 export default {
   title: 'UI Kit',
@@ -82,6 +84,64 @@ export const NativeSelectExample = () => {
           onChangeActionHandler(option);
         }}
       />
+    </>
+  );
+};
+
+const checkFieldsData = {
+  1: 'label-1',
+  2: 'label-2',
+};
+
+export const CheckFieldExample = () => {
+  const [selectedCheckboxes, setSelectedCheckboxes] = useState(new Set());
+  const [selectedRadio, setSelectedRadio] = useState();
+  const onChangeActionHandler = action('onChange');
+
+  return (
+    <>
+      <h2>As checkboxes:</h2>
+
+      {Object.entries(checkFieldsData).map(([value, label]) => (
+        <CheckField
+          key={value}
+          style={{
+            marginBottom: 16,
+          }}
+          disabled={boolean('disabled', false)}
+          label={label}
+          checked={selectedCheckboxes.has(value)}
+          onChange={(e) => {
+            onChangeActionHandler(e);
+            setSelectedCheckboxes((prevSelected) => {
+              if (prevSelected.has(value)) {
+                return new Set([...prevSelected].filter((x) => x !== value));
+              }
+
+              return new Set([...prevSelected, value]);
+            });
+          }}
+        />
+      ))}
+
+      <h2>As radiobuttons:</h2>
+
+      {Object.entries(checkFieldsData).map(([value, label]) => (
+        <CheckField
+          key={value}
+          style={{
+            marginBottom: 16,
+          }}
+          viewType="radio"
+          disabled={boolean('disabled', false)}
+          label={label}
+          checked={value === selectedRadio}
+          onChange={(e) => {
+            onChangeActionHandler(e);
+            setSelectedRadio(value);
+          }}
+        />
+      ))}
     </>
   );
 };

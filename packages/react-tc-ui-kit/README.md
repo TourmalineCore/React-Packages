@@ -51,6 +51,21 @@ import { NativeSelect } from '@tourmalinecore/react-tc-ui-kit';
 />
 ```
 
+Check Field
+```JSX
+import { CheckField } from '@tourmalinecore/react-tc-ui-kit';
+
+<CheckField
+  style={}
+  className="" // additional classname
+  viewType="" // 'checkbox' or 'radio', defaults to 'checkbox' if not specified
+  disabled={false}
+  label="label text"
+  checked={false}
+  onChange={(e) => {}}
+/>
+```
+
 ## Do not forget to import styles if needed
 ```JSX
 import '@tourmalinecore/react-tc-ui-kit/index.css';
