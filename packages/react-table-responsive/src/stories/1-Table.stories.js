@@ -211,8 +211,8 @@ const SineDataTable = ({
 
 function renderBonusObject(row) {
   return (
-    <a href="/">
+    <b>
       {row.original.bonusObject}
-    </a>
+    </b>
   );
 }
