@@ -1,7 +1,7 @@
 {
   "name": "react-packages",
   "version": "1.0.0",
-  "description": "",
+  "description": "React packages monorepo",
   "main": "index.js",
   "scripts": {
     "start": "start-storybook -p 6006",
@@ -21,8 +21,8 @@
     "postinstall": "npx husky install"
   },
   "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "author": "Tourmaline Core",
+  "license": "MIT",
   "devDependencies": {
     "@babel/cli": "7.12.8",
     "@babel/core": "7.12.3",

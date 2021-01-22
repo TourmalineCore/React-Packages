@@ -4,6 +4,7 @@
   "description": "TC React Modal Component",
   "author": "Tourmaline Core",
   "keywords": [],
+  "license": "MIT",
   "main": "es/index.js",
   "module": "es/index.js",
   "source": "src/index.js",
