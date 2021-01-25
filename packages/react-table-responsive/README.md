@@ -8,7 +8,7 @@
 - SelectColumnFilter (you can use it in columns[].Filter)
 
 
-#### TcClientTable
+#### ClientTable
 ```JSX
 import {ClientTable} from '@tourmalinecore/react-table-responsive';
 
@@ -76,7 +76,7 @@ import {ClientTable} from '@tourmalinecore/react-table-responsive';
 />
 ```
 
-#### TcServerTable
+#### ServerTable
 ```JSX
 import {ServerTable} from '@tourmalinecore/react-table-responsive'
 
@@ -105,6 +105,7 @@ import {ServerTable} from '@tourmalinecore/react-table-responsive'
 ```
 
 ## Do not forget to import styles if needed
+should be imported once in your root component
 ```JSX
 import '@tourmalinecore/react-table-responsive/index.css';
 import '@tourmalinecore/react-tc-modal/index.css';
