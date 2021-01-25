@@ -1,0 +1,31 @@
+{
+  "name": "@tourmalinecore/react-tc-modal",
+  "version": "0.1.0",
+  "description": "TC React Modal Component",
+  "author": "Tourmaline Core",
+  "keywords": [],
+  "license": "MIT",
+  "main": "es/index.js",
+  "module": "es/index.js",
+  "source": "src/index.js",
+  "files": [
+    "/es"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "build": "run-s cleanup build-package",
+    "cleanup": "rimraf dist es",
+    "build-package": "cross-env NODE_ENV=production BABEL_ENV=production rollup -c ../../rollup.config.js",
+    "prepublishOnly": "npm run build"
+  },
+  "peerDependencies": {
+    "react": "^17",
+    "react-dom": "^17"
+  },
+  "dependencies": {
+    "@tourmalinecore/react-tc-ui-kit": "^0.1.0"
+  },
+  "gitHead": ""
+}

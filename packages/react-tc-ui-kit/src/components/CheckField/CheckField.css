@@ -1,0 +1,92 @@
+.tc-checkfield {
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  box-sizing: border-box;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.15;
+  color: rgba(39, 41, 61, 0.76);
+}
+
+.tc-checkfield * {
+  box-sizing: border-box;
+}
+
+.tc-checkfield__input {
+  position: absolute;
+  margin: 0;
+  padding: 0;
+  width: 0;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.tc-checkfield__box {
+  display: flex;
+  align-items: center;
+  flex: none;
+  justify-content: center;
+  border: 2px solid currentColor;
+  border-radius: 5px;
+  width: 18px;
+  height: 18px;
+  color: rgba(43, 53, 83, 0.24);
+  cursor: pointer;
+  transition-property: border-color, border-width;
+  transition-duration: 0.1s, 0.1s;
+  transition-timing-function: ease-out, ease-out;
+}
+
+.tc-checkfield__box--radio {
+  border-radius: 50%;
+}
+
+.tc-checkfield__box::before {
+  content: "";
+  display: block;
+  flex: none;
+  border-radius: 2px;
+  width: calc(100% - 6px);
+  height: calc(100% - 6px);
+  background-color: currentColor;
+  opacity: 0;
+  transition: opacity 0.1s ease-out;
+}
+
+.tc-checkfield__box--radio::before {
+  border-radius: 50%;
+}
+
+.tc-checkfield__label {
+  margin-left: 8px;
+}
+
+.tc-checkfield__input:focus + .tc-checkfield__box,
+.tc-checkfield__input:checked + .tc-checkfield__box {
+  color: #11bfe3;
+}
+
+.tc-checkfield__input:checked + .tc-checkfield__box::before {
+  opacity: 1;
+}
+
+.tc-checkfield__input[disabled] + .tc-checkfield__box {
+  opacity: 0.4;
+  cursor: auto;
+}
+
+.tc-checkfield__input[disabled] ~ .tc-checkfield__label {
+  opacity: 0.4;
+}
+
+@media (min-width: 768px) {
+  .tc-checkfield__box {
+    width: 20px;
+    height: 20px;
+  }
+
+  .tc-checkfield {
+    font-size: 18px;
+  }
+}

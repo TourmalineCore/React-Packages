@@ -1,0 +1,50 @@
+.tc-table-mobile__header {
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  padding: 13px 16px;
+}
+
+.tc-table-mobile__header-button {
+  position: relative;
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+  justify-content: center;
+  margin-left: 4px;
+  outline: none;
+  border: none;
+  border-radius: 50%;
+  width: 38px;
+  height: 38px;
+  font-size: 18px;
+  text-align: center;
+  text-decoration: none;
+  color: #fff;
+  background-color: #27293d;
+  cursor: pointer;
+}
+
+.tc-table-mobile__header .tc-table-filter {
+  border-radius: 22px;
+  padding: 8px 14px;
+  height: 38px;
+  max-width: 220px;
+  font-size: 13px;
+}
+
+.tc-table-mobile__filter-wrapper {
+  position: relative;
+  flex: 0 1 65%;
+  margin-right: auto;
+}
+
+.tc-table-mobile__filter-wrapper .tc-table-filter {
+  max-width: 100%;
+}
+
+.tc-table-mobile__filter-icon {
+  position: absolute;
+  right: 14px;
+  top: 11px;
+}
