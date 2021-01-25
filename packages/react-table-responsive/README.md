@@ -13,7 +13,8 @@ import {ClientTable} from '@tourmalinecore/react-table-responsive';
 
 <ClientTable
   tableId="unique id" // should be unique, because it used for local state storing
-  // data for table grouped by rows, it maps with columns by property name, using colums 'accessor field'
+  // data for table grouped by rows, it maps with columns by property key, using colums 'accessor field'
+  // each object is a "row": key - column id(use it in columns 'accessor' field), value - cell data
   data={[
     {
       name: 'name1',
@@ -27,7 +28,7 @@ import {ClientTable} from '@tourmalinecore/react-table-responsive';
   columns={[
     {
       Header: 'Header Name', // display name for column 'th'
-      accessor: 'name', // should be one of data properties
+      accessor: 'name', // should be one of data keys
       accessor: (data) => data.propName || data.anotherPropName, // also you can pass custom getter function
 
       Filter: <SomeFilterComponent />, // default: <text input field>, see example here(TODO file link)
@@ -56,6 +57,7 @@ import {ClientTable} from '@tourmalinecore/react-table-responsive';
       show: () => true,
       renderIcon: (row) => (<img className="icon" />),
       renderText: () => {}, // tooltip text for icon
+      onClick: (event, row) => {}
     },
   ]}
   order = {{ // sorting order
