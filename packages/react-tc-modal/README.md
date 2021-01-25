@@ -1,5 +1,6 @@
 # Tourmaline Core react modal component
 
+
 ```JSX
 import { Modal } from '@tourmalinecore/react-tc-modal';
 
