@@ -7,7 +7,6 @@ import React, {
   useMemo,
 } from 'react';
 import { debounce } from 'lodash';
-import * as qs from 'qs';
 import axios from 'axios';
 
 import {
@@ -35,6 +34,8 @@ import {
 } from '../../utils/tableStateService';
 
 import { i18n } from '../../i18n/i18n';
+
+const qs = require('qs');
 
 const emptyRequestData = {};
 
