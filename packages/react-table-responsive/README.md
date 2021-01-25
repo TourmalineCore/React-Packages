@@ -7,6 +7,7 @@
 - ServerTable(with server-based pagination, sorting, filtering)
 - SelectColumnFilter (you can use it in columns[].Filter)
 
+
 #### TcClientTable
 ```JSX
 import {ClientTable} from '@tourmalinecore/react-table-responsive';
