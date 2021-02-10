@@ -56,9 +56,13 @@ export const InputExample = () => {
 
       <Input
         type={text('inputType', 'text')}
+        label={text('labelText', 'label')}
         placeholder=""
         value={inputValue}
         disabled={boolean('disabled', false)}
+        isInvalid={boolean('isInvalid', false)}
+        validationMessages={[text('validationMessages', 'validationMessages')]}
+        isMessagesAbsolute={boolean('isMessagesAbsolute', false)}
         onChange={(e) => {
           setInputValue(e.target.value);
           onChangeActionHandler(e);

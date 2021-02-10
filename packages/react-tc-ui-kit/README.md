@@ -32,8 +32,12 @@ const [inputValue, setInputValue] = useState('');
   id="input_id"
   className="" // additional classname
   type="text"
+  label="text"
   value={inputValue}
   placeholder=""
+  isInvalid={false}
+  validationMessages=[]
+  isMessagesAbsolute={false}
   disabled={false}
   onChange={(event) => setInputValue(event.target.value)}
 />
