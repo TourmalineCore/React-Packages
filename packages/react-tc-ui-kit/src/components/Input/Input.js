@@ -48,7 +48,7 @@ export default function Input({
             type="button"
             onClick={() => setIsPasswordVisible(!isPasswordVisible)}
           >
-            {isPasswordVisible ? <IconEyeSlash className="tc-input__svg" /> : <IconEye className="tc-input__svg" /> }
+            {isPasswordVisible ? <IconEyeSlash className="tc-input__view-toggler-icon " /> : <IconEye className="tc-input__view-toggler-icon " /> }
           </button>
         )}
       </div>

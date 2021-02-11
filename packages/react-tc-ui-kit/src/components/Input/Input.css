@@ -66,6 +66,13 @@
   cursor: pointer;
 }
 
+.tc-input__view-toggler-icon {
+  display: inline-block;
+  width: 1.25em;
+  height: 1em;
+  fill: currentColor;
+}
+
 .tc-input__view-toggler:hover,
 .tc-input__view-toggler:focus {
   opacity: 0.6;
@@ -83,13 +90,6 @@
   bottom: 6px;
   width: 2px;
   background-color: #e11961;
-}
-
-.tc-input__svg {
-  display: inline-block;
-  width: 1.25em;
-  height: 1em;
-  fill: #172f3d;
 }
 
 .tc-input__errors {
