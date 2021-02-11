@@ -36,8 +36,8 @@ const [inputValue, setInputValue] = useState('');
   value={inputValue}
   placeholder=""
   isInvalid={false}
-  validationMessages=[]
-  isMessagesAbsolute={false}
+  validationMessages={[]}
+  isMessagesAbsolute={false} //should messages be positioned absolutely?
   disabled={false}
   onChange={(event) => setInputValue(event.target.value)}
 />
@@ -72,6 +72,8 @@ import { CheckField } from '@tourmalinecore/react-tc-ui-kit';
 ```
 
 ## Do not forget to import styles if needed
+Styles can be imported once (e.g.: in your root component)
+
 ```JSX
-import '@tourmalinecore/react-tc-ui-kit/index.css';
+import '@tourmalinecore/react-tc-ui-kit/es/index.css';
 ```

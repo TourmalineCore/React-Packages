@@ -56,12 +56,12 @@ export const InputExample = () => {
 
       <Input
         type={text('inputType', 'text')}
-        label={text('labelText', 'label')}
+        label={text('labelText', 'Label')}
         placeholder=""
         value={inputValue}
         disabled={boolean('disabled', false)}
         isInvalid={boolean('isInvalid', false)}
-        validationMessages={[text('validationMessages', 'validationMessages')]}
+        validationMessages={[text('validationMessages', 'Validation Messages')]}
         isMessagesAbsolute={boolean('isMessagesAbsolute', false)}
         onChange={(e) => {
           setInputValue(e.target.value);
