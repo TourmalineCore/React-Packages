@@ -13,6 +13,11 @@ module.exports = {
   ],
 
   webpackFinal: (config) => {
+    config.module.rules.unshift({
+      test: /\.svg$/,
+      use: ["@svgr/webpack"]
+    });
+
     config.module.rules.find(
       rule => rule.test.toString() === '/\\.css$/',
     ).exclude = /\.module\.css$/;
