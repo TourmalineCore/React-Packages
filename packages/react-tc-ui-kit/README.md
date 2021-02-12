@@ -2,7 +2,7 @@
 
 ## exports from package
 
-Button
+### Button
 ```JSX
 import { Button } from '@tourmalinecore/react-tc-ui-kit';
 
@@ -21,7 +21,9 @@ import { Button } from '@tourmalinecore/react-tc-ui-kit';
 </Button>
 ```
 
-Input
+### Input
+default password toggler icons used from [Pixel perfect](https://www.flaticon.com/authors/pixel-perfect)
+
 ```JSX
 import { Input } from '@tourmalinecore/tc-ui-kit';
 
@@ -33,17 +35,18 @@ const [inputValue, setInputValue] = useState('');
   className="" // additional classname
   type="text"
   label="text"
+  disabled={false}
   value={inputValue}
   placeholder=""
   isInvalid={false}
   validationMessages={[]}
-  isMessagesAbsolute={false} //should messages be positioned absolutely?
-  disabled={false}
+  isMessagesAbsolute={false} // should messages be positioned absolutely?
+  viewTogglerIcons={[<IconIdle />, <IconActive />]} // optional, custom icons for password visibility toggler
   onChange={(event) => setInputValue(event.target.value)}
 />
 ```
 
-Native Select
+### Native Select
 ```JSX
 import { NativeSelect } from '@tourmalinecore/react-tc-ui-kit';
 
@@ -56,7 +59,7 @@ import { NativeSelect } from '@tourmalinecore/react-tc-ui-kit';
 />
 ```
 
-Check Field
+### Check Field
 ```JSX
 import { CheckField } from '@tourmalinecore/react-tc-ui-kit';
 

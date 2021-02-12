@@ -54,23 +54,22 @@
 .tc-input__view-toggler {
   position: absolute;
   right: 16px;
-  top: 11px;
+  top: 8px;
   outline: none;
   border: none;
   padding: 0;
-  width: 25px;
-  height: 25px;
+  width: 26px;
+  height: 26px;
   font-size: 16px;
   color: inherit;
   background-color: transparent;
   cursor: pointer;
 }
 
-.tc-input__view-toggler-icon {
+.tc-input__view-toggler svg {
   display: inline-block;
-  width: 1.25em;
-  height: 1em;
-  fill: currentColor;
+  width: 100%;
+  height: 100%;
 }
 
 .tc-input__view-toggler:hover,

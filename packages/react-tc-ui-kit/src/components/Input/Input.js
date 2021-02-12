@@ -16,6 +16,7 @@ export default function Input({
   isInvalid = false,
   validationMessages = [],
   isMessagesAbsolute = false,
+  viewTogglerIcons = [<IconEye />, <IconEyeSlash />],
   onChange = () => { },
   ...props
 }) {
@@ -24,6 +25,11 @@ export default function Input({
   const invalidClassname = isInvalid ? 'tc-input--invalid' : '';
   const inputPasswordClassname = type === 'password' ? 'tc-input__control--password' : '';
   const errorsAbsoluteClassname = isMessagesAbsolute ? 'tc-input__errors--absolute' : '';
+
+  const [
+    viewTogglerIconIdle,
+    viewTogglerIconActive,
+  ] = viewTogglerIcons;
 
   return (
     <div className={`tc-input ${className} ${invalidClassname}`} style={style}>
@@ -48,7 +54,7 @@ export default function Input({
             type="button"
             onClick={() => setIsPasswordVisible(!isPasswordVisible)}
           >
-            {isPasswordVisible ? <IconEyeSlash className="tc-input__view-toggler-icon " /> : <IconEye className="tc-input__view-toggler-icon " /> }
+            {isPasswordVisible ? viewTogglerIconActive : viewTogglerIconIdle}
           </button>
         )}
       </div>
