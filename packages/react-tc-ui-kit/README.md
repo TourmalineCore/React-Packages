@@ -30,6 +30,7 @@ import { Input } from '@tourmalinecore/tc-ui-kit';
 const [inputValue, setInputValue] = useState('');
 
 <Input
+  inputRef={{}} // react ref for input element
   style={}
   id="input_id"
   className="" // additional classname

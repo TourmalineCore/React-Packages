@@ -6,6 +6,7 @@ import { ReactComponent as IconEyeSlash } from '../../assets/images/eye-slash.sv
 import './Input.css';
 
 export default function Input({
+  inputRef,
   style,
   className = '',
   id,
@@ -44,6 +45,7 @@ export default function Input({
 
       <div className="tc-input__box">
         <input
+          ref={inputRef}
           id={id}
           placeholder={placeholder}
           className={`tc-input__control ${inputPasswordClassname}`}
