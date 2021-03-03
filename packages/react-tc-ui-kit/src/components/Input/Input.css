@@ -78,16 +78,25 @@
 }
 
 .tc-input__control:disabled ~ .tc-input__view-toggler {
+  opacity: 0.5;
   pointer-events: none;
 }
 
-.tc-input--invalid .tc-input__box::after {
+.tc-input--invalid .tc-input__box::after,
+.tc-input--valid .tc-input__box::after {
   content: "";
   position: absolute;
   right: -6px;
   top: 6px;
   bottom: 6px;
   width: 2px;
+}
+
+.tc-input--valid .tc-input__box::after {
+  background-color: #0aaa7a;
+}
+
+.tc-input--invalid .tc-input__box::after {
   background-color: #e11961;
 }
 

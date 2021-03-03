@@ -60,6 +60,7 @@ export const InputExample = () => {
         placeholder=""
         value={inputValue}
         disabled={boolean('disabled', false)}
+        isValid={boolean('isValid', false)}
         isInvalid={boolean('isInvalid', false)}
         validationMessages={[text('validationMessages', 'Validation Message')]}
         isMessagesAbsolute={boolean('isMessagesAbsolute', false)}

@@ -13,6 +13,7 @@ export default function Input({
   label,
   value,
   placeholder,
+  isValid,
   isInvalid = false,
   validationMessages = [],
   isMessagesAbsolute = false,
@@ -22,6 +23,7 @@ export default function Input({
 }) {
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
 
+  const validClassname = isValid ? 'tc-input--valid' : '';
   const invalidClassname = isInvalid ? 'tc-input--invalid' : '';
   const inputPasswordClassname = type === 'password' ? 'tc-input__control--password' : '';
   const errorsAbsoluteClassname = isMessagesAbsolute ? 'tc-input__errors--absolute' : '';
@@ -32,7 +34,10 @@ export default function Input({
   ] = viewTogglerIcons;
 
   return (
-    <div className={`tc-input ${className} ${invalidClassname}`} style={style}>
+    <div
+      style={style}
+      className={`tc-input ${className} ${invalidClassname} ${validClassname}`}
+    >
       {label && (
         <label className="tc-input__label" htmlFor={id}>{label}</label>
       )}
