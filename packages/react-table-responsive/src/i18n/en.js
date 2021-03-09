@@ -22,10 +22,9 @@ const strings = {
   pagination: {
     desktop: {
       shownLabel: 'Shown',
-      fromLabel: 'from',
-      toLabel: 'to',
+      toLabel: '-',
       ofLabel: 'of',
-      showLabel: 'Show',
+      showLabel: 'Show rows',
       noRecordsLabel: 'No Records',
       singleRecordLabel: 'Single Record',
       previousPageLabel: 'Previous',

@@ -3,6 +3,11 @@ import React from 'react';
 import Select from '../Select/Select';
 import { saveTablePageSize } from './paginationUtils';
 
+import { ReactComponent as IconArrLeft } from '../../../../assets/images/arrow-left.svg';
+import { ReactComponent as IconArrEndLeft } from '../../../../assets/images/arrow-end-left.svg';
+import { ReactComponent as IconArrRight } from '../../../../assets/images/arrow-right.svg';
+import { ReactComponent as IconArrEndRight } from '../../../../assets/images/arrow-end-right.svg';
+
 import './DesktopPagination.css';
 
 const availablePageSizes = [10, 20, 50, 100];
@@ -13,6 +18,7 @@ export default function DesktopPagination({
   canPreviousPage,
   canNextPage,
   pageCount,
+  gotoPage,
   nextPage,
   previousPage,
   setPageSize,
@@ -22,7 +28,6 @@ export default function DesktopPagination({
 }) {
   const {
     shownLabel,
-    fromLabel,
     toLabel,
     ofLabel,
     showLabel,
@@ -35,6 +40,27 @@ export default function DesktopPagination({
   return (
     <div className="tc-table-desktop__pagination">
       <div className="tc-table-desktop__pagination-left">
+        <div className="tc-table-desktop__page-count">
+          {showLabel}
+          {' '}
+          <Select
+            className="tc-table-desktop__page-count-select"
+            value={pageSize}
+            options={availablePageSizes.map((pageSizeOption) => ({
+              label: pageSizeOption,
+              value: pageSizeOption,
+            }))}
+            onChange={(e) => {
+              const newPageSize = Number(e.target.value);
+
+              saveTablePageSize(tableId, newPageSize);
+              setPageSize(newPageSize);
+            }}
+          />
+        </div>
+      </div>
+
+      <div className="tc-table-desktop__pagination-center">
         {
           totalCount === 0
           && noRecordsLabel
@@ -50,7 +76,6 @@ export default function DesktopPagination({
             {
               [
                 shownLabel,
-                fromLabel,
                 pageIndex * pageSize + 1,
                 toLabel,
                 Math.min(totalCount, (pageIndex + 1) * pageSize),
@@ -64,39 +89,29 @@ export default function DesktopPagination({
         {' '}
       </div>
 
-      <div className="tc-table-desktop__pagination-center">
-        <Select
-          value={pageSize}
-          options={availablePageSizes.map((pageSizeOption) => ({
-            label: `${showLabel} ${pageSizeOption}`,
-            value: pageSizeOption,
-          }))}
-          onChange={(e) => {
-            const newPageSize = Number(e.target.value);
-
-            saveTablePageSize(tableId, newPageSize);
-            setPageSize(newPageSize);
-          }}
-        />
-      </div>
-
       <div className="tc-table-desktop__pagination-right">
         <div className="tc-table-desktop__table-pagination-buttons">
           <PaginationButton
-            text={previousPageLabel}
+            title={previousPageLabel}
+            disabled={!canPreviousPage}
+            onClick={() => gotoPage(0)}
+          >
+            <IconArrEndLeft />
+          </PaginationButton>
+          <PaginationButton
+            title={previousPageLabel}
             disabled={!canPreviousPage}
             onClick={() => previousPage()}
-          />
+          >
+            <IconArrLeft />
+          </PaginationButton>
           {
             totalCount > 0
             && (
             <>
-              <button
-                type="button"
-                className="tc-table-desktop__table-page-button tc-table-desktop__table-page-button--active tc-table-desktop__table-page-button--round"
-              >
+              <div className="tc-table-desktop__table-page-current">
                 {pageIndex + 1}
-              </button>
+              </div>
               <div className="tc-table-desktop__of-total">
                 {`${ofLabel} ${pageCount}`}
               </div>
@@ -104,10 +119,19 @@ export default function DesktopPagination({
             )
           }
           <PaginationButton
-            text={nextPageLabel}
+            title={nextPageLabel}
             disabled={!canNextPage}
             onClick={() => nextPage()}
-          />
+          >
+            <IconArrRight />
+          </PaginationButton>
+          <PaginationButton
+            title={nextPageLabel}
+            disabled={!canNextPage}
+            onClick={() => gotoPage(pageCount - 1)}
+          >
+            <IconArrEndRight />
+          </PaginationButton>
         </div>
       </div>
     </div>
@@ -115,7 +139,7 @@ export default function DesktopPagination({
 }
 
 function PaginationButton({
-  text,
+  children,
   disabled,
   active,
   onClick = () => {},
@@ -127,7 +151,7 @@ function PaginationButton({
       onClick={onClick}
       disabled={disabled}
     >
-      {text}
+      {children}
     </button>
   );
 }

@@ -33,17 +33,33 @@ const all = {
 const someTypesOptions = Object.keys(someTypes).map((x) => ({ label: someTypesStrings[x], value: x }));
 
 export const ClientSideDesktop = () => (
-  <SineDataTable
-    loading={boolean('loading', false)}
-    language={text('Language', 'en')}
-  />
+  <div
+    style={{
+      fontFamily: 'sans-serif',
+      fontWeight: 300,
+      color: '#172f3d',
+    }}
+  >
+    <SineDataTable
+      loading={boolean('loading', false)}
+      language={text('Language', 'en')}
+    />
+  </div>
 );
 
 export const ClientSideMobile = () => (
-  <SineDataTable
-    loading={boolean('loading', false)}
-    language={text('Language', 'en')}
-  />
+  <div
+    style={{
+      fontFamily: 'sans-serif',
+      fontWeight: 300,
+      color: '#172f3d',
+    }}
+  >
+    <SineDataTable
+      loading={boolean('loading', false)}
+      language={text('Language', 'en')}
+    />
+  </div>
 );
 
 ClientSideMobile.parameters = {

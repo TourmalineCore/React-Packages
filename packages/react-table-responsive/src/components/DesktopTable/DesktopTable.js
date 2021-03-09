@@ -33,6 +33,7 @@ export default function DesktopTable({
   canPreviousPage,
   canNextPage,
   pageCount,
+  gotoPage,
   nextPage,
   previousPage,
   setPageSize,
@@ -149,6 +150,7 @@ export default function DesktopTable({
         canPreviousPage={canPreviousPage}
         canNextPage={canNextPage}
         pageCount={pageCount}
+        gotoPage={gotoPage}
         nextPage={nextPage}
         previousPage={previousPage}
         setPageSize={setPageSize}

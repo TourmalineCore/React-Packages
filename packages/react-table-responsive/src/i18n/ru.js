@@ -21,18 +21,17 @@ const strings = {
 
   pagination: {
     desktop: {
-      shownLabel: 'Показано',
-      fromLabel: 'с',
-      toLabel: 'по',
+      shownLabel: 'Показаны',
+      toLabel: '-',
       ofLabel: 'из',
-      showLabel: 'Показать',
+      showLabel: 'Показать строк',
       noRecordsLabel: 'Нет записей',
       singleRecordLabel: 'Единственная запись',
       previousPageLabel: 'Предыдущая',
       nextPageLabel: 'Следующая',
     },
     mobile: {
-      shownLabel: 'Показано',
+      shownLabel: 'Показаны',
       ofLabel: 'из',
       showMoreLabel: 'Показать еще',
     },
