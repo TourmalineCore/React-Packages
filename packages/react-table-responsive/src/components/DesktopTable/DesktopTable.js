@@ -62,7 +62,10 @@ export default function DesktopTable({
                 >
                   {headerGroup.headers.map((column) => (
                     <div
-                      {...column.getHeaderProps({ ...headerProps, ...(column.getSortByToggleProps ? column.getSortByToggleProps() : {}) })}
+                      {...column.getHeaderProps({
+                        ...headerProps,
+                        ...(column.getSortByToggleProps ? column.getSortByToggleProps() : {}),
+                      })}
                       title={column.render('Header')}
                       className={`tc-table-desktop__th tc-table-desktop__th--header
                         ${column.isSorted
