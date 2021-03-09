@@ -33,8 +33,10 @@ export default function DesktopPagination({
     showLabel,
     noRecordsLabel,
     singleRecordLabel,
+    firstPageLabel,
     previousPageLabel,
     nextPageLabel,
+    lastPageLabel,
   } = languageStrings.pagination.desktop;
 
   return (
@@ -92,7 +94,7 @@ export default function DesktopPagination({
       <div className="tc-table-desktop__pagination-right">
         <div className="tc-table-desktop__table-pagination-buttons">
           <PaginationButton
-            title={previousPageLabel}
+            title={firstPageLabel}
             disabled={!canPreviousPage}
             onClick={() => gotoPage(0)}
           >
@@ -126,7 +128,7 @@ export default function DesktopPagination({
             <IconArrRight />
           </PaginationButton>
           <PaginationButton
-            title={nextPageLabel}
+            title={lastPageLabel}
             disabled={!canNextPage}
             onClick={() => gotoPage(pageCount - 1)}
           >
@@ -140,6 +142,7 @@ export default function DesktopPagination({
 
 function PaginationButton({
   children,
+  title,
   disabled,
   active,
   onClick = () => {},
@@ -148,6 +151,7 @@ function PaginationButton({
     <button
       type="button"
       className={`tc-table-desktop__table-page-button ${active ? 'tc-table-desktop__table-page-button--active' : ''}`}
+      title={title}
       onClick={onClick}
       disabled={disabled}
     >

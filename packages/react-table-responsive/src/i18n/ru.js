@@ -27,8 +27,10 @@ const strings = {
       showLabel: 'Показать строк',
       noRecordsLabel: 'Нет записей',
       singleRecordLabel: 'Единственная запись',
+      firstPageLabel: 'Первая страница',
       previousPageLabel: 'Предыдущая',
       nextPageLabel: 'Следующая',
+      lastPageLabel: 'Последняя страница',
     },
     mobile: {
       shownLabel: 'Показаны',

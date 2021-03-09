@@ -27,8 +27,10 @@ const strings = {
       showLabel: 'Show rows',
       noRecordsLabel: 'No Records',
       singleRecordLabel: 'Single Record',
+      firstPageLabel: 'First Page',
       previousPageLabel: 'Previous',
       nextPageLabel: 'Next',
+      lastPageLabel: 'Last Page',
     },
     mobile: {
       shownLabel: 'Shown',
