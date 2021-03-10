@@ -125,6 +125,12 @@ const actions = [
     renderText: () => 'Open Dictionaries',
     onClick: action('onActionClick'),
   },
+  {
+    name: 'open-dictionaries1-action',
+    show: () => true,
+    renderText: () => 'Open Dictionaries',
+    onClick: action('onActionClick'),
+  },
 ];
 
 const SineDataTable = ({
@@ -158,7 +164,7 @@ const SineDataTable = ({
       {
         Header: 'Weight (%)',
         accessor: 'weightForSorting',
-        width: 80,
+        width: 160,
         disableFilters: true,
         Footer: () => 100,
       },
@@ -185,7 +191,7 @@ const SineDataTable = ({
       {
         Header: 'Target (%)',
         accessor: 'targetAchivementPercent',
-        width: 80,
+        width: 100,
         disableSortBy: true,
         disableFilters: true,
         Footer: () => '97,25',
@@ -194,7 +200,7 @@ const SineDataTable = ({
         Header: 'Forecasting',
         disableFilters: true,
         disableSortBy: true,
-        width: 260,
+        width: 220,
         minWidth: 140,
         id: 'newSlider',
         accessor: 'targetAchivementPercent',

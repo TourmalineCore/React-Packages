@@ -5,7 +5,7 @@
 }
 
 .tc-table-desktop__pagination-left {
-  margin-right: 22px;
+  margin-right: 1.2em;
 }
 
 .tc-table-desktop__pagination-right {
@@ -23,13 +23,16 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-right: 12px;
+  margin-right: 0.66em;
   outline: none;
   border: 1px solid var(--color-border);
   border-radius: 5px;
-  width: 42px;
-  height: 42px;
+  width: 2.33em;
+  height: 2.33em;
   box-shadow: none;
+  font-family: inherit;
+  font-weight: inherit;
+  font-size: inherit;
   text-decoration: none;
   color: inherit;
   background-color: #fff;
@@ -39,8 +42,8 @@
 .tc-table-desktop__table-page-button svg {
   display: block;
   flex: none;
-  width: 14px;
-  height: 14px;
+  width: 0.7em;
+  height: 0.7em;
 }
 
 .tc-table-desktop__table-page-button:last-child {
@@ -63,13 +66,13 @@
   justify-content: center;
   border: 1px solid var(--color-active);
   border-radius: 5px;
-  width: 42px;
-  height: 42px;
+  width: 2.33em;
+  height: 2.33em;
   font-weight: 400;
 }
 
 .tc-table-desktop__of-total {
-  margin: 0 12px;
+  margin: 0 0.66em;
 }
 
 .tc-table-desktop__page-count {
@@ -79,8 +82,8 @@
 
 .tc-table-desktop__page-count-select {
   flex: none;
-  margin-left: 16px;
+  margin-left: 0.89em;
   width: 68px;
-  height: 42px;
+  height: 2.33em;
   font-size: inherit;
 }

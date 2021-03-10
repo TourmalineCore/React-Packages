@@ -5,7 +5,7 @@ const strings = {
   noRecordsLabel: 'No matching records found',
   totalLabel: 'Total',
   searchLabel: 'Search',
-  actionsLabel: 'Actions',
+  actionsLabel: '',
 
   sorting: {
     titleLabel: 'Sorting',

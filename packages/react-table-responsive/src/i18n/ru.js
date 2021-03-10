@@ -5,7 +5,7 @@ const strings = {
   noRecordsLabel: 'Не найдено подходящих записей',
   totalLabel: 'Итого',
   searchLabel: 'Поиск',
-  actionsLabel: 'Действия',
+  actionsLabel: '',
 
   sorting: {
     titleLabel: 'Сортировка',
