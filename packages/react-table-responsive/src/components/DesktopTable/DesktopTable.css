@@ -44,7 +44,8 @@
   top: 0;
   z-index: 5;
   border-left: 1px solid var(--color-border);
-  background-color: var(--color-column);
+  padding: 0;
+  background-color: #fff;
 }
 
 .tc-table-desktop__th--header {

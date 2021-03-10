@@ -33,7 +33,7 @@ export default function ActionsDropdown({
         <div
           ref={dropdownList}
           style={{
-            top: listPosition.top + dropdownContainer.current.offsetHeight,
+            top: listPosition.top + dropdownContainer.current.offsetHeight / 2,
           }}
           className="tc-table-desktop-actions-dropdown__list"
         >
