@@ -3,6 +3,7 @@
   --color-border: #d8dfea;
   --color-disabled: #e3e5e7;
   --color-column: #e8efff;
+  --color-scrollbar: #dfe7f9;
 
   position: relative;
   border: 1px solid var(--color-border);
@@ -19,6 +20,24 @@
 .tc-table-desktop__inner {
   overflow: auto;
   border-bottom: 1px solid var(--color-border);
+  scrollbar-color: var(--color-scrollbar) transparent;
+  scrollbar-width: thin;
+}
+
+.tc-table-desktop__inner::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+.tc-table-desktop__inner::-webkit-scrollbar-track {
+  border-top: 1px solid var(--color-border);
+  background: transparent;
+}
+
+.tc-table-desktop__inner::-webkit-scrollbar-thumb {
+  border: none;
+  border-radius: 15px;
+  background-color: var(--color-scrollbar);
 }
 
 .tc-table-desktop__content {
