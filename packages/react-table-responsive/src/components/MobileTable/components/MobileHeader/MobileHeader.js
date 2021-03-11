@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
 
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faFilter, faSort, faSearch } from '@fortawesome/free-solid-svg-icons';
-
 import MobileFiltrationPopup from './components/MobileFiltrationPopup/MobileFiltrationPopup';
 import MobileSortingPopup from './components/MobileSortingPopup/MobileSortingPopup';
+
+import { ReactComponent as IconSearch } from '../../../../assets/images/icon-search.svg';
+import { ReactComponent as IconClear } from '../../../../assets/images/icon-times.svg';
+import { ReactComponent as IconFilter } from '../../../../assets/images/icon-filter.svg';
+import { ReactComponent as IconSort } from '../../../../assets/images/icon-sort.svg';
 
 import './MobileHeader.css';
 
@@ -13,6 +15,7 @@ export default function MobileHeader({
   setAllFilters,
   toggleSortBy,
   sortBy,
+  filters,
   languageStrings,
 }) {
   const filterableColumns = flatHeaders.filter((column) => column.canFilter);
@@ -31,18 +34,33 @@ export default function MobileHeader({
 
   const principalFilter = filterableColumns.find((column) => column.principalFilterableColumn);
 
+  const isPrincipalInputFilled = filters.some((filter) => filter.id === principalFilter.id);
+
   return (
-    <div className="tc-table-mobile__header">
-      <div className="tc-table-mobile__filter-wrapper">
-        {
-          principalFilter
-          && principalFilter.render('Filter', { inputPlaceholder: searchLabel })
-        }
-        <FontAwesomeIcon
-          icon={faSearch}
-          className="tc-table-mobile__filter-icon"
-        />
-      </div>
+    <div className="tc-table-mobile-header">
+      {
+        principalFilter && (
+          <div className="tc-table-mobile-header__filter">
+            {principalFilter.render('Filter', { inputPlaceholder: searchLabel })}
+
+            <div className="tc-table-mobile-header__filter-icons">
+              {
+                isPrincipalInputFilled
+                  ? (
+                    <button
+                      type="button"
+                      className="tc-table-mobile-header__filter-clear"
+                      onClick={resetPrincipalFilter}
+                    >
+                      <IconClear className="tc-table-mobile-header__filter-clear-icon" />
+                    </button>
+                  )
+                  : <IconSearch className="tc-table-mobile-header__filter-icon" />
+              }
+            </div>
+          </div>
+        )
+      }
 
       {
         showFiltersPopup
@@ -73,11 +91,11 @@ export default function MobileHeader({
         filterableColumnsCount > 1
         && (
         <button
-          className="tc-table-mobile__header-button"
+          className="tc-table-mobile-header__button"
           type="button"
           onClick={() => setShowFiltersPopup(true)}
         >
-          <FontAwesomeIcon icon={faFilter} />
+          <IconFilter />
         </button>
         )
       }
@@ -86,14 +104,24 @@ export default function MobileHeader({
         sortableColumnsCount > 0
         && (
         <button
-          className="tc-table-mobile__header-button"
+          className="tc-table-mobile-header__button"
           type="button"
           onClick={() => setShowSortingPopup(true)}
         >
-          <FontAwesomeIcon icon={faSort} />
+          <IconSort />
         </button>
         )
       }
     </div>
   );
+
+  function resetPrincipalFilter() {
+    const resettedFilters = filters.map((filter) => (
+      filter.id === principalFilter.id
+        ? { ...filter, value: '' }
+        : filter
+    ));
+
+    setAllFilters(resettedFilters);
+  }
 }

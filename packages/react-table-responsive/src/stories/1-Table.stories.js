@@ -146,7 +146,7 @@ const SineDataTable = ({
       desc: true,
     }}
     language={language}
-    renderMobileTitle={(row) => renderBonusObject(row)}
+    renderMobileTitle={(row) => row.original.bonusObject}
     loading={loading}
     enableTableStatePersistance
     actions={actions}

@@ -1,9 +1,9 @@
 import React, { useState, useMemo } from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faSort } from '@fortawesome/free-solid-svg-icons';
 
 import { Modal } from '@tourmalinecore/react-tc-modal';
 import { CheckField } from '@tourmalinecore/react-tc-ui-kit';
+
+import { ReactComponent as IconSort } from '../../../../../../assets/images/icon-sort.svg';
 
 import './MobileSortingPopup.css';
 
@@ -34,7 +34,7 @@ export default function MobileSortingPopup({
     <Modal
       overlay
       title={titleLabel}
-      icon={<FontAwesomeIcon icon={faSort} />}
+      icon={<IconSort />}
       content={(
         <div className="tc-table-mobile-sorting">
           <div className="tc-table-mobile-sorting__section">

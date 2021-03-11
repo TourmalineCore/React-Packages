@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faFilter } from '@fortawesome/free-solid-svg-icons';
-
 import { Modal } from '@tourmalinecore/react-tc-modal';
+
+import { ReactComponent as IconFilter } from '../../../../../../assets/images/icon-filter.svg';
 
 import './MobileFiltrationPopup.css';
 
@@ -22,7 +21,7 @@ export default function MobileFiltrationPopup({
     <Modal
       overlay
       title={titleLabel}
-      icon={<FontAwesomeIcon icon={faFilter} />}
+      icon={<IconFilter />}
       content={(
         <div className="tc-table-mobile-filtration">
           {
