@@ -126,7 +126,7 @@ export default function MobileTable({
           && <NoRecords languageStrings={languageStrings} />
         }
         {
-          !noFooter
+          !noFooter && !!totalCount
           && (
           <li className="tc-table-mobile__row">
             <div className="tc-table-mobile__row-header">
