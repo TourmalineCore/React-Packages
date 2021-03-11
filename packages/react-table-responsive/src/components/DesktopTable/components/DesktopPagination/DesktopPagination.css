@@ -25,7 +25,7 @@
   justify-content: center;
   margin-right: 0.66em;
   outline: none;
-  border: 1px solid var(--color-border);
+  border: 1px solid var(--tc-tdesk-color-border);
   border-radius: 5px;
   width: 2.33em;
   height: 2.33em;
@@ -51,12 +51,12 @@
 }
 
 .tc-table-desktop__table-page-button:hover {
-  border-color: var(--color-active);
+  border-color: var(--tc-tdesk-color-active);
 }
 
 .tc-table-desktop__table-page-button:disabled {
-  border-color: var(--color-disabled);
-  color: var(--color-disabled);
+  border-color: var(--tc-tdesk-color-disabled);
+  color: var(--tc-tdesk-color-disabled);
   cursor: not-allowed;
 }
 
@@ -64,7 +64,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  border: 1px solid var(--color-active);
+  border: 1px solid var(--tc-tdesk-color-active);
   border-radius: 5px;
   width: 2.33em;
   height: 2.33em;

@@ -1,7 +1,7 @@
 .tc-table-mobile-header {
   display: flex;
   align-items: center;
-  border-bottom: 1px solid var(--color-border);
+  border-bottom: 1px solid var(--tc-tmob-color-border);
   padding: 16px 10px;
 }
 
@@ -14,14 +14,14 @@
   justify-content: center;
   margin-left: auto;
   outline: none;
-  border: 1px solid var(--color-active);
+  border: 1px solid var(--tc-tmob-color-active);
   border-radius: 50%;
   padding: 0;
   width: 36px;
   height: 36px;
   text-align: center;
   text-decoration: none;
-  color: var(--color-active);
+  color: var(--tc-tmob-color-active);
   background-color: transparent;
   cursor: pointer;
 }
@@ -49,7 +49,7 @@
   height: 36px;
   max-width: 220px;
   font-size: 0.875em;
-  background-color: var(--color-column);
+  background-color: var(--tc-tmob-color-column);
 }
 
 .tc-table-mobile-header__filter-icons {

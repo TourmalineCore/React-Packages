@@ -3,7 +3,7 @@
 }
 
 .tc-table-mobile__showing {
-  color: var(--color-active);
+  color: var(--tc-tmob-color-count);
 }
 
 .tc-table-mobile__row--pagination {

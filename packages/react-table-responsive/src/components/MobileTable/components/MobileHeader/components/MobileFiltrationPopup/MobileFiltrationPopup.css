@@ -17,7 +17,6 @@
 
 .tc-table-mobile-filtration__field .tc-table-filter,
 .tc-table-mobile-filtration__field .tc-table-desktop__select {
-  border: 1px solid #bac4ca;
   border-radius: 10px;
   padding: 0 16px;
   height: 40px;
