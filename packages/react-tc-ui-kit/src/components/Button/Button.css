@@ -1,44 +1,37 @@
 .tc-button {
   position: relative;
-  display: inline-block;
-  vertical-align: middle;
-  border: 1px solid #344675;
-  border-radius: 4px;
-  padding: 10px 32px;
-  min-height: 40px;
-  box-sizing: border-box;
-  box-shadow: none;
-  font-weight: 600;
-  font-size: 14px;
-  line-height: 1.35;
-  text-align: center;
-  color: #fff;
-  background-image: linear-gradient(to bottom left, #344675, #263148, #344675);
-  background-position: 0 0;
-  background-size: 100%;
-  background-color: #344675;
-  cursor: pointer;
-  transition-property: box-shadow;
-  transition-duration: 0.1s;
-  transition-timing-function: ease-out;
-}
-
-.tc-button:hover,
-.tc-button:focus {
+  margin: 0 auto;
   outline: none;
-  box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.08);
-}
-
-.tc-button--simple {
-  color: #344675;
-  background-image: none;
+  border: none;
+  border-radius: 15px;
+  padding: 11px 42px;
+  min-width: 137px;
+  min-height: 42px;
+  box-shadow: none;
+  font-size: 18px;
+  line-height: 1.15;
+  text-align: center;
+  color: #172f3d;
   background-color: transparent;
+  cursor: pointer;
 }
 
-.tc-button--cancel {
-  border-color: #fd5d93;
-  background-image: linear-gradient(to bottom left, #fd5d93 8.35%, #ec250d 87.43%);
-  background-color: #fd5d93;
+.tc-button::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  border: 1px solid currentColor;
+  border-radius: 15px;
+  width: 100%;
+  height: 100%;
+  background-color: transparent;
+  pointer-events: none;
+}
+
+.tc-button:hover::before,
+.tc-button:focus::before {
+  border-width: 2px;
 }
 
 .tc-button[disabled] {
@@ -46,15 +39,18 @@
   cursor: auto;
 }
 
-.tc-button[disabled]:hover,
-.tc-button[disabled]:focus {
-  box-shadow: none;
+.tc-button[disabled]::before {
+  border-width: 1px;
 }
 
-@media (min-width: 768px) {
-  .tc-button {
-    padding-top: 12px;
-    padding-bottom: 12px;
-    min-height: 44px;
-  }
+.tc-button--add {
+  color: #1283c2;
+}
+
+.tc-button--delete {
+  color: #db2d6b;
+}
+
+.tc-button--cancel {
+  color: #334580;
 }

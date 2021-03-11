@@ -19,6 +19,7 @@ export const Buttons = () => (
       style={{
         marginRight: 16,
       }}
+      add
       disabled={boolean('disabled', false)}
       onClick={action('onClick')}
     >
@@ -29,7 +30,7 @@ export const Buttons = () => (
       style={{
         marginRight: 16,
       }}
-      simple
+      delete
       disabled={boolean('disabled', false)}
       onClick={action('onClick')}
     >
@@ -37,7 +38,17 @@ export const Buttons = () => (
     </Button>
 
     <Button
+      style={{
+        marginRight: 16,
+      }}
       cancel
+      disabled={boolean('disabled', false)}
+      onClick={action('onClick')}
+    >
+      {text('buttonText', 'Button')}
+    </Button>
+
+    <Button
       disabled={boolean('disabled', false)}
       onClick={action('onClick')}
     >

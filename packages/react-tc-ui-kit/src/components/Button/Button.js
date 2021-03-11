@@ -3,8 +3,9 @@ import React from 'react';
 import './Button.css';
 
 const buttonViewTypes = {
-  simple: 'tc-button--simple',
   cancel: 'tc-button--cancel',
+  add: 'tc-button--add',
+  delete: 'tc-button--delete',
 };
 
 export default function Button({

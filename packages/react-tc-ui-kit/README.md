@@ -14,8 +14,9 @@ import { Button } from '@tourmalinecore/react-tc-ui-kit';
   onClick={(event) => {}}
 
   // button style modifiers
-  simple // transparent bg
-  cancel // red bg
+  cancel // border blue
+  add // border light blue
+  delete // border red
 >
   text or jsx
 </Button>
