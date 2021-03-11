@@ -4,9 +4,9 @@
   justify-content: flex-start;
   box-sizing: border-box;
   font-weight: 400;
-  font-size: 16px;
+  font-size: 14px;
   line-height: 1.15;
-  color: rgba(39, 41, 61, 0.76);
+  color: #172f3d;
 }
 
 .tc-checkfield * {
@@ -29,8 +29,8 @@
   justify-content: center;
   border: 2px solid currentColor;
   border-radius: 5px;
-  width: 18px;
-  height: 18px;
+  width: 19px;
+  height: 19px;
   color: rgba(43, 53, 83, 0.24);
   cursor: pointer;
   transition-property: border-color, border-width;
@@ -59,12 +59,13 @@
 }
 
 .tc-checkfield__label {
+  margin-top: 2px;
   margin-left: 8px;
 }
 
 .tc-checkfield__input:focus + .tc-checkfield__box,
 .tc-checkfield__input:checked + .tc-checkfield__box {
-  color: #11bfe3;
+  color: #172f3d;
 }
 
 .tc-checkfield__input:checked + .tc-checkfield__box::before {
@@ -78,15 +79,4 @@
 
 .tc-checkfield__input[disabled] ~ .tc-checkfield__label {
   opacity: 0.4;
-}
-
-@media (min-width: 768px) {
-  .tc-checkfield__box {
-    width: 20px;
-    height: 20px;
-  }
-
-  .tc-checkfield {
-    font-size: 18px;
-  }
 }
