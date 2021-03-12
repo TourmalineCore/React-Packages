@@ -29,7 +29,7 @@ export const Standard = () => (
       <div
         style={boolean('bigContent', false) ? {
           height: 600,
-          backgroundColor: '#dadada',
+          background: '#dadada',
         } : {}}
       >
         Text content

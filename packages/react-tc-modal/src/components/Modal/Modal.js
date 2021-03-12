@@ -89,7 +89,7 @@ export default function Modal({
                         <h2 className="tc-modal__title">{title}</h2>
                         {
                           subtitle
-                          && <h3 className="tc-modal__subtitle">{subtitle}</h3>
+                          && <h2 className="tc-modal__subtitle">{subtitle}</h2>
                         }
                       </div>
                       <button
@@ -113,8 +113,8 @@ export default function Modal({
                   showCancel
                   && (
                   <Button
-                    simple
                     className="tc-modal__button"
+                    color="secondary"
                     onClick={onCancel}
                   >
                     {cancelText || cancelLabel}
@@ -126,6 +126,7 @@ export default function Modal({
                   && (
                   <Button
                     className="tc-modal__button"
+                    color="primary"
                     onClick={onApply}
                   >
                     {applyText || applyLabel}

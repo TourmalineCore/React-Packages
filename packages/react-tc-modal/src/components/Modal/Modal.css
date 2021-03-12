@@ -27,11 +27,8 @@
   z-index: 10;
   display: flex;
   align-items: center;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.12);
-  border-top-left-radius: 6px;
-  border-top-right-radius: 6px;
-  padding: 20px;
-  background-color: #fff;
+  padding: 22px 22px 26px;
+  background-image: linear-gradient(0deg, rgba(255, 255, 255, 0) 0, rgba(255, 255, 255, 0.5) 10px, rgba(255, 255, 255, 1) 20px 100%);
 }
 
 .tc-modal__header-icon {
@@ -45,7 +42,7 @@
   margin-left: auto;
   outline: none;
   border: none;
-  color: #2b3553;
+  color: inherit;
   background: none;
   cursor: pointer;
 }
@@ -61,20 +58,20 @@
 
 .tc-modal__title {
   margin: 0;
-  font-size: 18px;
-  line-height: 21px;
+  font-size: 20px;
+  line-height: 1.15;
 }
 
 .tc-modal__subtitle {
   margin-top: 5px;
   margin-bottom: 0;
-  font-size: 14px;
-  line-height: 16px;
-  color: rgba(43, 53, 83, 0.54);
+  font-size: 16px;
+  line-height: 1.15;
+  color: inherit;
 }
 
 .tc-modal__body {
-  padding: 24px 20px;
+  padding: 22px 22px 26px;
 }
 
 .tc-modal__body--no-padding {
@@ -82,25 +79,19 @@
 }
 
 .tc-modal__footer {
-  border-top: 1px solid rgba(0, 0, 0, 0.12);
-  padding: 20px;
+  position: sticky;
+  bottom: 0;
+  padding: 40px 22px;
+  background-color: inherit;
 }
 
 .tc-modal__buttons {
-  display: flex;
-  flex-wrap: wrap;
   margin-top: -8px;
   margin-left: -8px;
+  text-align: end;
 }
 
 .tc-modal__button {
-  flex-grow: 1;
   margin-top: 8px;
   margin-left: 8px;
-}
-
-@media (min-width: 768px) {
-  .tc-modal__container {
-    padding: 48px 0;
-  }
 }
