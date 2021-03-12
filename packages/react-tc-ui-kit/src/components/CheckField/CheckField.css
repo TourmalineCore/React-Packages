@@ -6,7 +6,7 @@
   font-weight: 400;
   font-size: 14px;
   line-height: 1.15;
-  color: #172f3d;
+  color: inherit;
 }
 
 .tc-checkfield * {
@@ -31,7 +31,6 @@
   border-radius: 5px;
   width: 19px;
   height: 19px;
-  color: rgba(43, 53, 83, 0.24);
   cursor: pointer;
   transition-property: border-color, border-width;
   transition-duration: 0.1s, 0.1s;
@@ -65,7 +64,7 @@
 
 .tc-checkfield__input:focus + .tc-checkfield__box,
 .tc-checkfield__input:checked + .tc-checkfield__box {
-  color: #172f3d;
+  color: inherit;
 }
 
 .tc-checkfield__input:checked + .tc-checkfield__box::before {
