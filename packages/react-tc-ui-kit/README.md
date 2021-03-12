@@ -8,14 +8,15 @@ import { Button } from '@tourmalinecore/react-tc-ui-kit';
 
 <Button
   style={}
-  type="button" // button(default), submit
   className="" // additional classname
+  type="button" // button(default), submit
   disabled={false} // boolean
+  isLoading={false} // loading state
   onClick={(event) => {}}
 
-  // button style modifiers
-  simple // transparent bg
-  cancel // red bg
+  // button style modifier
+  // available values: 'primary', 'secondary', 'danger'
+  color=""
 >
   text or jsx
 </Button>

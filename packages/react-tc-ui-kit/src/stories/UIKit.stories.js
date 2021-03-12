@@ -8,7 +8,10 @@ import {
 
 export default {
   title: 'UI Kit',
-  decorators: [withKnobs],
+  decorators: [
+    withKnobs,
+    (Story) => <div style={{ fontFamily: 'sans-serif', color: '#172f3d' }}><Story /></div>,
+  ],
 };
 
 export const Buttons = () => (
@@ -20,6 +23,7 @@ export const Buttons = () => (
         marginRight: 16,
       }}
       disabled={boolean('disabled', false)}
+      isLoading={boolean('isLoading', false)}
       onClick={action('onClick')}
     >
       {text('buttonText', 'Button')}
@@ -29,16 +33,30 @@ export const Buttons = () => (
       style={{
         marginRight: 16,
       }}
-      simple
+      color="primary"
       disabled={boolean('disabled', false)}
+      isLoading={boolean('isLoading', false)}
       onClick={action('onClick')}
     >
       {text('buttonText', 'Button')}
     </Button>
 
     <Button
-      cancel
+      style={{
+        marginRight: 16,
+      }}
+      color="danger"
       disabled={boolean('disabled', false)}
+      isLoading={boolean('isLoading', false)}
+      onClick={action('onClick')}
+    >
+      {text('buttonText', 'Button')}
+    </Button>
+
+    <Button
+      color="secondary"
+      disabled={boolean('disabled', false)}
+      isLoading={boolean('isLoading', false)}
       onClick={action('onClick')}
     >
       {text('buttonText', 'Button')}
