@@ -19,9 +19,13 @@ export default function NativeSelect({
       {...props}
     >
       {
-        options.map((option) => (
-          <option key={`tc-navive-select-option-${option.value}`} value={option.value}>
-            {option.label}
+        options.map(({
+          value: optionValue,
+          label: optionLabel,
+          ...optionProps
+        }) => (
+          <option key={`tc-navive-select-option-${optionValue}`} value={optionValue} {...optionProps}>
+            {optionLabel}
           </option>
         ))
       }
@@ -29,6 +33,9 @@ export default function NativeSelect({
   );
 
   function handleOptionChange(e) {
-    onChange(options.find((option) => `${option.value}` === e.target.value));
+    onChange(
+      options.find((option) => `${option.value}` === e.target.value),
+      e,
+    );
   }
 }
