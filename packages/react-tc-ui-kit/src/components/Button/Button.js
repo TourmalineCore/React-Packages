@@ -2,47 +2,40 @@ import React from 'react';
 
 import './Button.css';
 
-const buttonViewTypes = {
-  cancel: 'tc-button--cancel',
-  add: 'tc-button--add',
-  delete: 'tc-button--delete',
+const buttonColors = {
+  primary: 'tc-button--primary',
+  secondary: 'tc-button--secondary',
+  danger: 'tc-button--danger',
 };
 
 export default function Button({
   style = {},
-  type = 'button',
   className = '',
+  color = '',
+  type = 'button',
   disabled = false,
+  isLoading,
   onClick = () => {},
   children,
   ...props
 }) {
-  // filter out viewType keys
-  // because we should not set boolean view modifiers directly to dom node
-  const filteredProps = Object.entries(props)
-    .filter(([propKey]) => !buttonViewTypes[propKey])
-    .reduce((acc, [propKey, propValue]) => ({
-      ...acc,
-      [propKey]: propValue,
-    }), {});
+  const isLoadingModifier = isLoading ? 'tc-button--loading' : '';
+  const colorModifier = buttonColors[color] || '';
 
   return (
     <button
       style={style}
       type={type} // eslint-disable-line
-      className={`tc-button ${className} ${getButtonModifiers(props)}`}
+      className={`tc-button ${className} ${colorModifier} ${isLoadingModifier}`}
       disabled={disabled}
       onClick={onClick}
-      {...filteredProps}
+      {...props}
     >
-      {children}
+      <span className="tc-button__inner">
+        {children}
+      </span>
+
+      {isLoading && <span className="tc-button__loader">|||</span>}
     </button>
   );
-}
-
-function getButtonModifiers(props) {
-  return Object.entries(buttonViewTypes)
-    .filter(([key]) => props[key])
-    .map(([, className]) => className)
-    .join(' ');
 }
