@@ -1,10 +1,4 @@
 .tc-table-desktop {
-  --tc-tdesk-color-active: #334580;
-  --tc-tdesk-color-border: #d8dfea;
-  --tc-tdesk-color-disabled: #e3e5e7;
-  --tc-tdesk-color-column: #e8efff;
-  --tc-tdesk-color-scrollbar: #dfe7f9;
-
   position: relative;
   box-sizing: border-box;
   box-shadow: 0 1px 6px rgba(0, 0, 0, 0.12);
@@ -19,8 +13,8 @@
 
 .tc-table-desktop__inner {
   overflow: auto;
-  border-bottom: 1px solid var(--tc-tdesk-color-border);
-  scrollbar-color: var(--tc-tdesk-color-scrollbar) transparent;
+  border-bottom: 1px solid #d8dfea;
+  scrollbar-color: #dfe7f9 transparent;
   scrollbar-width: thin;
 }
 
@@ -30,14 +24,14 @@
 }
 
 .tc-table-desktop__inner::-webkit-scrollbar-track {
-  border-top: 1px solid var(--tc-tdesk-color-border);
+  border-top: 1px solid #d8dfea;
   background: transparent;
 }
 
 .tc-table-desktop__inner::-webkit-scrollbar-thumb {
   border: none;
   border-radius: 15px;
-  background-color: var(--tc-tdesk-color-scrollbar);
+  background-color: #dfe7f9;
 }
 
 .tc-table-desktop__content {
@@ -45,7 +39,7 @@
 }
 
 .tc-table-desktop__header {
-  border-bottom: 1px solid var(--tc-tdesk-color-border);
+  border-bottom: 1px solid #d8dfea;
 }
 
 .tc-table-desktop__th,
@@ -62,14 +56,14 @@
   right: 0;
   top: 0;
   z-index: 5;
-  border-left: 1px solid var(--tc-tdesk-color-border);
+  border-left: 1px solid #d8dfea;
   padding: 0;
   background-color: #fff;
 }
 
 .tc-table-desktop__th--header {
   overflow: hidden;
-  border-left: 1px solid var(--tc-tdesk-color-border);
+  border-left: 1px solid #d8dfea;
   padding: 1.1em 1.2em;
   font-weight: 400;
   white-space: nowrap;
@@ -81,11 +75,11 @@
 }
 
 .tc-table-desktop__th--sort-asc {
-  box-shadow: inset 0 2px 0 0 var(--tc-tdesk-color-active);
+  box-shadow: inset 0 2px 0 0 #334580;
 }
 
 .tc-table-desktop__th--sort-desc {
-  box-shadow: inset 0 -2px 0 0 var(--tc-tdesk-color-active);
+  box-shadow: inset 0 -2px 0 0 #334580;
 }
 
 .tc-table-desktop__tr {
@@ -93,7 +87,7 @@
 }
 
 .tc-table-desktop__tr + .tc-table-desktop__tr {
-  border-top: 1px solid var(--tc-tdesk-color-border);
+  border-top: 1px solid #d8dfea;
 }
 
 .tc-table-desktop__body .tc-table-desktop__tr--footer {
@@ -123,7 +117,7 @@
 }
 
 .tc-table-filter {
-  border: 1px solid var(--tc-tdesk-color-border, #d8dfea);
+  border: 1px solid #d8dfea;
   border-radius: 5px;
   padding: 6px 10px;
   height: 30px;
@@ -137,7 +131,7 @@
 
 .tc-table-filter:focus {
   outline: none;
-  border-color: var(--tc-tdesk-color-active, #334580);
+  border-color: #334580;
 }
 
 .tc-table-desktop__loading-overlay {

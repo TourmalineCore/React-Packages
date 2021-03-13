@@ -1,11 +1,4 @@
 .tc-table-mobile {
-  --tc-tmob-color-active: #334580;
-  --tc-tmob-color-count: #4876ec;
-  --tc-tmob-color-border: #d8dfea;
-  --tc-tmob-color-disabled: #e3e5e7;
-  --tc-tmob-color-column: #e8efff;
-  --tc-tmob-color-scrollbar: #dfe7f9;
-
   position: relative;
   box-sizing: border-box;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
@@ -23,7 +16,7 @@
 }
 
 .tc-table-mobile__row + .tc-table-mobile__row {
-  border-top: 1px solid var(--tc-tmob-color-border);
+  border-top: 1px solid #d8dfea;
 }
 
 .tc-table-mobile__row-header {
@@ -81,7 +74,7 @@
 
 .tc-table-mobile__row-data {
   border-radius: 10px;
-  background-color: var(--tc-tmob-color-column);
+  background-color: #e8efff;
   animation: appear 0.15s ease-out forwards;
 }
 

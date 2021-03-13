@@ -25,7 +25,7 @@
   justify-content: center;
   margin-right: 0.66em;
   outline: none;
-  border: 1px solid var(--tc-tdesk-color-border);
+  border: 1px solid #d8dfea;
   border-radius: 5px;
   width: 2.33em;
   height: 2.33em;
@@ -51,12 +51,12 @@
 }
 
 .tc-table-desktop__table-page-button:hover {
-  border-color: var(--tc-tdesk-color-active);
+  border-color: #334580;
 }
 
 .tc-table-desktop__table-page-button:disabled {
-  border-color: var(--tc-tdesk-color-disabled);
-  color: var(--tc-tdesk-color-disabled);
+  border-color: #e3e5e7;
+  color: #e3e5e7;
   cursor: not-allowed;
 }
 
@@ -64,7 +64,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  border: 1px solid var(--tc-tdesk-color-active);
+  border: 1px solid #334580;
   border-radius: 5px;
   width: 2.33em;
   height: 2.33em;
