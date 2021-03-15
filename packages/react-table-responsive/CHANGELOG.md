@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.1](https://github.com/TourmalineCore/React-Packages/compare/@tourmalinecore/react-table-responsive@0.2.0...@tourmalinecore/react-table-responsive@0.2.1) (2021-03-15)
+
+
+### Bug Fixes
+
+* **react-table-responsive:** fix table full width adapting bug ([3cd2ca9](https://github.com/TourmalineCore/React-Packages/commit/3cd2ca9a26a2e75984d38e219d383705fbf2d7f6))
+
+
+
+
+
 # [0.2.0](https://github.com/TourmalineCore/React-Packages/compare/@tourmalinecore/react-table-responsive@0.1.2...@tourmalinecore/react-table-responsive@0.2.0) (2021-03-15)
 
 
