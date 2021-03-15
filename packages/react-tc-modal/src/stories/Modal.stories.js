@@ -42,6 +42,8 @@ export const Standard = () => (
     )}
     maxWidth={number('maxWidth', 600)}
     noPaddingBody={boolean('noPaddingBody', false)}
+    isLoading={boolean('isLoading', false)}
+    isButtonsDisabled={boolean('isButtonsDisabled', false)}
     onClose={action('onClose')}
     showApply={boolean('showApply', true)}
     onApply={action('onApply')}

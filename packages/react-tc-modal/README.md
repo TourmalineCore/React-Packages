@@ -15,6 +15,8 @@ import { Modal } from '@tourmalinecore/react-tc-modal';
   overlay={true}
   maxWidth={600} // max width for modal body, pass null for no style
   noPaddingBody={false} // should modal body have padding?
+  isLoading={false} // visual loading state on buttons
+  isButtonsDisabled={false} // buttons disabled state
   portalTarget={document.body} // portal target
   parentOpenClassName="tc-modal-opened" // className for portalTarget on modal opened
   onClose={() => {}}

@@ -27,6 +27,8 @@ export default function Modal({
   noPaddingBody = false,
   portalTarget = document.body,
   parentOpenClassName = OPENED_CLASSNAME,
+  isLoading,
+  isButtonsDisabled,
   onClose,
   showApply,
   onApply = () => {},
@@ -117,6 +119,8 @@ export default function Modal({
                   <Button
                     className="tc-modal__button"
                     color="secondary"
+                    disabled={isButtonsDisabled}
+                    isLoading={isLoading}
                     onClick={onCancel}
                   >
                     {cancelText || cancelLabel}
@@ -129,6 +133,8 @@ export default function Modal({
                   <Button
                     className="tc-modal__button"
                     color="primary"
+                    disabled={isButtonsDisabled}
+                    isLoading={isLoading}
                     onClick={onApply}
                   >
                     {applyText || applyLabel}
