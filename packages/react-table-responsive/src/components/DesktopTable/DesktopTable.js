@@ -1,8 +1,10 @@
 /* eslint-disable no-nested-ternary */
-import React from 'react';
+import React, { useRef } from 'react';
 
 import DesktopPagination from './components/DesktopPagination/DesktopPagination';
 import NoRecords from '../NoRecords/NoRecords';
+
+import { ACTIONS_COLUMN_ID } from '../Actions/actionsColumnFactory';
 
 import './DesktopTable.css';
 
@@ -21,6 +23,10 @@ const getStyles = (props, align = 'left', alignItems = 'flex-start') => [
   },
 ];
 
+const setActionCellClassname = (column) => (
+  column.id === ACTIONS_COLUMN_ID ? 'tc-table-desktop__action-cell' : ''
+);
+
 export default function DesktopTable({
   tableId,
   getTableProps,
@@ -33,6 +39,7 @@ export default function DesktopTable({
   canPreviousPage,
   canNextPage,
   pageCount,
+  gotoPage,
   nextPage,
   previousPage,
   setPageSize,
@@ -48,8 +55,10 @@ export default function DesktopTable({
     loadingLabel,
   } = languageStrings;
 
+  const tableContainerRef = useRef();
+
   return (
-    <div className="tc-table-desktop">
+    <div ref={tableContainerRef} className="tc-table-desktop">
       <div className="tc-table-desktop__inner">
         <div {...getTableProps()} className="tc-table-desktop__content">
           <div className="tc-table-desktop__header">
@@ -61,9 +70,13 @@ export default function DesktopTable({
                 >
                   {headerGroup.headers.map((column) => (
                     <div
-                      {...column.getHeaderProps({ ...headerProps, ...(column.getSortByToggleProps ? column.getSortByToggleProps() : {}) })}
+                      {...column.getHeaderProps({
+                        ...headerProps,
+                        ...(column.getSortByToggleProps ? column.getSortByToggleProps() : {}),
+                      })}
                       title={column.render('Header')}
                       className={`tc-table-desktop__th tc-table-desktop__th--header
+                        ${setActionCellClassname(column)}
                         ${column.isSorted
                         ? column.isSortedDesc
                           ? 'tc-table-desktop__th--sort-desc'
@@ -90,7 +103,10 @@ export default function DesktopTable({
                   className="tc-table-desktop__tr tc-table-desktop__tr--filter"
                 >
                   {headerGroup.headers.map((column) => (
-                    <div {...column.getHeaderProps()} className="tc-table-desktop__th">
+                    <div
+                      {...column.getHeaderProps()}
+                      className={`tc-table-desktop__th ${setActionCellClassname(column)}`}
+                    >
                       {/* Render the columns filter UI */}
                       <div>{column.canFilter ? column.render('Filter') : null}</div>
                     </div>
@@ -106,8 +122,11 @@ export default function DesktopTable({
               return (
                 <div {...row.getRowProps()} className="tc-table-desktop__tr">
                   {row.cells.map((cell) => (
-                    <div {...cell.getCellProps(cellProps)} className="tc-table-desktop__td">
-                      {cell.render('Cell')}
+                    <div
+                      {...cell.getCellProps(cellProps)}
+                      className={`tc-table-desktop__td ${setActionCellClassname(cell.column)}`}
+                    >
+                      {cell.render('Cell', { tableContainerRef })}
                     </div>
                   ))}
                 </div>
@@ -131,7 +150,7 @@ export default function DesktopTable({
                     <div
                       {...column.getFooterProps(headerProps)}
                       key={`footercolumn-${column.id}`}
-                      className="tc-table-desktop__td"
+                      className={`tc-table-desktop__td ${setActionCellClassname(column)}`}
                     >
                       {column.render('Footer')}
                     </div>
@@ -149,6 +168,7 @@ export default function DesktopTable({
         canPreviousPage={canPreviousPage}
         canNextPage={canNextPage}
         pageCount={pageCount}
+        gotoPage={gotoPage}
         nextPage={nextPage}
         previousPage={previousPage}
         setPageSize={setPageSize}

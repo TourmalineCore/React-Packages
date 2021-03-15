@@ -1,7 +1,4 @@
-import React, {
-  useEffect,
-  useMemo,
-} from 'react';
+import React, { useEffect } from 'react';
 
 import { matchSorter } from 'match-sorter';
 
@@ -18,11 +15,12 @@ import {
 import DesktopTable from '../DesktopTable/DesktopTable';
 import MobileTable from '../MobileTable/MobileTable';
 import DefaultColumnFilter from '../Filters/DefaultColumnFilter';
+
 import { useWindowDimensions } from '../../hooks/useWindowDimensions';
-import {
-  getDefaultTablePageSize,
-} from '../DesktopTable/components/DesktopPagination/paginationUtils';
+import { getDefaultTablePageSize } from '../DesktopTable/components/DesktopPagination/paginationUtils';
+
 import createActionsColumn, { ACTIONS_COLUMN_ID } from '../Actions/actionsColumnFactory';
+
 import {
   saveFilters,
   saveSortBy,
@@ -31,6 +29,31 @@ import {
 } from '../../utils/tableStateService';
 
 import { i18n } from '../../i18n/i18n';
+
+const defaultColumn = {
+  // Let's set up our default Filter UI
+  Filter: DefaultColumnFilter,
+  // When using the useFlexLayout:
+  minWidth: 80, // minWidth is only used as a limit for resizing
+  width: 150, // width is used for both the flex-basis and flex-grow
+  maxWidth: 400, // maxWidth is only used as a limit for resizing
+};
+
+const filterTypes = {
+  // Add a new fuzzyTextFilterFn filter type.
+  fuzzyText: fuzzyTextFilterFn,
+  // Or, override the default text filter to use
+  // "startWith"
+  text: (rows, id, filterValue) => rows.filter((row) => {
+    const rowValue = row.values[id];
+
+    return rowValue !== undefined
+      ? String(rowValue)
+        .toLowerCase()
+        .startsWith(String(filterValue).toLowerCase())
+      : true;
+  }),
+};
 
 export default function ClientTable({
   tableId,
@@ -50,36 +73,6 @@ export default function ClientTable({
   if (!tableId) {
     throw new Error('non-empty and globally unique tableId is required');
   }
-
-  const filterTypes = useMemo(
-    () => ({
-      // Add a new fuzzyTextFilterFn filter type.
-      fuzzyText: fuzzyTextFilterFn,
-      // Or, override the default text filter to use
-      // "startWith"
-      text: (rows, id, filterValue) => rows.filter((row) => {
-        const rowValue = row.values[id];
-        return rowValue !== undefined
-          ? String(rowValue)
-            .toLowerCase()
-            .startsWith(String(filterValue).toLowerCase())
-          : true;
-      }),
-    }),
-    [],
-  );
-
-  const defaultColumn = useMemo(
-    () => ({
-      // Let's set up our default Filter UI
-      Filter: DefaultColumnFilter,
-      // When using the useFlexLayout:
-      minWidth: 80, // minWidth is only used as a limit for resizing
-      width: 150, // width is used for both the flex-basis and flex-grow
-      maxWidth: 400, // maxWidth is only used as a limit for resizing
-    }),
-    [],
-  );
 
   if (actions.length > 0) {
     if (!columns.find((column) => column.id === ACTIONS_COLUMN_ID)) {
@@ -121,9 +114,7 @@ export default function ClientTable({
     },
   } = tableProps;
 
-  const {
-    width: windowWidth,
-  } = useWindowDimensions();
+  const { width: windowWidth } = useWindowDimensions();
 
   const isDesktop = windowWidth > maxStillMobileBreakpoint;
 
@@ -135,26 +126,22 @@ export default function ClientTable({
     }
 
     gotoPage(0);
-  },
-  [isDesktop]);
+  }, [isDesktop]);
 
   useEffect(() => {
     onFiltersChange(filters);
-  },
-  [filters]);
+  }, [filters]);
 
   // it should be fince since we don't expect this setting to be dynamically changed
   // in case it is changed it will fail with a hooks-related exception and it's good
   if (enableTableStatePersistance) {
     useEffect(() => {
       saveFilters(tableId, filters);
-    },
-    [filters]);
+    }, [filters]);
 
     useEffect(() => {
       saveSortBy(tableId, sortBy);
-    },
-    [sortBy]);
+    }, [sortBy]);
   }
 
   const noFooter = columns.every((column) => !column.Footer);

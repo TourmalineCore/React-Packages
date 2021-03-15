@@ -5,7 +5,7 @@ const strings = {
   noRecordsLabel: 'Не найдено подходящих записей',
   totalLabel: 'Итого',
   searchLabel: 'Поиск',
-  actionsLabel: 'Действия',
+  actionsLabel: '',
 
   sorting: {
     titleLabel: 'Сортировка',
@@ -21,18 +21,19 @@ const strings = {
 
   pagination: {
     desktop: {
-      shownLabel: 'Показано',
-      fromLabel: 'с',
-      toLabel: 'по',
+      shownLabel: 'Показаны',
+      toLabel: '-',
       ofLabel: 'из',
-      showLabel: 'Показать',
+      showLabel: 'Показать строк',
       noRecordsLabel: 'Нет записей',
       singleRecordLabel: 'Единственная запись',
+      firstPageLabel: 'Первая страница',
       previousPageLabel: 'Предыдущая',
       nextPageLabel: 'Следующая',
+      lastPageLabel: 'Последняя страница',
     },
     mobile: {
-      shownLabel: 'Показано',
+      shownLabel: 'Показаны',
       ofLabel: 'из',
       showMoreLabel: 'Показать еще',
     },

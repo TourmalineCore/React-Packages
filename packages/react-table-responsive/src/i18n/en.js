@@ -5,7 +5,7 @@ const strings = {
   noRecordsLabel: 'No matching records found',
   totalLabel: 'Total',
   searchLabel: 'Search',
-  actionsLabel: 'Actions',
+  actionsLabel: '',
 
   sorting: {
     titleLabel: 'Sorting',
@@ -22,14 +22,15 @@ const strings = {
   pagination: {
     desktop: {
       shownLabel: 'Shown',
-      fromLabel: 'from',
-      toLabel: 'to',
+      toLabel: '-',
       ofLabel: 'of',
-      showLabel: 'Show',
+      showLabel: 'Show rows',
       noRecordsLabel: 'No Records',
       singleRecordLabel: 'Single Record',
+      firstPageLabel: 'First Page',
       previousPageLabel: 'Previous',
       nextPageLabel: 'Next',
+      lastPageLabel: 'Last Page',
     },
     mobile: {
       shownLabel: 'Shown',

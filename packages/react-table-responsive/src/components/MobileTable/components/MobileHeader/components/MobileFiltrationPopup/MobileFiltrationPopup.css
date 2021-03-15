@@ -3,7 +3,7 @@
 }
 
 .tc-table-mobile-filtration__column {
-  margin-bottom: 24px;
+  margin-bottom: 10px;
 }
 
 .tc-table-mobile-filtration__column:last-child {
@@ -11,19 +11,18 @@
 }
 
 .tc-table-mobile-filtration__title {
-  margin-bottom: 4px;
-  font-size: 13px;
+  margin-bottom: 6px;
   line-height: 1.15;
-  text-transform: uppercase;
 }
 
 .tc-table-mobile-filtration__field .tc-table-filter,
-.tc-table-mobile__header .tc-table-mobile-filtration__field .tc-table-filter,
 .tc-table-mobile-filtration__field .tc-table-desktop__select {
-  border-radius: 4px;
-  padding-left: 15px;
+  border-radius: 10px;
+  padding: 0 16px;
   height: 40px;
   max-width: 100%;
-  font-size: 13px;
+  font-family: inherit;
+  font-weight: inherit;
+  font-size: inherit;
   color: rgba(0, 0, 0, 0.54);
 }

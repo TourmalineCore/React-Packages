@@ -32,6 +32,10 @@ import {ClientTable} from '@tourmalinecore/react-table-responsive';
       accessor: 'name', // should be one of data keys
       accessor: (data) => data.propName || data.anotherPropName, // also you can pass custom getter function
 
+      // String | Function(rows, columnIds, filterValue) => Rows[]
+      // pass any custom filter function here
+      filter: () => {},
+
       Filter: <SomeFilterComponent />, // default: <text input field>, see example here(TODO file link)
       // if you use <SelectColumnFilter>, pass options with this property
       selectFilterOptions: [{label: '', value: ''}, ...]
@@ -107,7 +111,7 @@ import {ServerTable} from '@tourmalinecore/react-table-responsive'
 ## Do not forget to import styles if needed
 should be imported once in your root component
 ```JSX
-import '@tourmalinecore/react-table-responsive/index.css';
-import '@tourmalinecore/react-tc-modal/index.css';
-import '@tourmalinecore/react-tc-ui-kit/index.css';
+import '@tourmalinecore/react-table-responsive/es/index.css';
+import '@tourmalinecore/react-tc-modal/es/index.css';
+import '@tourmalinecore/react-tc-ui-kit/es/index.css';
 ```

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faChevronDown } from '@fortawesome/free-solid-svg-icons';
+import { ReactComponent as IconChevronDown } from '../../assets/images/icon-chevron-down.svg';
+
 import NoRecords from '../NoRecords/NoRecords';
 import MobileHeader from './components/MobileHeader/MobileHeader';
 import MobilePagination from './components/MobilePagination/MobilePagination';
@@ -19,6 +19,7 @@ export default function MobileTable({
   state: {
     pageSize,
     sortBy,
+    filters,
   },
   renderMobileTitle,
   noFooter,
@@ -41,6 +42,7 @@ export default function MobileTable({
         languageStrings={languageStrings}
         toggleSortBy={toggleSortBy}
         sortBy={sortBy}
+        filters={filters}
       />
       <ul className="tc-table-mobile__list">
         {
@@ -55,23 +57,22 @@ export default function MobileTable({
                     className="tc-table-mobile__row-trigger"
                     onClick={() => (row.id === expandedRowId ? setExpandedRowId(null) : setExpandedRowId(row.id))}
                   >
-                    <FontAwesomeIcon
+                    <IconChevronDown
                       className={`tc-table-mobile__chevron tc-table-mobile__chevron--${row.id === expandedRowId ? 'up' : 'down'}`}
-                      icon={faChevronDown}
                     />
                   </button>
                 </div>
                 {
                   expandedRowId === row.id && (
-                    <>
-                      <div className="tc-table-mobile__row-inner">
+                    <div className="tc-table-mobile__row-inner">
+                      <div className="tc-table-mobile__row-data">
                         {
                           row.cells
                             .filter((cell) => !cell.column.nonMobileColumn)
                             .map((cell) => (
                               <div
                                 key={`${cell.column.id}`}
-                                className={`tc-table-mobile__row-inner-item ${cell.column.twoRowsMobileLayout ? 'tc-table-mobile__row-inner-item--vertical' : ''}`}
+                                className={`tc-table-mobile__row-data-item ${cell.column.twoRowsMobileLayout ? 'tc-table-mobile__row-data-item--vertical' : ''}`}
                               >
                                 <div className="tc-table-mobile__label">
                                   {cell.render('Header')}
@@ -98,10 +99,14 @@ export default function MobileTable({
                                   onClick={(e) => action.onClick(e, row)}
                                 >
                                   <span className="tc-table-mobile-action__inner">
+                                    {
+                                      action.renderIcon && (
+                                        <span className="tc-table-mobile-action__icon">
+                                          {action.renderIcon(row)}
+                                        </span>
+                                      )
+                                    }
                                     <span className="tc-table-mobile-action__label">{action.renderText(row)}</span>
-                                    <span className="tc-table-mobile-action__icon">
-                                      {action.renderIcon(row)}
-                                    </span>
                                   </span>
                                 </button>
                               ))
@@ -109,7 +114,7 @@ export default function MobileTable({
                         </div>
                         )
                       }
-                    </>
+                    </div>
                   )
                 }
               </li>
@@ -121,28 +126,30 @@ export default function MobileTable({
           && <NoRecords languageStrings={languageStrings} />
         }
         {
-          !noFooter
+          !noFooter && !!totalCount
           && (
           <li className="tc-table-mobile__row">
             <div className="tc-table-mobile__row-header">
               <h2 className="tc-table-mobile__row-title">{totalLabel}</h2>
             </div>
             <div className="tc-table-mobile__row-inner">
-              {
-                flatHeaders
-                  .filter((column) => !column.nonMobileColumn)
-                  .filter((column) => !column.noFooterColumn)
-                  .map((column) => (
-                    <div key={`total-${column.id}`} className="tc-table-mobile__row-inner-item">
-                      <div className="tc-table-mobile__label">
-                        {column.render('Header')}
+              <div className="tc-table-mobile__row-data">
+                {
+                  flatHeaders
+                    .filter((column) => !column.nonMobileColumn)
+                    .filter((column) => !column.noFooterColumn)
+                    .map((column) => (
+                      <div key={`total-${column.id}`} className="tc-table-mobile__row-data-item">
+                        <div className="tc-table-mobile__label">
+                          {column.render('Header')}
+                        </div>
+                        <div className="tc-table-mobile__value">
+                          {column.render('Footer')}
+                        </div>
                       </div>
-                      <div className="tc-table-mobile__value">
-                        {column.render('Footer')}
-                      </div>
-                    </div>
-                  ))
-              }
+                    ))
+                }
+              </div>
             </div>
           </li>
           )

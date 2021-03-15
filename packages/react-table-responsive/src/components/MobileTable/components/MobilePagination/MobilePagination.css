@@ -1,9 +1,9 @@
 .tc-table-mobile__counter {
-  font-size: 14px;
+  padding: 22px 10px;
 }
 
 .tc-table-mobile__showing {
-  color: #23ccef;
+  color: #4876ec;
 }
 
 .tc-table-mobile__row--pagination {

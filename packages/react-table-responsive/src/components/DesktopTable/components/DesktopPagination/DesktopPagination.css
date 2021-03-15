@@ -1,8 +1,15 @@
 .tc-table-desktop__pagination {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  padding: 30px 20px 20px;
+  padding: 1.2em;
+}
+
+.tc-table-desktop__pagination-left {
+  margin-right: 1.2em;
+}
+
+.tc-table-desktop__pagination-right {
+  margin-left: auto;
 }
 
 .tc-table-desktop__table-pagination-buttons {
@@ -13,46 +20,70 @@
 }
 
 .tc-table-desktop__table-page-button {
-  margin-right: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 0.66em;
   outline: none;
-  border: 1px solid #ddd;
-  border-radius: 30px;
-  padding: 0 15px;
-  height: 40px;
+  border: 1px solid #d8dfea;
+  border-radius: 5px;
+  width: 2.33em;
+  height: 2.33em;
+  box-shadow: none;
+  font-family: inherit;
+  font-weight: inherit;
+  font-size: inherit;
   text-decoration: none;
-  color: #000;
+  color: inherit;
   background-color: #fff;
   cursor: pointer;
 }
 
-.tc-table-desktop__table-page-button:disabled {
-  color: #ddd;
-  cursor: not-allowed;
+.tc-table-desktop__table-page-button svg {
+  display: block;
+  flex: none;
+  width: 0.7em;
+  height: 0.7em;
+}
+
+.tc-table-desktop__table-page-button:last-child {
+  margin-right: 0;
 }
 
 .tc-table-desktop__table-page-button:hover {
-  background: #ededed;
+  border-color: #334580;
 }
 
-.tc-table-desktop__table-page-button:disabled:hover {
-  background: #fff;
+.tc-table-desktop__table-page-button:disabled {
+  border-color: #e3e5e7;
+  color: #e3e5e7;
+  cursor: not-allowed;
 }
 
-.tc-table-desktop__table-page-button--active:hover {
-  background-color: #23ccef;
-  cursor: auto;
-}
-
-.tc-table-desktop__table-page-button--round {
-  border: 1px solid transparent;
-  padding: 0;
-  width: 40px;
-  height: 40px;
-  line-height: 20px;
-  color: #fff;
-  background-color: #23ccef;
+.tc-table-desktop__table-page-current {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #334580;
+  border-radius: 5px;
+  width: 2.33em;
+  height: 2.33em;
+  font-weight: 400;
 }
 
 .tc-table-desktop__of-total {
-  margin-right: 10px;
+  margin: 0 0.66em;
+}
+
+.tc-table-desktop__page-count {
+  display: flex;
+  align-items: center;
+}
+
+.tc-table-desktop__page-count-select {
+  flex: none;
+  margin-left: 0.89em;
+  width: 68px;
+  height: 2.33em;
+  font-size: inherit;
 }
