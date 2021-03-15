@@ -4,8 +4,8 @@ import ReactDOM from 'react-dom';
 import { Button } from '@tourmalinecore/react-tc-ui-kit';
 
 import * as classList from '../../helpers/classList';
+import { ReactComponent as IconCross } from '../../assets/images/icon-cross.svg';
 
-import IconCross from '../../assets/images/icon-cross.svg';
 import Overlay from '../Overlay/Overlay';
 
 import { i18n } from '../../i18n/i18n';
@@ -15,6 +15,8 @@ import './Modal.css';
 const OPENED_CLASSNAME = 'tc-modal-opened';
 
 export default function Modal({
+  style = '',
+  className = '',
   customHeader,
   title,
   subtitle,
@@ -64,7 +66,7 @@ export default function Modal({
         overlay
         && <Overlay />
       }
-      <section className="tc-modal">
+      <div style={style} className={`tc-modal ${className}`}>
         <div
           className="tc-modal__container"
           style={{
@@ -86,10 +88,10 @@ export default function Modal({
                         )
                       }
                       <div className="tc-modal__title-group">
-                        <h2 className="tc-modal__title">{title}</h2>
+                        <div className="tc-modal__title">{title}</div>
                         {
                           subtitle
-                          && <h2 className="tc-modal__subtitle">{subtitle}</h2>
+                          && <div className="tc-modal__subtitle">{subtitle}</div>
                         }
                       </div>
                       <button
@@ -98,7 +100,7 @@ export default function Modal({
                         title={closeIconTitle}
                         onClick={onClose}
                       >
-                        <img src={IconCross} alt="close popup" />
+                        <IconCross />
                       </button>
                     </>
                   )
@@ -137,7 +139,7 @@ export default function Modal({
             </div>
           </div>
         </div>
-      </section>
+      </div>
     </>,
     portalTarget,
   );

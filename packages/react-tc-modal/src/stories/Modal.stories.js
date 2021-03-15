@@ -14,6 +14,11 @@ export default {
 
 export const Standard = () => (
   <Modal
+    style={{
+      fontFamily: 'sans-serif',
+      fontWeight: 300,
+      color: '#172f3d',
+    }}
     overlay={boolean('overlay', true)}
     title={text('title', 'Modal title')}
     subtitle={text('subtitle', 'Modal subtitle')}
@@ -29,7 +34,7 @@ export const Standard = () => (
       <div
         style={boolean('bigContent', false) ? {
           height: 600,
-          background: '#dadada',
+          backgroundColor: '#dadada',
         } : {}}
       >
         Text content
