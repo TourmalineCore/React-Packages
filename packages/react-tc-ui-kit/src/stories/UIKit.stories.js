@@ -101,10 +101,14 @@ export const NativeSelectExample = () => {
 
       <NativeSelect
         value={selectedValue}
-        options={[{ label: 'option1', value: 1 }, { label: 'option2', value: 2 }]}
-        onChange={(option) => {
+        options={[
+          { label: 'option1', value: 1 },
+          { label: 'option2', value: 2 },
+          { label: 'option3', value: 3, disabled: true },
+        ]}
+        onChange={(option, e) => {
           setSelectedValue(option.value);
-          onChangeActionHandler(option);
+          onChangeActionHandler(option, e);
         }}
       />
     </>
