@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.3.2](https://github.com/TourmalineCore/React-Packages/compare/@tourmalinecore/react-tc-ui-kit@0.3.1...@tourmalinecore/react-tc-ui-kit@0.3.2) (2021-03-15)
+
+
+### Bug Fixes
+
+* **react-tc-ui-kit:** fix inputs ios inner shadow ([bac8563](https://github.com/TourmalineCore/React-Packages/commit/bac8563abd8eb628135ed7543bc68bd3d8f2c7e5))
+
+
+
+
+
 ## [0.3.1](https://github.com/TourmalineCore/React-Packages/compare/@tourmalinecore/react-tc-ui-kit@0.3.0...@tourmalinecore/react-tc-ui-kit@0.3.1) (2021-03-15)
 
 
