@@ -111,6 +111,9 @@
 
 .tc-modal__button {
   margin-top: 16px;
+  padding-right: 12px;
+  padding-left: 12px;
+  min-width: 100px;
 }
 
 .tc-modal__button + .tc-modal__button {
@@ -118,6 +121,10 @@
 }
 
 @media (min-width: 768px) {
+  .tc-modal__button {
+    min-width: 120px;
+  }
+
   .tc-modal__button + .tc-modal__button {
     margin-left: 22px;
   }
