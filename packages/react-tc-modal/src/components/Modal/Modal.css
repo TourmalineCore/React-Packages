@@ -63,7 +63,7 @@
 }
 
 .tc-modal__subtitle {
-  margin-top: 5px;
+  margin-top: 6px;
   margin-bottom: 0;
   font-size: 16px;
   line-height: 1.15;
@@ -81,7 +81,7 @@
 .tc-modal__footer {
   position: sticky;
   bottom: 0;
-  padding: 40px 22px;
+  padding: 40px 22px 22px;
   background-color: inherit;
 }
 
