@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.3.0](https://github.com/TourmalineCore/React-Packages/compare/@tourmalinecore/react-tc-ui-kit@0.2.0...@tourmalinecore/react-tc-ui-kit@0.3.0) (2021-03-15)
+
+
+### Bug Fixes
+
+* **react-tc-ui-kit:** fix button default font weight ([388b0ce](https://github.com/TourmalineCore/React-Packages/commit/388b0ce36311ad521d89b0cc9869edc43531c738))
+
+
+### Features
+
+* add ability to pass options attributes, add event to callback args ([0ba8609](https://github.com/TourmalineCore/React-Packages/commit/0ba8609811b3afda476f9fea66c280990cd5daa9))
+* updating the button design ([5bc463f](https://github.com/TourmalineCore/React-Packages/commit/5bc463f0769629794c85af8f21fda4aa03a51303))
+* updating the checkbox design ([32084dd](https://github.com/TourmalineCore/React-Packages/commit/32084dd5775ac16b90809fdd02f6a2bbbbff9d6e))
+
+
+
+
+
 # [0.2.0](https://github.com/TourmalineCore/React-Packages/compare/@tourmalinecore/react-tc-ui-kit@0.1.0...@tourmalinecore/react-tc-ui-kit@0.2.0) (2021-03-03)
 
 

@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.2.0](https://github.com/TourmalineCore/React-Packages/compare/@tourmalinecore/react-table-responsive@0.1.2...@tourmalinecore/react-table-responsive@0.2.0) (2021-03-15)
+
+
+### Bug Fixes
+
+* **react-table-responsive:** get rid of css variables to support ie11 ([dfea556](https://github.com/TourmalineCore/React-Packages/commit/dfea5566b1f5e2a80db4d993255c736cf8bd72a8))
+* update desktop table visuals ([ade3510](https://github.com/TourmalineCore/React-Packages/commit/ade3510ffb4d87449d562526435173404a89499b))
+
+
+### Features
+
+* **react-table-responsive:** new implementation of desktop actions block ([3307338](https://github.com/TourmalineCore/React-Packages/commit/3307338bf3a4ee07d6eeac98f2268aafe6fc62c5))
+* **react-table-responsive:** update mobile table ([3799a98](https://github.com/TourmalineCore/React-Packages/commit/3799a9827ff907ad67859ee49bb8f4b7f58b4e18))
+
+
+
+
+
 ## [0.1.2](https://github.com/TourmalineCore/React-Packages/compare/@tourmalinecore/react-table-responsive@0.1.1...@tourmalinecore/react-table-responsive@0.1.2) (2021-03-03)
 
 **Note:** Version bump only for package @tourmalinecore/react-table-responsive
