@@ -8,14 +8,15 @@ import { Button } from '@tourmalinecore/react-tc-ui-kit';
 
 <Button
   style={}
-  type="button" // button(default), submit
   className="" // additional classname
+  type="button" // button(default), submit
   disabled={false} // boolean
+  isLoading={false} // loading state
   onClick={(event) => {}}
 
-  // button style modifiers
-  simple // transparent bg
-  cancel // red bg
+  // button style modifier
+  // available values: 'primary', 'secondary', 'danger'
+  color=""
 >
   text or jsx
 </Button>
@@ -56,8 +57,8 @@ import { NativeSelect } from '@tourmalinecore/react-tc-ui-kit';
   style={}
   className="" // additional classname
   value="" // selected value
-  options={[{ label: 'option1', value: 1 }, { label: 'option2', value: 2 }]}
-  onChange={(option) => {}} // {label: String, value: String | Number}
+  options={[{ label: 'option1', value: 1, ...attrs }, { label: 'option2', value: 2, disabled: true }]}
+  onChange={(option, event) => {}} // option: {label: String, value: String | Number}
 />
 ```
 

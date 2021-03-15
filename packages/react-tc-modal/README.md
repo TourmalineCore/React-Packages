@@ -5,6 +5,8 @@
 import { Modal } from '@tourmalinecore/react-tc-modal';
 
 <Modal
+  style={{}}
+  className="" // additional classname
   customHeader={(onClose) => {}} // it will replace title and subtitle
   title="title text or jsx"
   subtitle="subtitle text or jsx"
@@ -13,6 +15,8 @@ import { Modal } from '@tourmalinecore/react-tc-modal';
   overlay={true}
   maxWidth={600} // max width for modal body, pass null for no style
   noPaddingBody={false} // should modal body have padding?
+  isLoading={false} // visual loading state on buttons
+  isButtonsDisabled={false} // buttons disabled state
   portalTarget={document.body} // portal target
   parentOpenClassName="tc-modal-opened" // className for portalTarget on modal opened
   onClose={() => {}}
@@ -28,6 +32,6 @@ import { Modal } from '@tourmalinecore/react-tc-modal';
 
 ## Do not forget to import styles if needed
 ```JSX
-import '@tourmalinecore/react-tc-modal/index.css';
-import '@tourmalinecore/react-tc-ui-kit/index.css';
+import '@tourmalinecore/react-tc-modal/es/index.css';
+import '@tourmalinecore/react-tc-ui-kit/es/index.css';
 ```

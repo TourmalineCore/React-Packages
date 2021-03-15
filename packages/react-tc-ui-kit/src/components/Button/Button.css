@@ -2,43 +2,47 @@
   position: relative;
   display: inline-block;
   vertical-align: middle;
-  border: 1px solid #344675;
-  border-radius: 4px;
-  padding: 10px 32px;
-  min-height: 40px;
+  margin: 0 auto;
+  outline: none;
+  border: none;
+  border-radius: 15px;
+  padding: 8px 32px;
+  min-width: 137px;
+  min-height: 42px;
   box-sizing: border-box;
   box-shadow: none;
-  font-weight: 600;
-  font-size: 14px;
-  line-height: 1.35;
+  font-family: inherit;
+  font-weight: inherit;
+  font-size: inherit;
+  line-height: 1.15;
   text-align: center;
-  color: #fff;
-  background-image: linear-gradient(to bottom left, #344675, #263148, #344675);
-  background-position: 0 0;
-  background-size: 100%;
-  background-color: #344675;
-  cursor: pointer;
-  transition-property: box-shadow;
-  transition-duration: 0.1s;
-  transition-timing-function: ease-out;
-}
-
-.tc-button:hover,
-.tc-button:focus {
-  outline: none;
-  box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.08);
-}
-
-.tc-button--simple {
-  color: #344675;
-  background-image: none;
+  color: inherit;
   background-color: transparent;
+  cursor: pointer;
 }
 
-.tc-button--cancel {
-  border-color: #fd5d93;
-  background-image: linear-gradient(to bottom left, #fd5d93 8.35%, #ec250d 87.43%);
-  background-color: #fd5d93;
+.tc-button *,
+.tc-button::before,
+.tc-button::after {
+  box-sizing: inherit;
+}
+
+.tc-button::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  border: 1px solid currentColor;
+  border-radius: 15px;
+  width: 100%;
+  height: 100%;
+  background-color: transparent;
+  pointer-events: none;
+}
+
+.tc-button:hover::before,
+.tc-button:focus::before {
+  border-width: 2px;
 }
 
 .tc-button[disabled] {
@@ -46,15 +50,34 @@
   cursor: auto;
 }
 
-.tc-button[disabled]:hover,
-.tc-button[disabled]:focus {
-  box-shadow: none;
+.tc-button[disabled]::before {
+  border-width: 1px;
 }
 
-@media (min-width: 768px) {
-  .tc-button {
-    padding-top: 12px;
-    padding-bottom: 12px;
-    min-height: 44px;
-  }
+.tc-button--primary {
+  color: #1283c2;
+}
+
+.tc-button--secondary {
+  color: #334580;
+}
+
+.tc-button--danger {
+  color: #db2d6b;
+}
+
+.tc-button__loader {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  z-index: 5;
+  margin: auto;
+  width: 16px;
+  height: 1em;
+}
+
+.tc-button--loading .tc-button__inner {
+  opacity: 0;
 }
