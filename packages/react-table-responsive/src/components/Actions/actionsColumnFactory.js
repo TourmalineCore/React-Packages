@@ -17,6 +17,7 @@ export default function createActionsColumn(actions, languageStrings) {
     nonMobileColumn: true,
     noFooterColumn: true,
     minWidth: 74,
+    width: 74,
     maxWidth: 74,
     Cell: (row) => {
       // this row.row || row handles desktop and mobile cases of Cell call

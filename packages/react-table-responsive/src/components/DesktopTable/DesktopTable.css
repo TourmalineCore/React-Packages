@@ -14,6 +14,7 @@
 .tc-table-desktop__inner {
   overflow: auto;
   border-bottom: 1px solid #d8dfea;
+  border-spacing: 0;
   scrollbar-color: #dfe7f9 transparent;
   scrollbar-width: thin;
 }
@@ -34,12 +35,15 @@
   background-color: #dfe7f9;
 }
 
-.tc-table-desktop__content {
+.tc-table-desktop__header {
   display: inline-block;
+  border-bottom: 1px solid #d8dfea;
+  min-width: 100%;
 }
 
-.tc-table-desktop__header {
-  border-bottom: 1px solid #d8dfea;
+.tc-table-desktop__body {
+  display: inline-block;
+  min-width: 100%;
 }
 
 .tc-table-desktop__th,
@@ -56,6 +60,7 @@
   right: 0;
   top: 0;
   z-index: 5;
+  flex: none !important;
   border-left: 1px solid #d8dfea;
   padding: 0;
   background-color: #fff;

@@ -30,7 +30,7 @@
     "axios": "^0.21.0",
     "lodash": "^4.17.20",
     "match-sorter": "^6.0.2",
-    "react-table": "^7.6.2"
+    "react-table": "^7.6.3"
   },
   "devDependencies": {
     "@fortawesome/fontawesome-svg-core": "^1.2.32",
