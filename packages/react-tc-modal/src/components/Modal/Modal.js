@@ -15,7 +15,7 @@ import './Modal.css';
 const OPENED_CLASSNAME = 'tc-modal-opened';
 
 export default function Modal({
-  style = '',
+  style = {},
   className = '',
   customHeader,
   title,
