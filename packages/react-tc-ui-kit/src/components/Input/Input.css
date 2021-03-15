@@ -31,6 +31,7 @@
   font-weight: inherit;
   font-size: inherit;
   color: inherit;
+  background-clip: padding-box; /* ios inner shadow fix */
   background-color: #fff;
 }
 
