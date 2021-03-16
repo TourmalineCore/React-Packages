@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.3.3](https://github.com/TourmalineCore/React-Packages/compare/@tourmalinecore/react-tc-ui-kit@0.3.2...@tourmalinecore/react-tc-ui-kit@0.3.3) (2021-03-16)
+
+
+### Bug Fixes
+
+* **react-tc-ui-kit:** update primary and active colors ([538fca1](https://github.com/TourmalineCore/React-Packages/commit/538fca1fe52dac5eb8d70dbf941a05b03e3b41f5))
+
+
+
+
+
 ## [0.3.2](https://github.com/TourmalineCore/React-Packages/compare/@tourmalinecore/react-tc-ui-kit@0.3.1...@tourmalinecore/react-tc-ui-kit@0.3.2) (2021-03-15)
 
 
