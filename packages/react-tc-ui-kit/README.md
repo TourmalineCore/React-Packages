@@ -80,6 +80,8 @@ import { CheckField } from '@tourmalinecore/react-tc-ui-kit';
 ## Do not forget to import styles if needed
 Styles can be imported once (e.g.: in your root component)
 
+you can set css var `--tc-controls-primary-color` to redefine primary button color and hover/focus color effects
+
 ```JSX
 import '@tourmalinecore/react-tc-ui-kit/es/index.css';
 ```

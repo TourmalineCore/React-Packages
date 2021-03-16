@@ -55,7 +55,8 @@
 }
 
 .tc-button--primary {
-  color: #1283c2;
+  color: #5887f3;
+  color: var(--tc-controls-primary-color, #5887f3);
 }
 
 .tc-button--secondary {
