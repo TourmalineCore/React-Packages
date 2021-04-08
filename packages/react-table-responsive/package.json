@@ -1,9 +1,16 @@
 {
   "name": "@tourmalinecore/react-table-responsive",
-  "version": "0.2.4",
+  "version": "0.3.0",
   "description": "React Table Responsive",
   "author": "Tourmaline Core",
-  "keywords": ["react", "table", "react-table", "server-side-table", "responsive", "mobile"],
+  "keywords": [
+    "react",
+    "table",
+    "react-table",
+    "server-side-table",
+    "responsive",
+    "mobile"
+  ],
   "license": "MIT",
   "main": "es/index.js",
   "module": "es/index.js",
@@ -25,8 +32,8 @@
     "react-dom": "^17"
   },
   "dependencies": {
-    "@tourmalinecore/react-tc-modal": "^0.2.3",
-    "@tourmalinecore/react-tc-ui-kit": "^0.3.3",
+    "@tourmalinecore/react-tc-modal": "^0.2.4",
+    "@tourmalinecore/react-tc-ui-kit": "^0.3.4",
     "axios": "^0.21.0",
     "lodash": "^4.17.20",
     "match-sorter": "^6.0.2",

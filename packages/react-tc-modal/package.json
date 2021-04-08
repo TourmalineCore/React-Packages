@@ -1,9 +1,14 @@
 {
   "name": "@tourmalinecore/react-tc-modal",
-  "version": "0.2.3",
+  "version": "0.2.4",
   "description": "TC React Modal Component",
   "author": "Tourmaline Core",
-  "keywords": ["react", "react-modal", "modal", "dialog"],
+  "keywords": [
+    "react",
+    "react-modal",
+    "modal",
+    "dialog"
+  ],
   "license": "MIT",
   "main": "es/index.js",
   "module": "es/index.js",
@@ -25,7 +30,7 @@
     "react-dom": "^17"
   },
   "dependencies": {
-    "@tourmalinecore/react-tc-ui-kit": "^0.3.3"
+    "@tourmalinecore/react-tc-ui-kit": "^0.3.4"
   },
   "gitHead": ""
 }

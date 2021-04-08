@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.3.0](https://github.com/TourmalineCore/React-Packages/compare/@tourmalinecore/react-table-responsive@0.2.4...@tourmalinecore/react-table-responsive@0.3.0) (2021-04-08)
+
+
+### Features
+
+* **react-table-responsive:** now table is able to take any number of custom properties ([abb7e60](https://github.com/TourmalineCore/React-Packages/commit/abb7e60794dd439b8965a607a8f15dcf3e9425c1))
+
+
+
+
+
 ## [0.2.4](https://github.com/TourmalineCore/React-Packages/compare/@tourmalinecore/react-table-responsive@0.2.3...@tourmalinecore/react-table-responsive@0.2.4) (2021-03-16)
 
 **Note:** Version bump only for package @tourmalinecore/react-table-responsive
