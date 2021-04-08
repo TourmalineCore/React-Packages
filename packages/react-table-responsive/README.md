@@ -81,6 +81,22 @@ import {ClientTable} from '@tourmalinecore/react-table-responsive';
 ```
 
 #### ServerTable
+
+If you want to use default GET request method you will need to ensure that your backend endpoint can process query consisting of the parameters below:
+
+- **draw**: int.
+- **page**: int. Number of page to take.
+- **pageSize**: int. Number that defines size of the pages.
+- **orderBy**: string. Property name used for sorting.
+- **orderingDirection**: string. Any string for ascending order and 'desc' for descending.
+- **filteredByColumns**: string[]. List of property names to be used for filtering separated by coma. This names are taken from the provided *columns* list.   
+- **filteredByValues**: string[]. List of property values to be used for filtering separated by coma. Thier indexes  correspond with the ones from the *filteredByColumns* array.
+
+Example:
+```
+https://{app-url}/{endpoint}?draw=2&page=1&pageSize=10&orderBy=name&orderingDirection=desc&filteredByColumns=Name,Surname&filteredByValues=John,Smith
+```
+
 ```JSX
 import {ServerTable} from '@tourmalinecore/react-table-responsive'
 
