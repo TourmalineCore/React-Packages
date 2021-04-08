@@ -77,6 +77,12 @@ import {ClientTable} from '@tourmalinecore/react-table-responsive';
   // if it is true filters and sortBy will be stored in memory and when you go back to the table its state will be initialized with it
   // it is stored in a const variable thus state dissapears on page reload
   enableTableStatePersistance={false}
+
+  // there you can also provide your custom props:
+  // anything you put into these options will
+  // automatically be available on the instance.
+  // E.g. if you provide a function here,  
+  // it will be available from cell renderers
 />
 ```
 
@@ -121,6 +127,12 @@ import {ServerTable} from '@tourmalinecore/react-table-responsive'
   requestMethod="GET"
   requestData={{}} // data for POST requests, defaults to {}
   onPageDataLoaded={() => {}}
+
+  // there you can also provide your custom props:
+  // anything you put into these options will
+  // automatically be available on the instance.
+  // E.g. if you provide a function here,  
+  // it will be available from cell renderers
 />
 ```
 
