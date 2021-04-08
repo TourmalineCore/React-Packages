@@ -13,7 +13,7 @@ If you are here to suggest a feature, first create an issue if it does not alrea
 ### Init
 this command will install all required packages, specified in root package.json
 ```
-npm ci
+npm i
 ```
 
 this command runs `lerna bootstrap`\
