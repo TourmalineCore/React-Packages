@@ -2,7 +2,7 @@
 
 ## Reporting Issues
 
-If you have found what you think is a bug, please [file an issue]().
+If you have found what you think is a bug, please [file an issue](https://github.com/TourmalineCore/React-Packages/issues).
 
 ## Suggesting new features
 
