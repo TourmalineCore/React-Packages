@@ -59,6 +59,7 @@ export default function ServerTable({
   // if it is true filters and sortBy will be stored in memory and when you go back to the table its state will be initialized with it
   // it is stored in a const variable thus state dissapears on page reload
   enableTableStatePersistance = false,
+  ...props
 }) {
   if (!tableId) {
     throw new Error('non-empty and globally unique tableId is required');
@@ -114,6 +115,7 @@ export default function ServerTable({
       manualFilters: true,
       manualSortBy: true,
       pageCount,
+      ...props,
     },
     useResizeColumns,
     useFlexLayout,
