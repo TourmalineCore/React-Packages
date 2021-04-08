@@ -2,7 +2,7 @@
 
 ## Reporting Issues
 
-If you have found what you think is a bug, please [file an issue]().
+If you have found what you think is a bug, please [file an issue](https://github.com/TourmalineCore/React-Packages/issues).
 
 ## Suggesting new features
 
@@ -13,7 +13,7 @@ If you are here to suggest a feature, first create an issue if it does not alrea
 ### Init
 this command will install all required packages, specified in root package.json
 ```
-npm ci
+npm i
 ```
 
 this command runs `lerna bootstrap`\

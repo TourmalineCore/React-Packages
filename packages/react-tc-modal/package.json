@@ -3,7 +3,7 @@
   "version": "0.2.3",
   "description": "TC React Modal Component",
   "author": "Tourmaline Core",
-  "keywords": [],
+  "keywords": ["react", "react-modal", "modal", "dialog"],
   "license": "MIT",
   "main": "es/index.js",
   "module": "es/index.js",

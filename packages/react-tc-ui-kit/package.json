@@ -3,7 +3,7 @@
   "version": "0.3.3",
   "description": "TC React UI-Kit",
   "author": "Tourmaline Core",
-  "keywords": [],
+  "keywords": ["react", "button", "input", "select", "checkbox", "kit", "ui", "ui-kit"],
   "license": "MIT",
   "main": "es/index.js",
   "module": "es/index.js",

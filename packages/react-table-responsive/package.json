@@ -3,7 +3,7 @@
   "version": "0.2.4",
   "description": "React Table Responsive",
   "author": "Tourmaline Core",
-  "keywords": [],
+  "keywords": ["react", "table", "react-table", "server-side-table", "responsive", "mobile"],
   "license": "MIT",
   "main": "es/index.js",
   "module": "es/index.js",
