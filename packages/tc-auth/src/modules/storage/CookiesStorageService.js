@@ -1,13 +1,21 @@
+import { getCookie } from '../utils/cookiesHelpers';
+
 export default class CookiesStorageService {
   constructor(config = {}) {
     this.key = config.storageKey;
+    this.tokenValueKey = config.lsTokenValueKey;
+    this.tokenExpireKey = config.lsTokenExpireKey;
+
     this.httpOnly = config.cookiesHttpOnly;
   }
 
-  setToken(tokenValue, tokenExpires) {
+  setToken(token) {
     if (this.httpOnly) {
       return;
     }
+
+    const tokenValue = token[this.tokenValueKey];
+    const tokenExpires = token[this.tokenExpiresKey];
 
     document.cookie = `${this.key}=${tokenValue}; expires=${tokenExpires}`;
   }
@@ -35,11 +43,4 @@ export default class CookiesStorageService {
 
     return !!this.getTokenValue();
   }
-}
-
-function getCookie(name) {
-  const matches = document.cookie.match(new RegExp(
-    `(?:^|; )${name.replace(/([.$?*|{}()[\]\\/+^])/g, '\\$1')}=([^;]*)`,
-  ));
-  return matches ? decodeURIComponent(matches[1]) : undefined;
 }

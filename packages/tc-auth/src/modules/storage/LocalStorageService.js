@@ -5,37 +5,33 @@ export default class LocalStorageService {
     this.tokenExpireKey = config.lsTokenExpireKey;
   }
 
-  getTokenObject() {
-    const data = localStorage.getItem(this.storageKey);
+  getTokenObject = () => {
+    const data = localStorage.getItem(this.key);
     const token = (data && JSON.parse(data)) || null;
 
     return token;
   }
 
-  getTokenExpires() {
+  getTokenExpires = () => {
     const token = this.getTokenObject();
 
     return token ? token[this.tokenExpireKey] : null;
   }
 
-  setToken(tokenValue, tokenExpires) {
-    return localStorage.setItem(this.storageKey, {
-      [this.tokenValueKey]: tokenValue,
-      [this.tokenExpireKey]: tokenExpires,
-    });
-  }
+  setToken = (tokenObject) => localStorage.setItem(this.key, JSON.stringify({
+    [this.tokenValueKey]: tokenObject[this.tokenValueKey],
+    [this.tokenExpireKey]: tokenObject[this.tokenExpireKey],
+  }))
 
-  removeToken() {
-    return localStorage.removeItem(this.storageKey);
-  }
+  removeToken = () => localStorage.removeItem(this.key)
 
-  getTokenValue() {
+  getTokenValue = () => {
     const token = this.getTokenObject();
 
     return token ? token[this.tokenValueKey] : null;
   }
 
-  isExpired() {
+  isExpired = () => {
     const tokenObject = this.getTokenObject();
 
     if (!tokenObject) {

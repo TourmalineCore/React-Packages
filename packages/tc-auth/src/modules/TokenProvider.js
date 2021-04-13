@@ -16,7 +16,7 @@ export default class TokenProvider {
     this.refreshTokenCall = refreshTokenCall;
   }
 
-  subscribe(listener, { invokeOnSubscribe = false } = {}) {
+  subscribe = (listener, { invokeOnSubscribe = false } = {}) => {
     this.listeners.push(listener);
 
     if (invokeOnSubscribe) {
@@ -24,17 +24,17 @@ export default class TokenProvider {
     }
   }
 
-  unsubscribe(listener) {
+  unsubscribe = (listener) => {
     this.listeners = this.listeners.filter((l) => l !== listener);
   }
 
-  notify() {
+  notify = () => {
     const isLogged = this.isLoggedIn();
 
     this.listeners.forEach((listener) => listener(isLogged));
   }
 
-  async checkExpiryAndUpdate() {
+  checkExpiryAndUpdate = async () => {
     if (this.tokenStorage.isExpired()) {
       const newTokenPair = this.onRefreshToken
         ? await this.refreshTokenCall(this.refreshTokenStorage.getTokenValue())
@@ -51,38 +51,36 @@ export default class TokenProvider {
     }
   }
 
-  async getActualToken() {
+  getActualToken = async () => {
     await this.checkExpiryAndUpdate();
 
-    const token = this.storage.getTokenValue();
+    const token = this.tokenStorage.getTokenValue();
 
     return token;
   }
 
-  setToken(token) {
+  setToken = (token) => {
     if (token) {
-      this.storage.setToken(token);
+      this.tokenStorage.setToken(token);
     } else {
-      this.storage.removeToken();
+      this.tokenStorage.removeToken();
     }
 
     this.notify();
   }
 
-  setRefreshToken(refreshToken) {
+  setRefreshToken = (refreshToken) => {
     if (refreshToken) {
-      this.refreshStorage.setToken(refreshToken);
+      this.refreshTokenStorage.setToken(refreshToken);
     } else {
-      this.refreshStorage.removeToken();
+      this.refreshTokenStorage.removeToken();
     }
   }
 
-  setTokenPair(token, refreshToken) {
+  setTokenPair = (token, refreshToken) => {
     this.setToken(token);
     this.setRefreshToken(refreshToken);
   }
 
-  isLoggedIn() {
-    return !!this.tokenStorage.getTokenValue();
-  }
+  isLoggedIn = () => !!this.tokenStorage.getTokenValue()
 }

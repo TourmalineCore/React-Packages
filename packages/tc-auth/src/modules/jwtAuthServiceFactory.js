@@ -4,7 +4,7 @@ import axios from 'axios';
 import createStorage from './storage/storageFactory';
 import TokenProvider from './TokenProvider';
 
-export const createAuthService = ({
+export const createJwtAuthService = ({
   authApiRoot = '/',
 
   storageConfig = {
