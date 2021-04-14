@@ -3,7 +3,7 @@ import { withKnobs } from '@storybook/addon-knobs';
 import { handlers } from '../mocks/handlers';
 import { worker } from '../../../../.msw/browser';
 
-import { createJwtAuthService } from '../index';
+import { createAuthService } from '../index';
 
 export default {
   title: 'Auth Service',
@@ -17,26 +17,13 @@ export default {
   ],
 };
 
-const authService = createJwtAuthService({
+const authService = createAuthService({
   authApiRoot: '/auth',
-
-  storageConfig: {
-    storageType: 'ls',
-    storageKey: 'AUTH_TOKEN',
-    lsTokenKey: 'accessToken',
-    lsTokenValueKey: 'value',
-    lsTokenExpireKey: 'expiresInUtc',
-    cookiesHttpOnly: true,
-  },
-
-  refreshStorageConfig: {
-    storageType: 'ls',
-    storageKey: 'REFRESH_AUTH_TOKEN',
-    lsTokenKey: 'refreshToken',
-    lsTokenValueKey: 'value',
-    lsTokenExpireKey: 'expiresInUtc',
-    cookiesHttpOnly: true,
-  },
+  authType: 'ls',
+  tokenAccessor: 'accessToken',
+  refreshTokenAccessor: 'refreshToken',
+  tokenValueAccessor: 'value',
+  tokenExpireAccessor: 'expiresInUtc',
 });
 
 export const AuthService = () => {
@@ -55,6 +42,9 @@ export const AuthService = () => {
               <br />
               <br />
               <button type="button" onClick={logoutUser}>logout</button>
+              <button type="button" onClick={setExpiredAndGet}>
+                set access token expired and try to get it
+              </button>
             </div>
           )
           : (
@@ -74,10 +64,19 @@ export const AuthService = () => {
       login: 'avava',
       password: '1231',
     })
-      .then((response) => authService.login(response.data));
+      .then((response) => authService.setLoggedIn(response.data));
   }
 
   function logoutUser() {
-    authService.logout();
+    authService.setLoggedOut();
+  }
+
+  function setExpiredAndGet() {
+    localStorage.setItem('accessToken', JSON.stringify({
+      value: '12345',
+      expiresInUtc: '2010-04-19T06:43:27.2953284Z',
+    }));
+
+    authService.getAuthToken();
   }
 };

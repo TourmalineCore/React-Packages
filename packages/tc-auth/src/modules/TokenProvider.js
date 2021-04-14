@@ -2,16 +2,14 @@ export default class TokenProvider {
   constructor({
     tokenStorage,
     refreshTokenStorage,
-    storageConfig,
-    refreshStorageConfig,
+    config,
     refreshTokenCall,
   }) {
     this.listeners = [];
     this.tokenStorage = tokenStorage;
     this.refreshTokenStorage = refreshTokenStorage;
 
-    this.storageConfig = storageConfig;
-    this.refreshStorageConfig = refreshStorageConfig;
+    this.config = config;
 
     this.refreshTokenCall = refreshTokenCall;
   }
@@ -36,13 +34,13 @@ export default class TokenProvider {
 
   checkExpiryAndUpdate = async () => {
     if (this.tokenStorage.isExpired()) {
-      const newTokenPair = this.onRefreshToken
+      const { data: newTokenPair } = this.refreshTokenCall
         ? await this.refreshTokenCall(this.refreshTokenStorage.getTokenValue())
         : null;
 
       if (newTokenPair) {
-        const newTokenObject = newTokenPair[this.storageConfig.lsTokenKey];
-        const newRefreshTokenObject = newTokenPair[this.refreshStorageConfig.lsTokenKey];
+        const newTokenObject = newTokenPair[this.config.tokenAccessor];
+        const newRefreshTokenObject = newTokenPair[this.config.refreshTokenAccessor];
 
         this.setTokenPair(newTokenObject, newRefreshTokenObject);
       } else {

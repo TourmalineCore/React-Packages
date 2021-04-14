@@ -1,37 +1,37 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 
-import createStorage from './storage/storageFactory';
+import LocalStorageService from './storage/LocalStorageService';
 import TokenProvider from './TokenProvider';
 
 export const createJwtAuthService = ({
   authApiRoot = '/',
-
-  storageConfig = {
-    storageType: 'ls',
-    storageKey: 'AUTH_TOKEN',
-    lsTokenKey: 'accessToken',
-    lsTokenValueKey: 'value',
-    lsTokenExpireKey: 'expiresInUtc',
-    cookiesHttpOnly: true,
-  },
-  refreshStorageConfig = {
-    storageType: 'ls',
-    storageKey: 'REFRESH_AUTH_TOKEN',
-    lsTokenKey: 'refreshToken',
-    lsTokenValueKey: 'value',
-    lsTokenExpireKey: 'expiresInUtc',
-    cookiesHttpOnly: true,
-  },
+  tokenAccessor = 'accessToken',
+  refreshTokenAccessor = 'refreshToken',
+  tokenValueAccessor = 'value',
+  tokenExpireAccessor = 'expiresInUtc',
 }) => {
-  const tokenStorage = createStorage(storageConfig);
-  const refreshTokenStorage = createStorage(refreshStorageConfig);
+  const tokenStorage = new LocalStorageService({
+    tokenKey: tokenAccessor,
+    tokenValueKey: tokenValueAccessor,
+    tokenExpireKey: tokenExpireAccessor,
+  });
+
+  const refreshTokenStorage = new LocalStorageService({
+    tokenKey: refreshTokenAccessor,
+    tokenValueKey: tokenValueAccessor,
+    tokenExpireKey: tokenExpireAccessor,
+  });
 
   const tokenProvider = new TokenProvider({
     tokenStorage,
     refreshTokenStorage,
-    storageConfig,
-    refreshStorageConfig,
+    config: {
+      tokenAccessor,
+      refreshTokenAccessor,
+      tokenValueAccessor,
+      tokenExpireAccessor,
+    },
     refreshTokenCall,
   });
 
@@ -57,14 +57,25 @@ export const createJwtAuthService = ({
     });
   }
 
-  const login = (newTokenPair) => {
-    const newTokenObject = newTokenPair[storageConfig.lsTokenKey];
-    const newRefreshTokenObject = newTokenPair[refreshStorageConfig.lsTokenKey];
+  async function logoutCall() {
+    return axios({
+      url: `${authApiRoot}/logout`,
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      data: {},
+    });
+  }
+
+  const setLoggedIn = (newTokenPair) => {
+    const newTokenObject = newTokenPair[tokenAccessor];
+    const newRefreshTokenObject = newTokenPair[refreshTokenAccessor];
 
     tokenProvider.setTokenPair(newTokenObject, newRefreshTokenObject);
   };
 
-  const logout = () => {
+  const setLoggedOut = () => {
     tokenProvider.setTokenPair(null, null);
   };
 
@@ -96,7 +107,8 @@ export const createJwtAuthService = ({
     useAuth,
     getAuthToken,
     loginCall,
-    login,
-    logout,
+    logoutCall,
+    setLoggedIn,
+    setLoggedOut,
   };
 };

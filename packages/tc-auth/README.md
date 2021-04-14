@@ -8,38 +8,26 @@ import { createAuthService } from '@tourmalinecore/tc-auth';
 
 const authService = createAuthService({
   authApiRoot: '/', // api root for auth, eg: yourdomain/api/auth
+  authType: 'ls' | 'cookies', // implementation type, not just storage usage
 
-  // storage for jwt token
-  // for ls we fetch as pair of jwt + rt tokens
-  storageConfig: {
-    storageType: 'ls', // ls | cookies
-    storageKey: 'AUTH_TOKEN', // key for stored data
-    lsTokenKey: 'accessToken', // accessor key in fetched pair
-    // local storage token fetched and stored as object with 2 fields, so you can configure keys naming
-    lsTokenValueKey: 'value',
-    lsTokenExpireKey: 'expiresInUtc',
-    cookiesHttpOnly: true, // with this option cookies cannot be handled by js
-  },
-
-  // storage for refresh token, same config options as for jwt storage
-  refreshStorageConfig: {
-    storageType: 'ls',
-    storageKey: 'REFRESH_AUTH_TOKEN',
-    lsTokenKey: 'refreshToken',
-    lsTokenValueKey: 'value',
-    lsTokenExpireKey: 'expiresInUtc',
-    cookiesHttpOnly: true,
-  },
+  // for ls we fetch as pair of jwt + rt tokens, there are accessors for dto fields
+  tokenAccessor: 'accessToken',
+  refreshTokenAccessor: 'refreshToken',
+  tokenValueAccessor: 'value',
+  tokenExpireAccessor: 'expiresInUtc',
 })
 ```
 
 authService now provides:
 ```JS
 {
-  useAuth, // hook for react auth context provider
+  AuthProvider, // react context provider
+  withPrivateRoute, // react HOC for private routes
+  useAuth, // hook for custom react auth context provider
   getAuthToken, // async function, gets token from storage, refreshes if expired
   loginCall, // fetch login data with axios
-  login, // set token to storage
-  logout, // remove token from storage
+  logoutCall,
+  setLoggedIn, // set token to storage
+  setLoggedOut, // remove token from storage
 }
 ```

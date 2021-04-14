@@ -1,8 +1,8 @@
 export default class LocalStorageService {
   constructor(config = {}) {
-    this.key = config.storageKey;
-    this.tokenValueKey = config.lsTokenValueKey;
-    this.tokenExpireKey = config.lsTokenExpireKey;
+    this.key = config.tokenKey;
+    this.tokenValueKey = config.tokenValueKey;
+    this.tokenExpireKey = config.tokenExpireKey;
   }
 
   getTokenObject = () => {
@@ -38,7 +38,7 @@ export default class LocalStorageService {
       return null;
     }
 
-    const exp = tokenObject[this.accessTokenExpireKey];
+    const exp = tokenObject[this.tokenExpireKey];
 
     if (!exp) {
       return false;
