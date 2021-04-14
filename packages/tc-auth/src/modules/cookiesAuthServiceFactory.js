@@ -5,6 +5,7 @@ import { getCookie } from './utils/cookiesHelpers';
 export const createCookiesAuthService = ({
   authApiRoot = '/',
   credentials = 'same-origin',
+  csrfTokenKey = 'csrf-token',
 }) => {
   async function getSession() {
     return axios({
@@ -21,7 +22,7 @@ export const createCookiesAuthService = ({
   }
 
   async function login(data) {
-    const csrfToken = getCookie('csrf-token');
+    const csrfToken = getCookie(csrfTokenKey);
 
     return axios({
       url: `${authApiRoot}/login`,

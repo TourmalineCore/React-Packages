@@ -1,7 +1,7 @@
 import { withKnobs } from '@storybook/addon-knobs';
 
 import { handlers } from '../mocks/handlers';
-import { worker } from '../../../../.storybook/browser';
+import { worker } from '../../../../.msw/browser';
 
 import { createJwtAuthService } from '../index';
 

@@ -10,7 +10,7 @@ addParameters({
 });
 
 if (typeof global.process === 'undefined') {
-  const { worker } = require('./browser.js');
+  const { worker } = require('../.msw/browser.js');
 
   worker.start();
 }
