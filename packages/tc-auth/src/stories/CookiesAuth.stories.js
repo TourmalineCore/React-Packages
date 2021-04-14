@@ -59,9 +59,7 @@ export const CookiesAuthService = () => {
   function onInit() {
     authService.getSession()
       .then((response) => {
-        if (!response.data.isAuthenticated) {
-          authService.getCSRF();
-        }
+        authService.getCSRF();
 
         setIsAuthenticated(!!response.data.isAuthenticated);
       });
@@ -81,6 +79,7 @@ export const CookiesAuthService = () => {
     authService.logout()
       .then(() => {
         setIsAuthenticated(false);
+        authService.getCSRF();
       });
   }
 };

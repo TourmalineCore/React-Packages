@@ -4,7 +4,7 @@
   "description": "React packages monorepo",
   "main": "index.js",
   "scripts": {
-    "start": "start-storybook -s sw -p 6006",
+    "start": "start-storybook -s .msw -p 6006",
     "lerna:init": "npx lerna bootstrap",
     "lerna:publish": "npx lerna publish",
     "lerna:publish-canary": "npx lerna publish --canary",

@@ -4,20 +4,19 @@ import { getCookie } from './utils/cookiesHelpers';
 
 export const createCookiesAuthService = ({
   authApiRoot = '/',
-  credentials = 'same-origin',
   csrfTokenKey = 'csrf-token',
 }) => {
   async function getSession() {
     return axios({
       url: `${authApiRoot}/session`,
-      credentials,
+      withCredentials: true,
     });
   }
 
   async function getCSRF() {
     return axios({
       url: `${authApiRoot}/csrf`,
-      credentials,
+      withCredentials: true,
     });
   }
 
@@ -31,7 +30,7 @@ export const createCookiesAuthService = ({
         'Content-Type': 'application/json',
         'X-CSRFToken': csrfToken,
       },
-      credentials,
+      withCredentials: true,
       data,
     });
   }
@@ -39,7 +38,7 @@ export const createCookiesAuthService = ({
   async function logout() {
     return axios({
       url: `${authApiRoot}/logout`,
-      credentials,
+      withCredentials: true,
     });
   }
 
