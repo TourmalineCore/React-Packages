@@ -116,6 +116,7 @@ import {ServerTable} from '@tourmalinecore/react-table-responsive'
   renderMobileTitle={() => {}}
   maxStillMobileBreakpoint={800}
   loading={false}
+  isStriped={false}
   onFiltersChange={() => {}}
   enableTableStatePersistance={false}
 
