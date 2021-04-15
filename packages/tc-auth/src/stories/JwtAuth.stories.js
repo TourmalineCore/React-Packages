@@ -1,3 +1,4 @@
+import { useContext } from 'react';
 import { withKnobs } from '@storybook/addon-knobs';
 
 import { handlers } from '../mocks/handlers';
@@ -26,8 +27,8 @@ const authService = createAuthService({
   tokenExpireAccessor: 'expiresInUtc',
 });
 
-export const AuthService = () => {
-  const [isAuthenticated] = authService.useAuth();
+const AuthContent = () => {
+  const [isAuthenticated] = useContext(authService.AuthContext);
 
   return (
     <div>
@@ -43,7 +44,7 @@ export const AuthService = () => {
               <br />
               <button type="button" onClick={logoutUser}>logout</button>
               <button type="button" onClick={setExpiredAndGet}>
-                set access token expired and try to get it
+                set access token expired and try `getAuthTokenOrRefresh()`
               </button>
             </div>
           )
@@ -77,6 +78,12 @@ export const AuthService = () => {
       expiresInUtc: '2010-04-19T06:43:27.2953284Z',
     }));
 
-    authService.getAuthToken();
+    authService.getAuthTokenOrRefresh();
   }
 };
+
+export const AuthService = () => (
+  <authService.AuthProvider>
+    <AuthContent />
+  </authService.AuthProvider>
+);

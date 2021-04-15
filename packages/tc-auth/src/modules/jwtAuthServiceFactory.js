@@ -1,4 +1,7 @@
-import { useEffect, useState } from 'react';
+import {
+  createContext, useContext, useEffect, useState,
+} from 'react';
+import { useHistory } from 'react-router-dom';
 import axios from 'axios';
 
 import LocalStorageService from './storage/LocalStorageService';
@@ -12,6 +15,8 @@ export const createJwtAuthService = ({
   tokenValueAccessor = 'value',
   tokenExpireAccessor = 'expiresInUtc',
 }) => {
+  const AuthContext = createContext();
+
   const tokenStorage = new LocalStorageService({
     tokenKey: tokenAccessor,
     tokenValueKey: tokenValueAccessor,
@@ -79,6 +84,10 @@ export const createJwtAuthService = ({
     });
   }
 
+  const refreshToken = () => {
+    tokenProvider.update();
+  };
+
   const setLoggedIn = (newTokenPair) => {
     const newTokenObject = newTokenPair[tokenAccessor];
     const newRefreshTokenObject = newTokenPair[refreshTokenAccessor];
@@ -90,11 +99,13 @@ export const createJwtAuthService = ({
     tokenProvider.setTokenPair(null, null);
   };
 
-  const getAuthToken = async () => {
+  const getAuthTokenOrRefresh = async () => {
     const token = await tokenProvider.getActualToken();
 
     return token;
   };
+
+  const getAuthToken = () => tokenStorage.getTokenValue();
 
   const useAuth = () => {
     const [isAuthenticated, setIsAuthenticated] = useState(tokenProvider.isLoggedIn());
@@ -114,11 +125,47 @@ export const createJwtAuthService = ({
     return [isAuthenticated];
   };
 
+  function AuthProvider({ children }) {
+    const [isAuthenticated] = useAuth();
+
+    return (
+      <AuthContext.Provider
+        value={[isAuthenticated]}
+      >
+        {children}
+      </AuthContext.Provider>
+    );
+  }
+
+  function withPrivateRoute(ComposedComponent) {
+    return function RequireAuthentication(props) {
+      const isAuthenticated = useContext(AuthContext);
+      const history = useHistory();
+
+      useEffect(() => {
+        if (!isAuthenticated) {
+          history.push(getAuthPathWithFromProperty(history.location.pathname));
+        }
+      }, [isAuthenticated]);
+
+      return isAuthenticated ? <ComposedComponent {...props} /> : null;
+    };
+
+    function getAuthPathWithFromProperty(from) {
+      return `/auth${from !== '/' && from ? `?from=${from}` : ''}`;
+    }
+  }
+
   return {
+    AuthContext,
+    AuthProvider,
+    withPrivateRoute,
     useAuth,
     getAuthToken,
+    getAuthTokenOrRefresh,
     loginCall,
     logoutCall,
+    refreshToken,
     setLoggedIn,
     setLoggedOut,
   };

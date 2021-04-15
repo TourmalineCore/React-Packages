@@ -32,20 +32,24 @@ export default class TokenProvider {
     this.listeners.forEach((listener) => listener(isLogged));
   }
 
+  update = async () => {
+    const { data: newTokenPair } = this.refreshTokenCall
+      ? await this.refreshTokenCall(this.refreshTokenStorage.getTokenValue())
+      : null;
+
+    if (newTokenPair) {
+      const newTokenObject = newTokenPair[this.config.tokenAccessor];
+      const newRefreshTokenObject = newTokenPair[this.config.refreshTokenAccessor];
+
+      this.setTokenPair(newTokenObject, newRefreshTokenObject);
+    } else {
+      this.setTokenPair(null, null);
+    }
+  }
+
   checkExpiryAndUpdate = async () => {
     if (this.tokenStorage.isExpired()) {
-      const { data: newTokenPair } = this.refreshTokenCall
-        ? await this.refreshTokenCall(this.refreshTokenStorage.getTokenValue())
-        : null;
-
-      if (newTokenPair) {
-        const newTokenObject = newTokenPair[this.config.tokenAccessor];
-        const newRefreshTokenObject = newTokenPair[this.config.refreshTokenAccessor];
-
-        this.setTokenPair(newTokenObject, newRefreshTokenObject);
-      } else {
-        this.setTokenPair(null, null);
-      }
+      await this.update();
     }
   }
 
