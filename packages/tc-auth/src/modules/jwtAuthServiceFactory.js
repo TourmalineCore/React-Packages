@@ -3,6 +3,7 @@ import axios from 'axios';
 
 import LocalStorageService from './storage/LocalStorageService';
 import TokenProvider from './TokenProvider';
+import { getFingerprint } from './utils/getFingerprint';
 
 export const createJwtAuthService = ({
   authApiRoot = '/',
@@ -36,24 +37,34 @@ export const createJwtAuthService = ({
   });
 
   async function refreshTokenCall(refreshTokenValue) {
+    const fingerprint = await getFingerprint();
+
     return axios({
       url: `${authApiRoot}/refresh`,
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
-      data: JSON.stringify(refreshTokenValue),
+      data: {
+        token: refreshTokenValue,
+        fingerprint,
+      },
     });
   }
 
   async function loginCall(data) {
+    const fingerprint = await getFingerprint();
+
     return axios({
       url: `${authApiRoot}/login`,
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
-      data: JSON.stringify(data),
+      data: {
+        ...data,
+        fingerprint,
+      },
     });
   }
 

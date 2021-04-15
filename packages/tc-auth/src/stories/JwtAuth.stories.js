@@ -31,7 +31,7 @@ export const AuthService = () => {
 
   return (
     <div>
-      Auth calls mocking by service worker, you can open dev console and check output
+      Auth calls mocked by service worker, you can open dev console and check output
       <br />
       <br />
       {
