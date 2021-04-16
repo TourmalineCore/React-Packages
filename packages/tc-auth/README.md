@@ -34,3 +34,9 @@ authService now provides:
   useAuth, // hook for custom react auth context provider
 }
 ```
+
+### Usage
+You can use it as is, just add `await getAuthTokenOrRefresh()` to your api calls to get actual access token\
+Or you can add error interceptor and call `await refreshToken()` inside it,
+do not forget to change logged state after it (`setLoggedOut, setLoggedIn`),
+this calls will notify storage observers
