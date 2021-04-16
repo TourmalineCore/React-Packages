@@ -4,9 +4,13 @@ const STORAGE_TOKEN_KEY = 'token';
 const STORAGE_TOKEN_VALUE_ACCESSOR = 'value';
 const STORAGE_TOKEN_EXPIRES_ACCESSOR = 'expiresInUtc';
 
+const today = new Date();
+const NEXT_YEAR_EXPIRATION_DATE = new Date(today.getFullYear() + 1).toISOString();
+const LAST_YEAR_EXPIRATION_DATE = new Date(today.getFullYear() - 1).toISOString();
+
 const testToken = {
   [STORAGE_TOKEN_VALUE_ACCESSOR]: '12345',
-  [STORAGE_TOKEN_EXPIRES_ACCESSOR]: '2022-04-19T06:43:27.2953284Z',
+  [STORAGE_TOKEN_EXPIRES_ACCESSOR]: NEXT_YEAR_EXPIRATION_DATE,
 };
 
 describe('local storage token model', () => {
@@ -76,7 +80,7 @@ describe('local storage token model', () => {
 
     localStorage.setItem(STORAGE_TOKEN_KEY, JSON.stringify({
       [STORAGE_TOKEN_VALUE_ACCESSOR]: '12345',
-      [STORAGE_TOKEN_EXPIRES_ACCESSOR]: '2018-04-19T06:43:27.2953284Z',
+      [STORAGE_TOKEN_EXPIRES_ACCESSOR]: LAST_YEAR_EXPIRATION_DATE,
     }));
 
     const isExpired = storage.isExpired();

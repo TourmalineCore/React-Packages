@@ -6,14 +6,18 @@ const REFRESH_TOKEN_KEY = 'refreshToken';
 const TOKEN_VALUE_ACCESSOR = 'value';
 const TOKEN_EXPIRES_ACCESSOR = 'expiresInUtc';
 
+const today = new Date();
+const NEXT_YEAR_EXPIRATION_DATE = new Date(today.getFullYear() + 1).toISOString();
+const LAST_YEAR_EXPIRATION_DATE = new Date(today.getFullYear() - 1).toISOString();
+
 const testTokenPair = {
   [TOKEN_KEY]: {
     [TOKEN_VALUE_ACCESSOR]: '12345',
-    [TOKEN_EXPIRES_ACCESSOR]: '2022-04-19T06:43:27.2953284Z',
+    [TOKEN_EXPIRES_ACCESSOR]: NEXT_YEAR_EXPIRATION_DATE,
   },
   [REFRESH_TOKEN_KEY]: {
     [TOKEN_VALUE_ACCESSOR]: 'refresh12345',
-    [TOKEN_EXPIRES_ACCESSOR]: '2022-04-19T06:43:27.2953284Z',
+    [TOKEN_EXPIRES_ACCESSOR]: NEXT_YEAR_EXPIRATION_DATE,
   },
 };
 
@@ -64,7 +68,7 @@ describe('token provider behavior', () => {
 
     const testToken = {
       [TOKEN_VALUE_ACCESSOR]: '12345',
-      [TOKEN_EXPIRES_ACCESSOR]: '2018-04-19T06:43:27.2953284Z',
+      [TOKEN_EXPIRES_ACCESSOR]: LAST_YEAR_EXPIRATION_DATE,
     };
 
     localStorage.setItem(TOKEN_KEY, JSON.stringify(testToken));
