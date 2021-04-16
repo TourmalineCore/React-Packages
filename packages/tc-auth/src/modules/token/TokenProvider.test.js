@@ -6,9 +6,9 @@ const REFRESH_TOKEN_KEY = 'refreshToken';
 const TOKEN_VALUE_ACCESSOR = 'value';
 const TOKEN_EXPIRES_ACCESSOR = 'expiresInUtc';
 
-const today = new Date();
-const NEXT_YEAR_EXPIRATION_DATE = new Date(today.getFullYear() + 1).toISOString();
-const LAST_YEAR_EXPIRATION_DATE = new Date(today.getFullYear() - 1).toISOString();
+const currentYear = new Date().getFullYear();
+const NEXT_YEAR_EXPIRATION_DATE = new Date(new Date().setYear(currentYear + 1)).toISOString();
+const LAST_YEAR_EXPIRATION_DATE = new Date(new Date().setYear(currentYear - 1)).toISOString();
 
 const testTokenPair = {
   [TOKEN_KEY]: {
