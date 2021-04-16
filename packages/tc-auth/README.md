@@ -21,7 +21,9 @@ const authService = createAuthService({
 authService now provides:
 ```JS
 {
-  getAuthToken, // async function, gets token from storage, refreshes if expired
+  getAuthToken, // get token value from storage
+  getAuthTokenOrRefresh,, // async function, gets token from storage, refreshes if expired
+  refreshToken, // async function, call api to refresh token
   loginCall, // fetch login data with axios
   logoutCall,
   setLoggedIn, // set token to storage
