@@ -58,6 +58,8 @@ export default function DesktopTable({
 
   const tableContainerRef = useRef();
 
+  const isStripedClassname = isStriped ? 'tc-table-desktop__tr--striped' : '';
+
   return (
     <div ref={tableContainerRef} className="tc-table-desktop">
       <div className="tc-table-desktop__inner">
@@ -121,7 +123,10 @@ export default function DesktopTable({
             {page.map((row) => {
               prepareRow(row);
               return (
-                <div {...row.getRowProps()} className={`tc-table-desktop__tr ${isStriped ? 'tc-table-desktop__tr--striped' : ''}`}>
+                <div
+                  {...row.getRowProps()}
+                  className={`tc-table-desktop__tr ${isStripedClassname}`}
+                >
                   {row.cells.map((cell) => (
                     <div
                       {...cell.getCellProps(cellProps)}
