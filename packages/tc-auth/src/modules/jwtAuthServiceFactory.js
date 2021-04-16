@@ -2,7 +2,7 @@ import axios from 'axios';
 import { createJwtReactHelpers } from './reactHelpers/jwtReactHelpersFactory';
 
 import LocalStorageService from './storage/LocalStorageService';
-import TokenProvider from './TokenProvider';
+import TokenProvider from './token/TokenProvider';
 import { getFingerprint } from './utils/getFingerprint';
 
 export const createJwtAuthService = ({
