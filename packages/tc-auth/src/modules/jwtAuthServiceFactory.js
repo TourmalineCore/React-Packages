@@ -1,8 +1,5 @@
-import {
-  createContext, useContext, useEffect, useState,
-} from 'react';
-import { useHistory } from 'react-router-dom';
 import axios from 'axios';
+import { createJwtReactHelpers } from './reactHelpers/jwtReactHelpersFactory';
 
 import LocalStorageService from './storage/LocalStorageService';
 import TokenProvider from './TokenProvider';
@@ -15,8 +12,6 @@ export const createJwtAuthService = ({
   tokenValueAccessor = 'value',
   tokenExpireAccessor = 'expiresInUtc',
 }) => {
-  const AuthContext = createContext();
-
   const tokenStorage = new LocalStorageService({
     tokenKey: tokenAccessor,
     tokenValueKey: tokenValueAccessor,
@@ -107,60 +102,7 @@ export const createJwtAuthService = ({
 
   const getAuthToken = () => tokenStorage.getTokenValue();
 
-  const useAuth = () => {
-    const [isAuthenticated, setIsAuthenticated] = useState(tokenProvider.isLoggedIn());
-
-    useEffect(() => {
-      const listener = (newIsAuthenticated) => {
-        setIsAuthenticated(newIsAuthenticated);
-      };
-
-      tokenProvider.subscribe(listener, { invokeOnSubscribe: true });
-
-      return () => {
-        tokenProvider.unsubscribe(listener);
-      };
-    }, []);
-
-    return [isAuthenticated];
-  };
-
-  function AuthProvider({ children }) {
-    const [isAuthenticated] = useAuth();
-
-    return (
-      <AuthContext.Provider
-        value={[isAuthenticated]}
-      >
-        {children}
-      </AuthContext.Provider>
-    );
-  }
-
-  function withPrivateRoute(ComposedComponent) {
-    return function RequireAuthentication(props) {
-      const isAuthenticated = useContext(AuthContext);
-      const history = useHistory();
-
-      useEffect(() => {
-        if (!isAuthenticated) {
-          history.push(getAuthPathWithFromProperty(history.location.pathname));
-        }
-      }, [isAuthenticated]);
-
-      return isAuthenticated ? <ComposedComponent {...props} /> : null;
-    };
-
-    function getAuthPathWithFromProperty(from) {
-      return `/auth${from !== '/' && from ? `?from=${from}` : ''}`;
-    }
-  }
-
   return {
-    AuthContext,
-    AuthProvider,
-    withPrivateRoute,
-    useAuth,
     getAuthToken,
     getAuthTokenOrRefresh,
     loginCall,
@@ -168,5 +110,6 @@ export const createJwtAuthService = ({
     refreshToken,
     setLoggedIn,
     setLoggedOut,
+    ...createJwtReactHelpers({ tokenProvider }),
   };
 };
