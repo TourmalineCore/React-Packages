@@ -53,6 +53,7 @@ export default function ServerTable({
   requestData = emptyRequestData,
   maxStillMobileBreakpoint = 800,
   loading,
+  isStriped,
   actions = [],
   onPageDataLoaded = () => {},
   onFiltersChange = () => {},
@@ -200,6 +201,7 @@ export default function ServerTable({
         noFooter={noFooter}
         totalCount={totalCount}
         loading={loading || tableDataLoading}
+        isStriped={isStriped}
       />
     )
     : (

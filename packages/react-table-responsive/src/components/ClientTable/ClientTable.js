@@ -64,6 +64,7 @@ export default function ClientTable({
   renderMobileTitle,
   maxStillMobileBreakpoint = 800,
   loading,
+  isStriped,
   actions = [],
   onFiltersChange = () => {},
   // if it is true filters and sortBy will be stored in memory and when you go back to the table its state will be initialized with it
@@ -157,6 +158,7 @@ export default function ClientTable({
         noFooter={noFooter}
         totalCount={rows.length}
         loading={loading}
+        isStriped={isStriped}
       />
     )
     : (

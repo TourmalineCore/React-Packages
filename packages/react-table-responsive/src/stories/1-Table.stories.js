@@ -42,6 +42,7 @@ export const ClientSideDesktop = () => (
   >
     <SineDataTable
       loading={boolean('loading', false)}
+      isStriped={boolean('isStriped', false)}
       language={text('Language', 'en')}
     />
   </div>
@@ -138,6 +139,7 @@ const actions = [
 const SineDataTable = ({
   loading,
   language,
+  isStriped,
 }) => (
   <ClientTable
     tableId="tc-story-bonus-table"
@@ -150,6 +152,7 @@ const SineDataTable = ({
     language={language}
     renderMobileTitle={(row) => row.original.employee}
     loading={loading}
+    isStriped={isStriped}
     enableTableStatePersistance
     actions={actions}
     columns={[
