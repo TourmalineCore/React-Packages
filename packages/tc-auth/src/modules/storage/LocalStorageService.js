@@ -18,10 +18,16 @@ export default class LocalStorageService {
     return token ? token[this.tokenExpireKey] : null;
   }
 
-  setToken = (tokenObject) => localStorage.setItem(this.key, JSON.stringify({
-    [this.tokenValueKey]: tokenObject[this.tokenValueKey],
-    [this.tokenExpireKey]: tokenObject[this.tokenExpireKey],
-  }))
+  setToken = (tokenObject) => {
+    if (!tokenObject) {
+      return;
+    }
+
+    localStorage.setItem(this.key, JSON.stringify({
+      [this.tokenValueKey]: tokenObject[this.tokenValueKey],
+      [this.tokenExpireKey]: tokenObject[this.tokenExpireKey],
+    }));
+  }
 
   removeToken = () => localStorage.removeItem(this.key)
 

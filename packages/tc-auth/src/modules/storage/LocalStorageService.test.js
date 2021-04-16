@@ -31,6 +31,16 @@ describe('local storage token model', () => {
     expect(token).toStrictEqual(testToken);
   });
 
+  it('should correctly handle null token to set', () => {
+    expect.hasAssertions();
+
+    storage.setToken(null);
+
+    const token = JSON.parse(localStorage.getItem(STORAGE_TOKEN_KEY));
+
+    expect(token).toBeNull();
+  });
+
   it('should correctly get token', () => {
     expect.hasAssertions();
 
@@ -72,5 +82,13 @@ describe('local storage token model', () => {
     const isExpired = storage.isExpired();
 
     expect(isExpired).toBeTruthy();
+  });
+
+  it('should correctly check if token dont exist', () => {
+    expect.hasAssertions();
+
+    const isExpired = storage.isExpired();
+
+    expect(isExpired).toBeNull();
   });
 });
