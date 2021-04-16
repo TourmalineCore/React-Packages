@@ -21,13 +21,14 @@ const authService = createAuthService({
 authService now provides:
 ```JS
 {
-  AuthProvider, // react context provider
-  withPrivateRoute, // react HOC for private routes
-  useAuth, // hook for custom react auth context provider
   getAuthToken, // async function, gets token from storage, refreshes if expired
   loginCall, // fetch login data with axios
   logoutCall,
   setLoggedIn, // set token to storage
   setLoggedOut, // remove token from storage
+  AuthContext, // react auth context
+  AuthProvider, // react context provider
+  withPrivateRoute, // react HOC for private routes
+  useAuth, // hook for custom react auth context provider
 }
 ```
