@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.4.0](https://github.com/TourmalineCore/React-Packages/compare/@tourmalinecore/react-table-responsive@0.3.0...@tourmalinecore/react-table-responsive@0.4.0) (2021-04-16)
+
+
+### Features
+
+* add optional striped rows table-desktop ([7151e3b](https://github.com/TourmalineCore/React-Packages/commit/7151e3b30fa58889d56ac73eccff312058b57281))
+
+
+
+
+
 # [0.3.0](https://github.com/TourmalineCore/React-Packages/compare/@tourmalinecore/react-table-responsive@0.2.4...@tourmalinecore/react-table-responsive@0.3.0) (2021-04-08)
 
 
