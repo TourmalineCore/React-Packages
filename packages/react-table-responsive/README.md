@@ -72,6 +72,7 @@ import {ClientTable} from '@tourmalinecore/react-table-responsive';
   language='en' // en/ru or Object, see example here(TODO file link)
   renderMobileTitle={() => {}} // rows accordion head content for mobile view
   maxStillMobileBreakpoint={800} // breakpoint to toggle between mobile/desktop view
+  isStriped={false} // set striped rows view
   loading={false}
   onFiltersChange={() => {}}
   // if it is true filters and sortBy will be stored in memory and when you go back to the table its state will be initialized with it
@@ -81,7 +82,7 @@ import {ClientTable} from '@tourmalinecore/react-table-responsive';
   // there you can also provide your custom props:
   // anything you put into these options will
   // automatically be available on the instance.
-  // E.g. if you provide a function here,  
+  // E.g. if you provide a function here,
   // it will be available from cell renderers
 />
 ```
@@ -95,7 +96,7 @@ If you want to use default GET request method you will need to ensure that your 
 - **pageSize**: int. Number that defines size of the pages.
 - **orderBy**: string. Property name used for sorting.
 - **orderingDirection**: string. Any string for ascending order and 'desc' for descending.
-- **filteredByColumns**: string[]. List of property names to be used for filtering separated by coma. This names are taken from the provided *columns* list.   
+- **filteredByColumns**: string[]. List of property names to be used for filtering separated by coma. This names are taken from the provided *columns* list.
 - **filteredByValues**: string[]. List of property values to be used for filtering separated by coma. Thier indexes  correspond with the ones from the *filteredByColumns* array.
 
 Example:
@@ -132,7 +133,7 @@ import {ServerTable} from '@tourmalinecore/react-table-responsive'
   // there you can also provide your custom props:
   // anything you put into these options will
   // automatically be available on the instance.
-  // E.g. if you provide a function here,  
+  // E.g. if you provide a function here,
   // it will be available from cell renderers
 />
 ```
