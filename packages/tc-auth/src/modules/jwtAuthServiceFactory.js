@@ -79,28 +79,30 @@ export const createJwtAuthService = ({
     });
   }
 
-  const refreshToken = () => {
+  function refreshToken() {
     tokenProvider.update();
-  };
+  }
 
-  const setLoggedIn = (newTokenPair) => {
+  function setLoggedIn(newTokenPair) {
     const newTokenObject = newTokenPair[tokenAccessor];
     const newRefreshTokenObject = newTokenPair[refreshTokenAccessor];
 
     tokenProvider.setTokenPair(newTokenObject, newRefreshTokenObject);
-  };
+  }
 
-  const setLoggedOut = () => {
+  function setLoggedOut() {
     tokenProvider.setTokenPair(null, null);
-  };
+  }
 
-  const getAuthTokenOrRefresh = async () => {
+  async function getAuthTokenOrRefresh() {
     const token = await tokenProvider.getActualToken();
 
     return token;
-  };
+  }
 
-  const getAuthToken = () => tokenStorage.getTokenValue();
+  function getAuthToken() {
+    return tokenStorage.getTokenValue();
+  }
 
   return {
     getAuthToken,

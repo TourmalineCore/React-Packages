@@ -8,7 +8,7 @@ export function createJwtReactHelpers({
 }) {
   const AuthContext = createContext();
 
-  const useAuth = () => {
+  function useAuth() {
     const [isAuthenticated, setIsAuthenticated] = useState(tokenProvider.isLoggedIn());
 
     useEffect(() => {
@@ -24,7 +24,7 @@ export function createJwtReactHelpers({
     }, []);
 
     return [isAuthenticated];
-  };
+  }
 
   function AuthProvider({ children }) {
     const [isAuthenticated] = useAuth();

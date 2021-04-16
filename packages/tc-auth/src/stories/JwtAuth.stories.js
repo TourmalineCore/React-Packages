@@ -35,6 +35,11 @@ const AuthContent = () => {
       Auth calls mocked by service worker, you can open dev console and check output
       <br />
       <br />
+      <button type="button" onClick={getStorageToken}>
+        get storage token
+      </button>
+      <br />
+      <br />
       {
         isAuthenticated
           ? (
@@ -42,8 +47,20 @@ const AuthContent = () => {
               You are now logged in
               <br />
               <br />
-              <button type="button" onClick={logoutUser}>logout</button>
-              <button type="button" onClick={setExpiredAndGet}>
+              <button
+                style={{
+                  marginRight: 16,
+                }}
+                type="button"
+                onClick={logoutUser}
+              >
+                logout
+              </button>
+
+              <button
+                type="button"
+                onClick={setExpiredAndGet}
+              >
                 set access token expired and try `getAuthTokenOrRefresh()`
               </button>
             </div>
@@ -79,6 +96,13 @@ const AuthContent = () => {
     }));
 
     authService.getAuthTokenOrRefresh();
+  }
+
+  function getStorageToken() {
+    const token = authService.getAuthToken();
+
+    // eslint-disable-next-line no-alert
+    alert(`token: ${token}`);
   }
 };
 
