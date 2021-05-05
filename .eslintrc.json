@@ -11,6 +11,7 @@
   },
   "parser": "babel-eslint",
   "extends": [
+      "plugin:jest/all",
       "plugin:react/recommended",
       "airbnb"
   ],
@@ -37,7 +38,8 @@
       "sourceType": "module"
   },
   "plugins": [
-      "react"
+      "react",
+      "jest"
   ],
   "rules": {
     "linebreak-style": [

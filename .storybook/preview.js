@@ -8,3 +8,9 @@ addParameters({
     },
   },
 });
+
+if (typeof global.process === 'undefined') {
+  const { worker } = require('../.msw/browser.js');
+
+  worker.start();
+}
