@@ -22,7 +22,7 @@ authService now provides:
 ```JS
 {
   getAuthToken, // get token value from storage
-  getAuthTokenOrRefresh,, // async function, gets token from storage, refreshes if expired
+  getAuthTokenOrRefresh, // async function, gets token from storage, refreshes if expired
   refreshToken, // async function, call api to refresh token
   loginCall, // fetch login data with axios
   logoutCall,

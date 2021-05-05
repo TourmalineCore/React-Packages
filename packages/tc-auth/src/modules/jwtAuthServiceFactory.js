@@ -37,7 +37,7 @@ export const createJwtAuthService = ({
   });
 
   async function refreshTokenCall(refreshTokenValue) {
-    const fingerprint = await getFingerprint();
+    const clientFingerPrint = await getFingerprint();
 
     return axios({
       url: `${authApiRoot}/refresh`,
@@ -46,14 +46,14 @@ export const createJwtAuthService = ({
         'Content-Type': 'application/json',
       },
       data: {
-        token: refreshTokenValue,
-        fingerprint,
+        refreshTokenValue,
+        clientFingerPrint,
       },
     });
   }
 
   async function loginCall(data) {
-    const fingerprint = await getFingerprint();
+    const clientFingerPrint = await getFingerprint();
 
     return axios({
       url: `${authApiRoot}/login`,
@@ -63,19 +63,25 @@ export const createJwtAuthService = ({
       },
       data: {
         ...data,
-        fingerprint,
+        clientFingerPrint,
       },
     });
   }
 
   async function logoutCall() {
+    const refreshTokenValue = refreshTokenStorage.getTokenValue();
+    const clientFingerPrint = await getFingerprint();
+
     return axios({
       url: `${authApiRoot}/logout`,
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
-      data: {},
+      data: {
+        refreshTokenValue,
+        clientFingerPrint,
+      },
     });
   }
 
