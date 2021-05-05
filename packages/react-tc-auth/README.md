@@ -4,7 +4,7 @@
 
 usage
 ```JS
-import { createAuthService } from '@tourmalinecore/tc-auth';
+import { createAuthService } from '@tourmalinecore/react-tc-auth';
 
 const authService = createAuthService({
   authApiRoot: '/', // api root for auth, eg: yourdomain/api/auth
