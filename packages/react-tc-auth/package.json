@@ -1,6 +1,6 @@
 {
   "name": "@tourmalinecore/react-tc-auth",
-  "version": "0.0.2",
+  "version": "0.0.1",
   "description": "",
   "author": "Tourmaline Core",
   "keywords": [
@@ -36,5 +36,6 @@
   },
   "devDependencies": {
     "react-router-dom": "^5"
-  }
+  },
+  "gitHead": "e96d96f47a74a25402b095abea9160eed623d035"
 }
