@@ -46,7 +46,9 @@ export default {
         '.js',
         '.jsx',
       ],
-      plugins: [],
+      plugins: [
+        '@babel/plugin-proposal-class-properties',
+      ],
       exclude: 'node_modules/**',
       babelHelpers: 'bundled',
     }),
