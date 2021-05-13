@@ -44,7 +44,7 @@ export function createJwtReactHelpers({
 
   function withPrivateRoute(ComposedComponent) {
     return function RequireAuthentication(props) {
-      const isAuthenticated = useContext(AuthContext);
+      const [isAuthenticated] = useContext(AuthContext);
       const history = useHistory();
 
       useEffect(() => {
