@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.0.4](https://github.com/TourmalineCore/React-Packages/compare/@tourmalinecore/react-tc-auth@0.0.3...@tourmalinecore/react-tc-auth@0.0.4) (2021-05-13)
+
+
+### Bug Fixes
+
+* fix private route HOC ([f5883ca](https://github.com/TourmalineCore/React-Packages/commit/f5883cacfb0c86590e1018e10671a0dbbb0222d6))
+
+
+
+
+
 ## [0.0.3](https://github.com/TourmalineCore/React-Packages/compare/@tourmalinecore/react-tc-auth@0.0.2...@tourmalinecore/react-tc-auth@0.0.3) (2021-05-05)
 
 
