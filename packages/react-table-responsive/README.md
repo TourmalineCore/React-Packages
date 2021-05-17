@@ -2,6 +2,8 @@
 
 ## Mobile friendly UI wrapper based on [react-table](https://github.com/tannerlinsley/react-table)
 
+### [Demo](https://tourmalinecore.github.io/React-Packages/?path=/story/table--client-side-desktop)
+
 ### This package contains:
 - ClientTable
 - ServerTable(with server-based pagination, sorting, filtering)
@@ -73,8 +75,8 @@ const columns = [
 |-|-|-|-|
 | tableId | String | "" | Used for local state storing. Should be unique |
 | data | Array\<any\> | [] | Data for table grouped by rows, it maps with **columns** by property key, using columns '*accessor field*'. Each object is a `row`: **key** - column id (use it in columns 'accessor' field), **value** - cell data |
-| columns | Array\<Column\> | [] | Array of predefined collumns. See table below for more info |
-| actions | Array\<Action\> | [] | Special column for icon action-buttons. See table below for more info |
+| columns | Array\<Column\> | [] | Defines table's collumns. See the table below for more info |
+| actions | Array\<Action\> | [] | Defines a special column for action-buttons. See the table below for more info |
 | order | Object | {} | Sorting order |
 | language | String \| object | "en" | en/ru or Object ([example]()) TODO: add example link |
 | renderMobileTitle | React.Component \| Function(Row) => JSX | () => null | Rows accordion head content for mobile view |
@@ -90,18 +92,18 @@ const columns = [
 
 | Name | Type | Default Value | Description |
 |-|-|-|-|
-| Header | String | "" | Display name for column 'th' |
-| accessor | String \| Function(originalRow, rowIndex) => any | "" | This string/function is used to build the data model for your column. The data returned by an accessor should be primitive and sortable |
+| Header | String | "" | Display name for the column 'th' |
+| accessor | String \| Function(originalRow, rowIndex) => any | "" | Used to build the data model for your column. The data returned by an accessor should be primitive and sortable |
 | Cell |  React.Component \| Function({row}) => JSX | ({ value }) => String(value) | Function for renedring cell's content. By default renders content of a property with the same name as the `accessor` as text |
-| Footer | String \| Function \| React.Component => JSX | () => null | Can be used to show aggregation of the cells in the column |
+| Footer | String \| Function \| React.Component => JSX | () => null | Renders column's footer. Receives the table instance and column model as props |
 | filter | Function(rows, columnIds, filterValue) => Rows[] | (rows) => rows | Function used for the column filtration |
-| Filter | React.Component \| Function() => JSX | () => null | Renders a component, that will be used for filtration in the column. By default text input is used. |
+| Filter | React.Component \| Function() => JSX | () => null | Renders a component, that will be used for filtration in the column. By default text input is used |
 | selectFilterOptions | Array\<Object\> | [] | If you use `SelectColumnFilter`, pass options with this property |
-| minWidth | Int | 80 | minWidth is only used as a limit for resizing |
-| width | Int | 150 | width is used for both the flex-basis and flex-grow |
-| maxWidth | Int | 400 | maxWidth is only used as a limit for resizing |
+| minWidth | Int | 80 | Min limit for the resizing |
+| width | Int | 150 | Used for both the flex-basis and flex-grow |
+| maxWidth | Int | 400 | Max limit for the resizing |
 | principalFilterableColumn | Boolean | true |  |
-| nonMobileColumn | Boolean | true | Prevents column from showing on mobile |
+| nonMobileColumn | Boolean | true | Prevents column from showing on the mobile |
 | noFooterColumn | Boolean | false | Prevents column from showing in the footer, if it is enabled |
 | disableSortBy | Boolean | true | Disables sorting for the column |
 | disableFilters | Boolean | true | Disables filtering for the column |
@@ -112,8 +114,8 @@ const columns = [
 | name | String | "" | Unique name for an action |
 | show | Function({row}) => Boolean | () => null | Returns whether an action will be present for the row or not |
 | renderIcon | React.Component \| Function({row}) => JSX | () => null | Renders action icon |
-| renderText | React.Component \| Function({row}) => JSX | () => null | Tooltip text for icon |
-| onClick | Function | () => null | Event triggered on action's click  |
+| renderText | Function({row}) => String | () => null | Returns text, that will be shown as a Tooltip for the icon |
+| onClick | Function({row}) => any | () => null | Event triggered on action's click  |
 
 # ServerTable
 ServerTable is pretty much the same as the ClientTable, but instead of using the whole data at once, it loads data partially from an external source.
