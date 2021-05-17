@@ -7,16 +7,34 @@
 - ServerTable(with server-based pagination, sorting, filtering)
 - SelectColumnFilter (you can use it in columns[].Filter)
 
+# Instalation
 
-#### ClientTable
+The package can be installed via npm:
+```
+npm install @tourmalinecore/react-table-responsive --save
+```
+
+Or via yarn:
+```
+yarn add @tourmalinecore/react-table-responsive
+```
+
+### Do not forget to import styles if needed
+should be imported once in your root component
+```JSX
+import '@tourmalinecore/react-table-responsive/es/index.css';
+import '@tourmalinecore/react-tc-modal/es/index.css';
+import '@tourmalinecore/react-tc-ui-kit/es/index.css';
+```
+
+# ClientTable
+
+The most basic usage of the ClientTable can be described with:
+
 ```JSX
 import {ClientTable} from '@tourmalinecore/react-table-responsive';
 
-<ClientTable
-  tableId="unique id" // should be unique, because it used for local state storing
-  // data for table grouped by rows, it maps with columns by property key, using colums 'accessor field'
-  // each object is a "row": key - column id(use it in columns 'accessor' field), value - cell data
-  data={[
+const data = [
     {
       name: 'name1',
       data: 'data1',
@@ -25,123 +43,156 @@ import {ClientTable} from '@tourmalinecore/react-table-responsive';
       name: 'name2',
       data: 'data2',
     },
-  ]}
-  columns={[
+  ];
+
+const columns = [
     {
-      Header: 'Header Name', // display name for column 'th'
-      accessor: 'name', // should be one of data keys
-      accessor: (data) => data.propName || data.anotherPropName, // also you can pass custom getter function
-
-      // String | Function(rows, columnIds, filterValue) => Rows[]
-      // pass any custom filter function here
-      filter: () => {},
-
-      Filter: <SomeFilterComponent />, // default: <text input field>, see example here(TODO file link)
-      // if you use <SelectColumnFilter>, pass options with this property
-      selectFilterOptions: [{label: '', value: ''}, ...]
-
-      minWidth: 80, // minWidth is only used as a limit for resizing
-      width: 150, // width is used for both the flex-basis and flex-grow
-      maxWidth: 400, // maxWidth is only used as a limit for resizing
-      principalFilterableColumn: true,
-      nonMobileColumn: true,
-      noFooterColumn: false,
-      disableSortBy: true,
-      disableFilters: true,
-      Cell: ({ row }) => someRenderFunction(row),
-      Footer: () => 'footer content',
+      Header: 'Name',
+      accessor: 'name',
     },
     {
-      Header: 'Header Name',
+      Header: 'Data',
       accessor: 'data',
     },
-  ]}
-  actions={[ // special column for icon action-buttons
-    {
-      name: 'action-uniq-name',
-      show: () => true,
-      renderIcon: (row) => (<img className="icon" />),
-      renderText: () => {}, // tooltip text for icon
-      onClick: (event, row) => {}
-    },
-  ]}
-  order = {{ // sorting order
-    id: 'shortName',
-    desc: false, // should it sort by descendance?
-  }}
-  language='en' // en/ru or Object, see example here(TODO file link)
-  renderMobileTitle={() => {}} // rows accordion head content for mobile view
-  maxStillMobileBreakpoint={800} // breakpoint to toggle between mobile/desktop view
-  isStriped={false} // set striped rows view
-  loading={false}
-  onFiltersChange={() => {}}
-  // if it is true filters and sortBy will be stored in memory and when you go back to the table its state will be initialized with it
-  // it is stored in a const variable thus state dissapears on page reload
-  enableTableStatePersistance={false}
+  ];
 
-  // there you can also provide your custom props:
-  // anything you put into these options will
-  // automatically be available on the instance.
-  // E.g. if you provide a function here,
-  // it will be available from cell renderers
+<ClientTable
+  tableId="unique id" 
+  data={data}
+  columns={columns}
+  order = {{
+    id: 'name',
+    desc: false,
+  }}
 />
 ```
 
-#### ServerTable
+## Configuration
+
+| Name | Type | Default Value | Description |
+|-|-|-|-|
+| tableId | String | "" | Used for local state storing. Should be unique |
+| data | Array\<any\> | [] | Data for table grouped by rows, it maps with **columns** by property key, using columns '*accessor field*'. Each object is a `row`: **key** - column id (use it in columns 'accessor' field), **value** - cell data |
+| columns | Array\<Column\> | [] | Array of predefined collumns. See table below for more info |
+| actions | Array\<Action\> | [] | Special column for icon action-buttons. See table below for more info |
+| order | Object | {} | Sorting order |
+| language | String \| object | "en" | en/ru or Object ([example]()) TODO: add example link |
+| renderMobileTitle | React.Component \| Function(Row) => JSX | () => null | Rows accordion head content for mobile view |
+| maxStillMobileBreakpoint | Int | 800 | Breakpoint to toggle between mobile/desktop view |
+| isStriped | Boolean | false | Sets striped rows view
+| loading | Boolean | false | If true displays loader in place of table's content |
+| onFiltersChange | Function(Array\<Filter\>) => any | () => null | Triggered when value of any filter is changed | 
+| enableTableStatePersistance | Boolean | false | If true, filters and sortBy will be stored in memory and when you go back to the table its state will be initialized with it. It is stored in a const variable thus state dissapears on page reload |
+
+**NOTE**: You can also provide your custom props: anything you put into these options will automatically be available on the instance. E.g. if you provide a function, it will be available from the `Cell` renderers
+
+### Column props
+
+| Name | Type | Default Value | Description |
+|-|-|-|-|
+| Header | String | "" | Display name for column 'th' |
+| accessor | String \| Function(originalRow, rowIndex) => any | "" | This string/function is used to build the data model for your column. The data returned by an accessor should be primitive and sortable |
+| Cell |  React.Component \| Function({row}) => JSX | ({ value }) => String(value) | Function for renedring cell's content. By default renders content of a property with the same name as the `accessor` as text |
+| Footer | String \| Function \| React.Component => JSX | () => null | Can be used to show aggregation of the cells in the column |
+| filter | Function(rows, columnIds, filterValue) => Rows[] | (rows) => rows | Function used for the column filtration |
+| Filter | React.Component \| Function() => JSX | () => null | Renders a component, that will be used for filtration in the column. By default text input is used. |
+| selectFilterOptions | Array\<Object\> | [] | If you use `SelectColumnFilter`, pass options with this property |
+| minWidth | Int | 80 | minWidth is only used as a limit for resizing |
+| width | Int | 150 | width is used for both the flex-basis and flex-grow |
+| maxWidth | Int | 400 | maxWidth is only used as a limit for resizing |
+| principalFilterableColumn | Boolean | true |  |
+| nonMobileColumn | Boolean | true | Prevents column from showing on mobile |
+| noFooterColumn | Boolean | false | Prevents column from showing in the footer, if it is enabled |
+| disableSortBy | Boolean | true | Disables sorting for the column |
+| disableFilters | Boolean | true | Disables filtering for the column |
+
+### Action props
+| Name | Type | Default Value | Description |
+|-|-|-|-|
+| name | String | "" | Unique name for an action |
+| show | Function({row}) => Boolean | () => null | Returns whether an action will be present for the row or not |
+| renderIcon | React.Component \| Function({row}) => JSX | () => null | Renders action icon |
+| renderText | React.Component \| Function({row}) => JSX | () => null | Tooltip text for icon |
+| onClick | Function | () => null | Event triggered on action's click  |
+
+# ServerTable
+ServerTable is pretty much the same as the ClientTable, but instead of using the whole data at once, it loads data partially from an external source.
+
+```JSX
+import {ServerTable} from '@tourmalinecore/react-table-responsive'
+
+<ServerTable
+  tableId="uniq-table-id"
+  columns={[]}
+  actions={[]}
+
+  // this props for api calls
+  apiHostUrl="https://hosturl"
+  dataPath="/api-endpoint"
+  requestMethod="GET"
+/>
+```
+
+## Configuration
+ServerTable uses some unique props in addition to what client table has:
+
+| Name | Type | Default Value | Description |
+|-|-|-|-|
+| refresh | Boolean | false | Toggle it in any way to trigger table refresh |
+| apiHostUrl | String | "" | URL of your API |
+| dataPath | String | "" | The path to the specific endpoint from which the data will be requested |
+| authToken | String | "" | Authentication token if needed |
+| requestMethod | String | "GET" | Request method used by endpoint |
+| requestData | Object | {} | Data for requests with body | 
+| onPageDataLoaded | Function | () => null | Triggered when value requested data is loaded | 
+
+## Request data
 
 If you want to use default GET request method you will need to ensure that your backend endpoint can process query consisting of the parameters below:
 
-- **draw**: int.
-- **page**: int. Number of page to take.
-- **pageSize**: int. Number that defines size of the pages.
-- **orderBy**: string. Property name used for sorting.
-- **orderingDirection**: string. Any string for ascending order and 'desc' for descending.
-- **filteredByColumns**: string[]. List of property names to be used for filtering separated by coma. This names are taken from the provided *columns* list.
-- **filteredByValues**: string[]. List of property values to be used for filtering separated by coma. Thier indexes  correspond with the ones from the *filteredByColumns* array.
+| Name | Type  | Description |
+|-|-|-|
+| draw | Int |  |
+| page | Int | Number of page to take |
+| pageSize | Int | Number that defines size of the pages |
+| orderBy | String | Property name used for sorting |
+| orderingDirection | String | Any string for ascending order and 'desc' for descending |
+| filteredByColumns | Array\<String\> | List of property names to be used for filtering separated by coma. This names are taken from the provided *columns* list.
+| filteredByValues | Array\<String\> | List of property values to be used for filtering separated by coma. Thier indexes  correspond with the ones from the *filteredByColumns* array |
 
 Example:
 ```
 https://{app-url}/{endpoint}?draw=2&page=1&pageSize=10&orderBy=name&orderingDirection=desc&filteredByColumns=Name,Surname&filteredByValues=John,Smith
 ```
 
+# Select Column Filter
+
+**SelectColumnFilter** allows to filter data by properties with a known set of values, such as status types. Set `Filter` property to **SelectColumnFilter** and define `selectFilterOptions` array, like in the example.
+
+**NOTE**: To add "All" option in the list, you need to add object with an empty string value to Options array.
+
 ```JSX
-import {ServerTable} from '@tourmalinecore/react-table-responsive'
+import {ClientTable, SelectColumnFilter} from '@tourmalinecore/react-table-responsive';
 
-<ServerTable
-  // this props are the same as for TcClientTable
-  tableId="uniq-table-id"
-  columns={[]}
-  actions={[]}
-  order={}
-  language="en"
-  renderMobileTitle={() => {}}
-  maxStillMobileBreakpoint={800}
-  loading={false}
-  isStriped={false}
-  onFiltersChange={() => {}}
-  enableTableStatePersistance={false}
-
-  // this props for api calls
-  refresh={false} // toggle it in any way to trigger table refresh
-  apiHostUrl="https://hosturl"
-  dataPath="/api-endpoint"
-  authToken="" // your auth token if needed
-  requestMethod="GET"
-  requestData={{}} // data for POST requests, defaults to {}
-  onPageDataLoaded={() => {}}
-
-  // there you can also provide your custom props:
-  // anything you put into these options will
-  // automatically be available on the instance.
-  // E.g. if you provide a function here,
-  // it will be available from cell renderers
-/>
-```
-
-## Do not forget to import styles if needed
-should be imported once in your root component
-```JSX
-import '@tourmalinecore/react-table-responsive/es/index.css';
-import '@tourmalinecore/react-tc-modal/es/index.css';
-import '@tourmalinecore/react-tc-ui-kit/es/index.css';
+const columns = [
+    {
+      Header: 'Status',
+      accessor: 'status',
+      Filter: SelectColumnFilter,
+      selectFilterOptions: [
+        {
+          label: 'All',
+          value: '',
+        }, 
+        {
+          label: 'Approved',
+          value: 1,
+        },
+        {
+          label: 'Declined',
+          value: 2,
+        }
+      ],
+    },
+  ];
 ```
