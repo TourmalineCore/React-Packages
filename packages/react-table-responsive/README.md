@@ -1,15 +1,10 @@
-# React Table Responsive
+# React-Table-Responsive
 
-## Mobile friendly UI wrapper based on [react-table](https://github.com/tannerlinsley/react-table)
+Mobile friendly react table component based on [react-table](https://github.com/tannerlinsley/react-table) using its (?) layout.
 
-### [Demo](https://tourmalinecore.github.io/React-Packages/?path=/story/table--client-side-desktop)
+## [Demo](https://tourmalinecore.github.io/React-Packages/?path=/story/table--client-side-desktop)
 
-### This package contains:
-- ClientTable
-- ServerTable(with server-based pagination, sorting, filtering)
-- SelectColumnFilter (you can use it in columns[].Filter)
-
-# Instalation
+## Instalation
 
 The package can be installed via npm:
 ```
@@ -21,7 +16,7 @@ Or via yarn:
 yarn add @tourmalinecore/react-table-responsive
 ```
 
-### Do not forget to import styles if needed
+### Do not forget to import styles if you want to use the defafult styling.
 should be imported once in your root component
 ```JSX
 import '@tourmalinecore/react-table-responsive/es/index.css';
@@ -29,9 +24,24 @@ import '@tourmalinecore/react-tc-modal/es/index.css';
 import '@tourmalinecore/react-tc-ui-kit/es/index.css';
 ```
 
-# ClientTable
+> Note:  You may want to re-style on your own. In that case you don't have to import the styles. 
 
-The most basic usage of the ClientTable can be described with:
+
+## Main Package Features:
+- Table that supports client side pagination/sorting/filtration.
+- Table that supports server side pagination/sorting/filtration.
+- Single column sorting.
+- Persistance of (?) in LS. (Descr)
+- Different pagination strategy between mobile and desktop versions of the table.
+- Total row in the footer of the table. (Descr)
+- Actions column. (Descr)
+- External trigger of the server side table data reloading.
+- Customizable column filtration. You can use your own filter-component or override the default filtration behaviour.
+- Passing react-table props to the underlying enging as is (?).
+
+## Client Side Table
+
+The most basic usage of ClientTable:
 
 ```JSX
 import {ClientTable} from '@tourmalinecore/react-table-responsive';
@@ -59,7 +69,6 @@ const columns = [
   ];
 
 <ClientTable
-  tableId="unique id" 
   data={data}
   columns={columns}
   order = {{
