@@ -1,6 +1,6 @@
 # React-Table-Responsive
 
-Mobile friendly react table component based on [react-table](https://github.com/tannerlinsley/react-table) using its (?) layout.
+Mobile friendly react table component based on [react-table](https://github.com/tannerlinsley/react-table) using its useFlexLayout hook.
 
 ## [Demo](https://tourmalinecore.github.io/React-Packages/?path=/story/table--client-side-desktop)
 
@@ -24,20 +24,20 @@ import '@tourmalinecore/react-tc-modal/es/index.css';
 import '@tourmalinecore/react-tc-ui-kit/es/index.css';
 ```
 
-> Note:  You may want to re-style on your own. In that case you don't have to import the styles. 
+> **NOTE**:  You may want to re-style on your own. In that case you don't have to import the styles. 
 
 
 ## Main Package Features:
-- Table that supports client side pagination/sorting/filtration.
-- Table that supports server side pagination/sorting/filtration.
+- Table that supports **client** side pagination/sorting/filtration.
+- Table that supports **server** side pagination/sorting/filtration.
 - Single column sorting.
-- Persistance of (?) in LS. (Descr)
+- Optional persistance of selected sorting, filters, page size, etc. by storing them in the LS.
 - Different pagination strategy between mobile and desktop versions of the table.
-- Total row in the footer of the table. (Descr)
-- Actions column. (Descr)
+- Total amount of rows in the footer of the table.
+- Actions column. Easy way to create interactive table by adding action buttons to each row. 
 - External trigger of the server side table data reloading.
 - Customizable column filtration. You can use your own filter-component or override the default filtration behaviour.
-- Passing react-table props to the underlying enging as is (?).
+- Passing `react-table` props to the underlying engine as is. (not all the features are supported, see the list at the end)
 
 ## Client Side Table
 
@@ -87,7 +87,7 @@ const columns = [
 | columns | Array\<Column\> | [] | Defines table's collumns. See the table below for more info |
 | actions | Array\<Action\> | [] | Defines a special column for action-buttons. See the table below for more info |
 | order | Object | {} | Sorting order |
-| language | String \| object | "en" | en/ru or Object ([example]()) TODO: add example link |
+| language | String \| Object | "en" | Language used for the navigation labels. Accepts "en"/"ru" or Object |
 | renderMobileTitle | React.Component \| Function(Row) => JSX | () => null | Rows accordion head content for mobile view |
 | maxStillMobileBreakpoint | Int | 800 | Breakpoint to toggle between mobile/desktop view |
 | isStriped | Boolean | false | Sets striped rows view
@@ -95,7 +95,7 @@ const columns = [
 | onFiltersChange | Function(Array\<Filter\>) => any | () => null | Triggered when value of any filter is changed | 
 | enableTableStatePersistance | Boolean | false | If true, filters and sortBy will be stored in memory and when you go back to the table its state will be initialized with it. It is stored in a const variable thus state dissapears on page reload |
 
-**NOTE**: You can also provide your custom props: anything you put into these options will automatically be available on the instance. E.g. if you provide a function, it will be available from the `Cell` renderers
+> **NOTE**: You can also provide your custom props: anything you put into these options will automatically be available on the instance. E.g. if you provide a function, it will be available from the `Cell` renderers
 
 ### Column props
 
@@ -207,3 +207,7 @@ const columns = [
     },
   ];
 ```
+
+# List of unsupported features from react-table
+- Multi-Column sorting 
+- Virtualization
