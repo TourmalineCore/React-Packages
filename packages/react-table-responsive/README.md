@@ -37,11 +37,11 @@ import '@tourmalinecore/react-tc-ui-kit/es/index.css';
 - Actions column. Easy way to create interactive table by adding action buttons to each row. 
 - External trigger of the server side table data reloading.
 - Customizable column filtration. You can use your own filter-component or override the default filtration behaviour.
-- Passing `react-table` props to the underlying engine as is. (not all the features are supported, see the list at the end)
+- Passing `react-table` props to the underlying engine as is. (not all the features are supported, see the list [here](#unsupported-features-from-react-table))
 
-## Client Side Table
+# Client Side Table
 
-The most basic usage of ClientTable:
+The most basic usage of the ClientTable:
 
 ```JSX
 import {ClientTable} from '@tourmalinecore/react-table-responsive';
@@ -68,14 +68,139 @@ const columns = [
     },
   ];
 
+return(
+  <ClientTable
+    data={data}
+    columns={columns}
+  />
+);
+```
+
+## Sorting
+
+This package implements single-column sorting. You can use by adding `order` property to the Table. It accepts object with such props as `id` (accessor of the property) and `desc` (determines sorting direction).
+
+```JSX
 <ClientTable
   data={data}
   columns={columns}
-  order = {{
+  order={{
     id: 'name',
     desc: false,
   }}
 />
+```
+
+## Filtration
+
+You can use your own filtration function for standard text input filter:
+
+```JSX
+const columns = [
+    {
+      Header: 'Status',
+      accessor: 'status',
+      filter: (rows, columnIds, filterValue) => rows.filter(row.original.status === filterValue),
+    },
+  ];
+```
+**OR** you can implement a whole new Filter component:
+
+```JSX
+function CustomFilter ({
+  column: {
+    id,
+    filterValue,
+    setFilter,
+  },
+  filterValueOverride,
+  setFilterOverride,
+  inputPlaceholder,
+  }) {
+    return (
+      <Select
+        value={setFilterOverride ? filterValueOverride : filterValue}
+        options={selectFilterOptions}
+        onChange={(e) => {
+          const newFilterValue = e.target.value;
+
+          if (setFilterOverride) {
+            setFilterOverride(id, newFilterValue);
+          } else {
+            setFilter(newFilterValue);
+          }
+        }}
+      />
+  );
+}
+
+const columns = [
+    {
+      Header: 'Status',
+      accessor: 'status',
+      Filter: CustomFilter,
+    },
+  ];
+```
+
+### Select Column Filter
+
+This package also contains ready-to-use **SelectColumnFilter**, that allows you to filter data by properties with a known set of values, such as status types. Set `Filter` property to **SelectColumnFilter** and define `selectFilterOptions` array, like in the example.
+
+**NOTE**: To add "All" option in the list, you need to add object with an empty string value to Options array.
+
+```JSX
+import {ClientTable, SelectColumnFilter} from '@tourmalinecore/react-table-responsive';
+
+const columns = [
+    {
+      Header: 'Status',
+      accessor: 'status',
+      Filter: SelectColumnFilter,
+      selectFilterOptions: [
+        {
+          label: 'All',
+          value: '',
+        }, 
+        {
+          label: 'Approved',
+          value: 1,
+        },
+        {
+          label: 'Declined',
+          value: 2,
+        }
+      ],
+    },
+  ];
+```
+
+## Actions
+
+```JSX
+const actions = [
+  {
+    name: 'open-dictionaries-action',
+    show: () => true,
+    renderIcon: () => <FontAwesomeIcon icon={faBook} />,
+    renderText: () => 'Open Dictionaries',
+    onClick: onOpenDictionariesClick,
+  },
+  {
+    name: 'download-action',
+    show: (row) => row.original.canBeDownloaded,
+    renderText: (row) => `Download ${row.original.name}`,
+    onClick: onDownloadClick,
+  },
+];
+
+return (
+  <ClientTable
+    data={data}
+    columns={columns}
+    actions={actions}
+  />
+);
 ```
 
 ## Configuration
@@ -87,7 +212,7 @@ const columns = [
 | columns | Array\<Column\> | [] | Defines table's collumns. See the table below for more info |
 | actions | Array\<Action\> | [] | Defines a special column for action-buttons. See the table below for more info |
 | order | Object | {} | Sorting order |
-| language | String \| Object | "en" | Language used for the navigation labels. Accepts "en"/"ru" or Object |
+| language | String \| Object | "en" | Language used for the navigation labels. Accepts "en"/"ru" or Object containing translation for all necessary strings ([example](https://github.com/TourmalineCore/React-Packages/blob/feature/readme-update/packages/react-table-responsive/src/i18n/en.js)) |
 | renderMobileTitle | React.Component \| Function(Row) => JSX | () => null | Rows accordion head content for mobile view |
 | maxStillMobileBreakpoint | Int | 800 | Breakpoint to toggle between mobile/desktop view |
 | isStriped | Boolean | false | Sets striped rows view
@@ -127,22 +252,53 @@ const columns = [
 | onClick | Function({row}) => any | () => null | Event triggered on action's click  |
 
 # ServerTable
+
 ServerTable is pretty much the same as the ClientTable, but instead of using the whole data at once, it loads data partially from an external source.
 
 ```JSX
 import {ServerTable} from '@tourmalinecore/react-table-responsive'
 
-<ServerTable
-  tableId="uniq-table-id"
-  columns={[]}
-  actions={[]}
+return (
+  <ServerTable
+    tableId="uniq-table-id"
+    columns={[]}
+    actions={[]}
 
-  // this props for api calls
-  apiHostUrl="https://hosturl"
-  dataPath="/api-endpoint"
-  requestMethod="GET"
-/>
+    // this props for api calls
+    apiHostUrl="https://hosturl"
+    dataPath="/api-endpoint"
+    requestMethod="GET"
+  />
+);
 ```
+
+
+### Refresh table
+
+You can manually invoke a table's data update by using the `refresh` property:
+
+```JSX
+const [refresh, setRefresh] = useState(false);
+
+return (
+  <div>
+    <button onClick={() => setRefresh(!refresh)}>
+      Refresh Table
+    </button>
+    <ServerTable
+      tableId="uniq-table-id"
+      columns={columns}
+      actions={actions}
+
+      refresh={refresh}
+      apiHostUrl="https://hosturl"
+      dataPath="/api-endpoint"
+      requestMethod="GET"
+    />
+  </div>
+)
+```
+
 
 ## Configuration
 ServerTable uses some unique props in addition to what client table has:
@@ -176,38 +332,6 @@ Example:
 https://{app-url}/{endpoint}?draw=2&page=1&pageSize=10&orderBy=name&orderingDirection=desc&filteredByColumns=Name,Surname&filteredByValues=John,Smith
 ```
 
-# Select Column Filter
-
-**SelectColumnFilter** allows to filter data by properties with a known set of values, such as status types. Set `Filter` property to **SelectColumnFilter** and define `selectFilterOptions` array, like in the example.
-
-**NOTE**: To add "All" option in the list, you need to add object with an empty string value to Options array.
-
-```JSX
-import {ClientTable, SelectColumnFilter} from '@tourmalinecore/react-table-responsive';
-
-const columns = [
-    {
-      Header: 'Status',
-      accessor: 'status',
-      Filter: SelectColumnFilter,
-      selectFilterOptions: [
-        {
-          label: 'All',
-          value: '',
-        }, 
-        {
-          label: 'Approved',
-          value: 1,
-        },
-        {
-          label: 'Declined',
-          value: 2,
-        }
-      ],
-    },
-  ];
-```
-
-# List of unsupported features from react-table
+# Unsupported features from react-table
 - Multi-Column sorting 
 - Virtualization
