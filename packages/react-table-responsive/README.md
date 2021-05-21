@@ -28,15 +28,15 @@ import '@tourmalinecore/react-tc-ui-kit/es/index.css';
 
 
 ## Main Package Features:
-- Table that supports **client** side pagination/sorting/filtration.
-- Table that supports **server** side pagination/sorting/filtration.
-- Single column sorting.
+- Table that supports **client** side pagination/sorting/filtration. [Go to section](#client-side-table)
+- Table that supports **server** side pagination/sorting/filtration. [Go to section](#server-side-table)
+- Single column sorting. [Go to section](#sorting)
 - Optional persistance of selected sorting, filters, page size, etc. by storing them in the LS.
 - Different pagination strategy between mobile and desktop versions of the table.
 - Total amount of rows in the footer of the table.
-- Actions column. Easy way to create interactive table by adding action buttons to each row. 
-- External trigger of the server side table data reloading.
-- Customizable column filtration. You can use your own filter-component or override the default filtration behaviour.
+- Actions column. Easy way to create interactive table by adding action buttons to each row. [Go to section](#actions)
+- External trigger of the server side table data reloading. [Go to section](#refresh-table)
+- Customizable column filtration. You can use your own filter-component or override the default filtration behaviour. [Go to section](#filters)
 - Passing `react-table` props to the underlying engine as is. (not all the features are supported, see the list [here](#unsupported-features-from-react-table))
 
 # Client Side Table
@@ -75,6 +75,45 @@ return(
   />
 );
 ```
+
+## Configuration
+
+| Name | Type | Default Value | Description |
+|-|-|-|-|
+| tableId | String | "" | Used for local state storing. Should be unique |
+| data | Array\<any\> | [] | Data for table grouped by rows, it maps with **columns** by property key, using columns '*accessor field*'. Each object is a `row`: **key** - column id (use it in columns 'accessor' field), **value** - cell data |
+| columns | Array\<Column\> | [] | Defines table's collumns. See the table below for more info |
+| actions | Array\<Action\> | [] | Defines a special column for action-buttons. See the table below for more info |
+| order | Object | {} | Sorting order |
+| language | String \| Object | "en" | Language used for the navigation labels. Accepts "en"/"ru" or Object containing translation for all necessary strings ([example](https://github.com/TourmalineCore/React-Packages/blob/feature/readme-update/packages/react-table-responsive/src/i18n/en.js)) |
+| renderMobileTitle | React.Component \| Function(Row) => JSX | () => null | Rows accordion head content for mobile view |
+| maxStillMobileBreakpoint | Int | 800 | Breakpoint to toggle between mobile/desktop view |
+| isStriped | Boolean | false | Sets striped rows view
+| loading | Boolean | false | If true displays loader in place of table's content |
+| onFiltersChange | Function(Array\<Filter\>) => any | () => null | Triggered when value of any filter is changed | 
+| enableTableStatePersistance | Boolean | false | If true, filters and sortBy will be stored in memory and when you go back to the table its state will be initialized with it. It is stored in a const variable thus state dissapears on page reload |
+
+> **NOTE**: You can also provide your custom props: anything you put into these options will automatically be available on the instance. E.g. if you provide a function, it will be available from the `Cell` renderers
+
+### Column props
+
+| Name | Type | Default Value | Description |
+|-|-|-|-|
+| Header | String | "" | Display name for the column 'th' |
+| accessor | String \| Function(originalRow, rowIndex) => any | "" | Used to build the data model for your column. The data returned by an accessor should be primitive and sortable |
+| Cell |  React.Component \| Function({row}) => JSX | ({ value }) => String(value) | Function for renedring cell's content. By default renders content of a property with the same name as the `accessor` as text |
+| Footer | String \| Function \| React.Component => JSX | () => null | Renders column's footer. Receives the table instance and column model as props |
+| filter | Function(rows, columnIds, filterValue) => Rows[] | (rows) => rows | Function used for the column filtration |
+| Filter | React.Component \| Function() => JSX | () => null | Renders a component, that will be used for filtration in the column. By default text input is used |
+| selectFilterOptions | Array\<Object\> | [] | If you use `SelectColumnFilter`, pass options with this property |
+| minWidth | Int | 80 | Min limit for the resizing |
+| width | Int | 150 | Used for both the flex-basis and flex-grow |
+| maxWidth | Int | 400 | Max limit for the resizing |
+| principalFilterableColumn | Boolean | true |  |
+| nonMobileColumn | Boolean | true | Prevents column from showing on the mobile |
+| noFooterColumn | Boolean | false | Prevents column from showing in the footer, if it is enabled |
+| disableSortBy | Boolean | true | Disables sorting for the column |
+| disableFilters | Boolean | true | Disables filtering for the column |
 
 ## Sorting
 
@@ -203,45 +242,6 @@ return (
 );
 ```
 
-## Configuration
-
-| Name | Type | Default Value | Description |
-|-|-|-|-|
-| tableId | String | "" | Used for local state storing. Should be unique |
-| data | Array\<any\> | [] | Data for table grouped by rows, it maps with **columns** by property key, using columns '*accessor field*'. Each object is a `row`: **key** - column id (use it in columns 'accessor' field), **value** - cell data |
-| columns | Array\<Column\> | [] | Defines table's collumns. See the table below for more info |
-| actions | Array\<Action\> | [] | Defines a special column for action-buttons. See the table below for more info |
-| order | Object | {} | Sorting order |
-| language | String \| Object | "en" | Language used for the navigation labels. Accepts "en"/"ru" or Object containing translation for all necessary strings ([example](https://github.com/TourmalineCore/React-Packages/blob/feature/readme-update/packages/react-table-responsive/src/i18n/en.js)) |
-| renderMobileTitle | React.Component \| Function(Row) => JSX | () => null | Rows accordion head content for mobile view |
-| maxStillMobileBreakpoint | Int | 800 | Breakpoint to toggle between mobile/desktop view |
-| isStriped | Boolean | false | Sets striped rows view
-| loading | Boolean | false | If true displays loader in place of table's content |
-| onFiltersChange | Function(Array\<Filter\>) => any | () => null | Triggered when value of any filter is changed | 
-| enableTableStatePersistance | Boolean | false | If true, filters and sortBy will be stored in memory and when you go back to the table its state will be initialized with it. It is stored in a const variable thus state dissapears on page reload |
-
-> **NOTE**: You can also provide your custom props: anything you put into these options will automatically be available on the instance. E.g. if you provide a function, it will be available from the `Cell` renderers
-
-### Column props
-
-| Name | Type | Default Value | Description |
-|-|-|-|-|
-| Header | String | "" | Display name for the column 'th' |
-| accessor | String \| Function(originalRow, rowIndex) => any | "" | Used to build the data model for your column. The data returned by an accessor should be primitive and sortable |
-| Cell |  React.Component \| Function({row}) => JSX | ({ value }) => String(value) | Function for renedring cell's content. By default renders content of a property with the same name as the `accessor` as text |
-| Footer | String \| Function \| React.Component => JSX | () => null | Renders column's footer. Receives the table instance and column model as props |
-| filter | Function(rows, columnIds, filterValue) => Rows[] | (rows) => rows | Function used for the column filtration |
-| Filter | React.Component \| Function() => JSX | () => null | Renders a component, that will be used for filtration in the column. By default text input is used |
-| selectFilterOptions | Array\<Object\> | [] | If you use `SelectColumnFilter`, pass options with this property |
-| minWidth | Int | 80 | Min limit for the resizing |
-| width | Int | 150 | Used for both the flex-basis and flex-grow |
-| maxWidth | Int | 400 | Max limit for the resizing |
-| principalFilterableColumn | Boolean | true |  |
-| nonMobileColumn | Boolean | true | Prevents column from showing on the mobile |
-| noFooterColumn | Boolean | false | Prevents column from showing in the footer, if it is enabled |
-| disableSortBy | Boolean | true | Disables sorting for the column |
-| disableFilters | Boolean | true | Disables filtering for the column |
-
 ### Action props
 | Name | Type | Default Value | Description |
 |-|-|-|-|
@@ -251,7 +251,7 @@ return (
 | renderText | Function({row}) => String | () => null | Returns text, that will be shown as a Tooltip for the icon |
 | onClick | Function({row}) => any | () => null | Event triggered on action's click  |
 
-# ServerTable
+# Server Side Table
 
 ServerTable is pretty much the same as the ClientTable, but instead of using the whole data at once, it loads data partially from an external source.
 
