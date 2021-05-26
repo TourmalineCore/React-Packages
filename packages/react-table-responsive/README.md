@@ -80,7 +80,7 @@ return(
 
 | Name | Type | Default Value | Description |
 |-|-|-|-|
-| tableId | String | "" | Used for local state storing. Should be unique |
+| tableId | String | "" | **Required parameter.** Used to differentiate the state of a table among the other table instances. Should be unique |
 | data | Array\<any\> | [] | Data for table grouped by rows, it maps with **columns** by property key, using columns '*accessor field*'. Each object is a `row`: **key** - column id (use it in columns 'accessor' field), **value** - cell data |
 | columns | Array\<Column\> | [] | Defines table's collumns. See the table below for more info |
 | actions | Array\<Action\> | [] | Defines a special column for action-buttons. See the table below for more info |
@@ -91,7 +91,7 @@ return(
 | isStriped | Boolean | false | Sets striped rows view
 | loading | Boolean | false | If true displays loader in place of table's content |
 | onFiltersChange | Function(Array\<Filter\>) => any | () => null | Triggered when value of any filter is changed | 
-| enableTableStatePersistance | Boolean | false | If true, filters and sortBy will be stored in memory and when you go back to the table its state will be initialized with it. It is stored in a const variable thus state dissapears on page reload |
+| enableTableStatePersistance | Boolean | false | If true, selected filters, ordering and current page will be stored in memory and when user goes back to the table its state will be initialized with it. It is stored in a const variable thus state dissapears on page reload |
 
 > **NOTE**: You can also provide your custom props: anything you put into these options will automatically be available on the instance. E.g. if you provide a function, it will be available from the `Cell` renderers
 
@@ -102,9 +102,9 @@ return(
 | Header | String | "" | Display name for the column 'th' |
 | accessor | String \| Function(originalRow, rowIndex) => any | "" | Used to build the data model for your column. The data returned by an accessor should be primitive and sortable |
 | Cell |  React.Component \| Function({row}) => JSX | ({ value }) => String(value) | Function for renedring cell's content. By default renders content of a property with the same name as the `accessor` as text |
-| Footer | String \| Function \| React.Component => JSX | () => null | Renders column's footer. Receives the table instance and column model as props |
-| filter | Function(rows, columnIds, filterValue) => Rows[] | (rows) => rows | Function used for the column filtration |
-| Filter | React.Component \| Function() => JSX | () => null | Renders a component, that will be used for filtration in the column. By default text input is used |
+| Footer | String \| React.Component \| Function => JSX | () => null | Renders column's footer. Receives the table instance and column model as props |
+| filter | Function(rows: Array\<Row\>, columnIds: Array\<ColumnId: String\>, filterValue) => Rows[] | "text" | Function used for the column filtration. If a string is passed, the function with that name will be used from either the custom filterTypes table option (if specified) or from the built-in filtering types object. |
+| Filter | React.Component \| Function() => JSX | () => null | Receives the table instance and column model as props ([react-table source](https://react-table.tanstack.com/docs/api/useFilters)). Renders a component, that will be used for filtration in the column. By default text input is used |
 | selectFilterOptions | Array\<Object\> | [] | If you use `SelectColumnFilter`, pass options with this property |
 | minWidth | Int | 80 | Min limit for the resizing |
 | width | Int | 150 | Used for both the flex-basis and flex-grow |
@@ -217,19 +217,43 @@ const columns = [
 ## Actions
 
 ```JSX
+
+const data = [
+    {
+      name: 'name1',
+      data: 'data1',
+    },
+    {
+      name: 'name2',
+      data: 'data2',
+      canBeDownloaded: true,
+    },
+  ];
+
+const columns = [
+    {
+      Header: 'Name',
+      accessor: 'name',
+    },
+    {
+      Header: 'Data',
+      accessor: 'data',
+    },
+  ];
+
 const actions = [
   {
     name: 'open-dictionaries-action',
     show: () => true,
-    renderIcon: () => <FontAwesomeIcon icon={faBook} />,
     renderText: () => 'Open Dictionaries',
-    onClick: onOpenDictionariesClick,
+    onClick: (e, row) => console.log(`Opening Dictionaries for ${row.original.name}`),
   },
   {
     name: 'download-action',
     show: (row) => row.original.canBeDownloaded,
+    renderIcon: () => <span>&darr;</span>,
     renderText: (row) => `Download ${row.original.name}`,
-    onClick: onDownloadClick,
+    onClick: (e, row) => console.log(`Downloading ${row.original.name}`),
   },
 ];
 
@@ -246,10 +270,19 @@ return (
 | Name | Type | Default Value | Description |
 |-|-|-|-|
 | name | String | "" | Unique name for an action |
-| show | Function({row}) => Boolean | () => null | Returns whether an action will be present for the row or not |
-| renderIcon | React.Component \| Function({row}) => JSX | () => null | Renders action icon |
-| renderText | Function({row}) => String | () => null | Returns text, that will be shown as a Tooltip for the icon |
-| onClick | Function({row}) => any | () => null | Event triggered on action's click  |
+| show | Function(row) => Boolean | () => null | Returns whether an action will be present for the row or not |
+| renderIcon | React.Component \| Function(row) => JSX | () => null | Renders action icon |
+| renderText | Function(row) => String | () => null | Returns text, that will be shown as a Tooltip for the icon |
+| onClick | Function(event, row) => any | () => null | Event triggered on action's click  |
+
+
+## Table State Persistance
+
+In order not to force the user to choose page size value every time they visit the page, Table instance always stores that value in the Local Storage.
+
+By setting table's property `enableTableStatePersistance` to **true** you 
+tell the table to store other settings (filters, sorting and current page) 
+in a const variable, that will be reseted on page reload, but persist between pages in apps with a client-side routing.
 
 # Server Side Table
 
@@ -271,7 +304,6 @@ return (
   />
 );
 ```
-
 
 ### Refresh table
 
@@ -317,19 +349,24 @@ ServerTable uses some unique props in addition to what client table has:
 
 If you want to use default GET request method you will need to ensure that your backend endpoint can process query consisting of the parameters below:
 
-| Name | Type  | Description |
+| Name | Type | Description |
 |-|-|-|
-| draw | Int |  |
-| page | Int | Number of page to take |
-| pageSize | Int | Number that defines size of the pages |
-| orderBy | String | Property name used for sorting |
-| orderingDirection | String | Any string for ascending order and 'desc' for descending |
-| filteredByColumns | Array\<String\> | List of property names to be used for filtering separated by coma. This names are taken from the provided *columns* list.
-| filteredByValues | Array\<String\> | List of property values to be used for filtering separated by coma. Thier indexes  correspond with the ones from the *filteredByColumns* array |
+| draw | int | Used as query identifier to ensure queries are being executed in correct order  |
+| page | int | Number of page to take |
+| pageSize | int | Number that defines size of the pages |
+| orderBy | string | Property name used for sorting |
+| orderingDirection | string | Any string for ascending order or 'desc' for descending |
+| filteredByColumns | string[] | Collection of property names to be used for filtering separated by coma |
+| filteredByValues | string[] | Collection of property values to be used for filtering separated by coma. Thier indexes must correspond with the ones from the *filteredByColumns* array |
 
 Example:
 ```
 https://{app-url}/{endpoint}?draw=2&page=1&pageSize=10&orderBy=name&orderingDirection=desc&filteredByColumns=Name,Surname&filteredByValues=John,Smith
+```
+
+Curl
+```
+curl --location -g --request GET 'https://{app-url}/{endpoint}?draw=2&page=1&pageSize=10&orderBy=name&orderingDirection=desc&filteredByColumns=Name,Surname&filteredByValues=John,Smith'
 ```
 
 # Unsupported features from react-table
