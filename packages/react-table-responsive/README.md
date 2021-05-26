@@ -4,7 +4,26 @@ Mobile friendly react table component based on [react-table](https://github.com/
 
 ## [Demo](https://tourmalinecore.github.io/React-Packages/?path=/story/table--client-side-desktop)
 
-## Instalation
+# Table of Content
+
+- [Instalation](#Instalation)
+- [Features](#Main-Package-Features)
+- [Client Side Table](#Client-Side-Table)
+  - [Configuration](#Configuration)
+    - [Column props](#Column-props)
+  - [Sorting](#Sorting)
+  - [Filtration](#Filtration)
+    - [Select Column Filter](#Select-Column-Filter)
+  - [Actions](#Actions)
+    - [Action props](#Action-props)
+  - [Table State Persistance](#Table-State-Persistance)
+- [Server Side Table](#Server-Side-Table)
+  - [Table Refresh](#Table-Refresh)
+  - [Configuration](#Configuration)
+  - [Request data](#Request-data)
+- [Unsupported features from react-table](#Unsupported-features-from-react-table)
+
+# Instalation
 
 The package can be installed via npm:
 ```
@@ -27,7 +46,7 @@ import '@tourmalinecore/react-tc-ui-kit/es/index.css';
 > **NOTE**:  You may want to re-style on your own. In that case you don't have to import the styles. 
 
 
-## Main Package Features:
+# Main Package Features
 - Table that supports **client** side pagination/sorting/filtration. [Go to section](#client-side-table)
 - Table that supports **server** side pagination/sorting/filtration. [Go to section](#server-side-table)
 - Single column sorting. [Go to section](#sorting)
@@ -70,6 +89,7 @@ const columns = [
 
 return(
   <ClientTable
+    tableId="uniq-table-id"
     data={data}
     columns={columns}
   />
@@ -104,7 +124,7 @@ return(
 | Cell |  React.Component \| Function({row}) => JSX | ({ value }) => String(value) | Function for renedring cell's content. By default renders content of a property with the same name as the `accessor` as text |
 | Footer | String \| React.Component \| Function => JSX | () => null | Renders column's footer. Receives the table instance and column model as props |
 | filter | Function(rows: Array\<Row\>, columnIds: Array\<ColumnId: String\>, filterValue) => Rows[] | "text" | Function used for the column filtration. If a string is passed, the function with that name will be used from either the custom filterTypes table option (if specified) or from the built-in filtering types object. |
-| Filter | React.Component \| Function() => JSX | () => null | Receives the table instance and column model as props ([react-table source](https://react-table.tanstack.com/docs/api/useFilters)). Renders a component, that will be used for filtration in the column. By default text input is used |
+| Filter | React.Component \| Function() => JSX | () => null | Receives the table instance and column model as props. Renders a component, that will be used for filtration in the column. By default text input is used |
 | selectFilterOptions | Array\<Object\> | [] | If you use `SelectColumnFilter`, pass options with this property |
 | minWidth | Int | 80 | Min limit for the resizing |
 | width | Int | 150 | Used for both the flex-basis and flex-grow |
@@ -115,12 +135,15 @@ return(
 | disableSortBy | Boolean | true | Disables sorting for the column |
 | disableFilters | Boolean | true | Disables filtering for the column |
 
+> **NOTE**: You can find more info about react-table props on [official docs](https://react-table.tanstack.com/docs/api/overview).
+
 ## Sorting
 
 This package implements single-column sorting. You can use by adding `order` property to the Table. It accepts object with such props as `id` (accessor of the property) and `desc` (determines sorting direction).
 
 ```JSX
 <ClientTable
+  tableId="uniq-table-id"
   data={data}
   columns={columns}
   order={{
@@ -259,6 +282,7 @@ const actions = [
 
 return (
   <ClientTable
+    tableId="uniq-table-id"
     data={data}
     columns={columns}
     actions={actions}
@@ -305,7 +329,7 @@ return (
 );
 ```
 
-### Refresh table
+## Table Refresh
 
 You can manually invoke a table's data update by using the `refresh` property:
 
@@ -364,9 +388,10 @@ Example:
 https://{app-url}/{endpoint}?draw=2&page=1&pageSize=10&orderBy=name&orderingDirection=desc&filteredByColumns=Name,Surname&filteredByValues=John,Smith
 ```
 
-Curl
+**Curl**
 ```
-curl --location -g --request GET 'https://{app-url}/{endpoint}?draw=2&page=1&pageSize=10&orderBy=name&orderingDirection=desc&filteredByColumns=Name,Surname&filteredByValues=John,Smith'
+curl --location -g --request GET 'https://{app url}/{endpoint}?draw=2&page=1&pageSize=10&orderBy=name&orderingDirection=desc&filteredByColumns=Name,Surname&filteredByValues=John,Smith' \
+--header 'Authorization: {your aut token}'
 ```
 
 # Unsupported features from react-table
