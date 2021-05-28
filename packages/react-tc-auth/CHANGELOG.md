@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.0.5](https://github.com/TourmalineCore/React-Packages/compare/@tourmalinecore/react-tc-auth@0.0.4...@tourmalinecore/react-tc-auth@0.0.5) (2021-05-28)
+
+
+### Bug Fixes
+
+* **react-tc-auth:** fix refresh token not async ([2fe789a](https://github.com/TourmalineCore/React-Packages/commit/2fe789afdc25dfd00089809fd479f958fa3d2ba4))
+
+
+
+
+
 ## [0.0.4](https://github.com/TourmalineCore/React-Packages/compare/@tourmalinecore/react-tc-auth@0.0.3...@tourmalinecore/react-tc-auth@0.0.4) (2021-05-13)
 
 
