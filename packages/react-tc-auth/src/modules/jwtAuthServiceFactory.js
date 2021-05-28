@@ -85,8 +85,8 @@ export const createJwtAuthService = ({
     });
   }
 
-  function refreshToken() {
-    tokenProvider.update();
+  async function refreshToken() {
+    await tokenProvider.update();
   }
 
   function setLoggedIn(newTokenPair) {
