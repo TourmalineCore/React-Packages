@@ -3,7 +3,7 @@ import { withKnobs, text, boolean } from '@storybook/addon-knobs';
 import { action } from '@storybook/addon-actions';
 
 import {
-  Button, NativeSelect, Input, CheckField,
+  Button, NativeSelect, Input, CheckField, Textarea,
 } from '..';
 
 export default {
@@ -169,6 +169,32 @@ export const CheckFieldExample = () => {
           }}
         />
       ))}
+    </>
+  );
+};
+
+export const TextareaExample = () => {
+  const [textareaValue, setTextareaValue] = useState('');
+  const onChangeActionHandler = action('onChange');
+
+  return (
+    <>
+      <h2>Textarea:</h2>
+
+      <Textarea
+        label={text('labelText', 'Textarea')}
+        placeholder=""
+        disabled={boolean('disabled', false)}
+        isValid={boolean('isValid', false)}
+        isInvalid={boolean('isInvalid', false)}
+        validationMessages={[text('validationMessages', 'Validation Message')]}
+        isMessagesAbsolute={boolean('isMessagesAbsolute', false)}
+        value={textareaValue}
+        onChange={(e) => {
+          setTextareaValue(e.target.value);
+          onChangeActionHandler(e);
+        }}
+      />
     </>
   );
 };
