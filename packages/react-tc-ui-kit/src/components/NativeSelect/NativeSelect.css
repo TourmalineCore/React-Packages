@@ -1,4 +1,10 @@
-.tc-native-select {
+.tc-native-select__label {
+  display: block;
+  margin-bottom: 6px;
+  line-height: 1.2;
+}
+
+.tc-native-select__control {
   border: 1px solid #bac4ca;
   border-radius: 10px;
   padding: 0 38px 0 16px;
@@ -19,11 +25,11 @@
   appearance: none;
 }
 
-.tc-native-select:hover {
+.tc-native-select__control:hover {
   border-color: #81898e;
 }
 
-.tc-native-select:focus {
+.tc-native-select__control:focus {
   outline: none;
   border-color: #2f3436;
 }
