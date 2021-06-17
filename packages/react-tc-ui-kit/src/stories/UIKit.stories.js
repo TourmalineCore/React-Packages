@@ -100,7 +100,7 @@ export const NativeSelectExample = () => {
       <h2>Native Select:</h2>
 
       <NativeSelect
-        label={text('labelText', 'NativeSelect')}
+        label={text('labelText', 'Native Select')}
         value={selectedValue}
         options={[
           { label: 'option1', value: 1 },

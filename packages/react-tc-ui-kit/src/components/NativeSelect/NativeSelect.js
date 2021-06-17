@@ -9,7 +9,7 @@ export default function NativeSelect({
   id,
   value = '',
   options = [],
-  onChange = () => { },
+  onChange = () => {},
   ...props
 }) {
   return (
