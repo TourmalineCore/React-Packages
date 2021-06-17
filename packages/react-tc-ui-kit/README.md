@@ -78,6 +78,31 @@ import { CheckField } from '@tourmalinecore/react-tc-ui-kit';
 />
 ```
 
+### Textarea
+```JSX
+import { Textarea } from '@tourmalinecore/react-tc-ui-kit';
+
+const [textareaValue, setTextareaValue] = useState('');
+
+<Textarea
+  inputRef={{}} // react ref for textarea element
+  style={}
+  id="textarea_id"
+  className="" // additional classname
+  label="text"
+  disabled={false}
+  value={textareaValue}
+  maxLength={} // add restrictions on the maximum number of characters entered
+  autoSize = {false} // automatically increases the textarea height
+  placeholder=""
+  isValid={} // display valid state, could be useful in some cases
+  isInvalid={false} // // display invalid state
+  validationMessages={[]}
+  isMessagesAbsolute={false} // should messages be positioned absolutely?
+  onChange={(event) => setTextareaValue(event.target.value)}
+/>
+```
+
 ## Do not forget to import styles if needed
 Styles can be imported once (e.g.: in your root component)
 

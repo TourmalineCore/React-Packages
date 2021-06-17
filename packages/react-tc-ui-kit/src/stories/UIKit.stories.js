@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
-import { withKnobs, text, boolean } from '@storybook/addon-knobs';
+import {
+  withKnobs, text, boolean, number,
+} from '@storybook/addon-knobs';
 import { action } from '@storybook/addon-actions';
 
 import {
-  Button, NativeSelect, Input, CheckField,
+  Button, NativeSelect, Input, CheckField, Textarea,
 } from '..';
 
 export default {
@@ -170,6 +172,34 @@ export const CheckFieldExample = () => {
           }}
         />
       ))}
+    </>
+  );
+};
+
+export const TextareaExample = () => {
+  const [textareaValue, setTextareaValue] = useState('');
+  const onChangeActionHandler = action('onChange');
+
+  return (
+    <>
+      <h2>Textarea:</h2>
+
+      <Textarea
+        label={text('labelText', 'Textarea Label')}
+        placeholder=""
+        maxLength={number('maxLength', '1000')}
+        disabled={boolean('disabled', false)}
+        isValid={boolean('isValid', false)}
+        isInvalid={boolean('isInvalid', false)}
+        validationMessages={[text('validationMessages', 'Validation Message')]}
+        isMessagesAbsolute={boolean('isMessagesAbsolute', false)}
+        value={textareaValue}
+        autoSize={boolean('autoSize', false)}
+        onChange={(e) => {
+          setTextareaValue(e.target.value);
+          onChangeActionHandler(e);
+        }}
+      />
     </>
   );
 };
