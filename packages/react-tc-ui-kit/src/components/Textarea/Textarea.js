@@ -55,13 +55,15 @@ export default function Textarea({
           {...props}
         />
 
-        <div className="tc-textarea__control-counter">
-          {value.length}
-          {' '}
-          /
-          {' '}
-          {maxLength}
-        </div>
+        {maxLength && (
+          <div className="tc-textarea__control-counter">
+            {value ? value.length : 0}
+            {' '}
+            /
+            {' '}
+            {maxLength}
+          </div>
+        )}
       </div>
 
       {isInvalid && validationMessages.length && (
