@@ -84,12 +84,15 @@ import { Textarea } from '@tourmalinecore/react-tc-ui-kit';
 const [textareaValue, setTextareaValue] = useState('');
 
 <Textarea
+  inputRef={{}} // react ref for textarea element
   style={}
-  id="input_id"
+  id="textarea_id"
   className="" // additional classname
   label="text"
   disabled={false}
   value={textareaValue}
+  maxLength={} // add restrictions on the maximum number of characters entered
+  autoSize = {false} // automatically increases the textarea height
   placeholder=""
   isValid={} // display valid state, could be useful in some cases
   isInvalid={false} // // display invalid state
