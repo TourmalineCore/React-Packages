@@ -11,6 +11,10 @@ export default function Input({
   className = '',
   id,
   type = 'text',
+  actionButton = {
+    icon: null,
+    callback: () => {},
+  },
   label,
   value,
   placeholder,
@@ -26,7 +30,7 @@ export default function Input({
 
   const validClassname = isValid ? 'tc-input--valid' : '';
   const invalidClassname = isInvalid ? 'tc-input--invalid' : '';
-  const inputPasswordClassname = type === 'password' ? 'tc-input__control--password' : '';
+  const inputButtonClassname = type === 'password' || actionButton ? 'tc-input__control--button' : '';
   const errorsAbsoluteClassname = isMessagesAbsolute ? 'tc-input__errors--absolute' : '';
 
   const [
@@ -48,16 +52,26 @@ export default function Input({
           ref={inputRef}
           id={id}
           placeholder={placeholder}
-          className={`tc-input__control ${inputPasswordClassname}`}
+          className={`tc-input__control ${inputButtonClassname}`}
           type={isPasswordVisible ? 'text' : type}
           value={value}
           onChange={onChange}
           {...props}
         />
 
+        {type !== 'password' && actionButton && (
+          <button
+            className="tc-input__action-button"
+            type="button"
+            onClick={actionButton.callback}
+          >
+            {actionButton.icon}
+          </button>
+        )}
+
         {type === 'password' && (
           <button
-            className="tc-input__view-toggler"
+            className="tc-input__action-button"
             type="button"
             onClick={() => setIsPasswordVisible(!isPasswordVisible)}
           >
