@@ -56,6 +56,7 @@ import { NativeSelect } from '@tourmalinecore/react-tc-ui-kit';
 <NativeSelect
   style={}
   className="" // additional classname
+  label="text"
   value="" // selected value
   options={[{ label: 'option1', value: 1, ...attrs }, { label: 'option2', value: 2, disabled: true }]}
   onChange={(option, event) => {}} // option: {label: String, value: String | Number}
