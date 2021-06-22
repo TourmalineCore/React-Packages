@@ -53,6 +53,8 @@ createAuthService creates an authService object, which provides next functionali
 | logoutCall | Fetch the logout data with axios |
 | setLoggedIn | Sets the token to the storage |
 | setLoggedOut | Removes the token from the storage |
+| subscribeOnTokenChange | Adds listener for token change |
+| unsubscribeOnTokenChange | Removes listener for token change |
 | AuthContext | React auth context |
 | AuthProvider | React context provider |
 | withPrivateRoute | React HOC for the private routes |

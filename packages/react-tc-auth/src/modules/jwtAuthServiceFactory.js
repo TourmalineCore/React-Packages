@@ -110,6 +110,14 @@ export const createJwtAuthService = ({
     return tokenStorage.getTokenValue();
   }
 
+  function subscribeOnTokenChange(listener, options) {
+    tokenProvider.subscribe(listener, options);
+  }
+
+  function unsubscribeOnTokenChange(listener) {
+    tokenProvider.unsubscribe(listener);
+  }
+
   return {
     getAuthToken,
     getAuthTokenOrRefresh,
@@ -118,6 +126,8 @@ export const createJwtAuthService = ({
     refreshToken,
     setLoggedIn,
     setLoggedOut,
+    subscribeOnTokenChange,
+    unsubscribeOnTokenChange,
     ...createJwtReactHelpers({ tokenProvider }),
   };
 };

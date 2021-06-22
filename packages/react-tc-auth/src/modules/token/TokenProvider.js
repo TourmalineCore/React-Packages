@@ -18,7 +18,7 @@ export default class TokenProvider {
     this.listeners.push(listener);
 
     if (invokeOnSubscribe) {
-      listener(this.isLoggedIn());
+      listener(this.getTokenValue());
     }
   }
 
@@ -27,9 +27,7 @@ export default class TokenProvider {
   }
 
   notify = () => {
-    const isLogged = this.isLoggedIn();
-
-    this.listeners.forEach((listener) => listener(isLogged));
+    this.listeners.forEach((listener) => listener(this.getTokenValue()));
   }
 
   update = async () => {
@@ -83,6 +81,8 @@ export default class TokenProvider {
     this.setToken(token);
     this.setRefreshToken(refreshToken);
   }
+
+  getTokenValue = () => this.tokenStorage.getTokenValue()
 
   isLoggedIn = () => !!this.tokenStorage.getTokenValue()
 }
