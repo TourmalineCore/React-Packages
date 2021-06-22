@@ -48,11 +48,11 @@
   opacity: 0.5;
 }
 
-.tc-input__control--password {
+.tc-input__control--with-action {
   padding-right: 46px;
 }
 
-.tc-input__view-toggler {
+.tc-input__action-button {
   position: absolute;
   right: 16px;
   top: 8px;
@@ -67,19 +67,19 @@
   cursor: pointer;
 }
 
-.tc-input__view-toggler svg {
+.tc-input__action-button svg {
   display: inline-block;
   width: 100%;
   height: 100%;
 }
 
-.tc-input__view-toggler:hover,
-.tc-input__view-toggler:focus {
+.tc-input__action-button:hover,
+.tc-input__action-button:focus {
   color: #5887f3;
   color: var(--tc-controls-primary-color, #5887f3);
 }
 
-.tc-input__control:disabled ~ .tc-input__view-toggler {
+.tc-input__control:disabled ~ .tc-input__action-button {
   color: inherit;
   opacity: 0.5;
   pointer-events: none;

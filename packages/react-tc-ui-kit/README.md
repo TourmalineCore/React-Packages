@@ -36,6 +36,10 @@ const [inputValue, setInputValue] = useState('');
   id="input_id"
   className="" // additional classname
   type="text"
+  actionButton = { // optional, adding icon and function
+    icon: null,
+    callback: () => {},
+  }
   label="text"
   disabled={false}
   value={inputValue}

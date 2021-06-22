@@ -76,6 +76,10 @@ export const InputExample = () => {
 
       <Input
         type={text('inputType', 'text')}
+        actionButton={{
+          icon: text('icon', 'icon'),
+          callback: () => {},
+        }}
         label={text('labelText', 'Label')}
         placeholder=""
         value={inputValue}
