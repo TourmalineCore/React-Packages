@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.4.0](https://github.com/TourmalineCore/React-Packages/compare/@tourmalinecore/react-tc-ui-kit@0.3.4...@tourmalinecore/react-tc-ui-kit@0.4.0) (2021-06-22)
+
+
+### Features
+
+* **react-tc-ui-kit:** add optional input action button ([e530a72](https://github.com/TourmalineCore/React-Packages/commit/e530a72d13b5582b93c7ac1b115b0971d266a1f7))
+* **react-tc-ui-kit:** add textarea component ([d43d79e](https://github.com/TourmalineCore/React-Packages/commit/d43d79ed202a67e78c33fdba6384d49fb09d27f4))
+
+
+
+
+
 ## [0.3.4](https://github.com/TourmalineCore/React-Packages/compare/@tourmalinecore/react-tc-ui-kit@0.3.3...@tourmalinecore/react-tc-ui-kit@0.3.4) (2021-04-08)
 
 **Note:** Version bump only for package @tourmalinecore/react-tc-ui-kit
