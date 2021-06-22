@@ -13,11 +13,11 @@ export function createJwtReactHelpers({
   const AuthContext = createContext();
 
   function useAuth() {
-    const [isAuthenticated, setIsAuthenticated] = useState(tokenProvider.isLoggedIn());
+    const [contextTokenValue, setContextTokenValue] = useState(tokenProvider.getTokenValue());
 
     useEffect(() => {
-      const listener = (newIsAuthenticated) => {
-        setIsAuthenticated(newIsAuthenticated);
+      const listener = (newToken) => {
+        setContextTokenValue(newToken);
       };
 
       tokenProvider.subscribe(listener, { invokeOnSubscribe: true });
@@ -27,15 +27,15 @@ export function createJwtReactHelpers({
       };
     }, []);
 
-    return [isAuthenticated];
+    return [contextTokenValue];
   }
 
   function AuthProvider({ children }) {
-    const [isAuthenticated] = useAuth();
+    const [tokenValue] = useAuth();
 
     return (
       <AuthContext.Provider
-        value={[isAuthenticated]}
+        value={[tokenValue]}
       >
         {children}
       </AuthContext.Provider>
@@ -44,16 +44,16 @@ export function createJwtReactHelpers({
 
   function withPrivateRoute(ComposedComponent) {
     return function RequireAuthentication(props) {
-      const [isAuthenticated] = useContext(AuthContext);
+      const [tokenValue] = useContext(AuthContext);
       const history = useHistory();
 
       useEffect(() => {
-        if (!isAuthenticated) {
+        if (!tokenValue) {
           history.push(getAuthPathWithFromProperty(history.location.pathname));
         }
-      }, [isAuthenticated]);
+      }, [tokenValue]);
 
-      return isAuthenticated ? <ComposedComponent {...props} /> : null;
+      return tokenValue ? <ComposedComponent {...props} /> : null;
     };
 
     function getAuthPathWithFromProperty(from) {
