@@ -30,13 +30,20 @@ export default function Input({
 
   const validClassname = isValid ? 'tc-input--valid' : '';
   const invalidClassname = isInvalid ? 'tc-input--invalid' : '';
-  const inputButtonClassname = type === 'password' || actionButton ? 'tc-input__control--button' : '';
+  const inputWithActionClassname = type === 'password' || actionButton ? 'tc-input__control--with-action' : '';
   const errorsAbsoluteClassname = isMessagesAbsolute ? 'tc-input__errors--absolute' : '';
 
   const [
     viewTogglerIconIdle,
     viewTogglerIconActive,
   ] = viewTogglerIcons;
+
+  const currentActionButton = type !== 'password'
+    ? actionButton
+    : {
+      icon: isPasswordVisible ? viewTogglerIconActive : viewTogglerIconIdle,
+      callback: () => setIsPasswordVisible(!isPasswordVisible),
+    };
 
   return (
     <div
@@ -52,30 +59,20 @@ export default function Input({
           ref={inputRef}
           id={id}
           placeholder={placeholder}
-          className={`tc-input__control ${inputButtonClassname}`}
+          className={`tc-input__control ${inputWithActionClassname}`}
           type={isPasswordVisible ? 'text' : type}
           value={value}
           onChange={onChange}
           {...props}
         />
 
-        {type !== 'password' && actionButton && (
+        {currentActionButton && (
           <button
             className="tc-input__action-button"
             type="button"
-            onClick={actionButton.callback}
+            onClick={currentActionButton.callback}
           >
-            {actionButton.icon}
-          </button>
-        )}
-
-        {type === 'password' && (
-          <button
-            className="tc-input__action-button"
-            type="button"
-            onClick={() => setIsPasswordVisible(!isPasswordVisible)}
-          >
-            {isPasswordVisible ? viewTogglerIconActive : viewTogglerIconIdle}
+            {currentActionButton.icon}
           </button>
         )}
       </div>
