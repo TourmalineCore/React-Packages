@@ -14,6 +14,7 @@ export default function Input({
   actionButton = {
     icon: null,
     callback: () => {},
+    buttonProps: {},
   },
   label,
   value,
@@ -43,6 +44,7 @@ export default function Input({
     : {
       icon: isPasswordVisible ? viewTogglerIconActive : viewTogglerIconIdle,
       callback: () => setIsPasswordVisible(!isPasswordVisible),
+      buttonProps: {},
     };
 
   return (
@@ -71,6 +73,7 @@ export default function Input({
             className="tc-input__action-button"
             type="button"
             onClick={currentActionButton.callback}
+            {...currentActionButton.buttonProps}
           >
             {currentActionButton.icon}
           </button>
