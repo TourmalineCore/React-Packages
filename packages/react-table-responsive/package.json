@@ -1,6 +1,6 @@
 {
   "name": "@tourmalinecore/react-table-responsive",
-  "version": "0.4.3",
+  "version": "0.4.4",
   "description": "React Table Responsive",
   "author": "Tourmaline Core",
   "keywords": [
@@ -32,8 +32,8 @@
     "react-dom": "^17"
   },
   "dependencies": {
-    "@tourmalinecore/react-tc-modal": "^0.2.7",
-    "@tourmalinecore/react-tc-ui-kit": "^0.4.2",
+    "@tourmalinecore/react-tc-modal": "^0.2.8",
+    "@tourmalinecore/react-tc-ui-kit": "^0.4.3",
     "axios": "^0.21.0",
     "lodash": "^4.17.20",
     "match-sorter": "^6.0.2",

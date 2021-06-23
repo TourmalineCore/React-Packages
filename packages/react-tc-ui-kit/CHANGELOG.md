@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.4.3](https://github.com/TourmalineCore/React-Packages/compare/@tourmalinecore/react-tc-ui-kit@0.4.2...@tourmalinecore/react-tc-ui-kit@0.4.3) (2021-06-23)
+
+
+### Bug Fixes
+
+* **react-tc-ui-kit:** fix bug when input action button always appears ([247fbc1](https://github.com/TourmalineCore/React-Packages/commit/247fbc19864e109b5bb6f244eb6634a1c8116fc4))
+
+
+
+
+
 ## [0.4.2](https://github.com/TourmalineCore/React-Packages/compare/@tourmalinecore/react-tc-ui-kit@0.4.0...@tourmalinecore/react-tc-ui-kit@0.4.2) (2021-06-23)
 
 **Note:** Version bump only for package @tourmalinecore/react-tc-ui-kit
