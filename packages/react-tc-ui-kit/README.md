@@ -38,7 +38,8 @@ const [inputValue, setInputValue] = useState('');
   type="text"
   actionButton = { // optional, adding icon and function
     icon: null,
-    callback: () => {},
+    callback: (e) => {},
+    buttonProps: {}, // you can throw additional attributes
   }
   label="text"
   disabled={false}

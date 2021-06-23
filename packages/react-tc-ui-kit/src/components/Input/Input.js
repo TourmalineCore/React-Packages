@@ -11,11 +11,7 @@ export default function Input({
   className = '',
   id,
   type = 'text',
-  actionButton = {
-    icon: null,
-    callback: () => {},
-    buttonProps: {},
-  },
+  actionButton,
   label,
   value,
   placeholder,
@@ -29,23 +25,17 @@ export default function Input({
 }) {
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
 
-  const validClassname = isValid ? 'tc-input--valid' : '';
-  const invalidClassname = isInvalid ? 'tc-input--invalid' : '';
-  const inputWithActionClassname = type === 'password' || actionButton ? 'tc-input__control--with-action' : '';
-  const errorsAbsoluteClassname = isMessagesAbsolute ? 'tc-input__errors--absolute' : '';
-
   const [
     viewTogglerIconIdle,
     viewTogglerIconActive,
   ] = viewTogglerIcons;
 
-  const currentActionButton = type !== 'password'
-    ? actionButton
-    : {
-      icon: isPasswordVisible ? viewTogglerIconActive : viewTogglerIconIdle,
-      callback: () => setIsPasswordVisible(!isPasswordVisible),
-      buttonProps: {},
-    };
+  const processedActionButton = getProcessedActionButton();
+
+  const validClassname = isValid ? 'tc-input--valid' : '';
+  const invalidClassname = isInvalid ? 'tc-input--invalid' : '';
+  const inputWithActionClassname = processedActionButton ? 'tc-input__control--with-action' : '';
+  const errorsAbsoluteClassname = isMessagesAbsolute ? 'tc-input__errors--absolute' : '';
 
   return (
     <div
@@ -68,14 +58,14 @@ export default function Input({
           {...props}
         />
 
-        {currentActionButton && (
+        {processedActionButton && (
           <button
             className="tc-input__action-button"
             type="button"
-            onClick={currentActionButton.callback}
-            {...currentActionButton.buttonProps}
+            onClick={processedActionButton.callback}
+            {...processedActionButton.buttonProps}
           >
-            {currentActionButton.icon}
+            {processedActionButton.icon}
           </button>
         )}
       </div>
@@ -89,4 +79,20 @@ export default function Input({
       )}
     </div>
   );
+
+  function getProcessedActionButton() {
+    if (type === 'password') {
+      return {
+        icon: isPasswordVisible ? viewTogglerIconActive : viewTogglerIconIdle,
+        callback: () => setIsPasswordVisible(!isPasswordVisible),
+        buttonProps: {},
+      };
+    }
+
+    if (!actionButton) {
+      return null;
+    }
+
+    return actionButton;
+  }
 }
