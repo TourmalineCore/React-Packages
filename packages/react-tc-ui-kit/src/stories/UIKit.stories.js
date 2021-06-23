@@ -76,10 +76,10 @@ export const InputExample = () => {
 
       <Input
         type={text('inputType', 'text')}
-        actionButton={{
-          icon: text('icon', 'icon'),
+        actionButton={boolean('actionButton', false) ? {
+          icon: 'icon',
           callback: () => {},
-        }}
+        } : null}
         label={text('labelText', 'Label')}
         placeholder=""
         value={inputValue}
