@@ -84,7 +84,5 @@ export default class TokenProvider {
 
   getTokenValue = () => this.tokenStorage.getTokenValue()
 
-  getRefreshTokenValue = () => this.refreshTokenStorage.getTokenValue()
-
   isLoggedIn = () => !!this.tokenStorage.getTokenValue()
 }

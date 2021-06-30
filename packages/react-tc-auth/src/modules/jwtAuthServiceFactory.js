@@ -111,7 +111,7 @@ export const createJwtAuthService = ({
   }
 
   function getRefreshToken() {
-    return tokenStorage.getRefreshTokenValue();
+    return refreshTokenStorage.getTokenValue();
   }
 
   function subscribeOnTokenChange(listener, options) {
