@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.1](https://github.com/TourmalineCore/React-Packages/compare/@tourmalinecore/react-tc-auth@0.1.0...@tourmalinecore/react-tc-auth@0.1.1) (2021-06-30)
+
+
+### Bug Fixes
+
+* **react-tc-auth:** fix js exception ([2ac8db7](https://github.com/TourmalineCore/React-Packages/commit/2ac8db7c639c569dc5967be94a9e49cf9bf511e9))
+
+
+
+
+
 # [0.1.0](https://github.com/TourmalineCore/React-Packages/compare/@tourmalinecore/react-tc-auth@0.0.7...@tourmalinecore/react-tc-auth@0.1.0) (2021-06-30)
 
 
