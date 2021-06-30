@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0](https://github.com/TourmalineCore/React-Packages/compare/@tourmalinecore/react-tc-auth@0.0.7...@tourmalinecore/react-tc-auth@0.1.0) (2021-06-30)
+
+
+### Features
+
+* **react-tc-auth:** add getRefreshToken method ([2f7bd96](https://github.com/TourmalineCore/React-Packages/commit/2f7bd9678c1fcb1946a5d3de1a379dfe13fa757a))
+
+
+
+
+
 ## [0.0.7](https://github.com/TourmalineCore/React-Packages/compare/@tourmalinecore/react-tc-auth@0.0.6...@tourmalinecore/react-tc-auth@0.0.7) (2021-06-22)
 
 **Note:** Version bump only for package @tourmalinecore/react-tc-auth
