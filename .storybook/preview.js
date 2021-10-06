@@ -12,9 +12,11 @@ addParameters({
 if (typeof global.process === 'undefined') {
   const { worker } = require('../.msw/browser.js');
 
+  const isGHPages = location.href.includes('github.io');
+
   worker.start({
     serviceWorker: {
-      url: '/mockServiceWorker.js',
+      url: isGHPages ? '/React-Packages/mockServiceWorker.js' : '/mockServiceWorker.js',
     },
   });
 }
