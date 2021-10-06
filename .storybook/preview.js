@@ -16,7 +16,7 @@ if (typeof global.process === 'undefined') {
 
   worker.start({
     serviceWorker: {
-      url: isGHPages ? 'React-Packages/mockServiceWorker.js' : 'mockServiceWorker.js',
+      url: 'mockServiceWorker.js',
     },
     options: {
       scope: isGHPages ? '/React-Packages' : '',
