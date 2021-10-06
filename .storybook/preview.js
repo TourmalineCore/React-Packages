@@ -12,11 +12,14 @@ addParameters({
 if (typeof global.process === 'undefined') {
   const { worker } = require('../.msw/browser.js');
 
+  const isGHPages = location.href.includes('github.io');
+
   worker.start({
     serviceWorker: {
-      url: location.href.includes('github.io')
-        ? 'React-Packages/mockServiceWorker.js'
-        : 'mockServiceWorker.js',
-    }
+      url: isGHPages ? 'React-Packages/mockServiceWorker.js' : 'mockServiceWorker.js',
+    },
+    options: {
+      scope: isGHPages ? '/React-Packages' : '',
+    },
   });
 }
