@@ -43,7 +43,7 @@ import '@tourmalinecore/react-tc-modal/es/index.css';
 import '@tourmalinecore/react-tc-ui-kit/es/index.css';
 ```
 
-> **NOTE**:  You may want to re-style on your own. In that case you don't have to import the styles. 
+> **NOTE**:  You may want to re-style on your own. In that case you don't have to import the styles.
 
 
 # Main Package Features
@@ -110,7 +110,7 @@ return(
 | maxStillMobileBreakpoint | Int | 800 | Breakpoint to toggle between mobile/desktop view |
 | isStriped | Boolean | false | Sets striped rows view
 | loading | Boolean | false | If true displays loader in place of table's content |
-| onFiltersChange | Function(Array\<Filter\>) => any | () => null | Triggered when value of any filter is changed | 
+| onFiltersChange | Function(Array\<Filter\>) => any | () => null | Triggered when value of any filter is changed |
 | enableTableStatePersistance | Boolean | false | If true, selected filters, ordering and current page will be stored in memory and when user goes back to the table its state will be initialized with it. It is stored in a const variable thus state dissapears on page reload |
 
 > **NOTE**: You can also provide your custom props: anything you put into these options will automatically be available on the instance. E.g. if you provide a function, it will be available from the `Cell` renderers
@@ -223,7 +223,7 @@ const columns = [
         {
           label: 'All',
           value: '',
-        }, 
+        },
         {
           label: 'Approved',
           value: 1,
@@ -304,8 +304,8 @@ return (
 
 In order not to force the user to choose page size value every time they visit the page, Table instance always stores that value in the Local Storage.
 
-By setting table's property `enableTableStatePersistance` to **true** you 
-tell the table to store other settings (filters, sorting and current page) 
+By setting table's property `enableTableStatePersistance` to **true** you
+tell the table to store other settings (filters, sorting and current page)
 in a const variable, that will be reseted on page reload, but persist between pages in apps with a client-side routing.
 
 # Server Side Table
@@ -362,12 +362,44 @@ ServerTable uses some unique props in addition to what client table has:
 | Name | Type | Default Value | Description |
 |-|-|-|-|
 | refresh | Boolean | false | Toggle it in any way to trigger table refresh |
+| httpClient | instance of axios | axios | For now it only applies instance of axios, you can pass your own axios instance with config, interceptors etc. |
 | apiHostUrl | String | "" | URL of your API |
 | dataPath | String | "" | The path to the specific endpoint from which the data will be requested |
 | authToken | String | "" | Authentication token if needed |
 | requestMethod | String | "GET" | Request method used by endpoint |
-| requestData | Object | {} | Data for requests with body | 
-| onPageDataLoaded | Function | () => null | Triggered when value requested data is loaded | 
+| requestData | Object | {} | Data for requests with body |
+| customDataLoader | async Function | undefined | Pass async function here to rewrite table data loading logic, should return Promise |
+| onPageDataLoaded | Function | () => null | Triggered when value requested data is loaded |
+
+### customDataLoader params
+```ts
+type Params = {
+  draw: number,
+  page: number,
+  pageSize: number,
+  orderBy: string,
+  orderingDirection: 'desc' | 'asc',
+  filteredByColumns: string[],
+  filteredByValues: string[],
+}
+
+type CustomDataLoader = ({
+  url: string,
+  method: string,
+  headers: {
+    [key: string]: string
+  },
+  params: Params,
+  data: {},
+  paramsSerializer: (params: Params) => string,
+}) => Promise<{
+  draw: number,
+  list: {
+    [tableDataKey: string]: string | number
+  }[],
+  totalCount: number,
+}>
+```
 
 ## Request data
 
@@ -395,5 +427,5 @@ curl --location -g --request GET 'https://{app url}/{endpoint}?draw=2&page=1&pag
 ```
 
 # Unsupported features from react-table
-- Multi-Column sorting 
+- Multi-Column sorting
 - Virtualization
