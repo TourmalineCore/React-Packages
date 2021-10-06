@@ -14,7 +14,7 @@ if (typeof global.process === 'undefined') {
 
   worker.start({
     serviceWorker: {
-      url: 'mockServiceWorker.js',
+      url: '/mockServiceWorker.js',
     },
   });
 }
