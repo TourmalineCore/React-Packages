@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.5.0](https://github.com/TourmalineCore/React-Packages/compare/@tourmalinecore/react-table-responsive@0.4.5...@tourmalinecore/react-table-responsive@0.5.0) (2021-10-06)
+
+
+### Features
+
+* **react-table-responsive:** server table: add ability to pass any axios instance, add customDataLoader option to fully customize loading behavior ([28b5a1d](https://github.com/TourmalineCore/React-Packages/commit/28b5a1dec51addcdd40b1db51b37fab715611bea))
+
+
+
+
+
 ## [0.4.5](https://github.com/TourmalineCore/React-Packages/compare/@tourmalinecore/react-table-responsive@0.4.4...@tourmalinecore/react-table-responsive@0.4.5) (2021-09-29)
 
 **Note:** Version bump only for package @tourmalinecore/react-table-responsive
