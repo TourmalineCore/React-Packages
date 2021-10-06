@@ -46,11 +46,13 @@ export default function ServerTable({
   refresh = false,
   language = 'en',
   renderMobileTitle,
+  httpClient = axios,
   apiHostUrl,
   dataPath,
   authToken,
   requestMethod = 'GET',
   requestData = emptyRequestData,
+  customDataLoader,
   maxStillMobileBreakpoint = 800,
   loading,
   isStriped,
@@ -255,9 +257,11 @@ export default function ServerTable({
 
     setTableDataLoading(true);
 
+    const dataLoader = customDataLoader || httpClient;
+
     const {
       data,
-    } = await axios({
+    } = await dataLoader({
       url: `${apiHostUrl}${dataPath}`,
       method: requestMethod,
       headers: createAuthAndLanguageHeaders(),
