@@ -140,8 +140,8 @@ export const ServerDataTable = () => (
       id: 'orderNumber',
       desc: false,
     }}
-    apiHostUrl="/table"
-    dataPath="/test"
+    apiHostUrl="https://testhost.com"
+    dataPath="/table/test"
     requestMethod="GET"
     refresh
     actions={actions}

@@ -2,7 +2,7 @@ import { rest } from 'msw';
 import { data } from '../stories/tableData';
 
 export const handlers = [
-  rest.get('/table/test', (req, res, ctx) => {
+  rest.get('https://testhost.com/table/test', (req, res, ctx) => {
     const draw = req.url.searchParams.get('draw');
 
     return res(
