@@ -42,7 +42,7 @@ jobs:
       uses: canastro/copy-file-action@master
       with:
         source: ".msw/mockServiceWorker.js"
-        target: "storybook-static/.msw/mockServiceWorker.js"
+        target: "storybook-static/mockServiceWorker.js"
 
     - name: Deploy
       run: |
