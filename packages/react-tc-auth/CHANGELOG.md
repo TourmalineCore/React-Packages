@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.2.0](https://github.com/TourmalineCore/React-Packages/compare/@tourmalinecore/react-tc-auth@0.1.2...@tourmalinecore/react-tc-auth@0.2.0) (2021-12-14)
+
+
+### Features
+
+* **react-tc-auth:** add config to replace fingerprint generation logic ([188b95f](https://github.com/TourmalineCore/React-Packages/commit/188b95fdf38a9f430f19008896f50385b3ea10c0))
+
+
+
+
+
 ## [0.1.2](https://github.com/TourmalineCore/React-Packages/compare/@tourmalinecore/react-tc-auth@0.1.1...@tourmalinecore/react-tc-auth@0.1.2) (2021-10-06)
 
 **Note:** Version bump only for package @tourmalinecore/react-tc-auth
