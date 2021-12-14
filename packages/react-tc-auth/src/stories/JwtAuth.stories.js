@@ -25,6 +25,7 @@ const authService = createAuthService({
   refreshTokenAccessor: 'refreshToken',
   tokenValueAccessor: 'value',
   tokenExpireAccessor: 'expiresInUtc',
+  customGetFingerprint: async () => '12345',
 });
 
 const AuthContent = () => {

@@ -11,6 +11,7 @@ export const createJwtAuthService = ({
   refreshTokenAccessor = 'refreshToken',
   tokenValueAccessor = 'value',
   tokenExpireAccessor = 'expiresInUtc',
+  customGetFingerprint,
 }) => {
   const tokenStorage = new LocalStorageService({
     tokenKey: tokenAccessor,
@@ -37,7 +38,8 @@ export const createJwtAuthService = ({
   });
 
   async function refreshTokenCall(refreshTokenValue) {
-    const clientFingerPrint = await getFingerprint();
+    const fingerprintGetter = customGetFingerprint || getFingerprint;
+    const clientFingerPrint = await fingerprintGetter();
 
     return axios({
       url: `${authApiRoot}/refresh`,
@@ -53,7 +55,8 @@ export const createJwtAuthService = ({
   }
 
   async function loginCall(data) {
-    const clientFingerPrint = await getFingerprint();
+    const fingerprintGetter = customGetFingerprint || getFingerprint;
+    const clientFingerPrint = await fingerprintGetter();
 
     return axios({
       url: `${authApiRoot}/login`,
