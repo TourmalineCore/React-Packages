@@ -1,12 +1,24 @@
 export default class LocalStorageService {
-  constructor(config = {}) {
-    this.key = config.tokenKey;
-    this.tokenValueKey = config.tokenValueKey;
-    this.tokenExpireKey = config.tokenExpireKey;
+  tokenKey = '';
+  tokenValueKey = '';
+  tokenExpireKey = '';
+
+  constructor({
+    tokenKey,
+    tokenValueKey,
+    tokenExpireKey,
+  }: {
+    tokenKey: string;
+    tokenValueKey: string;
+    tokenExpireKey: string;
+    }) {
+    this.tokenKey = tokenKey;
+    this.tokenValueKey = tokenValueKey;
+    this.tokenExpireKey = tokenExpireKey;
   }
 
   getTokenObject = () => {
-    const data = localStorage.getItem(this.key);
+    const data = localStorage.getItem(this.tokenKey);
     const token = (data && JSON.parse(data)) || null;
 
     return token;
@@ -14,22 +26,21 @@ export default class LocalStorageService {
 
   getTokenExpires = () => {
     const token = this.getTokenObject();
-
     return token ? token[this.tokenExpireKey] : null;
   }
 
-  setToken = (tokenObject) => {
+  setToken = (tokenObject: Record<string, unknown> | null) => {
     if (!tokenObject) {
       return;
     }
 
-    localStorage.setItem(this.key, JSON.stringify({
+    localStorage.setItem(this.tokenKey, JSON.stringify({
       [this.tokenValueKey]: tokenObject[this.tokenValueKey],
       [this.tokenExpireKey]: tokenObject[this.tokenExpireKey],
     }));
   }
 
-  removeToken = () => localStorage.removeItem(this.key)
+  removeToken = () => localStorage.removeItem(this.tokenKey)
 
   getTokenValue = () => {
     const token = this.getTokenObject();

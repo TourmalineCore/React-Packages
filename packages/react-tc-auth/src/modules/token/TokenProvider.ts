@@ -1,20 +1,51 @@
+import { AxiosResponse } from "axios";
+import LocalStorageService from "../storage/LocalStorageService";
+
 export default class TokenProvider {
+  listeners: ((data: string | null) => unknown)[] = [];
+
+  tokenStorage;
+
+  config = {
+    tokenAccessor: '',
+    refreshTokenAccessor: '',
+    tokenValueAccessor: '',
+    tokenExpireAccessor: '',
+  };
+
+  refreshTokenStorage;
+
+  refreshTokenCall;
+
   constructor({
     tokenStorage,
     refreshTokenStorage,
     config,
     refreshTokenCall,
+  }: {
+    tokenStorage: LocalStorageService,
+    refreshTokenStorage: LocalStorageService,
+    config: {
+      tokenAccessor: string,
+      refreshTokenAccessor: string,
+      tokenValueAccessor: string,
+      tokenExpireAccessor: string,
+    },
+    refreshTokenCall: (data: string) => Promise<AxiosResponse<{
+      [key in string]: { tokenValueKey: string, tokenExpireKey: string | Date } | null
+    }>>,
   }) {
     this.listeners = [];
     this.tokenStorage = tokenStorage;
     this.refreshTokenStorage = refreshTokenStorage;
-
     this.config = config;
-
     this.refreshTokenCall = refreshTokenCall;
   }
 
-  subscribe = (listener, { invokeOnSubscribe = false } = {}) => {
+  subscribe = (
+      listener: (data: string | null) => unknown, 
+      { invokeOnSubscribe = false } = {}
+    ) => {
     this.listeners.push(listener);
 
     if (invokeOnSubscribe) {
@@ -22,7 +53,7 @@ export default class TokenProvider {
     }
   }
 
-  unsubscribe = (listener) => {
+  unsubscribe = (listener: (data: string | null) => unknown) => {
     this.listeners = this.listeners.filter((l) => l !== listener);
   }
 
@@ -31,9 +62,11 @@ export default class TokenProvider {
   }
 
   update = async () => {
-    const { data: newTokenPair } = this.refreshTokenCall
+    const response = this.refreshTokenCall
       ? await this.refreshTokenCall(this.refreshTokenStorage.getTokenValue())
       : null;
+
+    const newTokenPair = response?.data;
 
     if (newTokenPair) {
       const newTokenObject = newTokenPair[this.config.tokenAccessor];
@@ -59,7 +92,10 @@ export default class TokenProvider {
     return token;
   }
 
-  setToken = (token) => {
+  setToken = (token: { 
+      tokenValueKey: string | null, 
+      tokenExpireKey: string | Date | null 
+    } | null) => {
     if (token) {
       this.tokenStorage.setToken(token);
     } else {
@@ -69,7 +105,12 @@ export default class TokenProvider {
     this.notify();
   }
 
-  setRefreshToken = (refreshToken) => {
+  setRefreshToken = (
+      refreshToken: { 
+        tokenValueKey: string, 
+        tokenExpireKey: string | Date 
+      } | null
+    ) => {
     if (refreshToken) {
       this.refreshTokenStorage.setToken(refreshToken);
     } else {
@@ -77,7 +118,10 @@ export default class TokenProvider {
     }
   }
 
-  setTokenPair = (token, refreshToken) => {
+  setTokenPair = (
+      token: { tokenValueKey: string, tokenExpireKey: string | Date } | null, 
+      refreshToken: { tokenValueKey: string, tokenExpireKey: string | Date } | null
+    ) => {
     this.setToken(token);
     this.setRefreshToken(refreshToken);
   }

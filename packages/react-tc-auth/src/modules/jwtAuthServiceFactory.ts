@@ -4,6 +4,7 @@ import { createJwtReactHelpers } from './reactHelpers/jwtReactHelpersFactory';
 import LocalStorageService from './storage/LocalStorageService';
 import TokenProvider from './token/TokenProvider';
 import { getFingerprint } from './utils/getFingerprint';
+import { Config } from '../types/index';
 
 export const createJwtAuthService = ({
   authApiRoot = '/',
@@ -12,7 +13,8 @@ export const createJwtAuthService = ({
   tokenValueAccessor = 'value',
   tokenExpireAccessor = 'expiresInUtc',
   customGetFingerprint,
-}) => {
+}: Config) => {
+  
   const tokenStorage = new LocalStorageService({
     tokenKey: tokenAccessor,
     tokenValueKey: tokenValueAccessor,
@@ -37,7 +39,7 @@ export const createJwtAuthService = ({
     refreshTokenCall,
   });
 
-  async function refreshTokenCall(refreshTokenValue) {
+  async function refreshTokenCall(refreshTokenValue: string) {
     const fingerprintGetter = customGetFingerprint || getFingerprint;
     const clientFingerPrint = await fingerprintGetter();
 
@@ -54,7 +56,7 @@ export const createJwtAuthService = ({
     });
   }
 
-  async function loginCall(data) {
+  async function loginCall(data: {[key in string]: unknown}) {
     const fingerprintGetter = customGetFingerprint || getFingerprint;
     const clientFingerPrint = await fingerprintGetter();
 
@@ -92,7 +94,9 @@ export const createJwtAuthService = ({
     await tokenProvider.update();
   }
 
-  function setLoggedIn(newTokenPair) {
+  function setLoggedIn(newTokenPair: {
+    [key in string]: { tokenValueKey : string, tokenExpireKey: string | Date } | null
+  }) {
     const newTokenObject = newTokenPair[tokenAccessor];
     const newRefreshTokenObject = newTokenPair[refreshTokenAccessor];
 
@@ -117,11 +121,11 @@ export const createJwtAuthService = ({
     return refreshTokenStorage.getTokenValue();
   }
 
-  function subscribeOnTokenChange(listener, options) {
+  function subscribeOnTokenChange(listener: () => unknown, options: {[key in string]: unknown}) {
     tokenProvider.subscribe(listener, options);
   }
 
-  function unsubscribeOnTokenChange(listener) {
+  function unsubscribeOnTokenChange(listener: () => unknown) {
     tokenProvider.unsubscribe(listener);
   }
 

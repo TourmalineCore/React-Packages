@@ -1,3 +1,5 @@
+/* eslint-disable import/extensions */
+/* eslint-disable import/no-unresolved */
 import { useContext } from 'react';
 import { withKnobs } from '@storybook/addon-knobs';
 
