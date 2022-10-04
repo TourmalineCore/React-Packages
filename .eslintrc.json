@@ -13,8 +13,9 @@
   "extends": [
       "plugin:jest/all",
       "plugin:react/recommended",
-      "airbnb"
-  ],
+      "airbnb",
+      "airbnb-typescript"
+  ], 
   "globals": {
       "Atomics": "readonly",
       "SharedArrayBuffer": "readonly"
@@ -52,7 +53,7 @@
         "code": 180,
         "comments": 200
       }
-    ],
+    ], 
     "react/sort-comp": [1, {
       "order": [
         "static-methods",

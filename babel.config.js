@@ -4,6 +4,9 @@ module.exports = (api) => {
   if (!isTest) return {};
 
   return {
-    presets: [['@babel/preset-env', { targets: { node: 'current' } }]],
+    presets: [
+      ['@babel/preset-env', { targets: { node: 'current' } }],
+      '@babel/preset-typescript',
+    ],
   };
 };
