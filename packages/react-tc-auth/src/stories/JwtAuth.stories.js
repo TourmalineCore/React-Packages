@@ -22,7 +22,6 @@ export default {
 
 const authService = createAuthService({
   authApiRoot: 'https://testhost.com/auth',
-  authType: 'ls',
   tokenAccessor: 'accessToken',
   refreshTokenAccessor: 'refreshToken',
   tokenValueAccessor: 'value',
