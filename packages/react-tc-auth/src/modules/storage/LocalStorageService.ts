@@ -1,6 +1,8 @@
 export default class LocalStorageService {
   tokenKey = '';
+
   tokenValueKey = '';
+
   tokenExpireKey = '';
 
   constructor({

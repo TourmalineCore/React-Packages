@@ -1,6 +1,6 @@
 import { rest } from 'msw';
 
-export const handlers = [ 
+export const handlers = [
   rest.post('https://testhost.com/auth/login', (req, res, ctx) => res(ctx.json({
     accessToken: {
       value: '12345',
