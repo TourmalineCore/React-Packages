@@ -21,7 +21,6 @@ import { createAuthService } from '@tourmalinecore/react-tc-auth';
 
 const authService = createAuthService({
   authApiRoot: 'https://example.com/auth',
-  authType: 'ls',
   tokenAccessor: 'accessToken',
   refreshTokenAccessor: 'refreshToken',
   tokenValueAccessor: 'value',
@@ -34,7 +33,6 @@ const authService = createAuthService({
 | Name | Description |
 |-|-|
 | authApiRoot | API root for authentication, e.g.: `yourdomain/api/auth` |
-| authType | Implementation type of the authentication, not just storage usage. **Accepts 'ls' or 'cookies'** |
 | tokenAccessor | Name of the property of the response object representing **access** token |
 | refreshTokenAccessor | Name of the property of the response object representing **refresh** token |
 | tokenValueAccessor | Name of the property of the token objects representing the token **value** |
@@ -120,3 +118,12 @@ api.interceptors.response.use(() => {}, async (error) => {
   return Promise.reject(error);
 });
  ```
+
+
+# ToDo
+
+Soon we will add createAuthService params
+
+| Name | Description |
+|-|-|
+| authType | Implementation type of the authentication, not just storage usage. |

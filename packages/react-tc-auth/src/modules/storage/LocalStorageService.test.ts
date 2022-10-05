@@ -5,8 +5,8 @@ const STORAGE_TOKEN_VALUE_ACCESSOR = 'value';
 const STORAGE_TOKEN_EXPIRES_ACCESSOR = 'expiresInUtc';
 
 const currentYear = new Date().getFullYear();
-const NEXT_YEAR_EXPIRATION_DATE = new Date(new Date().setYear(currentYear + 1)).toISOString();
-const LAST_YEAR_EXPIRATION_DATE = new Date(new Date().setYear(currentYear - 1)).toISOString();
+const NEXT_YEAR_EXPIRATION_DATE = new Date(new Date().setFullYear(currentYear + 1)).toISOString();
+const LAST_YEAR_EXPIRATION_DATE = new Date(new Date().setFullYear(currentYear - 1)).toISOString();
 
 const testToken = {
   [STORAGE_TOKEN_VALUE_ACCESSOR]: '12345',
@@ -30,7 +30,7 @@ describe('local storage token model', () => {
 
     storage.setToken(testToken);
 
-    const token = JSON.parse(localStorage.getItem(STORAGE_TOKEN_KEY));
+    const token = JSON.parse(localStorage.getItem(STORAGE_TOKEN_KEY) || 'null');
 
     expect(token).toStrictEqual(testToken);
   });
@@ -40,7 +40,7 @@ describe('local storage token model', () => {
 
     storage.setToken(null);
 
-    const token = JSON.parse(localStorage.getItem(STORAGE_TOKEN_KEY));
+    const token = JSON.parse(localStorage.getItem(STORAGE_TOKEN_KEY) || 'null');
 
     expect(token).toBeNull();
   });

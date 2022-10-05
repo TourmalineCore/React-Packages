@@ -28,14 +28,18 @@
   "peerDependencies": {
     "react": "^17",
     "react-dom": "^17",
-    "react-router-dom": "^5"
+    "react-router-dom": "^6.2.2"
   },
   "dependencies": {
-    "@fingerprintjs/fingerprintjs": "^3.1.0",
+    "@fingerprintjs/fingerprintjs": "^3.3.6",
     "axios": "^0.21.1"
   },
   "devDependencies": {
-    "react-router-dom": "^5"
+    "@types/react": "17.0.0",
+    "@types/react-dom": "17.0.0",
+    "@types/react-router-dom": "5.3.3",
+    "react-router-dom": "^6.2.2",
+    "typescript": "4.8.4"
   },
   "gitHead": "e96d96f47a74a25402b095abea9160eed623d035"
 }

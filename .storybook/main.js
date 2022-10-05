@@ -10,8 +10,17 @@ module.exports = {
     "@storybook/addon-actions",
     "@storybook/addon-essentials",
     "@storybook/addon-viewport",
+    "storybook-addon-react-docgen"
   ],
-
+  typescript: {
+    reactDocgen: 'react-docgen-typescript',
+    reactDocgenTypescriptOptions: {
+      compilerOptions: {
+        allowSyntheticDefaultImports: false,
+        esModuleInterop: false,
+      },
+    }
+  },
   webpackFinal: (config) => {
     config.module.rules.unshift({
       test: /\.svg$/,

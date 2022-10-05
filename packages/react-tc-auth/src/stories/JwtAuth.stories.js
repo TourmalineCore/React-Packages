@@ -1,3 +1,5 @@
+/* eslint-disable import/extensions */
+/* eslint-disable import/no-unresolved */
 import { useContext } from 'react';
 import { withKnobs } from '@storybook/addon-knobs';
 
@@ -20,7 +22,6 @@ export default {
 
 const authService = createAuthService({
   authApiRoot: 'https://testhost.com/auth',
-  authType: 'ls',
   tokenAccessor: 'accessToken',
   refreshTokenAccessor: 'refreshToken',
   tokenValueAccessor: 'value',

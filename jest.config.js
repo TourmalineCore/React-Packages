@@ -1,6 +1,6 @@
 module.exports = {
   rootDir: '.',
   transform: {
-    '^.+\\.(js|jsx)?$': 'babel-jest',
+    '^.+\\.(js|jsx|ts|tsx)?$': 'babel-jest',
   },
 };

@@ -1,5 +1,7 @@
+
 import TokenProvider from './TokenProvider';
 import LocalStorageService from '../storage/LocalStorageService';
+import { AxiosResponse } from 'axios';
 
 const TOKEN_KEY = 'accessToken';
 const REFRESH_TOKEN_KEY = 'refreshToken';
@@ -7,8 +9,8 @@ const TOKEN_VALUE_ACCESSOR = 'value';
 const TOKEN_EXPIRES_ACCESSOR = 'expiresInUtc';
 
 const currentYear = new Date().getFullYear();
-const NEXT_YEAR_EXPIRATION_DATE = new Date(new Date().setYear(currentYear + 1)).toISOString();
-const LAST_YEAR_EXPIRATION_DATE = new Date(new Date().setYear(currentYear - 1)).toISOString();
+const NEXT_YEAR_EXPIRATION_DATE = new Date(new Date().setFullYear(currentYear + 1)).toISOString();
+const LAST_YEAR_EXPIRATION_DATE = new Date(new Date().setFullYear(currentYear - 1)).toISOString();
 
 const testTokenPair = {
   [TOKEN_KEY]: {
@@ -49,13 +51,13 @@ describe('token provider behavior', () => {
       tokenValueAccessor: TOKEN_VALUE_ACCESSOR,
       tokenExpireAccessor: TOKEN_EXPIRES_ACCESSOR,
     },
-    refreshTokenCall: () => Promise.resolve({ data: testTokenPair }),
+    refreshTokenCall: () => Promise.resolve({ data: testTokenPair }) as Promise<AxiosResponse>,
   });
 
   it('should properly notify subscribers', () => {
     expect.hasAssertions();
 
-    const testCallback = (value) => {
+    const testCallback = (value: string | null) => {
       expect(value).toBeDefined();
     };
 
