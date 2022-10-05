@@ -1,4 +1,5 @@
 import { AxiosResponse } from "axios";
+import { Config } from "../../types";
 import LocalStorageService from "../storage/LocalStorageService";
 
 export default class TokenProvider {
@@ -25,12 +26,7 @@ export default class TokenProvider {
   }: {
     tokenStorage: LocalStorageService,
     refreshTokenStorage: LocalStorageService,
-    config: {
-      tokenAccessor: string,
-      refreshTokenAccessor: string,
-      tokenValueAccessor: string,
-      tokenExpireAccessor: string,
-    },
+    config: Config,
     refreshTokenCall: (data: string) => Promise<AxiosResponse<{
       [key in string]: { tokenValueKey: string, tokenExpireKey: string | Date } | null
     }>>,
