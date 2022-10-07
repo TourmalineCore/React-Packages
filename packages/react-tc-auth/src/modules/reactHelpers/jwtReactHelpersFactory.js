@@ -4,8 +4,7 @@ import React, {
   useEffect,
   useState,
 } from 'react';
-
-import { useHistory } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 
 export function createJwtReactHelpers({
   tokenProvider,
@@ -45,11 +44,12 @@ export function createJwtReactHelpers({
   function withPrivateRoute(ComposedComponent) {
     return function RequireAuthentication(props) {
       const [tokenValue] = useContext(AuthContext);
-      const history = useHistory();
+      const navigation = useNavigate();
+      const location = useLocation();
 
       useEffect(() => {
         if (!tokenValue) {
-          history.push(getAuthPathWithFromProperty(history.location.pathname));
+          navigation(getAuthPathWithFromProperty(location.pathname));
         }
       }, [tokenValue]);
 
