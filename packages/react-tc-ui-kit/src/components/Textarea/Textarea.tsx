@@ -1,11 +1,24 @@
-import React, { useEffect, useRef } from 'react';
+import {
+  ChangeEvent,
+  DetailedHTMLProps, TextareaHTMLAttributes, useEffect, useRef,
+} from 'react';
 
 import './Textarea.css';
 
 const DEFAULT_TEXTAREA_HEIGHT = 120;
 
-export default function Textarea({
-  inputRef,
+interface TextareaProps extends DetailedHTMLProps<TextareaHTMLAttributes<HTMLTextAreaElement>, HTMLTextAreaElement> {
+  label?: string;
+  autoSize?: boolean;
+  value: string;
+  isValid: boolean;
+  isInvalid: boolean;
+  validationMessages: string[];
+  isMessagesAbsolute: boolean;
+}
+
+export default function Textareas({
+  ref,
   style,
   id,
   className = '',
@@ -21,12 +34,10 @@ export default function Textarea({
   isMessagesAbsolute = false,
   onChange = () => {},
   ...props
-}) {
-  const textareaRef = inputRef || useRef();
+}: TextareaProps) {
+  const textareaRef: any = ref || useRef<HTMLTextAreaElement>(null);
 
-  useEffect(() => {
-    handleResize(textareaRef.current);
-  }, []);
+  useEffect(() => handleResize(textareaRef.current), []);
 
   const validClassname = isValid ? 'tc-textarea--valid' : '';
   const invalidClassname = isInvalid ? 'tc-textarea--invalid' : '';
@@ -76,12 +87,12 @@ export default function Textarea({
     </div>
   );
 
-  function handleChange(e) {
+  function handleChange(e: ChangeEvent<HTMLTextAreaElement>) {
     handleResize(e.target);
     onChange(e);
   }
 
-  function handleResize(target) {
+  function handleResize(target: HTMLTextAreaElement) {
     if (!autoSize) {
       return;
     }

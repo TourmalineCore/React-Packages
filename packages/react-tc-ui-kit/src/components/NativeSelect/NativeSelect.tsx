@@ -1,6 +1,15 @@
-import React from 'react';
+import {
+  ChangeEvent, DetailedHTMLProps, OptionHTMLAttributes, SelectHTMLAttributes,
+} from 'react';
 
 import './NativeSelect.css';
+
+type OptionProps = DetailedHTMLProps<OptionHTMLAttributes<HTMLOptionElement>, HTMLOptionElement> ;
+
+interface NativeSelectProps extends DetailedHTMLProps<SelectHTMLAttributes<HTMLSelectElement>, HTMLSelectElement> {
+  label?: string;
+  options: OptionProps[];
+}
 
 export default function NativeSelect({
   style = {},
@@ -11,7 +20,7 @@ export default function NativeSelect({
   options = [],
   onChange = () => {},
   ...props
-}) {
+}: NativeSelectProps) {
   return (
     <div className="tc-native-select">
       {label && (
@@ -40,10 +49,7 @@ export default function NativeSelect({
     </div>
   );
 
-  function handleOptionChange(e) {
-    onChange(
-      options.find((option) => `${option.value}` === e.target.value),
-      e,
-    );
+  function handleOptionChange(e: ChangeEvent<HTMLSelectElement>) {
+    onChange(options.find((option) => `${option.value}` === e.target.value) as ChangeEvent<HTMLSelectElement>);
   }
 }
