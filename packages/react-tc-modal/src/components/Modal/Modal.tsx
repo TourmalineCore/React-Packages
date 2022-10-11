@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import { CSSProperties, ReactNode, useEffect } from 'react';
 import ReactDOM from 'react-dom';
 
 import { Button } from '@tourmalinecore/react-tc-ui-kit';
@@ -13,6 +13,31 @@ import { i18n } from '../../i18n/i18n';
 import './Modal.css';
 
 const OPENED_CLASSNAME = 'tc-modal-opened';
+
+interface ModalProps {
+  style?: CSSProperties;
+  className?: string;
+  customHeader?: (onClose: () => unknown) => ReactNode;
+  title: string;
+  subtitle?: string;
+  content?: ReactNode;
+  icon?: ReactNode;
+  overlay?: boolean;
+  maxWidth?: string | number;
+  noPaddingBody?: boolean;
+  portalTarget?: HTMLElement;
+  parentOpenClassName?: string;
+  isLoading?: boolean;
+  isButtonsDisabled?: boolean;
+  onClose: () => unknown;
+  onCancel?: () => unknown;
+  showApply?: boolean;
+  onApply?: () =>unknown;
+  applyText?: string | ReactNode;
+  showCancel?: boolean;
+  cancelText?: string | ReactNode;
+  language?: 'ru' | 'en';
+}
 
 export default function Modal({
   style = {},
@@ -37,10 +62,10 @@ export default function Modal({
   onCancel = onClose,
   cancelText,
   language = 'en',
-}) {
+}: ModalProps) {
   useEffect(() => {
-    const escFunction = (event) => {
-      if (event.keyCode === 27) {
+    const escFunction = (event: KeyboardEvent) => {
+      if (event.key === '27') {
         onClose();
       }
     };
