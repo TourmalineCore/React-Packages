@@ -20,15 +20,15 @@ export default class TokenProvider {
     if (invokeOnSubscribe) {
       listener(this.getTokenValue());
     }
-  }
+  };
 
   unsubscribe = (listener) => {
     this.listeners = this.listeners.filter((l) => l !== listener);
-  }
+  };
 
   notify = () => {
     this.listeners.forEach((listener) => listener(this.getTokenValue()));
-  }
+  };
 
   update = async () => {
     const { data: newTokenPair } = this.refreshTokenCall
@@ -43,13 +43,13 @@ export default class TokenProvider {
     } else {
       this.setTokenPair(null, null);
     }
-  }
+  };
 
   checkExpiryAndUpdate = async () => {
     if (this.tokenStorage.isExpired()) {
       await this.update();
     }
-  }
+  };
 
   getActualToken = async () => {
     await this.checkExpiryAndUpdate();
@@ -57,7 +57,7 @@ export default class TokenProvider {
     const token = this.tokenStorage.getTokenValue();
 
     return token;
-  }
+  };
 
   setToken = (token) => {
     if (token) {
@@ -67,7 +67,7 @@ export default class TokenProvider {
     }
 
     this.notify();
-  }
+  };
 
   setRefreshToken = (refreshToken) => {
     if (refreshToken) {
@@ -75,14 +75,14 @@ export default class TokenProvider {
     } else {
       this.refreshTokenStorage.removeToken();
     }
-  }
+  };
 
   setTokenPair = (token, refreshToken) => {
     this.setToken(token);
     this.setRefreshToken(refreshToken);
-  }
+  };
 
-  getTokenValue = () => this.tokenStorage.getTokenValue()
+  getTokenValue = () => this.tokenStorage.getTokenValue();
 
-  isLoggedIn = () => !!this.tokenStorage.getTokenValue()
+  isLoggedIn = () => !!this.tokenStorage.getTokenValue();
 }
