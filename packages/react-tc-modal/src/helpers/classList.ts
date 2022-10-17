@@ -4,29 +4,30 @@
 
 const classPoll = {};
 
-const incrementReference = (poll, className) => {
+const incrementReference = (poll: Record<string, number>, className: string) => {
   if (!poll[className]) {
     poll[className] = 0;
   }
+
   poll[className] += 1;
   return className;
 };
 
-const decrementReference = (poll, className) => {
+const decrementReference = (poll: Record<string, number>, className: string) => {
   if (poll[className]) {
     poll[className] -= 1;
   }
   return className;
 };
 
-const trackClass = (classListRef, poll, classes) => {
+const trackClass = (classListRef: Element['classList'], poll: Record<string, number>, classes: string[]) => {
   classes.forEach((className) => {
     incrementReference(poll, className);
     classListRef.add(className);
   });
 };
 
-const untrackClass = (classListRef, poll, classes) => {
+const untrackClass = (classListRef: Element['classList'], poll: Record<string, number>, classes: string[]) => {
   classes.forEach((className) => {
     decrementReference(poll, className);
 
@@ -36,13 +37,13 @@ const untrackClass = (classListRef, poll, classes) => {
   });
 };
 
-export const add = (element, classString) => trackClass(
+export const add = (element: HTMLElement, classString: string) => trackClass(
   element.classList,
   classPoll,
   classString.split(' '),
 );
 
-export const remove = (element, classString) => untrackClass(
+export const remove = (element: HTMLElement, classString: string) => untrackClass(
   element.classList,
   classPoll,
   classString.split(' '),
