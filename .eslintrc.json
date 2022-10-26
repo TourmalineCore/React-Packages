@@ -9,11 +9,12 @@
       "browser": true,
       "es6": true
   },
-  "parser": "babel-eslint",
+  "parser": "@typescript-eslint/parser",
   "extends": [
       "plugin:jest/all",
       "plugin:react/recommended",
-      "airbnb"
+      "airbnb",
+      "airbnb-typescript"
   ],
   "globals": {
       "Atomics": "readonly",
@@ -31,15 +32,17 @@
     }
   },
   "parserOptions": {
-      "ecmaFeatures": {
-          "jsx": true
-      },
+    "project": "./tsconfig.json",
+    "ecmaFeatures": {
+      "jsx": true
+    },
       "ecmaVersion": 2018,
       "sourceType": "module"
   },
   "plugins": [
       "react",
-      "jest"
+      "jest",
+      "@typescript-eslint"
   ],
   "rules": {
     "linebreak-style": [
@@ -61,6 +64,10 @@
         "everything-else"
       ]
     }],
+    "@typescript-eslint/no-shadow": 0,
+    "@typescript-eslint/semi": 0,
+    "react/require-default-props": 0,
+    "@typescript-eslint/no-use-before-define": 0,
     "object-property-newline": "error",
     "import/prefer-default-export": 0,
     "import/no-extraneous-dependencies": 0,
