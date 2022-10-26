@@ -3,11 +3,11 @@ import React, { ButtonHTMLAttributes, DetailedHTMLProps } from 'react';
 import './Button.css';
 
 interface ButtonProps extends DetailedHTMLProps<ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement> {
-  color?: ButtonVarieties | string;
+  color?: ButtonColors | string;
   isLoading?: boolean;
 }
 
-enum ButtonVarieties {
+enum ButtonColors {
   primary = 'tc-button--primary',
   secondary = 'tc-button--secondary',
   danger = 'tc-button--danger',
@@ -25,7 +25,7 @@ export default function Button({
   ...props
 }: ButtonProps) {
   const isLoadingModifier = isLoading ? 'tc-button--loading' : '';
-  const colorModifier = ButtonVarieties[color.toLowerCase() as keyof typeof ButtonVarieties] || '';
+  const colorModifier = ButtonColors[color.toLowerCase() as keyof typeof ButtonColors] || '';
 
   return (
     <button
