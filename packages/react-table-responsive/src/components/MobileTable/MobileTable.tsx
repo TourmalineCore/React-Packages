@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 
 import { ReactComponent as IconChevronDown } from '../../assets/images/icon-chevron-down.svg';
+import { IMobileTable } from '../../types';
 
 import NoRecords from '../NoRecords/NoRecords';
 import MobileHeader from './components/MobileHeader/MobileHeader';
@@ -8,7 +9,7 @@ import MobilePagination from './components/MobilePagination/MobilePagination';
 
 import './MobileTable.css';
 
-export default function MobileTable({
+export default function MobileTable<TableProps extends object = {}>({
   flatHeaders,
   setAllFilters,
   toggleSortBy,
@@ -26,8 +27,8 @@ export default function MobileTable({
   loading,
   actions,
   languageStrings,
-}) {
-  const [expandedRowId, setExpandedRowId] = useState(null);
+}: IMobileTable<TableProps>) {
+  const [expandedRowId, setExpandedRowId] = useState<string | number | null >(null);
 
   const {
     totalLabel,
@@ -36,7 +37,7 @@ export default function MobileTable({
 
   return (
     <div className="tc-table-mobile">
-      <MobileHeader
+      <MobileHeader<TableProps>
         flatHeaders={flatHeaders}
         setAllFilters={setAllFilters}
         languageStrings={languageStrings}
@@ -51,7 +52,7 @@ export default function MobileTable({
             return (
               <li className="tc-table-mobile__row" key={row.id}>
                 <div className="tc-table-mobile__row-header">
-                  <h2 className="tc-table-mobile__row-title">{renderMobileTitle(row)}</h2>
+                  <h2 className="tc-table-mobile__row-title">{renderMobileTitle?.(row)}</h2>
                   <button
                     type="button"
                     className="tc-table-mobile__row-trigger"
@@ -68,8 +69,8 @@ export default function MobileTable({
                       <div className="tc-table-mobile__row-data">
                         {
                           row.cells
-                            .filter((cell) => !cell.column.nonMobileColumn)
-                            .map((cell) => (
+                            .filter((cell: any) => !cell.column.nonMobileColumn)
+                            .map((cell: any) => (
                               <div
                                 key={`${cell.column.id}`}
                                 className={`tc-table-mobile__row-data-item ${cell.column.twoRowsMobileLayout ? 'tc-table-mobile__row-data-item--vertical' : ''}`}
@@ -90,13 +91,13 @@ export default function MobileTable({
                         <div className="tc-table-mobile__actions">
                           {
                             actions
-                              .filter((action) => action.show(row))
+                              .filter((action) => action.show?.(row))
                               .map((action) => (
                                 <button
                                   key={`${action.name}-${row.id}`}
                                   type="button"
                                   className="tc-table-mobile-action"
-                                  onClick={(e) => action.onClick(e, row)}
+                                  onClick={(e) => action.onClick?.(e, row)}
                                 >
                                   <span className="tc-table-mobile-action__inner">
                                     {
@@ -106,7 +107,7 @@ export default function MobileTable({
                                         </span>
                                       )
                                     }
-                                    <span className="tc-table-mobile-action__label">{action.renderText(row)}</span>
+                                    <span className="tc-table-mobile-action__label">{action.renderText?.(row)}</span>
                                   </span>
                                 </button>
                               ))

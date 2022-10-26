@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 
+import { IMobileHeader } from '../../../../types';
+
 import MobileFiltrationPopup from './components/MobileFiltrationPopup/MobileFiltrationPopup';
 import MobileSortingPopup from './components/MobileSortingPopup/MobileSortingPopup';
 
@@ -10,14 +12,14 @@ import { ReactComponent as IconSort } from '../../../../assets/images/icon-sort.
 
 import './MobileHeader.css';
 
-export default function MobileHeader({
+export default function MobileHeader<TableProps extends object = {}>({
   flatHeaders,
   setAllFilters,
   toggleSortBy,
   sortBy,
   filters,
   languageStrings,
-}) {
+}: IMobileHeader<TableProps>) {
   const filterableColumns = flatHeaders.filter((column) => column.canFilter);
   const filterableColumnsCount = filterableColumns.length;
 
@@ -34,7 +36,7 @@ export default function MobileHeader({
 
   const principalFilter = filterableColumns.find((column) => column.principalFilterableColumn);
 
-  const isPrincipalInputFilled = filters.some((filter) => filter.id === principalFilter.id);
+  const isPrincipalInputFilled = filters.some((filter) => filter.id === principalFilter?.id);
 
   return (
     <div className="tc-table-mobile-header">
@@ -65,7 +67,7 @@ export default function MobileHeader({
       {
         showFiltersPopup
         && (
-        <MobileFiltrationPopup
+        <MobileFiltrationPopup<TableProps>
           filterableColumns={filterableColumns}
           setAllFilters={setAllFilters}
           languageStrings={languageStrings}
@@ -77,7 +79,7 @@ export default function MobileHeader({
       {
         showSortingPopup
         && (
-        <MobileSortingPopup
+        <MobileSortingPopup<TableProps>
           sortableColumns={sortableColumns}
           toggleSortBy={toggleSortBy}
           sortByColumn={sortBy[0]}
@@ -117,11 +119,11 @@ export default function MobileHeader({
 
   function resetPrincipalFilter() {
     const resettedFilters = filters.map((filter) => (
-      filter.id === principalFilter.id
+      filter.id === principalFilter?.id
         ? { ...filter, value: '' }
         : filter
     ));
 
-    setAllFilters(resettedFilters);
+    setAllFilters?.(resettedFilters);
   }
 }

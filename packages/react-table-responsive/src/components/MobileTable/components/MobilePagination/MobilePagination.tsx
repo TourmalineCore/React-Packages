@@ -1,4 +1,5 @@
 import React from 'react';
+import { IMobilePagination } from '../../../../types';
 
 import './MobilePagination.css';
 
@@ -7,7 +8,7 @@ export default function MobilePagination({
   setPageSize,
   pageSize,
   languageStrings,
-}) {
+}: IMobilePagination) {
   const {
     shownLabel,
     ofLabel,

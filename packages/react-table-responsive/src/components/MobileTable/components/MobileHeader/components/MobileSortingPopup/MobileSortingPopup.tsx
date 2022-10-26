@@ -3,19 +3,20 @@ import React, { useState, useMemo } from 'react';
 import { Modal } from '@tourmalinecore/react-tc-modal';
 import { CheckField } from '@tourmalinecore/react-tc-ui-kit';
 
+import { IMobileSortingPopup } from '../../../../../../types';
 import { ReactComponent as IconSort } from '../../../../../../assets/images/icon-sort.svg';
 
 import './MobileSortingPopup.css';
 
-export default function MobileSortingPopup({
+export default function MobileSortingPopup<TableProps extends object = {}>({
   sortableColumns,
   toggleSortBy,
   sortByColumn,
   onClose,
   languageStrings,
-}) {
+}: IMobileSortingPopup<TableProps>) {
   const [draftSortById, setDraftSortById] = useState(sortByColumn.id);
-  const [draftSortByDesc, setSortByDesc] = useState(sortByColumn.desc.toString());
+  const [draftSortByDesc, setSortByDesc] = useState(sortByColumn.desc?.toString());
 
   const columnOptions = useMemo(() => sortableColumns.map((column) => ({ label: column.render('Header'), value: column.id })), [sortableColumns]);
 

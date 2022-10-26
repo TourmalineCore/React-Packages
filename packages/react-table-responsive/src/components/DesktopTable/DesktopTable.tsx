@@ -1,5 +1,11 @@
 /* eslint-disable no-nested-ternary */
-import React, { useRef } from 'react';
+import React, { CSSProperties, useRef } from 'react';
+
+import {
+  TableSortByToggleProps,
+  UseTableCellProps,
+  UseTableColumnProps,
+} from 'react-table';
 
 import DesktopPagination from './components/DesktopPagination/DesktopPagination';
 import NoRecords from '../NoRecords/NoRecords';
@@ -7,12 +13,17 @@ import NoRecords from '../NoRecords/NoRecords';
 import { ACTIONS_COLUMN_ID } from '../Actions/actionsColumnFactory';
 
 import './DesktopTable.css';
+import { IDesktopTable } from '../../types';
 
-const headerProps = (props, { column }) => getStyles(props, column.align);
+type ICustomProps = {
+  colSpan: number;
+  style: CSSProperties;
+  key: string;
+};
 
-const cellProps = (props, { cell }) => getStyles(props, cell.column.align, cell.column.alignItems);
-
-const getStyles = (props, align = 'left', alignItems = 'flex-start') => [
+const getStyles = (props: { props: ICustomProps },
+  align = 'left',
+  alignItems = 'flex-start') => ([
   props,
   {
     style: {
@@ -21,19 +32,19 @@ const getStyles = (props, align = 'left', alignItems = 'flex-start') => [
       display: 'flex',
     },
   },
-];
+]);
 
-const setActionCellClassname = (column) => (
+const headerProps = <T extends object = {}> (props: { props: ICustomProps }, { column }: { column: UseTableCellProps<T> }) => getStyles(props, (column as any).align);
+
+const cellProps = <T extends object = {}> (props: { props: ICustomProps },
+  { cell }: { cell: UseTableCellProps<T> }) => getStyles(props, (cell.column as any).align, (cell.column as any).alignItems);
+
+const setActionCellClassname = <T extends object = {}> (column: UseTableColumnProps<T>) => (
   column.id === ACTIONS_COLUMN_ID ? 'tc-table-desktop__action-cell' : ''
 );
 
-export default function DesktopTable({
+export default function DesktopTable<TableProps extends object = {}>({
   tableId,
-  getTableProps,
-  headerGroups,
-  footerGroups,
-  prepareRow,
-  rows,
   page,
   totalCount,
   canPreviousPage,
@@ -51,12 +62,17 @@ export default function DesktopTable({
   loading,
   isStriped,
   languageStrings,
-}) {
+  getTableProps,
+  headerGroups,
+  footerGroups,
+  prepareRow,
+  rows,
+}: IDesktopTable<TableProps>) {
   const {
     loadingLabel,
   } = languageStrings;
 
-  const tableContainerRef = useRef();
+  const tableContainerRef = useRef<HTMLDivElement>(null);
 
   const isStripedClassname = isStriped ? 'tc-table-desktop__tr--striped' : '';
 
@@ -75,9 +91,9 @@ export default function DesktopTable({
                     <div
                       {...column.getHeaderProps({
                         ...headerProps,
-                        ...(column.getSortByToggleProps ? column.getSortByToggleProps() : {}),
+                        ...(column.getSortByToggleProps ? column.getSortByToggleProps() as TableSortByToggleProps : {}),
                       })}
-                      title={column.render('Header')}
+                      title={column.render('Header') as string}
                       className={`tc-table-desktop__th tc-table-desktop__th--header
                         ${setActionCellClassname(column)}
                         ${column.isSorted
@@ -92,7 +108,7 @@ export default function DesktopTable({
                         <div
                           {...column.getResizerProps({
                             // This disables sorting when resizing ends
-                            onClick: (e) => { e.stopPropagation(); e.preventDefault(); },
+                            onClick: (e: Event) => { e.stopPropagation(); e.preventDefault(); },
                           })}
                           className="resizer"
                         />
@@ -129,7 +145,7 @@ export default function DesktopTable({
                 >
                   {row.cells.map((cell) => (
                     <div
-                      {...cell.getCellProps(cellProps)}
+                      {...cell.getCellProps(cellProps as any)}
                       className={`tc-table-desktop__td ${setActionCellClassname(cell.column)}`}
                     >
                       {cell.render('Cell', { tableContainerRef })}
@@ -154,7 +170,7 @@ export default function DesktopTable({
                 >
                   {group.headers.map((column) => (
                     <div
-                      {...column.getFooterProps(headerProps)}
+                      {...column.getFooterProps(headerProps as any)}
                       key={`footercolumn-${column.id}`}
                       className={`tc-table-desktop__td ${setActionCellClassname(column)}`}
                     >

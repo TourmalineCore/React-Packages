@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-shadow */
 /* eslint-disable no-shadow */
 import React, {
   useState,
@@ -16,6 +17,7 @@ import {
   useFilters,
   usePagination,
   useSortBy,
+  SortingRule,
 } from 'react-table';
 
 import DesktopTable from '../DesktopTable/DesktopTable';
@@ -34,12 +36,13 @@ import {
 } from '../../utils/tableStateService';
 
 import { i18n } from '../../i18n/i18n';
+import { IServerTable, Params } from '../../types';
 
 const qs = require('qs');
 
 const emptyRequestData = {};
 
-export default function ServerTable({
+export default function ServerTable<TableProps extends object = {}>({
   tableId,
   columns,
   order = {},
@@ -63,12 +66,16 @@ export default function ServerTable({
   // it is stored in a const variable thus state dissapears on page reload
   enableTableStatePersistance = false,
   ...props
-}) {
+}: IServerTable<TableProps>) {
   if (!tableId) {
     throw new Error('non-empty and globally unique tableId is required');
   }
 
-  const [state, setState] = useState({
+  const [state, setState] = useState<{
+    data: TableProps[];
+    pageCount: number;
+    totalCount: number;
+  }>({
     data: [],
     pageCount: 0,
     totalCount: 0,
@@ -186,17 +193,17 @@ export default function ServerTable({
   }, [
     pageIndex,
     pageSize,
-    filters.map((filter) => `${filter.ud}:${filter.value}`).join(';'),
+    filters.map((filter) => `${filter.id}:${filter.value}`).join(';'),
     `${sortBy[0].id}:${sortBy[0].desc}`,
     refresh,
     requestData,
   ]);
 
-  const noFooter = columns.every((column) => !column.Footer);
+  const noFooter = columns.every((column: any) => !column.Footer);
 
   return isDesktop
     ? (
-      <DesktopTable
+      <DesktopTable<TableProps>
         {...tableProps}
         tableId={tableId}
         languageStrings={i18n(language)}
@@ -207,7 +214,7 @@ export default function ServerTable({
       />
     )
     : (
-      <MobileTable
+      <MobileTable<TableProps>
         {...tableProps}
         renderMobileTitle={renderMobileTitle}
         languageStrings={i18n(language)}
@@ -218,7 +225,20 @@ export default function ServerTable({
       />
     );
 
-  async function fetchData(tableState, fetchDataParams) {
+  async function fetchData(
+    tableState: {
+      filters: {
+        id: string;
+        value: string;
+      }[];
+      pageIndex: number;
+      pageSize: number;
+      sortBy: SortingRule<TableProps>[];
+    },
+    fetchDataParams: {
+      [key: string]: any;
+    },
+  ) {
     const {
       pageIndex,
       pageSize,
@@ -238,7 +258,7 @@ export default function ServerTable({
     // Give this fetch an ID
     const fetchId = ++fetchIdRef.current;
 
-    const params = {
+    const params: Params = {
       draw: fetchId,
       page: pageIndex + 1,
       pageSize,
@@ -246,10 +266,10 @@ export default function ServerTable({
       orderingDirection: desc
         ? 'desc'
         : 'asc',
-      filteredByColumns: filters.map((x) => x.id),
+      filteredByColumns: filters.map((x: { id: string; value: string }) => x.id),
       // We need to remove comma symbols to be able to serialize arrays correctly (foo=1,foo=2,foo=asd)
       // Downside is that we cannot filter by strings with commas correctly
-      filteredByValues: filters.map((x) => x.value.replace(/,/g, '')),
+      filteredByValues: filters.map((x: { id: string; value: string }) => x.value.replace(/,/g, '')),
     };
     const postData = {
       ...requestData,
@@ -259,15 +279,13 @@ export default function ServerTable({
 
     const dataLoader = customDataLoader || httpClient;
 
-    const {
-      data,
-    } = await dataLoader({
+    const { data } = await dataLoader({
       url: `${apiHostUrl}${dataPath}`,
       method: requestMethod,
       headers: createAuthAndLanguageHeaders(),
       params,
       data: postData,
-      paramsSerializer: (params) => qs.stringify(params, { arrayFormat: 'repeat' }),
+      paramsSerializer: (params: Params) => qs.stringify(params, { arrayFormat: 'repeat' }),
     });
 
     if (data.draw !== fetchIdRef.current) {
@@ -278,8 +296,6 @@ export default function ServerTable({
       ...state,
       data: data.list,
       totalCount: data.totalCount,
-      params,
-      postData,
       pageCount: Math.ceil(data.totalCount / pageSize),
     });
 

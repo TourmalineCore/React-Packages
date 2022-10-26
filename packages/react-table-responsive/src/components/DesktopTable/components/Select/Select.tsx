@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { ChangeEvent } from 'react';
 
 import './Select.css';
 
@@ -7,6 +7,14 @@ export default function Select({
   value,
   options,
   onChange,
+}: {
+  className?: string,
+  value: number | string,
+  options: {
+    label: number | string;
+    value: number | string;
+  }[],
+  onChange: (event: ChangeEvent<HTMLSelectElement>) => void,
 }) {
   return (
     <select

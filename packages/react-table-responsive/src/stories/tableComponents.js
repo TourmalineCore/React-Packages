@@ -141,6 +141,7 @@ export const ServerDataTable = () => (
       desc: false,
     }}
     apiHostUrl="https://testhost.com"
+    renderMobileTitle={(row) => row.original.employee}
     dataPath="/table/test"
     requestMethod="GET"
     refresh

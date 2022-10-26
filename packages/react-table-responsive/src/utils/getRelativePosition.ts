@@ -1,4 +1,4 @@
-export function getRelativePosition(targetElem, parentElem) {
+export function getRelativePosition(targetElem: HTMLElement | null, parentElem: HTMLElement | null) {
   if (!targetElem || !parentElem) {
     return {
       left: 0,
