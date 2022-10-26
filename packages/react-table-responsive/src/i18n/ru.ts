@@ -1,4 +1,6 @@
-const strings = {
+import { I18StringsProps } from '../types';
+
+const strings: I18StringsProps = {
   langKey: 'ru',
 
   loadingLabel: 'Загрузка...',

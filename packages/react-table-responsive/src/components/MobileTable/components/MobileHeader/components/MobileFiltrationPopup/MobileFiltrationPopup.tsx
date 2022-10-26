@@ -1,16 +1,17 @@
 import React, { useState } from 'react';
 import { Modal } from '@tourmalinecore/react-tc-modal';
 
+import { IMobileFiltrationPopup } from '../../../../../../types';
 import { ReactComponent as IconFilter } from '../../../../../../assets/images/icon-filter.svg';
 
 import './MobileFiltrationPopup.css';
 
-export default function MobileFiltrationPopup({
+export default function MobileFiltrationPopup<TableProps extends object = {}>({
   filterableColumns,
   setAllFilters,
   onClose,
   languageStrings,
-}) {
+}: IMobileFiltrationPopup<TableProps>) {
   const [draftFilters, setDraftFilters] = useState(filterableColumns.map((column) => ({ id: column.id, value: column.filterValue })));
 
   const {
@@ -34,7 +35,7 @@ export default function MobileFiltrationPopup({
                   <div className="tc-table-mobile-filtration__field">
                     {
                       column.render('Filter', {
-                        filterValueOverride: draftFilters.find((draftFilter) => draftFilter.id === column.id).value,
+                        filterValueOverride: draftFilters.find((draftFilter) => draftFilter.id === column.id)?.value,
                         setFilterOverride: onDraftFilterChange,
                       })
                     }
@@ -52,7 +53,7 @@ export default function MobileFiltrationPopup({
     />
   );
 
-  function onDraftFilterChange(columnId, newFilterValue) {
+  function onDraftFilterChange(columnId: string | number, newFilterValue: string | number) {
     setDraftFilters(draftFilters.map((draftFilter) => (draftFilter.id === columnId
       ? { ...draftFilter, value: newFilterValue }
       : draftFilter
@@ -60,7 +61,8 @@ export default function MobileFiltrationPopup({
   }
 
   function onApply() {
-    setAllFilters(draftFilters);
+    setAllFilters?.(draftFilters);
+
     onClose();
   }
 }

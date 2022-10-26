@@ -3,11 +3,11 @@ export {
   getDefaultTablePageSize,
 };
 
-function saveTablePageSize(tableId, pageSize) {
-  localStorage.setItem(`${tableId}-page-size`, pageSize);
+function saveTablePageSize(tableId: string, pageSize: number) {
+  localStorage.setItem(`${tableId}-page-size`, pageSize.toString());
 }
 
-function getDefaultTablePageSize(tableId) {
+function getDefaultTablePageSize(tableId: string) {
   const defaultTablePageSize = localStorage.getItem(`${tableId}-page-size`);
 
   return defaultTablePageSize

@@ -1,6 +1,9 @@
 import { cloneDeep } from 'lodash';
+import { Filters, SortingRule } from 'react-table';
 
-const tablesState = {};
+const tablesState: {
+  [key in string]: any;
+} = {};
 
 export {
   saveFilters,
@@ -9,23 +12,23 @@ export {
   getDefaultSortBy,
 };
 
-function saveFilters(tableId, filters) {
+function saveFilters<Type extends object = {}>(tableId: string, filters: Filters<Type>) {
   saveTableStatePiece(tableId, 'filters', filters);
 }
 
-function saveSortBy(tableId, sortBy) {
+function saveSortBy<Type extends object = {}>(tableId: string, sortBy: SortingRule<Type>[]) {
   saveTableStatePiece(tableId, 'sortBy', sortBy);
 }
 
-function getDefaultFilters(tableId, initialState) {
+function getDefaultFilters<Type extends object = {}>(tableId: string, initialState: Filters<Type>) {
   return getPieceOfTableState(tableId, 'filters', initialState);
 }
 
-function getDefaultSortBy(tableId, initialState) {
+function getDefaultSortBy(tableId: string, initialState?: { id: string, desc: boolean } | {}) {
   return getPieceOfTableState(tableId, 'sortBy', initialState);
 }
 
-function saveTableStatePiece(tableId, propertyName, pieceOfState) {
+function saveTableStatePiece<Type>(tableId: string, propertyName: string, pieceOfState: Type) {
   const prevTableState = getTableState(tableId);
 
   if (!prevTableState) {
@@ -35,7 +38,7 @@ function saveTableStatePiece(tableId, propertyName, pieceOfState) {
   getTableState(tableId)[propertyName] = cloneDeep(pieceOfState);
 }
 
-function getPieceOfTableState(tableId, propertyName, initialState) {
+function getPieceOfTableState(tableId: string, propertyName: string, initialState: any) {
   const tableState = getTableState(tableId);
 
   if (!tableState) {
@@ -45,6 +48,6 @@ function getPieceOfTableState(tableId, propertyName, initialState) {
   return tableState[propertyName] || initialState;
 }
 
-function getTableState(tableId) {
+function getTableState(tableId: string) {
   return tablesState[tableId];
 }

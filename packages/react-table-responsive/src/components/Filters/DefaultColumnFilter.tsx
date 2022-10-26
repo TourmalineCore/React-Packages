@@ -10,6 +10,15 @@ export default function DefaultColumnFilter({
   filterValueOverride,
   setFilterOverride,
   inputPlaceholder,
+}: {
+  column: {
+    id: string | number;
+    filterValue: string;
+    setFilter: (newFilterValue?: string) => void;
+  }
+  filterValueOverride?: string;
+  setFilterOverride?: (id: string | number, newFilterValue?: string) => void;
+  inputPlaceholder?: string;
 }) {
   return (
     <input

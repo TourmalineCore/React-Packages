@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 
 import { matchSorter } from 'match-sorter';
 
@@ -10,6 +10,7 @@ import {
   useGlobalFilter,
   usePagination,
   useSortBy,
+  Row,
 } from 'react-table';
 
 import DesktopTable from '../DesktopTable/DesktopTable';
@@ -29,6 +30,7 @@ import {
 } from '../../utils/tableStateService';
 
 import { i18n } from '../../i18n/i18n';
+import { IClientTable } from '../../types';
 
 const defaultColumn = {
   // Let's set up our default Filter UI
@@ -39,23 +41,7 @@ const defaultColumn = {
   maxWidth: 400, // maxWidth is only used as a limit for resizing
 };
 
-const filterTypes = {
-  // Add a new fuzzyTextFilterFn filter type.
-  fuzzyText: fuzzyTextFilterFn,
-  // Or, override the default text filter to use
-  // "startWith"
-  text: (rows, id, filterValue) => rows.filter((row) => {
-    const rowValue = row.values[id];
-
-    return rowValue !== undefined
-      ? String(rowValue)
-        .toLowerCase()
-        .startsWith(String(filterValue).toLowerCase())
-      : true;
-  }),
-};
-
-export default function ClientTable({
+export default function ClientTable<TableProps extends object = {}>({
   tableId,
   columns,
   data,
@@ -71,7 +57,7 @@ export default function ClientTable({
   // it is stored in a const variable thus state dissapears on page reload
   enableTableStatePersistance = false,
   ...props
-}) {
+}: IClientTable<TableProps>) {
   if (!tableId) {
     throw new Error('non-empty and globally unique tableId is required');
   }
@@ -81,6 +67,22 @@ export default function ClientTable({
       columns.push(createActionsColumn(actions, i18n(language)));
     }
   }
+
+  const filterTypes = {
+    // Add a new fuzzyTextFilterFn filter type.
+    fuzzyText: fuzzyTextFilterFn,
+    // Or, override the default text filter to use
+    // "startWith"
+    text: (rows: Row<TableProps>[], id: string, filterValue: string) => rows.filter((row) => {
+      const rowValue = row.values[id];
+
+      return rowValue !== undefined
+        ? String(rowValue)
+          .toLowerCase()
+          .startsWith(String(filterValue).toLowerCase())
+        : true;
+    }),
+  };
 
   const tableProps = useTable(
     {
@@ -93,7 +95,7 @@ export default function ClientTable({
       initialState: {
         pageSize: getDefaultTablePageSize(tableId),
         sortBy: getDefaultSortBy(tableId, [order]),
-        filters: getDefaultFilters(tableId, []),
+        filters: getDefaultFilters<TableProps>(tableId, []),
       },
       disableMultiSort: true,
       disableSortRemove: true,
@@ -139,19 +141,19 @@ export default function ClientTable({
   // in case it is changed it will fail with a hooks-related exception and it's good
   if (enableTableStatePersistance) {
     useEffect(() => {
-      saveFilters(tableId, filters);
+      saveFilters<TableProps>(tableId, filters);
     }, [filters]);
 
     useEffect(() => {
-      saveSortBy(tableId, sortBy);
+      saveSortBy<TableProps>(tableId, sortBy);
     }, [sortBy]);
   }
 
-  const noFooter = columns.every((column) => !column.Footer);
+  const noFooter = columns.every((column: any) => !column.Footer);
 
   return isDesktop
     ? (
-      <DesktopTable
+      <DesktopTable<TableProps>
         {...tableProps}
         tableId={tableId}
         languageStrings={i18n(language)}
@@ -162,7 +164,7 @@ export default function ClientTable({
       />
     )
     : (
-      <MobileTable
+      <MobileTable<TableProps>
         {...tableProps}
         renderMobileTitle={renderMobileTitle}
         languageStrings={i18n(language)}
@@ -174,9 +176,11 @@ export default function ClientTable({
     );
 }
 
-function fuzzyTextFilterFn(rows, id, filterValue) {
-  return matchSorter(rows, filterValue, { keys: [(row) => row.values[id]] });
+function fuzzyTextFilterFn(rows: Row<any>[], id: string, filterValue: string) {
+  return matchSorter(rows, filterValue, {
+    keys: [(row) => row.values[id]],
+  });
 }
 
 // Let the table remove the filter if the string is empty
-fuzzyTextFilterFn.autoRemove = (val) => !val;
+fuzzyTextFilterFn.autoRemove = (val: string) => !val;

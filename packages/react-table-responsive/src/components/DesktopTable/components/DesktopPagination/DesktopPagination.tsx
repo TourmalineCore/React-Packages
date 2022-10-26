@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { ChangeEvent, ReactNode } from 'react';
 
 import Select from '../Select/Select';
 import { saveTablePageSize } from './paginationUtils';
@@ -9,6 +9,7 @@ import { ReactComponent as IconArrRight } from '../../../../assets/images/arrow-
 import { ReactComponent as IconArrEndRight } from '../../../../assets/images/arrow-end-right.svg';
 
 import './DesktopPagination.css';
+import { IDesktopPagination } from '../../../../types';
 
 const availablePageSizes = [10, 20, 50, 100];
 
@@ -25,7 +26,7 @@ export default function DesktopPagination({
   pageIndex,
   pageSize,
   languageStrings,
-}) {
+}: IDesktopPagination) {
   const {
     shownLabel,
     toLabel,
@@ -52,8 +53,8 @@ export default function DesktopPagination({
               label: pageSizeOption,
               value: pageSizeOption,
             }))}
-            onChange={(e) => {
-              const newPageSize = Number(e.target.value);
+            onChange={(event: ChangeEvent<HTMLSelectElement>) => {
+              const newPageSize = Number(event.target.value);
 
               saveTablePageSize(tableId, newPageSize);
               setPageSize(newPageSize);
@@ -146,6 +147,12 @@ function PaginationButton({
   disabled,
   active,
   onClick = () => {},
+}: {
+  children: ReactNode;
+  title: string;
+  disabled: boolean;
+  active?: boolean;
+  onClick?: () => unknown;
 }) {
   return (
     <button
