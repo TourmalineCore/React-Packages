@@ -38,12 +38,13 @@
       "jsx": true
     },
     "ecmaVersion": "latest",
-      "sourceType": "module"
+    "sourceType": "module"
   },
   "plugins": [
     "@typescript-eslint",
       "react",
-      "jest"
+      "jest",
+      "@typescript-eslint"
   ],
   "rules": {
     "linebreak-style": [
@@ -65,6 +66,8 @@
         "everything-else"
       ]
     }],
+    "@typescript-eslint/no-shadow": 0,
+    "@typescript-eslint/semi": 0,
     "object-property-newline": "error",
     "import/prefer-default-export": 0,
     "import/no-extraneous-dependencies": 0,
