@@ -10,13 +10,13 @@ export default class LocalStorageService {
     const token = (data && JSON.parse(data)) || null;
 
     return token;
-  };
+  }
 
   getTokenExpires = () => {
     const token = this.getTokenObject();
 
     return token ? token[this.tokenExpireKey] : null;
-  };
+  }
 
   setToken = (tokenObject) => {
     if (!tokenObject) {
@@ -27,15 +27,15 @@ export default class LocalStorageService {
       [this.tokenValueKey]: tokenObject[this.tokenValueKey],
       [this.tokenExpireKey]: tokenObject[this.tokenExpireKey],
     }));
-  };
+  }
 
-  removeToken = () => localStorage.removeItem(this.key);
+  removeToken = () => localStorage.removeItem(this.key)
 
   getTokenValue = () => {
     const token = this.getTokenObject();
 
     return token ? token[this.tokenValueKey] : null;
-  };
+  }
 
   isExpired = () => {
     const tokenObject = this.getTokenObject();
@@ -51,5 +51,5 @@ export default class LocalStorageService {
     }
 
     return Date.now() > new Date(exp).valueOf();
-  };
+  }
 }
