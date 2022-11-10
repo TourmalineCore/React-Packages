@@ -28,7 +28,7 @@ function getDefaultSortBy(tableId: string, initialState?: { id: string, desc: bo
   return getPieceOfTableState(tableId, 'sortBy', initialState);
 }
 
-function saveTableStatePiece<Type>(tableId: string, propertyName: string, pieceOfState: Type) {
+function saveTableStatePiece<Type extends object = {}>(tableId: string, propertyName: string, pieceOfState: Type) {
   const prevTableState = getTableState(tableId);
 
   if (!prevTableState) {
@@ -38,7 +38,7 @@ function saveTableStatePiece<Type>(tableId: string, propertyName: string, pieceO
   getTableState(tableId)[propertyName] = cloneDeep(pieceOfState);
 }
 
-function getPieceOfTableState(tableId: string, propertyName: string, initialState: any) {
+function getPieceOfTableState<Type extends object = {}>(tableId: string, propertyName: string, initialState?: Filters<Type> | { id: string, desc: boolean } | {}) {
   const tableState = getTableState(tableId);
 
   if (!tableState) {
