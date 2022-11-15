@@ -1,4 +1,4 @@
-import {
+import React, {
   ChangeEvent, DetailedHTMLProps, OptionHTMLAttributes, SelectHTMLAttributes,
 } from 'react';
 
