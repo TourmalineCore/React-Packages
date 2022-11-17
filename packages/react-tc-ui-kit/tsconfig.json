@@ -1,0 +1,22 @@
+{
+    "compilerOptions": {
+      "outDir": "es",
+
+      "target": "es6",
+      "module": "es6",
+      "jsx": "react",
+      "declaration": true,
+      "declarationDir": "es",
+      "sourceMap": true,
+      "strict": true,
+      "moduleResolution": "node",
+      "allowSyntheticDefaultImports": true,
+      "esModuleInterop": true,
+      "skipLibCheck": true,
+      "forceConsistentCasingInFileNames": true,
+      "emitDeclarationOnly": true
+    },
+    "include": ["src/**/*"],
+    "files": ["svg.d.ts"],
+    "exclude": ["node_modules"]
+  }

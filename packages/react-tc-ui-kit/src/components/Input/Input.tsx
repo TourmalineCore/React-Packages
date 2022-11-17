@@ -1,12 +1,30 @@
-import React, { useState } from 'react';
+import React, {
+  ButtonHTMLAttributes, DetailedHTMLProps, InputHTMLAttributes, useState,
+} from 'react';
 
 import { ReactComponent as IconEye } from '../../assets/images/eye.svg';
 import { ReactComponent as IconEyeSlash } from '../../assets/images/eye-slash.svg';
 
 import './Input.css';
 
+type ButtonProps = DetailedHTMLProps<ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement>;
+
+interface InputProps extends DetailedHTMLProps<InputHTMLAttributes<HTMLInputElement>, HTMLInputElement> {
+  actionButton?: {
+    icon: JSX.Element;
+    callback: () => unknown;
+    buttonProps?: ButtonProps;
+  } | null;
+  label: string;
+  isValid: boolean;
+  isInvalid: boolean;
+  validationMessages: string[];
+  isMessagesAbsolute: boolean;
+  viewTogglerIcons: JSX.Element[];
+}
+
 export default function Input({
-  inputRef,
+  ref: inputRef,
   style,
   className = '',
   id,
@@ -20,15 +38,31 @@ export default function Input({
   validationMessages = [],
   isMessagesAbsolute = false,
   viewTogglerIcons = [<IconEye />, <IconEyeSlash />],
-  onChange = () => { },
+  onChange = () => {},
   ...props
-}) {
+}: InputProps) {
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
 
   const [
     viewTogglerIconIdle,
     viewTogglerIconActive,
   ] = viewTogglerIcons;
+
+  function getProcessedActionButton() {
+    if (type === 'password') {
+      return {
+        icon: isPasswordVisible ? viewTogglerIconActive : viewTogglerIconIdle,
+        callback: () => setIsPasswordVisible(!isPasswordVisible),
+        buttonProps: {},
+      };
+    }
+
+    if (!actionButton) {
+      return null;
+    }
+
+    return actionButton;
+  }
 
   const processedActionButton = getProcessedActionButton();
 
@@ -79,20 +113,4 @@ export default function Input({
       )}
     </div>
   );
-
-  function getProcessedActionButton() {
-    if (type === 'password') {
-      return {
-        icon: isPasswordVisible ? viewTogglerIconActive : viewTogglerIconIdle,
-        callback: () => setIsPasswordVisible(!isPasswordVisible),
-        buttonProps: {},
-      };
-    }
-
-    if (!actionButton) {
-      return null;
-    }
-
-    return actionButton;
-  }
 }

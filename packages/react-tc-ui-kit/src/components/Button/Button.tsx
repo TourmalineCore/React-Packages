@@ -1,12 +1,17 @@
-import React from 'react';
+import React, { ButtonHTMLAttributes, DetailedHTMLProps } from 'react';
 
 import './Button.css';
 
-const buttonColors = {
-  primary: 'tc-button--primary',
-  secondary: 'tc-button--secondary',
-  danger: 'tc-button--danger',
-};
+interface ButtonProps extends DetailedHTMLProps<ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement> {
+  color?: ButtonColors | string;
+  isLoading?: boolean;
+}
+
+enum ButtonColors {
+  primary = 'tc-button--primary',
+  secondary = 'tc-button--secondary',
+  danger = 'tc-button--danger',
+}
 
 export default function Button({
   style = {},
@@ -18,9 +23,9 @@ export default function Button({
   onClick = () => {},
   children,
   ...props
-}) {
+}: ButtonProps) {
   const isLoadingModifier = isLoading ? 'tc-button--loading' : '';
-  const colorModifier = buttonColors[color] || '';
+  const colorModifier = ButtonColors[color.toLowerCase() as keyof typeof ButtonColors] || '';
 
   return (
     <button
