@@ -17,6 +17,7 @@
   "main": "es/index.js",
   "module": "es/index.js",
   "source": "src/index.ts",
+  "types": "es/index.ts",
   "files": [
     "/es"
   ],
@@ -26,7 +27,7 @@
   "scripts": {
     "build": "run-s cleanup build-package",
     "cleanup": "rimraf dist es",
-    "build-package": "cross-env NODE_ENV=production BABEL_ENV=production rollup -c ../../rollup.config.js",
+    "build-package": "cross-env NODE_ENV=production BABEL_ENV=production rollup -c ../../rollup.config.ts",
     "prepublishOnly": "npm run build"
   },
   "devDependencies": {
