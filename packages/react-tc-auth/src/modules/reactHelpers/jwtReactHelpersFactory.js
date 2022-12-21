@@ -41,7 +41,7 @@ export function createJwtReactHelpers({
     );
   }
 
-  function withPrivateRoute(ComposedComponent) {
+  function withPrivateRoute(ComposedComponent, isExternalRedirect = false) {
     return function RequireAuthentication(props) {
       const [tokenValue] = useContext(AuthContext);
       const navigation = useNavigate();
@@ -49,6 +49,12 @@ export function createJwtReactHelpers({
 
       useEffect(() => {
         if (!tokenValue) {
+          if (isExternalRedirect) {
+            window.location.href = getAuthPathWithFromProperty(location.pathname);
+
+            return;
+          }
+
           navigation(getAuthPathWithFromProperty(location.pathname));
         }
       }, [tokenValue]);
