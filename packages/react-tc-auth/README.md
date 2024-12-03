@@ -39,7 +39,6 @@ const authService = createAuthService({
 | refreshTokenAccessor | Name of the property of the response object representing **refresh** token |
 | tokenValueAccessor | Name of the property of the token objects representing the token **value** |
 | tokenExpireAccessor | Name of the property of the token objects representing the **expiration time** of the token in UTC |
-| customGetFingerprint | Custom fingerprint generator. Should return promise (async function) |
 
 # Usage
 

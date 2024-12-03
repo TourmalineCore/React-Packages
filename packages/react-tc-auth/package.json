@@ -20,7 +20,7 @@
     "access": "public"
   },
   "scripts": {
-    "build": "run-s cleanup build-package",
+    "build": "npm run cleanup && npm run build-package",
     "cleanup": "rimraf dist es",
     "build-package": "cross-env NODE_ENV=production BABEL_ENV=production rollup -c ../../rollup.config.js",
     "prepublishOnly": "npm run build"
@@ -31,7 +31,6 @@
     "react-router-dom": "^6.2.2"
   },
   "dependencies": {
-    "@fingerprintjs/fingerprintjs": "^3.1.0",
     "axios": "^0.21.1"
   },
   "devDependencies": {

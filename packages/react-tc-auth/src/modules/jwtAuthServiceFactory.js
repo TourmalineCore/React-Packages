@@ -3,7 +3,6 @@ import { createJwtReactHelpers } from './reactHelpers/jwtReactHelpersFactory';
 
 import LocalStorageService from './storage/LocalStorageService';
 import TokenProvider from './token/TokenProvider';
-import { getFingerprint } from './utils/getFingerprint';
 
 export const createJwtAuthService = ({
   authApiRoot = '/',
@@ -11,7 +10,6 @@ export const createJwtAuthService = ({
   refreshTokenAccessor = 'refreshToken',
   tokenValueAccessor = 'value',
   tokenExpireAccessor = 'expiresInUtc',
-  customGetFingerprint,
 }) => {
   const tokenStorage = new LocalStorageService({
     tokenKey: tokenAccessor,
@@ -38,9 +36,6 @@ export const createJwtAuthService = ({
   });
 
   async function refreshTokenCall(refreshTokenValue) {
-    const fingerprintGetter = customGetFingerprint || getFingerprint;
-    const clientFingerPrint = await fingerprintGetter();
-
     return axios({
       url: `${authApiRoot}/refresh`,
       method: 'POST',
@@ -49,15 +44,11 @@ export const createJwtAuthService = ({
       },
       data: {
         refreshTokenValue,
-        clientFingerPrint,
       },
     });
   }
 
   async function loginCall(data) {
-    const fingerprintGetter = customGetFingerprint || getFingerprint;
-    const clientFingerPrint = await fingerprintGetter();
-
     return axios({
       url: `${authApiRoot}/login`,
       method: 'POST',
@@ -66,14 +57,12 @@ export const createJwtAuthService = ({
       },
       data: {
         ...data,
-        clientFingerPrint,
       },
     });
   }
 
   async function logoutCall() {
     const refreshTokenValue = refreshTokenStorage.getTokenValue();
-    const clientFingerPrint = await getFingerprint();
 
     return axios({
       url: `${authApiRoot}/logout`,
@@ -83,7 +72,6 @@ export const createJwtAuthService = ({
       },
       data: {
         refreshTokenValue,
-        clientFingerPrint,
       },
     });
   }
