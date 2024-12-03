@@ -81,7 +81,7 @@
     "rollup-plugin-postcss": "^4.0.1",
     "rollup-plugin-terser": "^7.0.2",
     "rollup-plugin-typescript2": "0.34.1",
-    "simple-git-hooks": "^2.3.1",
+    "simple-git-hooks": "^2.11.1",
     "style-loader": "^2.0.0",
     "stylelint": "^13.12.0",
     "stylelint-config-standard": "^21.0.0",
