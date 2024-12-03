@@ -28,8 +28,8 @@
     "prepublishOnly": "npm run build"
   },
   "peerDependencies": {
-    "react": "^17",
-    "react-dom": "^17"
+    "react": ">=17",
+    "react-dom": ">=17"
   },
   "dependencies": {
     "@tourmalinecore/react-tc-modal": "^0.2.9",
