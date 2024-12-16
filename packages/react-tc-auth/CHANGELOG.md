@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.0.0](https://github.com/TourmalineCore/React-Packages/compare/@tourmalinecore/react-tc-auth@1.0.0...@tourmalinecore/react-tc-auth@2.0.0) (2024-12-16)
+
+
+### Features
+
+* **react-tc-auth:** update auth package react version >=17 and remove @fingerprintjs/fingerprintjs dependency ([#52](https://github.com/TourmalineCore/React-Packages/issues/52)) ([d95edef](https://github.com/TourmalineCore/React-Packages/commit/d95edef61fc2e8bf1ceb853beeb5ffe3895a53c8))
+
+
+### BREAKING CHANGES
+
+* **react-tc-auth:** fingerprintjs wasn't working for our use-cases, thus, we remove it at all
+
+
+
+
+
 # [1.0.0](https://github.com/TourmalineCore/React-Packages/compare/@tourmalinecore/react-tc-auth@0.2.0...@tourmalinecore/react-tc-auth@1.0.0) (2022-10-17)
 
 **Note:** Version bump only for package @tourmalinecore/react-tc-auth

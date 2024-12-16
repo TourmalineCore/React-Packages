@@ -1,6 +1,6 @@
 {
   "name": "@tourmalinecore/react-table-responsive",
-  "version": "0.5.0",
+  "version": "0.5.1",
   "description": "React Table Responsive",
   "author": "Tourmaline Core",
   "keywords": [
@@ -32,7 +32,7 @@
     "react-dom": "^17"
   },
   "dependencies": {
-    "@tourmalinecore/react-tc-modal": "^0.2.9",
+    "@tourmalinecore/react-tc-modal": "^0.2.10",
     "@tourmalinecore/react-tc-ui-kit": "^0.4.4",
     "axios": "^0.21.0",
     "lodash": "^4.17.20",

@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.5.1](https://github.com/TourmalineCore/React-Packages/compare/@tourmalinecore/react-table-responsive@0.5.0...@tourmalinecore/react-table-responsive@0.5.1) (2024-12-16)
+
+**Note:** Version bump only for package @tourmalinecore/react-table-responsive
+
+
+
+
+
 # [0.5.0](https://github.com/TourmalineCore/React-Packages/compare/@tourmalinecore/react-table-responsive@0.4.5...@tourmalinecore/react-table-responsive@0.5.0) (2021-10-06)
 
 
