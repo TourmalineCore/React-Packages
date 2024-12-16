@@ -3,7 +3,8 @@
 {
 	"name": "Node",
 	"image": "node:16.20.2-alpine3.18",
-	"onCreateCommand": "apk add --no-cache git"
+	"onCreateCommand": "apk add --no-cache git openssh",
+	"remoteUser": "root"
 	// Features to add to the dev container. More info: https://containers.dev/features.
 	// "features": {},
 	// Use 'forwardPorts' to make a list of ports inside the container available locally.
