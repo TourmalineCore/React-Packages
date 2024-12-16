@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.0.1](https://github.com/TourmalineCore/React-Packages/compare/@tourmalinecore/react-tc-auth@2.0.0...@tourmalinecore/react-tc-auth@2.0.1) (2024-12-16)
+
+
+### Bug Fixes
+
+* trigger react-tc-auth patch to publish package to npm ([d601055](https://github.com/TourmalineCore/React-Packages/commit/d601055fed3507be255ff618efae0b3fc441a939))
+
+
+
+
+
 # [2.0.0](https://github.com/TourmalineCore/React-Packages/compare/@tourmalinecore/react-tc-auth@1.0.0...@tourmalinecore/react-tc-auth@2.0.0) (2024-12-16)
 
 
