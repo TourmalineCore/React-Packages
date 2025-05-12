@@ -8,6 +8,6 @@
     "publish": {
       "conventionalCommits": true
     }
-  }
+  },
   "npmClient": "npm"
 }
