@@ -13,3 +13,26 @@ follow links to see packages usage details
 ## Contributing
 more info about packages development\
 [CONTRIBUTING](CONTRIBUTING.md)
+
+## Dev Containers
+
+### Prerequisites
+
+- [Docker](https://www.docker.com/get-started/)
+- [VSCode](https://code.visualstudio.com/)
+- [Dev Containers Extension](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers)
+
+### Start
+
+If you open this project in VSCode please install Dev Containers extension and agree to re-open this project's folder in it with installing all the rest of recommended extensions.
+
+```bash
+# run once to install dependencies
+npm ci
+
+# to run the web site against locally running api
+npm start
+
+# to run linting
+npm run lint
+```
