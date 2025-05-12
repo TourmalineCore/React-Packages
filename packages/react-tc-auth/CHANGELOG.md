@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.1.0](https://github.com/TourmalineCore/React-Packages/compare/@tourmalinecore/react-tc-auth@2.0.1...@tourmalinecore/react-tc-auth@2.1.0) (2025-05-12)
+
+
+### Features
+
+* update lerna and remove packages ([6f0653c](https://github.com/TourmalineCore/React-Packages/commit/6f0653c965b7a98b85c05b770d5c2360e9ad0aba))
+
+
+
+
+
 ## [2.0.1](https://github.com/TourmalineCore/React-Packages/compare/@tourmalinecore/react-tc-auth@2.0.0...@tourmalinecore/react-tc-auth@2.0.1) (2024-12-16)
 
 
