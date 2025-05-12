@@ -14,8 +14,8 @@ jobs:
     steps:
       - name: Check out the repo
         uses: actions/checkout@v4
-        # clone all git-repo with full history, not only last commit
-        # it maybe needs for correct lerna work 
+        # clone all git-repo with full history, not only last commit. it needs for correct lerna work 
+        # https://github.com/lerna/lerna/issues/2542
         with:
           fetch-depth: 0 
 
