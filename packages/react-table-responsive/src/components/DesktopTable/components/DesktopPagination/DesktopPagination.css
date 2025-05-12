@@ -1,0 +1,89 @@
+.tc-table-desktop__pagination {
+  display: flex;
+  align-items: center;
+  padding: 1.2em;
+}
+
+.tc-table-desktop__pagination-left {
+  margin-right: 1.2em;
+}
+
+.tc-table-desktop__pagination-right {
+  margin-left: auto;
+}
+
+.tc-table-desktop__table-pagination-buttons {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.tc-table-desktop__table-page-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 0.66em;
+  outline: none;
+  border: 1px solid #d8dfea;
+  border-radius: 5px;
+  width: 2.33em;
+  height: 2.33em;
+  box-shadow: none;
+  font-family: inherit;
+  font-weight: inherit;
+  font-size: inherit;
+  text-decoration: none;
+  color: inherit;
+  background-color: #fff;
+  cursor: pointer;
+}
+
+.tc-table-desktop__table-page-button svg {
+  display: block;
+  flex: none;
+  width: 0.7em;
+  height: 0.7em;
+}
+
+.tc-table-desktop__table-page-button:last-child {
+  margin-right: 0;
+}
+
+.tc-table-desktop__table-page-button:hover {
+  border-color: #334580;
+}
+
+.tc-table-desktop__table-page-button:disabled {
+  border-color: #e3e5e7;
+  color: #e3e5e7;
+  cursor: not-allowed;
+}
+
+.tc-table-desktop__table-page-current {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #334580;
+  border-radius: 5px;
+  width: 2.33em;
+  height: 2.33em;
+  font-weight: 400;
+}
+
+.tc-table-desktop__of-total {
+  margin: 0 0.66em;
+}
+
+.tc-table-desktop__page-count {
+  display: flex;
+  align-items: center;
+}
+
+.tc-table-desktop__page-count-select {
+  flex: none;
+  margin-left: 0.89em;
+  width: 68px;
+  height: 2.33em;
+  font-size: inherit;
+}

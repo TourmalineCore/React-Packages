@@ -1,0 +1,14 @@
+.tc-table-no-records {
+  padding: 30px 30px 14px;
+  text-align: center;
+}
+
+.tc-table-no-records__text {
+  margin-top: 15px;
+}
+
+@media (min-width: 769px) {
+  .tc-table-no-records {
+    padding: 30px;
+  }
+}

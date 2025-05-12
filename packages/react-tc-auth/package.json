@@ -1,0 +1,40 @@
+{
+  "name": "@tourmalinecore/react-tc-auth",
+  "version": "2.0.1",
+  "description": "",
+  "author": "Tourmaline Core",
+  "keywords": [
+    "jwt",
+    "auth",
+    "react",
+    "hooks"
+  ],
+  "license": "MIT",
+  "main": "es/index.js",
+  "module": "es/index.js",
+  "source": "src/index.js",
+  "files": [
+    "/es"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "build": "run-s cleanup build-package",
+    "cleanup": "rimraf dist es",
+    "build-package": "cross-env NODE_ENV=production BABEL_ENV=production rollup -c ../../rollup.config.js",
+    "prepublishOnly": "npm run build"
+  },
+  "peerDependencies": {
+    "react": ">=17",
+    "react-dom": ">=17",
+    "react-router-dom": "^6.2.2"
+  },
+  "dependencies": {
+    "axios": "^0.21.1"
+  },
+  "devDependencies": {
+    "react-router-dom": "^6.2.2"
+  },
+  "gitHead": "e96d96f47a74a25402b095abea9160eed623d035"
+}
