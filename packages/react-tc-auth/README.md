@@ -89,7 +89,7 @@ function getData() {
   }
 ```
 
- Or you can add an error interceptor for Axios and call `await refreshToken()` inside it. Do not forget to change the logged state after it (`setLoggedOut, setLoggedIn`), these calls will notify the storage observers: 
+ Or you can add an error interceptor for Axios and call `await refreshToken()` inside it. Do not forget to change the logged state after it (`setLoggedOut, setLoggedIn`), these calls will notify the storage observers:
 
  ```JS
 import axios from 'axios';
