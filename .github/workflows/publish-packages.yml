@@ -30,6 +30,9 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      - name: Fetch tags
+        run: git fetch --tags
+
       - name: Publish changed packages
         env:
           ACTIONS_NPM_PUBLISH_ACCESS_TOKEN: ${{ secrets.ACTIONS_NPM_PUBLISH_ACCESS_TOKEN }}
