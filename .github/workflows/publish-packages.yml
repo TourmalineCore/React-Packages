@@ -6,7 +6,6 @@ on:
   push:
     branches:
       - master
-      - feature/*
 
 jobs:
   publish:
@@ -29,11 +28,13 @@ jobs:
 
       - name: Install dependencies
         run: npm ci
-
+      
+      # https://stateful.com/blog/npm-packages-with-monorepos
       - name: Create .npmrc
         run: |
           echo "//registry.npmjs.org/:_authToken=${{ secrets.ACTIONS_NPM_PUBLISH_ACCESS_TOKEN }}" > .npmrc
-
+      
+      # https://lerna.js.org/docs/features/version-and-publish#from-package
       - name: Publish changed packages
         run: |
           npx lerna publish from-package --yes
