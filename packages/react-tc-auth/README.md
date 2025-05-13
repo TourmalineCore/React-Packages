@@ -14,7 +14,7 @@ Or via yarn:
 yarn add @tourmalinecore/react-tc-auth
 ```
 
-# Configuration
+# Configuration 
 
 ```JS
 import { createAuthService } from '@tourmalinecore/react-tc-auth';
