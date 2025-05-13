@@ -35,6 +35,5 @@
   },
   "devDependencies": {
     "react-router-dom": "^6.2.2"
-  },
-  "gitHead": "e96d96f47a74a25402b095abea9160eed623d035"
+  }
 }
