@@ -21,6 +21,7 @@ jobs:
         with:
           fetch-depth: 0 
           fetch-tags: true # so that the tags get into CI
+          always-auth: true
 
       - name: Set up Node.js
         uses: actions/setup-node@v4
