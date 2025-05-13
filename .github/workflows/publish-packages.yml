@@ -38,11 +38,10 @@ jobs:
       - name: Debug tags
         run: git tag -l
 
+      - name: Create .npmrc
+        run: |
+          echo "//registry.npmjs.org/:_authToken=${{ secrets.TEST_SECRET }}" > ~/.npmrc
+
       - name: Publish changed packages
-        env:
-          ACTIONS_NPM_PUBLISH_ACCESS_TOKEN: ${{ secrets.ACTIONS_NPM_PUBLISH_ACCESS_TOKEN }}
-        # flag from-git helps to retry failed pubication
-        # https://lerna.js.org/docs/faq#how-do-i-retry-publishing-if-publish-fails
-        # https://github.com/lerna/lerna/pull/3513
         run: |
           npx lerna publish from-package --yes
