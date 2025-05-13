@@ -40,7 +40,7 @@ const authService = createAuthService({
 | tokenValueAccessor | Name of the property of the token objects representing the token **value** |
 | tokenExpireAccessor | Name of the property of the token objects representing the **expiration time** of the token in UTC |
 
-# Usage
+# Usage 
 
 createAuthService creates an authService object, which provides next functionality:
 
