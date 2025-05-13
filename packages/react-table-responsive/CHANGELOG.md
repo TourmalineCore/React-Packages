@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.6.0](https://github.com/TourmalineCore/React-Packages/compare/@tourmalinecore/react-table-responsive@0.5.1...@tourmalinecore/react-table-responsive@0.6.0) (2025-05-13)
+
+
+### Bug Fixes
+
+* delete gitHead ([abfae64](https://github.com/TourmalineCore/React-Packages/commit/abfae64803984e7576673aceaf7698e1308cf4c5))
+
+
+### Features
+
+* update lerna and remove packages ([6f0653c](https://github.com/TourmalineCore/React-Packages/commit/6f0653c965b7a98b85c05b770d5c2360e9ad0aba))
+
+
+
+
+
 ## [0.5.1](https://github.com/TourmalineCore/React-Packages/compare/@tourmalinecore/react-table-responsive@0.5.0...@tourmalinecore/react-table-responsive@0.5.1) (2024-12-16)
 
 **Note:** Version bump only for package @tourmalinecore/react-table-responsive
