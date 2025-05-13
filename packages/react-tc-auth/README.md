@@ -2,7 +2,7 @@
 
 A simple provider, that will allow you easily implement athentication flow in your app.
 
-# Instalation
+# Instalation 
 
 The package can be installed via npm:
 ```
