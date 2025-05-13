@@ -32,15 +32,9 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Fetch tags
-        run: git fetch --tags
-
-      - name: Debug tags
-        run: git tag -l
-
       - name: Create .npmrc
         run: |
-          echo "//registry.npmjs.org/:_authToken=${{ secrets.TEST_SECRET }}" > ~/.npmrc
+          echo "//registry.npmjs.org/:_authToken=${{ secrets.ACTIONS_NPM_PUBLISH_ACCESS_TOKEN }}" > ~/.npmrc
 
       - name: Publish changed packages
         run: |
