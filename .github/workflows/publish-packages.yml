@@ -20,6 +20,7 @@ jobs:
         # https://github.com/lerna/lerna/issues/2542
         with:
           fetch-depth: 0 
+          fetch-tags: true # so that the tags get into CI
 
       - name: Set up Node.js
         uses: actions/setup-node@v4
