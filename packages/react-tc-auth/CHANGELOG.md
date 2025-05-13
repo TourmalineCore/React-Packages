@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.2.1](https://github.com/TourmalineCore/React-Packages/compare/@tourmalinecore/react-tc-auth@2.2.0...@tourmalinecore/react-tc-auth@2.2.1) (2025-05-13)
+
+
+### Bug Fixes
+
+* fake change ([b86f3de](https://github.com/TourmalineCore/React-Packages/commit/b86f3de0fb3f3eda6201bc27e3c09eb829da23be))
+
+
+
+
+
 # [2.2.0](https://github.com/TourmalineCore/React-Packages/compare/@tourmalinecore/react-tc-auth@2.1.2...@tourmalinecore/react-tc-auth@2.2.0) (2025-05-13)
 
 
