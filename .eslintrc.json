@@ -45,7 +45,6 @@
       "@typescript-eslint"
   ],
   "rules": {
-    "import/no-unresolved": "off",
     "linebreak-style": [
         "error",
         "unix"
