@@ -30,7 +30,7 @@ If you open this project in VSCode please install Dev Containers extension and a
 # run once to install dependencies
 npm ci
 
-# to run the web site against locally running api
+# to start storybook 
 npm start
 
 # to run linting
