@@ -4,7 +4,7 @@
   "description": "React packages monorepo",
   "main": "index.js",
   "workspaces": {
-     "packages": [
+    "packages": [
       "packages/*"
     ]
   },
