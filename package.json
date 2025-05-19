@@ -3,6 +3,11 @@
   "version": "1.0.0",
   "description": "React packages monorepo",
   "main": "index.js",
+  "workspaces": {
+     "packages": [
+      "packages/*"
+    ]
+  },
   "scripts": {
     "start": "start-storybook -s .msw -p 6006",
     "lerna:publish": "npx lerna publish",
