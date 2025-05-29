@@ -7,7 +7,7 @@
 		"ghcr.io/devcontainers/features/git:1.2.0": {
 			"ppa": true,
 			"version": "os-provided"
-		},        
+		}
 	},
 	"forwardPorts": [
 		6080,
@@ -16,8 +16,8 @@
 	"runArgs": [
 		"--network=host"
 	],
-	// Required for working with HTTPS URLs (e.g., npm, git, curl)
-	"postCreateCommand": "apt-get update && apt-get install -y ca-certificates"
+	// Required for working with HTTPS URLs (e.g., npm, git, curl) and for SSH-based Git operations
+	"postCreateCommand": "apt-get update && apt-get install -y ca-certificates openssh-client"
 	// Features to add to the dev container. More info: https://containers.dev/features.
 	// "features": {},
 	// Use 'forwardPorts' to make a list of ports inside the container available locally.
