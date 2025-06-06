@@ -1,10 +1,23 @@
 // For format details, see https://aka.ms/devcontainer.json. For config options, see the
 // README at: https://github.com/devcontainers/templates/tree/main/src/docker-existing-dockerfile
 {
-	"name": "Node",
-	"image": "node:16.20.2-alpine3.18",
-	"onCreateCommand": "apk add --no-cache git openssh",
-	"remoteUser": "root"
+	"name": "React Packages",
+	"image": "node:20-slim",
+	"features": {
+		"ghcr.io/devcontainers/features/git:1.2.0": {
+			"ppa": true,
+			"version": "os-provided"
+		}
+	},
+	"forwardPorts": [
+		6080,
+		5901
+	],
+	"runArgs": [
+		"--network=host"
+	],
+	// Required for working with HTTPS URLs (e.g., npm, git, curl) and for SSH-based Git operations
+	"postCreateCommand": "apt-get update && apt-get install -y ca-certificates openssh-client"
 	// Features to add to the dev container. More info: https://containers.dev/features.
 	// "features": {},
 	// Use 'forwardPorts' to make a list of ports inside the container available locally.

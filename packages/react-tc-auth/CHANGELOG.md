@@ -3,6 +3,66 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.2.2](https://github.com/TourmalineCore/React-Packages/compare/@tourmalinecore/react-tc-auth@2.2.1...@tourmalinecore/react-tc-auth@2.2.2) (2025-05-13)
+
+
+### Bug Fixes
+
+* delete gitHead ([abfae64](https://github.com/TourmalineCore/React-Packages/commit/abfae64803984e7576673aceaf7698e1308cf4c5))
+
+
+
+
+
+## [2.2.1](https://github.com/TourmalineCore/React-Packages/compare/@tourmalinecore/react-tc-auth@2.2.0...@tourmalinecore/react-tc-auth@2.2.1) (2025-05-13)
+
+
+### Bug Fixes
+
+* fake change ([b86f3de](https://github.com/TourmalineCore/React-Packages/commit/b86f3de0fb3f3eda6201bc27e3c09eb829da23be))
+
+
+
+
+
+# [2.2.0](https://github.com/TourmalineCore/React-Packages/compare/@tourmalinecore/react-tc-auth@2.1.2...@tourmalinecore/react-tc-auth@2.2.0) (2025-05-13)
+
+
+### Features
+
+* fake change ([baaf454](https://github.com/TourmalineCore/React-Packages/commit/baaf454672ce047e8d76fe14c1e5e54bb6f1d507))
+
+
+
+
+
+## [2.1.2](https://github.com/TourmalineCore/React-Packages/compare/@tourmalinecore/react-tc-auth@2.1.1...@tourmalinecore/react-tc-auth@2.1.2) (2025-05-13)
+
+**Note:** Version bump only for package @tourmalinecore/react-tc-auth
+
+
+
+
+
+## [2.1.1](https://github.com/TourmalineCore/React-Packages/compare/@tourmalinecore/react-tc-auth@2.1.0...@tourmalinecore/react-tc-auth@2.1.1) (2025-05-13)
+
+**Note:** Version bump only for package @tourmalinecore/react-tc-auth
+
+
+
+
+
+# [2.1.0](https://github.com/TourmalineCore/React-Packages/compare/@tourmalinecore/react-tc-auth@2.0.1...@tourmalinecore/react-tc-auth@2.1.0) (2025-05-12)
+
+
+### Features
+
+* update lerna and remove packages ([6f0653c](https://github.com/TourmalineCore/React-Packages/commit/6f0653c965b7a98b85c05b770d5c2360e9ad0aba))
+
+
+
+
+
 ## [2.0.1](https://github.com/TourmalineCore/React-Packages/compare/@tourmalinecore/react-tc-auth@2.0.0...@tourmalinecore/react-tc-auth@2.0.1) (2024-12-16)
 
 
