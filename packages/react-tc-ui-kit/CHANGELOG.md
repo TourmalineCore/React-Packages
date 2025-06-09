@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+
+# [0.5.0](https://github.com/TourmalineCore/React-Packages/compare/@tourmalinecore/react-tc-auth@1.0.0...@tourmalinecore/react-tc-auth@2.0.0) (2025-06-09)
+
+
+### Features
+
+* **react-tc-ui-kit:** update ui kit package react version to ">=17 <=19" ([#54](https://github.com/TourmalineCore/React-Packages/pull/54)) ([7eea0b8](https://github.com/TourmalineCore/React-Packages/pull/54/commits/7eea0b8fc02a0067e6f7f4604cbd0f0801de6619))
+
+
+
+
 ## [0.4.4](https://github.com/TourmalineCore/React-Packages/compare/@tourmalinecore/react-tc-ui-kit@0.4.3...@tourmalinecore/react-tc-ui-kit@0.4.4) (2021-09-29)
 
 
