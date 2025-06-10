@@ -32,7 +32,6 @@ jobs:
     - name: Install dependencies
       run: |
         npm ci
-        npm run lerna:init
         npm install -g gh-pages
 
     - name: Build
