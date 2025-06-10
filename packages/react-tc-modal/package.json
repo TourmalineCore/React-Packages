@@ -26,10 +26,10 @@
     "prepublishOnly": "npm run build"
   },
   "peerDependencies": {
-    "react": "^17",
-    "react-dom": "^17"
+    "react": ">=17 <=19",
+    "react-dom": ">=17 <=19"
   },
   "dependencies": {
-    "@tourmalinecore/react-tc-ui-kit": "^0.4.4"
+    "@tourmalinecore/react-tc-ui-kit": "^0.5.0"
   }
 }
