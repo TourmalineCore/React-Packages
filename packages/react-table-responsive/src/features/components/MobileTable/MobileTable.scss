@@ -1,0 +1,130 @@
+.tc-table-mobile {
+  $this: &;
+
+  position: relative;
+  box-sizing: border-box;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+  font-size: 16px;
+
+  * {
+    box-sizing: inherit;
+  }
+
+  &__row {
+    &+& {
+      border-top: 1px solid #d8dfea;
+    }
+  }
+
+  &__row-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  &__row-title {
+    flex-grow: 0;
+    overflow: hidden;
+    margin: 0;
+    padding: 16px 10px;
+    max-width: calc(100% - 60px);
+    font-weight: 400;
+    font-size: 1em;
+    line-height: 1.15;
+    text-overflow: ellipsis;
+    text-transform: none;
+  }
+
+  &__row-trigger {
+    display: flex;
+    align-items: center;
+    flex-grow: 1;
+    border: none;
+    padding: 16px 10px;
+    font-family: inherit;
+    font-size: inherit;
+    text-align: right;
+    color: inherit;
+    background-color: transparent;
+    cursor: pointer;
+
+    &:focus {
+      outline: none;
+      opacity: 0.7;
+    }
+  }
+
+  &__chevron {
+    display: block;
+    margin-left: auto;
+    width: 1em;
+    height: 1.125em;
+
+    &--up {
+      transform: rotate(180deg);
+    }
+  }
+
+  &__row-inner {
+    padding: 0 10px 16px;
+  }
+
+  &__row-data {
+    border-radius: 10px;
+    background-color: #e8efff;
+    animation: appear 0.15s ease-out forwards;
+  }
+
+  &__row-data-item {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    padding: 0.625em;
+    font-size: 0.875em;
+
+    &--vertical {
+      display: block;
+    }
+
+    #{$this}__value {
+      margin-top: 10px;
+      width: 100%;
+    }
+
+    #{$this}__label {
+      padding-right: 0;
+      width: 100%;
+    }
+
+    &+& {
+      border-top: 1px solid #fff;
+    }
+  }
+
+  &__label {
+    padding-right: 15px;
+    width: 50%;
+  }
+
+  &__value {
+    width: 50%;
+  }
+
+  &__actions {
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+    justify-content: flex-start;
+    margin-top: 1em;
+  }
+}
+
+@keyframes appear {
+  0% {
+    transform: translate3d(0, -12px, 0);
+  }
+
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+}

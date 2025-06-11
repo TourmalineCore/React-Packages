@@ -1,0 +1,25 @@
+.tc-table-mobile-sorting {
+  margin: 0 -20px;
+
+  &__section {
+    border-top: 1px solid rgba(0, 0, 0, 0.12);
+    padding: 22px 20px;
+
+    &:first-child {
+      border-top: none;
+      padding-top: 0;
+    }
+
+    &:last-child {
+      padding-bottom: 0;
+    }
+  }
+
+  &__checkfield {
+    margin-bottom: 22px;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+}

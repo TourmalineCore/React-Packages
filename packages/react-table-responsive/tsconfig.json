@@ -1,0 +1,24 @@
+{
+    "compilerOptions": {
+      "outDir": "es",
+      "target": "esnext",
+      "module": "esnext",
+      "jsx": "react-jsx",
+      "declaration": true,
+      "declarationDir": "es",
+      "sourceMap": true,
+      "strict": true,
+      "moduleResolution": "node",
+    },
+    "include": [
+      "src/**/*",
+      "photo.d.ts",
+      "packages.d.ts"   
+    ],
+    "exclude": [
+      "node_modules",
+      "**/*.cy.ts",
+      "**/*.cy.tsx",
+      "**/test-helpers.tsx"
+    ]
+}

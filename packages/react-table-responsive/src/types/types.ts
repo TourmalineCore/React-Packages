@@ -1,0 +1,118 @@
+import {
+  ColumnDef, ColumnFiltersState, ColumnSort, FilterFn, HeaderContext, Row, RowData, Table, TableOptions,
+} from '@tanstack/react-table'
+import { AxiosInstance } from 'axios'
+import { InputHTMLAttributes, ReactElement, ReactNode } from 'react'
+import { I18StringsProps } from '../i18n/types'
+
+export type ActionsType<TData> = {
+  name?: string,
+  show: (row: Row<TData>) => boolean,
+  renderIcon?: (row: Row<TData>) => ReactElement,
+  renderText: (row: Row<TData>) => string,
+  onClick?: (e: React.MouseEvent<HTMLButtonElement>, row: Row<TData>) => unknown,
+}[]
+
+export interface GeneralTableProps<TData> extends Omit<TableOptions<TData>, 'data' | 'column' | 'getCoreRowModel' | 'filterFns'> {
+  tableId: string,
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  columns: ColumnDef<TData, any>[],
+  loading?: boolean,
+  tcIsStriped?: boolean,
+  tcOrder?: ColumnSort,
+  tcRenderMobileTitle: (row: Row<TData>) => string,
+  tcMaxStillMobileBreakpoint?: number,
+  tcPageSizeOptions?: number[],
+  actions?: ActionsType<TData>,
+  language?: string,
+  tcEnableTableStatePersistance?: boolean,
+}
+
+export interface ClientTableProps<TData> extends GeneralTableProps<TData> {
+  data: TData[],
+}
+
+export interface ServerTableProps<TData> extends GeneralTableProps<TData> {
+  tcDataPath: string,
+  tcApiHostUrl: string,
+  tcRequestData?: object,
+  tcAuthToken?: string,
+  tcRequestMethod?: 'POST' | 'GET',
+  tcHttpClient?: AxiosInstance,
+  tcRefresh?: boolean,
+  tcCustomDataLoader?: TcCustomDataLoader,
+  tcOnPageDataLoaded?: (data: TData) => void,
+  tcOnFiltersChange?: (filters: ColumnFiltersState) => void,
+}
+
+export type TcCustomDataLoader = ({
+  url,
+  method,
+  headers,
+  params,
+  data,
+  paramsSerializer,
+}: {
+  url: string,
+  method: 'POST' | 'GET',
+  headers: {
+    [key: string]: string,
+  },
+  params: Params,
+  data: object,
+  paramsSerializer: (params: Params) => string,
+}) => Promise<{
+  data: {
+    draw: number,
+    list: {
+      [tableDataKey: string]: string | number,
+    }[],
+  },
+}>
+
+export type Params = {
+  draw: number,
+  page: number,
+  pageSize: number,
+  orderBy: string,
+  orderingDirection: 'desc' | 'asc',
+  filteredByColumns: string[],
+  filteredByValues: string[],
+}
+
+export interface MobileTableProps<TData>
+  extends Table<TData>,
+  Pick<ClientTableProps<TData>, 'loading' | 'tcRenderMobileTitle'> {
+  noFooter: boolean,
+  actions: ActionsType<TData>,
+  languageStrings: I18StringsProps,
+}
+
+export interface DesktopTableProps<TData>
+  extends Table<TData>,
+  Pick<ClientTableProps<TData>, 'tableId' | 'loading' | 'tcIsStriped'> {
+  tcPageSizeOptions: number[],
+  noFooter: boolean,
+  noFilters: boolean,
+  languageStrings: I18StringsProps,
+}
+
+declare module '@tanstack/react-table' {
+  export interface ColumnDefBase<TData extends RowData, TValue = unknown> {
+    tcNonMobileColumn?: boolean,
+    tcTwoRowsMobileLayout?: boolean,
+    tcNoFooterColumn?: boolean,
+    Filter?: (context: HeaderContext<TData, TValue>) => ReactNode,
+    selectFilterOptions?: {
+      label: string,
+      value: string,
+    }[],
+    tcAlign?: 'left' | 'center' | 'right',
+    tcInputFilterProps?: InputHTMLAttributes<HTMLInputElement>,
+    tcPrincipalFilterableColumn?: boolean,
+  }
+
+  export interface FilterFns {
+    fuzzy: FilterFn<unknown>,
+  }
+}

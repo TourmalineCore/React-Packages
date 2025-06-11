@@ -87,6 +87,35 @@
     "react/no-did-update-set-state": 0,
     "jest/expect-expect": 0,
     "react/jsx-filename-extension": 0,
-    "react/react-in-jsx-scope": 0
-  }
+    "react/react-in-jsx-scope": 0,
+    "import/no-cycle": 0,
+    "react/no-children-prop": 0
+  },
+  "overrides": [
+    { 
+      "files": ["*.cy.{ts,tsx}"],
+      "rules": {
+        "jest/valid-expect": "off",
+        "jest/no-hooks": "off",
+        "jest/prefer-expect-assertions": "off",
+        "jest/valid-title": "off",
+        "jest/no-disabled-tests": "off",
+        "jest/no-identical-title": "off",
+        "jest/no-commented-out-tests": "off",
+        "jest/no-conditional-expect": "off",
+        "jest/no-focused-tests": "off",
+        "jest/no-export": "off",
+        "jest/no-mocks-import": "off",
+        "jest/no-standalone-expect": "off",
+        "jest/no-test-prefixes": "off",
+        "jest/no-try-expect": "off",
+        "jest/prefer-called-with": "off",
+        "jest/prefer-strict-equal": "off",
+        "jest/require-to-throw-message": "off",
+        "jest/require-top-level-describe": "off",
+        "jest/valid-describe": "off",
+        "jest/valid-expect-in-promise": "off"
+      }
+    }
+  ]
 }

@@ -1,0 +1,40 @@
+.tc-table-desktop-pagination-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 0.66em;
+  outline: none;
+  border: 1px solid #d8dfea;
+  border-radius: 5px;
+  width: 2.33em;
+  height: 2.33em;
+  box-shadow: none;
+  font-family: inherit;
+  font-weight: inherit;
+  font-size: inherit;
+  text-decoration: none;
+  color: inherit;
+  background-color: #fff;
+  cursor: pointer;
+
+  svg {
+    display: block;
+    flex: none;
+    width: 0.7em;
+    height: 0.7em;
+  }
+
+  &:last-child {
+    margin-right: 0;
+  }
+
+  &:hover {
+    border-color: #334580;
+  }
+
+  &:disabled {
+    border-color: #e3e5e7;
+    color: #e3e5e7;
+    cursor: not-allowed;
+  }
+}
