@@ -1,0 +1,60 @@
+.tc-table-desktop {
+  position: relative;
+  box-sizing: border-box;
+  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.12);
+  font-weight: 300;
+  font-size: 18px;
+  line-height: 1.15;
+
+  * {
+    box-sizing: inherit;
+  }
+
+  &__inner {
+    overflow: auto;
+    border-bottom: 1px solid #d8dfea;
+    border-spacing: 0;
+    scrollbar-color: #dfe7f9 transparent;
+    scrollbar-width: thin;
+
+    &::-webkit-scrollbar {
+      width: 8px;
+      height: 8px;
+    }
+
+    &::-webkit-scrollbar-track {
+      border-top: 1px solid #d8dfea;
+      background: transparent;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      border: none;
+      border-radius: 15px;
+      background-color: #dfe7f9;
+    }
+  }
+
+  &__action-cell {
+    position: sticky !important;
+    right: 0;
+    top: 0;
+    z-index: 5;
+    flex: none !important;
+    border-left: 1px solid #d8dfea;
+    padding: 0;
+    background-color: #fff;
+  }
+
+  .resizer {
+    position: absolute;
+    right: 0;
+    top: 0;
+    z-index: 1;
+    width: 20px;
+    height: 100%;
+
+    /* prevents from scrolling while dragging on touch devices */
+    touch-action: none;
+    transform: translateX(50%);
+  }
+}

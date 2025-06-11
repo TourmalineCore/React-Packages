@@ -1,0 +1,48 @@
+.tc-table-desktop-pagination {
+  display: flex;
+  align-items: center;
+  padding: 1.2em;
+
+  &__left {
+    margin-right: 1.2em;
+  }
+
+  &__right {
+    margin-left: auto;
+  }
+
+  &__buttons {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+
+  &__current-page {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #334580;
+    border-radius: 5px;
+    width: 2.33em;
+    height: 2.33em;
+    font-weight: 400;
+  }
+
+  &__of-total {
+    margin: 0 0.66em;
+  }
+
+  &__page-count {
+    display: flex;
+    align-items: center;
+  }
+
+  &__page-count-select {
+    flex: none;
+    margin-left: 0.89em;
+    width: 68px;
+    height: 2.33em;
+    font-size: inherit;
+  }
+}

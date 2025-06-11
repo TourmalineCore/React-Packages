@@ -1,0 +1,60 @@
+.tc-table-desktop-row {
+  $this: &;
+
+  display: flex;
+  flex: 1 0 auto;
+  position: relative;
+  transition: box-shadow 0.15s ease-out;
+
+  &+& {
+    border-top: 1px solid #d8dfea;
+  }
+
+  &--striped {
+    &:nth-child(odd) {
+      background-color: #f2f4f7;
+    }
+  }
+
+  &:not(#{$this}--header, #{$this}--footer, #{$this}--filter) {
+    &:hover {
+      z-index: 1;
+      box-shadow: 3px 9px 34px rgba(4, 42, 77, 0.11);
+    }
+  }
+}
+
+.tc-table-desktop-header-cell,
+.tc-table-desktop-cell {
+  /* We use an absolutely position resizer, so this is required. */
+  position: relative;
+  margin: 0;
+  padding: 0.9em 1.2em;
+  transition: background-color 0.15s ease-out;
+  display: flex;
+  flex: 1 0 auto;
+}
+
+.tc-table-desktop-header-cell {
+  &--title {
+    overflow: hidden;
+    border-left: 1px solid #d8dfea;
+    padding: 1.1em 1.2em;
+    font-weight: 400;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+
+    &:first-child {
+      border-left: none;
+    }
+  }
+
+  &--sort-asc {
+    box-shadow: inset 0 2px 0 0 #334580;
+  }
+
+  &--sort-desc {
+    box-shadow: inset 0 -2px 0 0 #334580;
+  }
+
+}

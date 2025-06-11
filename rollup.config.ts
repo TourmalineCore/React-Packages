@@ -10,6 +10,7 @@ import commonjs from '@rollup/plugin-commonjs';
 import { terser } from 'rollup-plugin-terser';
 import external from 'rollup-plugin-peer-deps-external';
 import postcss from 'rollup-plugin-postcss';
+import sass from 'sass';
 
 export default [
   {
@@ -27,7 +28,7 @@ export default [
     plugins: [
       postcss({
         plugins: [
-          autoprefixer,
+          autoprefixer(),
           postcssUrl({
             url: 'inline',
           }),
@@ -35,6 +36,17 @@ export default [
         extract: true,
         minimize: true,
         sourceMap: false,
+        use: {
+          sass: {
+            implementation: sass,
+            sassOptions: {
+              outputStyle: 'compressed',
+              includePaths: ['src/styles'], // Add paths if needed
+            },
+          },
+        },
+        modules: false, // Set to true if using CSS Modules
+        extensions: ['.css', '.scss'],
       }),
       external({
         includeDependencies: true,
@@ -49,6 +61,8 @@ export default [
           ...DEFAULT_EXTENSIONS,
           '.js',
           '.jsx',
+          '.ts',
+          '.tsx',
         ],
         plugins: [
           '@babel/plugin-proposal-class-properties',
@@ -62,10 +76,11 @@ export default [
       svgr({
         typescript: true,
       }),
-      external(),
       resolve(),
       commonjs(),
-      typescript({ tsconfig: './tsconfig.json' }),
+      typescript({
+        tsconfig: './tsconfig.json',
+      }),
       terser(),
     ],
   },
