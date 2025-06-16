@@ -1,6 +1,8 @@
 import { SelectColumnFilter } from '../../components/Filters/SelectColumnFilter/SelectColumnFilter'
 import { ClientTableProps } from '../../types/types'
-import { generateTableTestData, getColumnsWithProps, getFilterInputById, getFilterInputByName, getSelectPagination, getTableRow, someTypesMetadata, someTypesOptions, TestData } from '../utils/test-helpers'
+import {
+  generateTableTestData, getColumnsWithProps, getFilterInputById, getFilterInputByName, getSelectPagination, getTableRow, someTypesMetadata, someTypesOptions, TestData,
+} from '../utils/test-helpers'
 import { ClientTable } from './ClientTable'
 
 describe('desktopClientTable', () => {
@@ -22,6 +24,8 @@ describe('desktopClientTable', () => {
 
   describe('actions', actionsTests)
 
+  describe('onFiltersChange', onFiltersChangeTests)
+
   describe('localStorage', localStorageTests)
 })
 
@@ -30,7 +34,7 @@ function initializeBasicComponentTests() {
   GIVEN desktop client table
   WHEN render the basic component
   SHOULD see it
-`, () => {  
+`, () => {
     mountComponent()
 
     cy.getByData('table-desktop')
@@ -584,6 +588,31 @@ function actionsTests() {
   })
 }
 
+function onFiltersChangeTests() {
+  it(`
+  GIVEN desktop client table with onFiltersChange prop enabled by default
+  WHEN render the component
+  SHOULD trigger onFiltersChange callback
+`, () => {
+    mountComponent({
+      columns: getColumnsWithProps({
+        nameColumnProps: {
+          enableColumnFilter: true,
+          tcInputFilterProps: {
+            placeholder: 'Search',
+          },
+        },
+      }),
+    })
+
+    getFilterInputByName()
+      .type('1')
+
+    cy.get('@onFiltersChange')
+      .should('have.been.called')
+  })
+}
+
 function localStorageTests() {
   it(`
   GIVEN desktop client table
@@ -639,6 +668,9 @@ function mountComponent({
 }: Partial<ClientTableProps<TestData>> = {}) {
   cy.viewport(900, 900)
 
+  const onFiltersChangeSpy = cy.spy()
+    .as('onFiltersChange')
+
   cy.mount(
     <ClientTable
       tableId="desktop-test-table"
@@ -650,6 +682,7 @@ function mountComponent({
       tcRenderMobileTitle={(row) => row.original.name}
       tcPageSizeOptions={tcPageSizeOptions}
       actions={actions}
+      tcOnFiltersChange={onFiltersChangeSpy}
       language={language}
     />,
   )
