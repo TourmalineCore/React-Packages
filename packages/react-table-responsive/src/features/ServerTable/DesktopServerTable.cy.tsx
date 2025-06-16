@@ -1,7 +1,9 @@
 import axios from 'axios'
 import { ServerTable } from './ServerTable'
 import { ServerTableProps } from '../../types/types'
-import { TestData, generateTableTestData, getTableRow, getColumnsWithProps, getFilterInputByName, someTypes, getFilterInputById, getSelectPagination } from '../utils/test-helpers'
+import {
+  TestData, generateTableTestData, getTableRow, getColumnsWithProps, getFilterInputByName, someTypes, getFilterInputById, getSelectPagination,
+} from '../utils/test-helpers'
 
 type TableResponse = {
   list: TestData[],
@@ -40,7 +42,7 @@ describe('desktopServerTable', () => {
   describe('onPageDataLoaded', onPageDataLoadedTests)
 
   describe('onFiltersChange', onFiltersChangeTests)
-})  
+})
 
 function initializationDataTests() {
   it(`
@@ -69,7 +71,7 @@ function sortingTests() {
     cy.wait('@getTableData')
 
     getTableRow()
-      .first()  
+      .first()
       .contains('Test 1')
   })
 

@@ -39,13 +39,13 @@ export function ServerTable<TData>({
   tcRequestMethod = 'GET',
   tcRequestData = {},
   tcMaxStillMobileBreakpoint = 800,
-  tcRenderMobileTitle,
+  tcRenderMobileTitle = () => null,
   tcPageSizeOptions = AVAILABLE_PAGE_SIZES,
   actions = [],
   language = 'en',
-  tcEnableTableStatePersistance = false,
-  tcOnPageDataLoaded = () => { },
-  tcOnFiltersChange = () => { },
+  tcEnableTableStatePersistence = false,
+  tcOnPageDataLoaded = () => null,
+  tcOnFiltersChange = () => null,
   ...props
 }: ServerTableProps<TData>) {
   if (!tableId) {
@@ -148,7 +148,7 @@ export function ServerTable<TData>({
     tcRefresh,
   ])
 
-  if (tcEnableTableStatePersistance) {
+  if (tcEnableTableStatePersistence) {
     useEffect(() => {
       tablesState.saveFilters({
         tableId,

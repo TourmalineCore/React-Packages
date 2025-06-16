@@ -20,12 +20,12 @@ export interface GeneralTableProps<TData> extends Omit<TableOptions<TData>, 'dat
   loading?: boolean,
   tcIsStriped?: boolean,
   tcOrder?: ColumnSort,
-  tcRenderMobileTitle: (row: Row<TData>) => string,
+  tcRenderMobileTitle?: (row: Row<TData>) => ReactNode,
   tcMaxStillMobileBreakpoint?: number,
   tcPageSizeOptions?: number[],
   actions?: ActionsType<TData>,
-  language?: string,
-  tcEnableTableStatePersistance?: boolean,
+  language?: 'en' | 'ru',
+  tcEnableTableStatePersistence?: boolean,
   tcOnFiltersChange?: (filters: ColumnFiltersState) => void,
 }
 

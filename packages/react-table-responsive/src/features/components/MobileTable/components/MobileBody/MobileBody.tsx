@@ -1,7 +1,7 @@
 import { Cell, Row, flexRender } from '@tanstack/react-table'
 import { useState } from 'react'
 import { MobileActions } from './MobileActions/MobileActions'
-import { ActionsType } from '../../../../../types/types'
+import { ActionsType, GeneralTableProps } from '../../../../../types/types'
 import { IconChevronDown } from '../../../../../components/Icons/IconChevronDown'
 
 export function MobileBody<TData>({
@@ -11,7 +11,7 @@ export function MobileBody<TData>({
 }: {
   actions: ActionsType<TData>,
   rows: Row<TData>[],
-  tcRenderMobileTitle: (row: Row<TData>) => string,
+  tcRenderMobileTitle: GeneralTableProps<TData>['tcRenderMobileTitle'],
 }) {
   const [
     expandedRowId,

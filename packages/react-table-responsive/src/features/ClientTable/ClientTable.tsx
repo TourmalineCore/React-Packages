@@ -27,11 +27,10 @@ export function ClientTable<TData>({
   },
   data,
   tcMaxStillMobileBreakpoint = 800,
-  tcRenderMobileTitle,
+  tcRenderMobileTitle = () => null,
   tcPageSizeOptions = AVAILABLE_PAGE_SIZES,
   actions = [],
   language = 'en',
-  tcEnableTableStatePersistance = false,
   tcOnFiltersChange = () => null,
   tcEnableTableStatePersistence = false,
   ...props
@@ -97,7 +96,7 @@ export function ClientTable<TData>({
     sorting,
   } = tableProps.getState()
 
-  if (tcEnableTableStatePersistance) {
+  if (tcEnableTableStatePersistence) {
     useEffect(() => {
       tablesState.saveFilters({
         tableId,

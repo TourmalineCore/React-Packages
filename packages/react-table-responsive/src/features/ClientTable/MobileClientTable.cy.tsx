@@ -1,7 +1,17 @@
 import { ClientTable } from './ClientTable'
 import { SelectColumnFilter } from '../../components/Filters/SelectColumnFilter/SelectColumnFilter'
 import { ClientTableProps } from '../../types/types'
-import { generateTableTestData, getColumnsWithProps, getFilterInputByName, getTableMobileFiltrationButton, getTableMobileRow, getTableMobileSortingButton, someTypesMetadata, someTypesOptions, TestData } from '../utils/test-helpers'
+import {
+  generateTableTestData,
+  getColumnsWithProps,
+  getFilterInputByName,
+  getTableMobileFiltrationButton,
+  getTableMobileRow,
+  getTableMobileSortingButton,
+  someTypesMetadata,
+  someTypesOptions,
+  TestData,
+} from '../utils/test-helpers'
 
 describe('mobileClientTable', () => {
   describe('initialization', () => {
