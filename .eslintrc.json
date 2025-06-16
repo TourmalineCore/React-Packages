@@ -116,7 +116,8 @@
         "jest/require-to-throw-message": "off",
         "jest/require-top-level-describe": "off",
         "jest/valid-describe": "off",
-        "jest/valid-expect-in-promise": "off"
+        "jest/valid-expect-in-promise": "off",
+        "jest/consistent-test-it": "off"
       }
     }
   ]

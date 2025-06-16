@@ -26,6 +26,7 @@ export interface GeneralTableProps<TData> extends Omit<TableOptions<TData>, 'dat
   actions?: ActionsType<TData>,
   language?: string,
   tcEnableTableStatePersistance?: boolean,
+  tcOnFiltersChange?: (filters: ColumnFiltersState) => void,
 }
 
 export interface ClientTableProps<TData> extends GeneralTableProps<TData> {
@@ -42,7 +43,6 @@ export interface ServerTableProps<TData> extends GeneralTableProps<TData> {
   tcRefresh?: boolean,
   tcCustomDataLoader?: TcCustomDataLoader,
   tcOnPageDataLoaded?: (data: TData) => void,
-  tcOnFiltersChange?: (filters: ColumnFiltersState) => void,
 }
 
 export type TcCustomDataLoader = ({

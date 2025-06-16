@@ -32,6 +32,8 @@ export function ClientTable<TData>({
   actions = [],
   language = 'en',
   tcEnableTableStatePersistance = false,
+  tcOnFiltersChange = () => null,
+  tcEnableTableStatePersistence = false,
   ...props
 }: ClientTableProps<TData>) {
   if (!tableId) {
@@ -114,6 +116,12 @@ export function ClientTable<TData>({
       sorting,
     ])
   }
+
+  useEffect(() => {
+    tcOnFiltersChange(columnFilters)
+  }, [
+    columnFilters,
+  ])
 
   const {
     width: windowWidth,
