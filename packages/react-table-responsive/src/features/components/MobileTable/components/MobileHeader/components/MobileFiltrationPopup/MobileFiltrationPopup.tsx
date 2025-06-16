@@ -3,8 +3,8 @@ import { useState } from 'react'
 import {
   ColumnFiltersState, flexRender, Header, Updater,
 } from '@tanstack/react-table'
-import IconFilter  from '../../../../../../../assets/images/icon-filter.svg'
 import { I18StringsProps } from '../../../../../../../i18n/types'
+import { IconFilter } from '../../../../../../../components/Icons/IconFilter'
 
 export function MobileFiltrationPopup<TData>({
   filterableColumns,

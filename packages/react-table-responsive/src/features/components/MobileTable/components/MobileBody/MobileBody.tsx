@@ -1,8 +1,8 @@
 import { Cell, Row, flexRender } from '@tanstack/react-table'
 import { useState } from 'react'
-import IconChevronDown  from '../../../../../assets/images/icon-chevron-down.svg'
 import { MobileActions } from './MobileActions/MobileActions'
 import { ActionsType } from '../../../../../types/types'
+import { IconChevronDown } from '../../../../../components/Icons/IconChevronDown'
 
 export function MobileBody<TData>({
   actions,
@@ -44,11 +44,11 @@ export function MobileBody<TData>({
             >
               <IconChevronDown
                 className={
-                    `tc-table-mobile__chevron tc-table-mobile__chevron--${row.id === expandedRowId
-                      ? 'up'
-                      : 'down'
-                    }`
-                  }
+                  `tc-table-mobile__chevron tc-table-mobile__chevron--${row.id === expandedRowId
+                    ? 'up'
+                    : 'down'
+                  }`
+                }
               />
             </button>
           </div>

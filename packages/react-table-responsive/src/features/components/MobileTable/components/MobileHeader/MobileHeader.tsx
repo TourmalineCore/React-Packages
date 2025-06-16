@@ -3,13 +3,13 @@ import {
 } from '@tanstack/react-table'
 import { ReactNode, useMemo, useState } from 'react'
 import { I18StringsProps } from '../../../../../i18n/types'
-import IconClear  from '../../../../../assets/images/icon-cross.svg'
-import IconSearch  from '../../../../../assets/images/icon-search.svg'
-import  IconSort  from '../../../../../assets/images/icon-sort.svg'
-import  IconFilter  from '../../../../../assets/images/icon-filter.svg'
 import { MobileHeaderButton } from './components/MobileHeaderButton/MobileHeaderButton'
 import { MobileSortingPopup } from './components/MobileSortingPopup/MobileSortingPopup'
 import { MobileFiltrationPopup } from './components/MobileFiltrationPopup/MobileFiltrationPopup'
+import { IconCross } from '../../../../../components/Icons/IconCross'
+import { IconSearch } from '../../../../../components/Icons/IconSearch'
+import { IconFilter } from '../../../../../components/Icons/IconFilter'
+import { IconSort } from '../../../../../components/Icons/IconSort'
 
 export function MobileHeader<TData>({
   flatHeaders,
@@ -90,18 +90,17 @@ export function MobileHeader<TData>({
                           className="tc-table-mobile-header__filter-clear-btn"
                           onClick={resetPrincipalFilter}
                         >
-                          <IconClear
+                          <IconCross
                             className="tc-table-mobile-header__filter-clear-icon"
-                            data-cy="input-clear-icon"
+                            dataCy="input-clear-icon"
                           />
-
                         </button>
                       )
                       : (
-                      <IconSearch
-                        className="tc-table-mobile-header__filter-search-icon"
-                        data-cy="input-search-icon"
-                      />  
+                        <IconSearch
+                          className="tc-table-mobile-header__filter-search-icon"
+                          dataCy="input-search-icon"
+                        />
                       )
                   }
                 </div>

@@ -2,11 +2,10 @@ import { Select } from '../../../../../components/Select/Select'
 import { PaginationButton } from './components/PaginationButton/PaginationButton'
 import { I18StringsProps } from '../../../../../i18n/types'
 import { saveTablePageSize } from '../../../../utils/pagination-utils'
-  
-import IconArrLeft  from '../../../../../assets/images/arrow-left.svg'
-import IconArrEndLeft  from '../../../../../assets/images/arrow-end-left.svg'
-import IconArrRight  from '../../../../../assets/images/arrow-right.svg'
-import IconArrEndRight  from '../../../../../assets/images/arrow-end-right.svg'
+import { IconArrowEndLeft } from '../../../../../components/Icons/IconArrowEndLeft'
+import { IconArrowLeft } from '../../../../../components/Icons/IconArrowLeft'
+import { IconArrowRight } from '../../../../../components/Icons/IconArrowRight'
+import { IconArrowEndRight } from '../../../../../components/Icons/IconArrowEndRight'
 
 export function DesktopPagination({
   tableId,
@@ -127,7 +126,7 @@ export function DesktopPagination({
             dataCy="first-page-button"
             onClick={firstPage}
           >
-            <IconArrEndLeft />
+            <IconArrowEndLeft />
           </PaginationButton>
 
           <PaginationButton
@@ -136,7 +135,7 @@ export function DesktopPagination({
             dataCy="prev-page-button"
             onClick={previousPage}
           >
-            <IconArrLeft />
+            <IconArrowLeft />
           </PaginationButton>
           {
             totalCount > 0
@@ -163,7 +162,7 @@ export function DesktopPagination({
             dataCy="next-page-button"
             onClick={nextPage}
           >
-            <IconArrRight />
+            <IconArrowRight />
           </PaginationButton>
 
           <PaginationButton
@@ -172,7 +171,7 @@ export function DesktopPagination({
             dataCy="last-page-button"
             onClick={lastPage}
           >
-            <IconArrEndRight />
+            <IconArrowEndRight />
           </PaginationButton>
         </div>
       </div>
