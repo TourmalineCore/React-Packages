@@ -6,3 +6,7 @@ es/
 
 storybook-static/
 .npmrc
+
+cypress/downloads
+
+cypress/screenshots

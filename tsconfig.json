@@ -1,11 +1,15 @@
 {
     "compilerOptions": {
-        "target": "esnext",
-        "lib": [
-            "dom",
-            "dom.iterable",
-            "esnext"
-        ],
+    "types": [
+      "cypress",
+      "cypress-localstorage-commands"
+    ],
+    "target": "esnext",
+    "lib": [
+        "dom",
+        "dom.iterable",
+        "esnext"
+    ],
     "allowJs": false,
     "skipLibCheck": true,
     "strict": true,
@@ -24,7 +28,9 @@
         "**/*.tsx",
         "**/*.js",
         "**/*.jsx",
-        "rollup.config.js"
+        "rollup.config.js",
+         // it won't complain on cy.mount then https://blog.bitsrc.io/how-to-solve-property-mount-does-not-exist-in-cypress-and-also-fix-custom-commands-errors-2ebfd093c32a
+        "cypress"
     ],
     "exclude": [
         "node_modules"
