@@ -1,6 +1,6 @@
 import { Cell, Row, flexRender } from '@tanstack/react-table'
 import { useState } from 'react'
-import { ReactComponent as IconChevronDown } from '../../../../../assets/images/icon-chevron-down.svg'
+import IconChevronDown  from '../../../../../assets/images/icon-chevron-down.svg'
 import { MobileActions } from './MobileActions/MobileActions'
 import { ActionsType } from '../../../../../types/types'
 

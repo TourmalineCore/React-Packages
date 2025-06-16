@@ -1,9 +1,7 @@
 import axios from 'axios'
 import { ServerTable } from './ServerTable'
-import {
-  generateTableTestData, getColumnsWithProps, getFilterInputById, getFilterInputByName, getSelectPagination, getTableRow, someTypes, TestData,
-} from '../utils/test-helpers'
-import { ServerTableProps } from '../../..'
+import { ServerTableProps } from '../../types/types'
+import { TestData, generateTableTestData, getTableRow, getColumnsWithProps, getFilterInputByName, someTypes, getFilterInputById, getSelectPagination } from '../utils/test-helpers'
 
 type TableResponse = {
   list: TestData[],
@@ -42,10 +40,10 @@ describe('desktopServerTable', () => {
   describe('onPageDataLoaded', onPageDataLoadedTests)
 
   describe('onFiltersChange', onFiltersChangeTests)
-})
+})  
 
 function initializationDataTests() {
-  test(`
+  it(`
   GIVEN two records from network
   WHEN render the component
   SHOULD see them
@@ -61,7 +59,7 @@ function initializationDataTests() {
 }
 
 function sortingTests() {
-  test(`
+  it(`
   GIVEN two records from network
   WHEN sorting by name in asc order is enabled
   SHOULD see sorted table contents in asc order by name
@@ -71,11 +69,11 @@ function sortingTests() {
     cy.wait('@getTableData')
 
     getTableRow()
-      .first()
+      .first()  
       .contains('Test 1')
   })
 
-  test(`
+  it(`
   GIVEN two records from network
   WHEN sorting by name in desc order is enabled
   SHOULD see sorted table contents in desc order by name
@@ -108,7 +106,7 @@ function sortingTests() {
       .contains('Test 2')
   })
 
-  test(`
+  it(`
   GIVEN two records from network sorted by name
   WHEN click on name cell in header 
   SHOULD change sorting direction to desc
@@ -145,7 +143,7 @@ function sortingTests() {
       .contains('Test 2')
   })
 
-  test(`
+  it(`
   GIVEN two records from network sorted by name
   WHEN click on id cell in header 
   SHOULD see records sorted by id
@@ -183,7 +181,7 @@ function sortingTests() {
 }
 
 function filtrationTests() {
-  test(`
+  it(`
   GIVEN two records from network
   WHEN filtration in name field is enabled
   AND input text "Test 1"
@@ -228,7 +226,7 @@ function filtrationTests() {
     cy.contains('Test 1')
   })
 
-  test(`
+  it(`
     GIVEN three records from network
     WHEN filtration in name field is enabled
     AND filtration in id field is also enabled
@@ -292,7 +290,7 @@ function filtrationTests() {
 }
 
 function paginationTests() {
-  test(`
+  it(`
   GIVEN eleven records from network
   WHEN change page size from 10 to 20
   SHOULD see eleven records on the page
@@ -339,7 +337,7 @@ function paginationTests() {
       .should('have.length', 11)
   })
 
-  test(`
+  it(`
   GIVEN eleven records from network
   WHEN change page from 1 to 2
   SHOULD see eleventh record on the page
@@ -388,7 +386,7 @@ function paginationTests() {
 }
 
 function requestHeadersTests() {
-  test(`
+  it(`
   GIVEN server table with tcAuthToken prop
   WHEN render the component
   SHOULD request headers include language and authorization
@@ -407,7 +405,7 @@ function requestHeadersTests() {
     })
   })
 
-  test(`
+  it(`
   GIVEN server table without tcAuthToken prop
   WHEN render the component
   SHOULD request headers include only language
@@ -425,12 +423,12 @@ function requestHeadersTests() {
 }
 
 function requestDataTests() {
-  test(`
+  it(`
   GIVEN server table with tcRequestData prop
   WHEN render the component
   SHOULD request body includes data from tcRequestData
 `, () => {
-    cy.intercept('POST', '**/table/test*', (req) => {
+    cy.intercept('POST', '**/table/test*', async (req) => {
       expect(req.body).to.deep.equal({
         data: 'testData',
       })
@@ -444,7 +442,7 @@ function requestDataTests() {
           'content-type': 'application/json',
         },
       })
-    })
+    }).as('postTableData')
 
     mountComponent({
       tcRequestMethod: 'POST',
@@ -452,11 +450,13 @@ function requestDataTests() {
         data: 'testData',
       },
     })
+
+    cy.wait('@postTableData')
   })
 }
 
 function customDataLoaderTests() {
-  test(`
+  it(`
   GIVEN server table with tcCustomDataLoader prop
   WHEN render the component
   SHOULD see table with data from tcCustomDataLoader
@@ -481,7 +481,7 @@ function customDataLoaderTests() {
 }
 
 function onPageDataLoadedTests() {
-  test(`
+  it(`
   GIVEN server table with onPageDataLoaded prop enabled by default
   WHEN render the component
   SHOULD trigger onPageDataLoaded callback
@@ -496,7 +496,7 @@ function onPageDataLoadedTests() {
 }
 
 function onFiltersChangeTests() {
-  test(`
+  it(`
   GIVEN server table with onFiltersChange prop enabled by default
   WHEN render the component
   SHOULD trigger onFiltersChange callback
@@ -530,6 +530,8 @@ function onFiltersChangeTests() {
     )
       .as('getFilteredResponseData')
 
+    cy.wait('@getFilteredResponseData')
+
     cy.get('@onFiltersChange')
       .should('have.been.called')
   })
@@ -557,7 +559,7 @@ function mountComponent({
       columns={columns}
       tcHttpClient={axios}
       tcOrder={tcOrder}
-      tcApiHostUrl="https://testhost.com"
+      tcApiHostUrl="http://localhost:5173"
       tcDataPath="/table/test"
       tcRenderMobileTitle={((row) => row.original.name)}
       tcOnPageDataLoaded={onPageDataLoadedSpy}

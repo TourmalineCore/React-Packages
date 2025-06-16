@@ -7,7 +7,7 @@ describe('select', () => {
 })
 
 function initializeTests() {
-  test(`
+  it(`
   GIVEN select component
   WHEN select value 10
   SHOULD see it
@@ -20,7 +20,7 @@ function initializeTests() {
 }
 
 function onChangeTests() {
-  test(`
+  it(`
   GIVEN select component
   WHEN select value 10
   AND change selected value to 20

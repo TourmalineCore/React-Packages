@@ -1,17 +1,7 @@
 import axios from 'axios'
 import { ServerTable } from './ServerTable'
-import {
-  generateTableTestData,
-  getColumnsWithProps,
-  getFilterInputById,
-  getFilterInputByName,
-  getTableMobileFiltrationButton,
-  getTableMobileRow,
-  getTableMobileSortingButton,
-  someTypes,
-  TestData,
-} from '../utils/test-helpers'
-import { ServerTableProps } from '../../types'
+import { ServerTableProps } from '../../types/types'
+import { TestData, generateTableTestData, getTableMobileRow, getTableMobileSortingButton, getColumnsWithProps, getFilterInputByName, someTypes, getTableMobileFiltrationButton, getFilterInputById } from '../utils/test-helpers'
 
 type TableResponse = {
   list: TestData[],
@@ -28,7 +18,7 @@ describe('mobileServerTable', () => {
     cy.intercept(
       'GET',
       '**/table/test?draw=**&page=1&pageSize=10&orderBy=name&orderingDirection=asc',
-      tableResponse,
+      tableResponse,  
     )
       .as('getTableData')
   })
@@ -43,7 +33,7 @@ describe('mobileServerTable', () => {
 })
 
 function initializationDataTests() {
-  test(`
+  it(`
     GIVEN two records from network
     WHEN render the component
     SHOULD see them
@@ -59,7 +49,7 @@ function initializationDataTests() {
 }
 
 function sortingTests() {
-  test(`
+  it(`
     GIVEN two records from network
     WHEN sorting by name in asc order is enabled
     SHOULD see sorted table contents in asc order by name
@@ -73,7 +63,7 @@ function sortingTests() {
       .contains('Test 1')
   })
 
-  test(`
+  it(`
     GIVEN two records from network
     WHEN sorting by name in desc order is enabled
     SHOULD see sorted table contents in desc order by name
@@ -106,7 +96,7 @@ function sortingTests() {
       .contains('Test 2')
   })
 
-  test(`
+  it(`
     GIVEN two records from network sorted by name
     WHEN click on mobile menu with sorting type
     AND change it to desc and apply
@@ -144,7 +134,7 @@ function sortingTests() {
       .contains('Test 2')
   })
 
-  test(`
+  it(`
     GIVEN two records from network sorted by name
     WHEN click on mobile menu with sorting field
     AND change it to id and apply
@@ -189,7 +179,7 @@ function sortingTests() {
 }
 
 function filtrationTests() {
-  test(`
+  it(`
     GIVEN two records from network
     WHEN filtration in name field is enabled
     AND input text "Test 1"
@@ -232,7 +222,7 @@ function filtrationTests() {
     cy.contains('Test 1')
   })
 
-  test(`
+  it(`
     GIVEN three records from network
     WHEN filtration in name field is enabled
     AND filtration in id field is also enabled
@@ -324,7 +314,7 @@ function filtrationTests() {
 }
 
 function showMoreTests() {
-  test(`
+  it(`
     GIVEN mobile client table with 10 records visible
     WHEN total count of records is 15
     AND page size is 10

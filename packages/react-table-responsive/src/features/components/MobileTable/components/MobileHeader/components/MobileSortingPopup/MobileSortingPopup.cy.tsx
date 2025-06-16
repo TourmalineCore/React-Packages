@@ -5,7 +5,7 @@ import { MobileSortingPopup } from './MobileSortingPopup'
 describe('mobileSortingPopup', () => {
   describe('initialization', () => {
     describe('initializeComponent', initializeComponentTests)
-
+    
     describe('initializeTranslation', initializeTranslationTests)
   })
 
@@ -13,7 +13,7 @@ describe('mobileSortingPopup', () => {
 })
 
 function initializeComponentTests() {
-  test(`
+  it(`
   GIVEN MobileSortingPopup component
   WHEN render this component
   SHOULD see sorting options
@@ -30,7 +30,7 @@ function initializeComponentTests() {
 }
 
 function interactionTests() {
-  test(`
+  it(`
   GIVEN MobileSortingPopup component
   WHEN click on cancel button
   SHOULD trigger on click event
@@ -44,7 +44,7 @@ function interactionTests() {
       .should('have.been.calledOnce')
   })
 
-  test(`
+  it(`
   GIVEN MobileSortingPopup component
   WHEN toggle sorting type 
   SHOULD trigger on change event
@@ -60,7 +60,7 @@ function interactionTests() {
 }
 
 function initializeTranslationTests() {
-  test(`
+  it(`
   GIVEN MobileSortingPopup component
   WHEN language property is 'en'
   SHOULD see component with English translations
@@ -74,7 +74,7 @@ function initializeTranslationTests() {
     cy.contains('Descending')
   })
 
-  test(`
+  it(`
   GIVEN MobileSortingPopup component
   WHEN language property is 'ru'
   SHOULD see component with Russian translations

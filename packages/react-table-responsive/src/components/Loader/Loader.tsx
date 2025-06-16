@@ -1,4 +1,5 @@
-import { I18StringsProps } from '../../i18n/types'
+import { I18StringsProps } from "../../i18n/types"
+
 
 export function Loader({
   loading,

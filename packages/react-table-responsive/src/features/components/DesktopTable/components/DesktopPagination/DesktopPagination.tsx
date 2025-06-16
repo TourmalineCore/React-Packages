@@ -2,11 +2,11 @@ import { Select } from '../../../../../components/Select/Select'
 import { PaginationButton } from './components/PaginationButton/PaginationButton'
 import { I18StringsProps } from '../../../../../i18n/types'
 import { saveTablePageSize } from '../../../../utils/pagination-utils'
-
-import { ReactComponent as IconArrLeft } from '../../../../../assets/images/arrow-left.svg'
-import { ReactComponent as IconArrEndLeft } from '../../../../../assets/images/arrow-end-left.svg'
-import { ReactComponent as IconArrRight } from '../../../../../assets/images/arrow-right.svg'
-import { ReactComponent as IconArrEndRight } from '../../../../../assets/images/arrow-end-right.svg'
+  
+import IconArrLeft  from '../../../../../assets/images/arrow-left.svg'
+import IconArrEndLeft  from '../../../../../assets/images/arrow-end-left.svg'
+import IconArrRight  from '../../../../../assets/images/arrow-right.svg'
+import IconArrEndRight  from '../../../../../assets/images/arrow-end-right.svg'
 
 export function DesktopPagination({
   tableId,
@@ -85,7 +85,7 @@ export function DesktopPagination({
         </div>
       </div>
       <div
-        className="tc-table-desktop-pagintation__center"
+        className="tc-table-desktop-pagination__center"
         data-cy="table-pagination-shown-records"
       >
         {

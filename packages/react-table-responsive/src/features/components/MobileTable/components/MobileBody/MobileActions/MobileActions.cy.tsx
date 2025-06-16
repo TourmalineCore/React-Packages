@@ -7,7 +7,7 @@ describe('mobileActions', () => {
 })
 
 function initializeTests() {
-  test(`
+  it(`
   GIVEN MobileActions component
   WHEN render this component
   AND there is one action
@@ -27,7 +27,7 @@ function initializeTests() {
 }
 
 function interactionTests() {
-  test(`
+  it(`
   GIVEN MobileActions component
   WHEN click action button
   SHOULD trigger on click event

@@ -5,7 +5,7 @@ import { CheckField } from '@tourmalinecore/react-tc-ui-kit'
 import { ReactNode, useMemo, useState } from 'react'
 import { ColumnSort, SortingState, Updater } from '@tanstack/react-table'
 import { I18StringsProps } from '../../../../../../../i18n/types'
-import { ReactComponent as IconSort } from '../../../../../../../assets/images/icon-sort.svg'
+import IconSort from '../../../../../../../assets/images/icon-sort.svg'
 
 export function MobileSortingPopup({
   onClose,

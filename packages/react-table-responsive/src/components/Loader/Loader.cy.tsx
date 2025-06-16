@@ -6,9 +6,9 @@ describe('loader', () => {
 
   describe('translation', translationTests)
 })
-
+  
 function loadingTests() {
-  test(`
+  it(`
   GIVEN loader component
   WHEN 'loading' props is true
   SHOULD see the loader
@@ -19,7 +19,7 @@ function loadingTests() {
       .should('exist')
   })
 
-  test(`
+  it(`
   GIVEN loader component
   WHEN 'loading' props is false
   SHOULD not see the loader
@@ -34,7 +34,7 @@ function loadingTests() {
 }
 
 function translationTests() {
-  test(`
+  it(`
   GIVEN loader component
   WHEN language property is 'en'
   SHOULD see loader with English translations
@@ -45,7 +45,7 @@ function translationTests() {
       .contains('Loading...')
   })
 
-  test(`
+  it(`
   GIVEN loader component
   WHEN language property is 'ru'
   SHOULD see loader with Russian translations
@@ -73,7 +73,7 @@ function mountComponent({
     />,
   )
 }
-
+  
 function getLoader() {
   return cy.getByData('loader')
 }

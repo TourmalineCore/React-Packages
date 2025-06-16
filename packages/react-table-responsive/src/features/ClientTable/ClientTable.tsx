@@ -19,7 +19,7 @@ const tablesState = new TablesState()
 export function ClientTable<TData>({
   tableId,
   columns,
-  loading,
+  loading = false,
   tcIsStriped,
   tcOrder = {
     desc: false,

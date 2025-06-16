@@ -1,17 +1,7 @@
-import {
-  TestData,
-  generateTableTestData,
-  getColumnsWithProps,
-  getFilterInputById,
-  getFilterInputByName,
-  getSelectPagination,
-  getTableRow,
-  someTypesMetadata,
-  someTypesOptions,
-} from '../utils/test-helpers'
-import { ClientTable } from './ClientTable'
 import { SelectColumnFilter } from '../../components/Filters/SelectColumnFilter/SelectColumnFilter'
-import { ClientTableProps } from '../../types'
+import { ClientTableProps } from '../../types/types'
+import { generateTableTestData, getColumnsWithProps, getFilterInputById, getFilterInputByName, getSelectPagination, getTableRow, someTypesMetadata, someTypesOptions, TestData } from '../utils/test-helpers'
+import { ClientTable } from './ClientTable'
 
 describe('desktopClientTable', () => {
   describe('initialization', () => {
@@ -36,17 +26,18 @@ describe('desktopClientTable', () => {
 })
 
 function initializeBasicComponentTests() {
-  test(`
+  it(`
   GIVEN desktop client table
   WHEN render the basic component
   SHOULD see it
-`, () => {
+`, () => {  
     mountComponent()
 
     cy.getByData('table-desktop')
       .should('exist')
 
     cy.contains('Id')
+      .should('exist')
 
     cy.contains('Name')
       .should('exist')
@@ -75,7 +66,7 @@ function initializeBasicComponentTests() {
 }
 
 function initializeTranslationTests() {
-  test(`
+  it(`
   GIVEN desktop client table
   WHEN language property is 'en'
   AND table data has one record
@@ -91,7 +82,7 @@ function initializeTranslationTests() {
       .contains('Single Record')
   })
 
-  test(`
+  it(`
   GIVEN desktop client table
   WHEN language property is 'en'
   AND table data is not empty
@@ -110,7 +101,7 @@ function initializeTranslationTests() {
       .contains('of')
   })
 
-  test(`
+  it(`
   GIVEN desktop client table
   WHEN language property is 'en'
   AND table data is empty
@@ -124,7 +115,7 @@ function initializeTranslationTests() {
       .contains('No Records')
   })
 
-  test(`
+  it(`
   GIVEN desktop client table
   WHEN language property is 'ru'
   AND table data is not empty
@@ -145,7 +136,7 @@ function initializeTranslationTests() {
       .contains('из')
   })
 
-  test(`
+  it(`
   GIVEN desktop client table
   WHEN language property is 'ru'
   AND table data is empty
@@ -160,7 +151,7 @@ function initializeTranslationTests() {
       .contains('Нет записей')
   })
 
-  test(`
+  it(`
   GIVEN desktop client table
   WHEN language property is 'ru'
   AND table data has one record
@@ -179,7 +170,7 @@ function initializeTranslationTests() {
 }
 
 function stylingTests() {
-  test(`
+  it(`
   GIVEN desktop client table
   WHEN 'isStriped' props is true
   SHOULD see the table in which colors alternate
@@ -192,7 +183,7 @@ function stylingTests() {
       .should('exist')
   })
 
-  test(`
+  it(`
   GIVEN desktop table
   WHEN 'id' cell is aligned right
   SHOULD see appropriate style on this cell
@@ -212,7 +203,7 @@ function stylingTests() {
 }
 
 function sortingTests() {
-  test(`
+  it(`
   GIVEN desktop client table
   WHEN sorting by id in asc order is enabled
   SHOULD see sorted table contents in asc order by id
@@ -229,7 +220,7 @@ function sortingTests() {
       .contains('1')
   })
 
-  test(`
+  it(`
   GIVEN desktop client table
   WHEN sorting by id in desc order is enabled
   SHOULD see sorted table contents in desc order by id
@@ -246,7 +237,7 @@ function sortingTests() {
       .contains('2')
   })
 
-  test(`
+  it(`
   GIVEN desktop client table 
   WHEN sorting by id in asc order is enabled 
   AND click on header table with the id value
@@ -281,7 +272,7 @@ function sortingTests() {
 }
 
 function filterTests() {
-  test(`
+  it(`
   GIVEN desktop table 
   WHEN default input filter is enabled
   AND custom placeholder is set
@@ -302,7 +293,7 @@ function filterTests() {
       .should('have.attr', 'placeholder', 'Search')
   })
 
-  test(`
+  it(`
   GIVEN rendered desktop table
   WHEN default input filter is enabled
   AND write the value '2' in the filter input field
@@ -330,7 +321,7 @@ function filterTests() {
       .contains('2')
   })
 
-  test(`
+  it(`
   GIVEN desktop table 
   WHEN select filter is enabled
   AND choosing an option 
@@ -367,7 +358,7 @@ function filterTests() {
       .contains('First Type')
   })
 
-  test(`
+  it(`
   GIVEN desktop table 
   WHEN 'tcPrincipalFilterableColumn' flag is true
   AND write the value 'Non-existing record' in the filter input field
@@ -388,7 +379,7 @@ function filterTests() {
     cy.contains('No matching records found')
   })
 
-  test(`
+  it(`
   GIVEN desktop table 
   WHEN select filter is enabled
   AND name column has filterFn fuzzy
@@ -414,7 +405,7 @@ function filterTests() {
 }
 
 function footerTests() {
-  test(`
+  it(`
   GIVEN desktop client table 
   WHEN render the component with footer
   SHOULD see it in the table
@@ -437,7 +428,7 @@ function footerTests() {
 }
 
 function paginationTests() {
-  test(`
+  it(`
   GIVEN desktop table where page size is 10
   WHEN change page size to 20
   SHOULD see 20 records on the page
@@ -458,7 +449,7 @@ function paginationTests() {
       .should('have.length', 20)
   })
 
-  test(`
+  it(`
   GIVEN desktop table
   WHEN number of records is 30 and page size is 10
   AND click on next page button after click on previous button
@@ -556,7 +547,7 @@ function paginationTests() {
 }
 
 function actionsTests() {
-  test(`
+  it(`
   GIVEN desktop table
   WHEN click on the action button of first record
   SHOULD see opened dropdown with actions
@@ -594,11 +585,11 @@ function actionsTests() {
 }
 
 function localStorageTests() {
-  test(`
+  it(`
   GIVEN desktop client table
   WHEN change pageSize to 20
   SHOULD localStorage named 'desktop-test-table-page-size' is equal 20
-`, () => {
+  `, () => {
     mountComponent({
       data: generateTableTestData({
         recordCount: 20,
@@ -614,11 +605,11 @@ function localStorageTests() {
       })
   })
 
-  test(`
+  it(`
   GIVEN desktop client table
   WHEN localStorage named 'desktop-test-table-page-size' is equal 20
   SHOULD see table with page size equal to 20
-`, () => {
+  `, () => {
     mountComponent({
       data: generateTableTestData({
         recordCount: 20,

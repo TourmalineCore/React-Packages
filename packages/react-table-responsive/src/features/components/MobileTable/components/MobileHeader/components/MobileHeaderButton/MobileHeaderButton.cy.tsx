@@ -8,7 +8,7 @@ describe('mobileHeaderButton', () => {
 })
 
 function initializeComponentTests() {
-  test(`
+  it(`
   GIVEN mobile client table
   WHEN render this component
   AND children is 'Button'
@@ -24,7 +24,7 @@ function initializeComponentTests() {
 }
 
 function interactionTests() {
-  test(`
+  it(`
   GIVEN mobile client table
   WHEN click on button
   SHOULD trigger on click event

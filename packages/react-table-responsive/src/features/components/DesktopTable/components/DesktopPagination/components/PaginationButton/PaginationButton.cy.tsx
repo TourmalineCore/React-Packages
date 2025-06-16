@@ -14,7 +14,7 @@ describe('paginationButton', () => {
 })
 
 function initializeTitleTests() {
-  test(`
+  it(`
   GIVEN PaginationButton component
   WHEN title props is "Test title"
   SHOULD have "Test title" attribute on button
@@ -30,7 +30,7 @@ function initializeTitleTests() {
 }
 
 function initializeChildrenTests() {
-  test(`
+  it(`
   GIVEN PaginationButton component
   WHEN children props is "Hello"
   SHOULD see "Hello" text on the button 
@@ -45,7 +45,7 @@ function initializeChildrenTests() {
 }
 
 function disabledTests() {
-  test(`
+  it(`
   GIVEN PaginationButton component
   WHEN disabled props is true
   SHOULD see disabled button
@@ -58,7 +58,7 @@ function disabledTests() {
       .should('be.disabled')
   })
 
-  test(`
+  it(`
   GIVEN PaginationButton component
   WHEN disabled props is false
   SHOULD see not disabled button
@@ -71,7 +71,7 @@ function disabledTests() {
 }
 
 function clickTests() {
-  test(`
+  it(`
   GIVEN PaginationButton component
   WHEN click on button
   SHOULD trigger on click event

@@ -7,9 +7,9 @@ describe('noRecords', () => {
 })
 
 function initializeTests() {
-  test(`
+  it(`
   GIVEN NoRecords component
-  WHEN isShow prop is false
+  WHEN isShow prop is false 
   SHOULD not see no records message
 `, () => {
     mountComponent({
@@ -20,7 +20,7 @@ function initializeTests() {
       .should('not.exist')
   })
 
-  test(`
+  it(`
   GIVEN NoRecords component
   WHEN isShow prop is true
   SHOULD see no records message
@@ -32,7 +32,7 @@ function initializeTests() {
 }
 
 function initializeTranslationTests() {
-  test(`
+  it(`
   GIVEN NoRecords component
   WHEN language property is 'ru'
   SHOULD see component with Russian translations

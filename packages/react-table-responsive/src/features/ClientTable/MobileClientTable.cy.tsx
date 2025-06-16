@@ -1,17 +1,7 @@
 import { ClientTable } from './ClientTable'
-import {
-  TestData,
-  generateTableTestData,
-  getColumnsWithProps,
-  getFilterInputByName,
-  getTableMobileFiltrationButton,
-  getTableMobileRow,
-  getTableMobileSortingButton,
-  someTypesMetadata,
-  someTypesOptions,
-} from '../utils/test-helpers'
-import { ClientTableProps } from '../../..'
 import { SelectColumnFilter } from '../../components/Filters/SelectColumnFilter/SelectColumnFilter'
+import { ClientTableProps } from '../../types/types'
+import { generateTableTestData, getColumnsWithProps, getFilterInputByName, getTableMobileFiltrationButton, getTableMobileRow, getTableMobileSortingButton, someTypesMetadata, someTypesOptions, TestData } from '../utils/test-helpers'
 
 describe('mobileClientTable', () => {
   describe('initialization', () => {
@@ -36,7 +26,7 @@ describe('mobileClientTable', () => {
 })
 
 function initializeBasicComponentTests() {
-  test(`
+  it(`
   GIVEN mobile client table
   WHEN render the basic component
   SHOULD see it
@@ -54,7 +44,7 @@ function initializeBasicComponentTests() {
 }
 
 function initializeTranslationTests() {
-  test(`
+  it(`
   GIVEN mobile client table
   WHEN language property is 'en'
   AND 'tcNonMobileColumn' props is true 
@@ -71,7 +61,7 @@ function initializeTranslationTests() {
     cy.contains('Total')
   })
 
-  test(`
+  it(`
   GIVEN mobile client table
   WHEN language property is 'ru'
   AND 'tcNonMobileColumn' props is true 
@@ -89,7 +79,7 @@ function initializeTranslationTests() {
     cy.contains('Итого')
   })
 
-  test(`
+  it(`
   GIVEN mobile client table
   WHEN language property is 'en'
   AND 'tcPrincipalFilterableColumn' flag is true
@@ -108,7 +98,7 @@ function initializeTranslationTests() {
       .should('have.attr', 'placeholder', 'Search')
   })
 
-  test(`
+  it(`
   GIVEN mobile client table
   WHEN language property is 'ru'
   AND 'tcPrincipalFilterableColumn' flag is true
@@ -130,7 +120,7 @@ function initializeTranslationTests() {
 }
 
 function initializeSearchInput() {
-  test(`
+  it(`
   GIVEN mobile client table
   WHEN at least one column is filterable
   AND 'tcPrincipalFilterableColumn' flag is true
@@ -154,7 +144,7 @@ function initializeSearchInput() {
 }
 
 function filterTests() {
-  test(`
+  it(`
   GIVEN mobile client table
   WHEN 'tcPrincipalFilterableColumn' flag is true
   AND write the value 'Test 2' in the filter input field
@@ -180,7 +170,7 @@ function filterTests() {
       .should('not.exist')
   })
 
-  test(`
+  it(`
   GIVEN mobile client table
   WHEN 'tcPrincipalFilterableColumn' flag is true
   AND write the value 'Test 2' in the filter input field
@@ -206,7 +196,7 @@ function filterTests() {
       .should('have.value', '')
   })
 
-  test(`
+  it(`
   GIVEN unfiltered mobile client table
   WHEN open the filtering popup
   AND write filtration condition for name column
@@ -240,7 +230,7 @@ function filterTests() {
       .should('not.exist')
   })
 
-  test(`
+  it(`
   GIVEN unfiltered mobile client  table 
   WHEN open the filtering popup
   AND select filtration condition for type column
@@ -290,7 +280,7 @@ function filterTests() {
       .should('not.exist')
   })
 
-  test(`
+  it(`
   GIVEN mobile client table
   WHEN 'tcPrincipalFilterableColumn' flag is true
   AND write the value 'Non-existing record' in the filter input field
@@ -313,7 +303,7 @@ function filterTests() {
 }
 
 function recordAccordionClickTests() {
-  test(`
+  it(`
   GIVEN mobile client table
   WHEN click on first record
   AND click on it once again
@@ -337,7 +327,7 @@ function recordAccordionClickTests() {
 }
 
 function stylingTests() {
-  test(`
+  it(`
   GIVEN mobile client table 
   WHEN 'tcNonMobileColumn' props is true for id column
   AND click on the first record
@@ -359,7 +349,7 @@ function stylingTests() {
       .should('not.exist')
   })
 
-  test(`
+  it(`
   GIVEN mobile client table
   WHEN 'tcTwoRowsMobileLayout' props is true
   AND click on the first record
@@ -382,7 +372,7 @@ function stylingTests() {
       .should('exist')
   })
 
-  test(`
+  it(`
   GIVEN mobile client table 
   WHEN 'tcNoFooterColumn' props is true for id column
   SHOULD id column not render in footer
@@ -406,7 +396,7 @@ function stylingTests() {
 }
 
 function footerTests() {
-  test(`
+  it(`
   GIVEN mobile client table with footer
   WHEN render the component
   SHOULD see them
@@ -431,7 +421,7 @@ function footerTests() {
 }
 
 function sortingTests() {
-  test(`
+  it(`
   GIVEN mobile client table with asc order for Id column
   WHEN open the sorting popup
   AND change sorting order to desc and column to sort from Id to Name
@@ -472,7 +462,7 @@ function sortingTests() {
 }
 
 function showMoreTests() {
-  test(`
+  it(`
   GIVEN mobile client table with 5 records visible
   WHEN total count of records is 10
   AND page size is 5

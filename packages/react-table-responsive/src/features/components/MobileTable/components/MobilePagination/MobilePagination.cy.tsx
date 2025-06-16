@@ -10,7 +10,7 @@ describe('mobilePagination', () => {
 })
 
 function initializeTests() {
-  test(`
+  it(`
   GIVEN MobilePagination component
   WHEN totalCount is 10
   AND pageSize is 5
@@ -33,7 +33,7 @@ function initializeTests() {
 }
 
 function translationsTests() {
-  test(`
+  it(`
   GIVEN MobilePagination component
   WHEN language property is 'en'
   SHOULD see component with English translations
@@ -47,7 +47,7 @@ function translationsTests() {
     cy.contains('Show More')
   })
 
-  test(`
+  it(`
   GIVEN MobilePagination component
   WHEN language property is 'ru'
   SHOULD see component with Russian translations
@@ -65,7 +65,7 @@ function translationsTests() {
 }
 
 function showMoreTests() {
-  test(`
+  it(`
   GIVEN MobilePagination component
   WHEN totalCount is 5
   AND pageSize is 5
@@ -79,7 +79,7 @@ function showMoreTests() {
       .should('not.exist')
   })
 
-  test(`
+  it(`
   GIVEN MobilePagination component
   WHEN totalCount is 10
   AND pageSize is 5
