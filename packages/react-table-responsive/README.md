@@ -1,12 +1,14 @@
 # React-Table-Responsive
 
+It's documentation for version > 1.0.0. If you are using version < 1.0.0, see old documentation [here](./OLD-README.md).
+
 Mobile friendly react table component based on [react-table](https://github.com/tannerlinsley/react-table) using its useFlexLayout hook.
 
 ## [Demo](https://tourmalinecore.github.io/React-Packages/?path=/story/table--client-side-desktop)
 
 # Table of Content
 
-- [Instalation](#Instalation)
+- [Installation](#Instalation)
 - [Features](#Main-Package-Features)
 - [Client Side Table](#Client-Side-Table)
   - [Configuration](#Configuration)
@@ -16,14 +18,14 @@ Mobile friendly react table component based on [react-table](https://github.com/
     - [Select Column Filter](#Select-Column-Filter)
   - [Actions](#Actions)
     - [Action props](#Action-props)
-  - [Table State Persistance](#Table-State-Persistance)
+  - [Table State Persistance](#table-state-persistence)
 - [Server Side Table](#Server-Side-Table)
   - [Table Refresh](#Table-Refresh)
   - [Configuration](#Configuration)
   - [Request data](#Request-data)
 - [Unsupported features from react-table](#Unsupported-features-from-react-table)
 
-# Instalation
+# Installation
 
 The package can be installed via npm:
 ```
@@ -35,7 +37,7 @@ Or via yarn:
 yarn add @tourmalinecore/react-table-responsive
 ```
 
-### Do not forget to import styles if you want to use the defafult styling.
+### Do not forget to import styles if you want to use the default styling.
 should be imported once in your root component
 ```JSX
 import '@tourmalinecore/react-table-responsive/es/index.css';
@@ -50,12 +52,12 @@ import '@tourmalinecore/react-tc-ui-kit/es/index.css';
 - Table that supports **client** side pagination/sorting/filtration. [Go to section](#client-side-table)
 - Table that supports **server** side pagination/sorting/filtration. [Go to section](#server-side-table)
 - Single column sorting. [Go to section](#sorting)
-- Optional persistance of selected sorting, filters, page size, etc. by storing them in the LS.
+- Optional persistence of selected sorting, filters, page size, etc. by storing them in the LS.
 - Different pagination strategy between mobile and desktop versions of the table.
 - Total amount of rows in the footer of the table.
 - Actions column. Easy way to create interactive table by adding action buttons to each row. [Go to section](#actions)
 - External trigger of the server side table data reloading. [Go to section](#refresh-table)
-- Customizable column filtration. You can use your own filter-component or override the default filtration behaviour. [Go to section](#filters)
+- Customizable column filtration. You can use your own filter-component or override the default filtration behavior. [Go to section](#filters)
 - Passing `react-table` props to the underlying engine as is. (not all the features are supported, see the list [here](#unsupported-features-from-react-table))
 
 # Client Side Table
@@ -65,7 +67,12 @@ The most basic usage of the ClientTable:
 ```JSX
 import {ClientTable} from '@tourmalinecore/react-table-responsive';
 
-const data = [
+type MyData = {
+  name: string;
+  data: string;
+} 
+
+const data: MyData[] = [
     {
       name: 'name1',
       data: 'data1',
@@ -76,78 +83,85 @@ const data = [
     },
   ];
 
-const columns = [
-    {
-      Header: 'Name',
-      accessor: 'name',
-    },
-    {
-      Header: 'Data',
-      accessor: 'data',
-    },
-  ];
-
-return(
-  <ClientTable
-    tableId="uniq-table-id"
+return (
+  <ClientTable<MyData>
+    tableId="unique-table-id"
     data={data}
-    columns={columns}
+    columns={[
+      {
+        header: `Name`,
+        accessorFn: (row) => row.name,
+      },
+      {
+        header: `Data`,
+        accessorFn: (row) => row.data,
+      },
+    ]}
+    tcRenderMobileTitle={(row) => row.original.name}
   />
 );
 ```
 
 ## Configuration
-
 | Name | Type | Default Value | Description |
 |-|-|-|-|
 | tableId | String | "" | **Required parameter.** Used to differentiate the state of a table among the other table instances. Should be unique |
 | data | Array\<any\> | [] | Data for table grouped by rows, it maps with **columns** by property key, using columns '*accessor field*'. Each object is a `row`: **key** - column id (use it in columns 'accessor' field), **value** - cell data |
-| columns | Array\<Column\> | [] | Defines table's collumns. See the table below for more info |
-| actions | Array\<Action\> | [] | Defines a special column for action-buttons. See the table below for more info |
-| order | Object | {} | Sorting order |
-| language | String \| Object | "en" | Language used for the navigation labels. Accepts "en"/"ru" or Object containing translation for all necessary strings ([example](https://github.com/TourmalineCore/React-Packages/blob/feature/readme-update/packages/react-table-responsive/src/i18n/en.js)) |
-| renderMobileTitle | React.Component \| Function(Row) => JSX | () => null | Rows accordion head content for mobile view |
-| maxStillMobileBreakpoint | Int | 800 | Breakpoint to toggle between mobile/desktop view |
-| isStriped | Boolean | false | Sets striped rows view
-| loading | Boolean | false | If true displays loader in place of table's content |
-| onFiltersChange | Function(Array\<Filter\>) => any | () => null | Triggered when value of any filter is changed |
-| enableTableStatePersistance | Boolean | false | If true, selected filters, ordering and current page will be stored in memory and when user goes back to the table its state will be initialized with it. It is stored in a const variable thus state dissapears on page reload |
-
-> **NOTE**: You can also provide your custom props: anything you put into these options will automatically be available on the instance. E.g. if you provide a function, it will be available from the `Cell` renderers
+| columns | Array\<[Column](#Column-props)\> | [] | Defines table's columns. See the table below for more info |
+| tcActions | Array\<[Action](#Action-props)\> | [] | Defines a special column for action-buttons. See the table below for more info |
+| tcOrder | [ColumnSort](https://tanstack.com/table/v8/docs/guide/sorting#sorting-state)  | { desc: false; id: ''; } | Sorting order |
+| tcLanguage | "en" \| "ru" | "en" | Language used for the navigation labels. Accepts "en"/"ru" or Object containing translation for all necessary strings ([example](https://github.com/TourmalineCore/React-Packages/blob/feature/readme-update/packages/react-table-responsive/src/i18n/en.js)) |
+| tcRenderMobileTitle | ([Row](https://tanstack.com/table/v8/docs/api/core/row)) => ReactNode | () => null | Rows accordion head content for mobile view |
+| tcMaxStillMobileBreakpoint | Number | 800 | Breakpoint to toggle between mobile/desktop view |
+| tcIsStriped | Boolean | false | Sets striped rows view
+| tcLoading | Boolean | false | If true displays loader in place of table's content |
+| tcOnFiltersChange | ([filters](https://tanstack.com/table/v8/docs/api/features/column-filtering)) => void | () => null | Triggered when value of any filter is changed |
+| tcEnableTableStatePersistence | Boolean | false | If true, selected filters, ordering and current page will be stored in memory and when user goes back to the table its state will be initialized with it. It is stored in a const variable thus state disappears on page reload |
+| tcPageSizeOptions | Number[] | [10, 20, 50, 100] | You can override the default page size |
 
 ### Column props
 
 | Name | Type | Default Value | Description |
 |-|-|-|-|
-| Header | String | "" | Display name for the column 'th' |
-| accessor | String \| Function(originalRow, rowIndex) => any | "" | Used to build the data model for your column. The data returned by an accessor should be primitive and sortable |
-| Cell |  React.Component \| Function({row}) => JSX | ({ value }) => String(value) | Function for renedring cell's content. By default renders content of a property with the same name as the `accessor` as text |
-| Footer | String \| React.Component \| Function => JSX | () => null | Renders column's footer. Receives the table instance and column model as props |
-| filter | Function(rows: Array\<Row\>, columnIds: Array\<ColumnId: String\>, filterValue) => Rows[] | "text" | Function used for the column filtration. If a string is passed, the function with that name will be used from either the custom filterTypes table option (if specified) or from the built-in filtering types object. |
-| Filter | React.Component \| Function() => JSX | () => null | Receives the table instance and column model as props. Renders a component, that will be used for filtration in the column. By default text input is used |
-| selectFilterOptions | Array\<Object\> | [] | If you use `SelectColumnFilter`, pass options with this property |
-| minWidth | Int | 80 | Min limit for the resizing |
-| width | Int | 150 | Used for both the flex-basis and flex-grow |
-| maxWidth | Int | 400 | Max limit for the resizing |
-| principalFilterableColumn | Boolean | true |  |
-| nonMobileColumn | Boolean | true | Prevents column from showing on the mobile |
-| noFooterColumn | Boolean | false | Prevents column from showing in the footer, if it is enabled |
-| disableSortBy | Boolean | true | Disables sorting for the column |
-| disableFilters | Boolean | true | Disables filtering for the column |
+| [header](https://tanstack.com/table/v8/docs/api/core/column-def#header) |  String \| (header) => unknown | undefined | Display name for the column 'th' |
+| [accessorFn](https://tanstack.com/table/v8/docs/api/core/column-def#accessorfn) | (originalRow, index) => any | undefined | Used to build the data model for your column. The data returned by an accessor should be primitive and sortable |
+| [cell](https://tanstack.com/table/v8/docs/api/core/column-def#cell) | String \| (cell) => unknown | undefined | Function for rendering cell's content. By default renders content of a property with the same name as the `accessorFn` as text |
+| [footer](https://tanstack.com/table/v8/docs/api/core/column-def#footer) | String \| (footer) => unknown | undefined | Renders column's footer. Receives the table instance and column model as props |
+| [filterFn](https://tanstack.com/table/latest/docs/api/features/column-filtering#filterfn) | FilterFn \| keyof FilterFns \| keyof BuiltInFilterFns | undefined| Function used for the column filtration. If a string is passed, the function with that name will be used from either the custom filterTypes table option (if specified) or from the built-in filtering types object. |
+| tcFilter | (context: HeaderContext) => ReactNode | undefined | Receives the table instance and column model as props. Renders a component, that will be used for filtration in the column. By default text input is used |
+| tcSelectFilterOptions | Array\<Object\> | [] | If you use `SelectColumnFilter`, pass options with this property |
+| minSize | Number | 80 | The minimum allowed size for the column |
+| size | Number | 150 | The desired size for the column|
+| maxSize | Number | 400 | The maximum allowed size for the column |
+| tcPrincipalFilterableColumn | Boolean | undefined | Flag which allows to filter through a column on mobile. It adds a search field in table header. Only one column can have this flag |
+| tcNonMobileColumn | Boolean | undefined | Prevents column from showing on the mobile |
+| tcNoFooterColumn | Boolean | undefined | Prevents column from showing in the footer, if it is enabled |
+| enableSorting | Boolean | false | Enables sorting for the column |
+| enableColumnFilter | Boolean | false | Enables filtering for the column |
 
-> **NOTE**: You can find more info about react-table props on [official docs](https://react-table.tanstack.com/docs/api/overview).
+> **NOTE**: You can find more info about react-table props on [official docs](https://tanstack.com/table/v8/docs/overview).
 
 ## Sorting
 
-This package implements single-column sorting. You can use by adding `order` property to the Table. It accepts object with such props as `id` (accessor of the property) and `desc` (determines sorting direction).
+This package implements single-column sorting. You can use by adding `tcOrder` property to the Table. It accepts object with such props as `id` and `desc` (determines sorting direction).
 
 ```JSX
 <ClientTable
-  tableId="uniq-table-id"
+  tableId="unique-table-id"
   data={data}
-  columns={columns}
-  order={{
-    id: 'name',
+  columns={[
+    {
+      header: `Name`,
+      accessorFn: (row) => row.name,
+      enableSorting: true,
+    },
+    {
+      header: `Data`,
+      accessorFn: (row) => row.data,
+    },
+  ]}
+  tcOrder={{
+    id: 'Name',
     desc: false,
   }}
 />
@@ -155,59 +169,67 @@ This package implements single-column sorting. You can use by adding `order` pro
 
 ## Filtration
 
-You can use your own filtration function for standard text input filter:
+You can use your own filtration function for default text input filter:
 
-```JSX
+```js
 const columns = [
     {
-      Header: 'Status',
-      accessor: 'status',
-      filter: (rows, columnIds, filterValue) => rows.filter(row.original.status === filterValue),
+      header: 'Status',
+      accessorFn: (row) => row.status,
+      enableColumnFilter: true,
+      filterFn: (rows, _, filterValue) => rows.original.status === filterValue,
     },
   ];
 ```
-**OR** you can implement a whole new Filter component:
+
+**ALSO** you can implement a whole new Filter component, for example SelectColumnFilter:
 
 ```JSX
-function CustomFilter ({
-  column: {
-    id,
-    filterValue,
-    setFilter,
-  },
+function SelectColumnFilter<TData>({
+  column,
   filterValueOverride,
   setFilterOverride,
-  inputPlaceholder,
-  }) {
-    return (
-      <Select
-        value={setFilterOverride ? filterValueOverride : filterValue}
-        options={selectFilterOptions}
-        onChange={(e) => {
-          const newFilterValue = e.target.value;
+}: {
+  column: Column<TData, unknown>,
+  filterValueOverride?: string | number,
+  setFilterOverride?: (id: string, value: string) => unknown,
+}) {
+  const columnFilterValue = column.getFilterValue()
 
-          if (setFilterOverride) {
-            setFilterOverride(id, newFilterValue);
-          } else {
-            setFilter(newFilterValue);
-          }
-        }}
-      />
-  );
+  return (
+    <Select
+      value={(setFilterOverride ? filterValueOverride : columnFilterValue) as string | number}
+      dataCy={`table-select-${column.id}`}
+      options={column.columnDef.tcSelectFilterOptions ?? []}
+      onChange={(e) => {
+        if (setFilterOverride) {
+          setFilterOverride(column.id, e.target.value)
+        } else {
+          column.setFilterValue(e.target.value)
+        }
+      }}
+    />
+  )
 }
+```
 
+
+You can override the default text input filter the following way:
+
+```js
 const columns = [
-    {
-      Header: 'Status',
-      accessor: 'status',
-      Filter: CustomFilter,
-    },
-  ];
+  {
+    header: 'Status',
+    accessorFn: (row) => row.status,
+    enableColumnFilter: true,
+    tcFilter: SelectColumnFilter,
+  },
+];
 ```
 
 ### Select Column Filter
 
-This package also contains ready-to-use **SelectColumnFilter**, that allows you to filter data by properties with a known set of values, such as status types. Set `Filter` property to **SelectColumnFilter** and define `selectFilterOptions` array, like in the example.
+This package also contains ready-to-use **SelectColumnFilter**, that allows you to filter data by properties with a known set of values, such as status types. Set `tcFilter` property to **SelectColumnFilter** and define `tcSelectFilterOptions` array, like in the example.
 
 **NOTE**: To add "All" option in the list, you need to add object with an empty string value to Options array.
 
@@ -216,10 +238,10 @@ import {ClientTable, SelectColumnFilter} from '@tourmalinecore/react-table-respo
 
 const columns = [
     {
-      Header: 'Status',
-      accessor: 'status',
-      Filter: SelectColumnFilter,
-      selectFilterOptions: [
+      header: 'Status',
+      accessorFn: (row) => row.status,
+      tcFilter: SelectColumnFilter,
+      tcSelectFilterOptions: [
         {
           label: 'All',
           value: '',
@@ -239,53 +261,57 @@ const columns = [
 
 ## Actions
 
+This package allows to add actions columns with `tcActions` property:
+
 ```JSX
 
-const data = [
-    {
-      name: 'name1',
-      data: 'data1',
-    },
-    {
-      name: 'name2',
-      data: 'data2',
-      canBeDownloaded: true,
-    },
-  ];
+type MyData = {
+  name: string;
+  data: string;
+  canBeDownloaded?: boolean;
+}
 
-const columns = [
-    {
-      Header: 'Name',
-      accessor: 'name',
-    },
-    {
-      Header: 'Data',
-      accessor: 'data',
-    },
-  ];
-
-const actions = [
+const data: MyData[] = [
   {
-    name: 'open-dictionaries-action',
-    show: () => true,
-    renderText: () => 'Open Dictionaries',
-    onClick: (e, row) => console.log(`Opening Dictionaries for ${row.original.name}`),
+    name: 'name1',
+    data: 'data1',
   },
   {
-    name: 'download-action',
-    show: (row) => row.original.canBeDownloaded,
-    renderIcon: () => <span>&darr;</span>,
-    renderText: (row) => `Download ${row.original.name}`,
-    onClick: (e, row) => console.log(`Downloading ${row.original.name}`),
+    name: 'name2',
+    data: 'data2',
+    canBeDownloaded: true,
   },
 ];
 
 return (
-  <ClientTable
-    tableId="uniq-table-id"
+  <ClientTable<MyData>
+    tableId="unique-table-id"
     data={data}
-    columns={columns}
-    actions={actions}
+    columns={[
+      {
+        header: 'Name',
+        accessorFn: (row) => row.name
+      },
+      {
+        header: 'Data',
+        accessorFn: (row) => row.data
+      },
+    ]}
+    tcActions={[
+      {
+        name: `open-dictionaries-action`,
+        show: () => true,
+        renderText: () => `Open Dictionaries`,
+        onClick: (e, row) => console.log(`Opening Dictionaries for ${row.original.name}`),
+      },
+      {
+        name: `download-action`,
+        show: (row) => !!row.original.canBeDownloaded,
+        renderIcon: () => <span>&darr;</span>,
+        renderText: (row) => `Download ${row.original.name}`,
+        onClick: (e, row) => console.log(`Downloading ${row.original.name}`),
+      },
+    ]}
   />
 );
 ```
@@ -293,20 +319,20 @@ return (
 ### Action props
 | Name | Type | Default Value | Description |
 |-|-|-|-|
-| name | String | "" | Unique name for an action |
-| show | Function(row) => Boolean | () => null | Returns whether an action will be present for the row or not |
-| renderIcon | React.Component \| Function(row) => JSX | () => null | Renders action icon |
-| renderText | Function(row) => String | () => null | Returns text, that will be shown as a Tooltip for the icon |
-| onClick | Function(event, row) => any | () => null | Event triggered on action's click  |
+| name | String | - | Unique name for an action |
+| show | (row) => Boolean | - | Returns whether an action will be present for the row or not |
+| renderIcon | (row) => ReactElement | undefined | Renders action icon in action popup |
+| renderText | (row) => String | - | Returns text, that will be shown in action popup |
+| onClick | (event, row) => any | undefined | Event triggered on action's click  |
 
 
-## Table State Persistance
+## Table State Persistence
 
 In order not to force the user to choose page size value every time they visit the page, Table instance always stores that value in the Local Storage.
 
-By setting table's property `enableTableStatePersistance` to **true** you
+By setting table's property `tcEnableTableStatePersistence` to **true** you
 tell the table to store other settings (filters, sorting and current page)
-in a const variable, that will be reseted on page reload, but persist between pages in apps with a client-side routing.
+in a const variable, that will be reset on page reload, but persist between pages in apps with a client-side routing.
 
 # Server Side Table
 
@@ -317,21 +343,19 @@ import {ServerTable} from '@tourmalinecore/react-table-responsive'
 
 return (
   <ServerTable
-    tableId="uniq-table-id"
+    tableId="unique-table-id"
     columns={[]}
-    actions={[]}
-
     // this props for api calls
-    apiHostUrl="https://hosturl"
-    dataPath="/api-endpoint"
-    requestMethod="GET"
+    tcApiHostUrl="https://hosturl"
+    tcDataPath="/api-endpoint"
+    tcRequestMethod="GET"
   />
 );
 ```
 
 ## Table Refresh
 
-You can manually invoke a table's data update by using the `refresh` property:
+You can manually invoke a table's data update by using the `tcRefresh` property:
 
 ```JSX
 const [refresh, setRefresh] = useState(false);
@@ -342,14 +366,12 @@ return (
       Refresh Table
     </button>
     <ServerTable
-      tableId="uniq-table-id"
+      tableId="unique-table-id"
       columns={columns}
-      actions={actions}
-
-      refresh={refresh}
-      apiHostUrl="https://hosturl"
-      dataPath="/api-endpoint"
-      requestMethod="GET"
+      tcRefresh={refresh}
+      tcApiHostUrl="https://hosturl"
+      tcDataPath="/api-endpoint"
+      tcRequestMethod="GET"
     />
   </div>
 )
@@ -361,18 +383,18 @@ ServerTable uses some unique props in addition to what client table has:
 
 | Name | Type | Default Value | Description |
 |-|-|-|-|
-| refresh | Boolean | false | Toggle it in any way to trigger table refresh |
-| httpClient | instance of axios | axios | For now it only applies instance of axios, you can pass your own axios instance with config, interceptors etc. |
-| apiHostUrl | String | "" | URL of your API |
-| dataPath | String | "" | The path to the specific endpoint from which the data will be requested |
-| authToken | String | "" | Authentication token if needed |
-| requestMethod | String | "GET" | Request method used by endpoint |
-| requestData | Object | {} | Data for requests with body |
-| customDataLoader | async Function | undefined | Pass async function here to rewrite table data loading logic, should return Promise |
-| onPageDataLoaded | Function | () => null | Triggered when value requested data is loaded |
+| tcRefresh | Boolean | false | Toggle it in any way to trigger table refresh |
+| tcHttpClient | instance of axios | axios | For now it only applies instance of axios, you can pass your own axios instance with config, interceptors, etc. |
+| tcApiHostUrl | String | "" | URL of your API |
+| tcDataPath | String | "" | The path to the specific endpoint from which the data will be requested |
+| tcAuthToken | String | "" | Authentication token if needed |
+| tcRequestMethod | String | "GET" | Request method used by endpoint |
+| tcRequestData | Object | {} | Data for requests with body |
+| tcCustomDataLoader | CustomDataLoader | undefined | Pass async function here to rewrite table data loading logic, should return Promise |
+| tcOnPageDataLoaded | (data) => void | () => null | Triggered when requested data is loaded |
 
-### customDataLoader params
-```ts
+### tcCustomDataLoader types
+```js
 type Params = {
   draw: number,
   page: number,
@@ -384,40 +406,48 @@ type Params = {
 }
 
 type CustomDataLoader = ({
+  url,
+  method,
+  headers,
+  params,
+  data,
+  paramsSerializer,
+}: {
   url: string,
-  method: string,
+  method: 'POST' | 'GET',
   headers: {
-    [key: string]: string
+    [key: string]: string,
   },
   params: Params,
-  data: {},
+  data: object,
   paramsSerializer: (params: Params) => string,
 }) => Promise<{
-  draw: number,
-  list: {
-    [tableDataKey: string]: string | number
-  }[],
-  totalCount: number,
+  data: {
+    draw: number,
+    list: {
+      [tableDataKey: string]: string | number,
+    }[],
+  },
 }>
 ```
 
-## Request data
+## Query parameters for data requests
 
 If you want to use default GET request method you will need to ensure that your backend endpoint can process query consisting of the parameters below:
 
 | Name | Type | Description |
 |-|-|-|
-| draw | int | Used as query identifier to ensure queries are being executed in correct order  |
-| page | int | Number of page to take |
-| pageSize | int | Number that defines size of the pages |
-| orderBy | string | Property name used for sorting |
-| orderingDirection | string | Any string for ascending order or 'desc' for descending |
-| filteredByColumns | string[] | Collection of property names to be used for filtering separated by coma |
-| filteredByValues | string[] | Collection of property values to be used for filtering separated by coma. Thier indexes must correspond with the ones from the *filteredByColumns* array |
+| draw | Number | Used as query identifier to ensure queries are being executed in correct order  |
+| page | Number | Number of page to take |
+| pageSize | Number | Number that defines size of the pages |
+| orderBy | String | Property name used for sorting |
+| orderingDirection | String | Any string for ascending order or 'desc' for descending |
+| filteredByColumns | String[] | Collection of property names to be used for filtering separated by comma |
+| filteredByValues | String[] | Collection of property values to be used for filtering separated by comma. Their indexes must correspond with the ones from the *filteredByColumns* array |
 
 Example:
 ```
-https://{app-url}/{endpoint}?draw=2&page=1&pageSize=10&orderBy=name&orderingDirection=desc&filteredByColumns=Name,Surname&filteredByValues=John,Smith
+https://{app-url}/{endpoint}?draw=2&page=1&pageSize=10&orderBy=name&orderingDirection=desc&filteredByColumns=Name&filteredByColumns=Surname&filteredByValues=John&filteredByValues=Smith
 ```
 
 **Curl**
@@ -429,3 +459,4 @@ curl --location -g --request GET 'https://{app url}/{endpoint}?draw=2&page=1&pag
 # Unsupported features from react-table
 - Multi-Column sorting
 - Virtualization
+- Resizing
