@@ -6,7 +6,7 @@ import { InputHTMLAttributes, ReactElement, ReactNode } from 'react'
 import { I18StringsProps } from '../i18n/types'
 
 export type ActionsType<TData> = {
-  name?: string,
+  name: string,
   show: (row: Row<TData>) => boolean,
   renderIcon?: (row: Row<TData>) => ReactElement,
   renderText: (row: Row<TData>) => string,
@@ -41,11 +41,11 @@ export interface ServerTableProps<TData> extends GeneralTableProps<TData> {
   tcRequestMethod?: 'POST' | 'GET',
   tcHttpClient?: AxiosInstance,
   tcRefresh?: boolean,
-  tcCustomDataLoader?: TcCustomDataLoader,
+  tcCustomDataLoader?: CustomDataLoader,
   tcOnPageDataLoaded?: (data: TData) => void,
 }
 
-export type TcCustomDataLoader = ({
+export type CustomDataLoader = ({
   url,
   method,
   headers,
