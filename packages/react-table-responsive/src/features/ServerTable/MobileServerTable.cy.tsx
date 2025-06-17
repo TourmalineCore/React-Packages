@@ -1,7 +1,9 @@
 import axios from 'axios'
 import { ServerTable } from './ServerTable'
 import { ServerTableProps } from '../../types/types'
-import { TestData, generateTableTestData, getTableMobileRow, getTableMobileSortingButton, getColumnsWithProps, getFilterInputByName, someTypes, getTableMobileFiltrationButton, getFilterInputById } from '../utils/test-helpers'
+import {
+  TestData, generateTableTestData, getTableMobileRow, getTableMobileSortingButton, getColumnsWithProps, getFilterInputByName, someTypes, getTableMobileFiltrationButton, getFilterInputById,
+} from '../utils/test-helpers'
 
 type TableResponse = {
   list: TestData[],
@@ -18,7 +20,7 @@ describe('mobileServerTable', () => {
     cy.intercept(
       'GET',
       '**/table/test?draw=**&page=1&pageSize=10&orderBy=name&orderingDirection=asc',
-      tableResponse,  
+      tableResponse,
     )
       .as('getTableData')
   })
@@ -109,7 +111,16 @@ function sortingTests() {
         .reverse(),
     }
 
-    mountComponent()
+    mountComponent({
+      columns: getColumnsWithProps({
+        nameColumnProps: {
+          enableSorting: true,
+          tcInputFilterProps: {
+            placeholder: 'Search',
+          },
+        },
+      }),
+    })
 
     cy.wait('@getTableData')
 
@@ -146,7 +157,16 @@ function sortingTests() {
       }),
     }
 
-    mountComponent()
+    mountComponent({
+      columns: getColumnsWithProps({
+        idColumnProps: {
+          enableSorting: true,
+          tcInputFilterProps: {
+            placeholder: 'Search',
+          },
+        },
+      }),
+    })
 
     cy.wait('@getTableData')
 

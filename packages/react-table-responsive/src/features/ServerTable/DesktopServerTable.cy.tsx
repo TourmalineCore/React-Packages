@@ -88,6 +88,11 @@ function sortingTests() {
     }
 
     mountComponent({
+      columns: getColumnsWithProps({
+        nameColumnProps: {
+          enableSorting: true,
+        },
+      }),
       tcOrder: {
         desc: true,
         id: 'name',
@@ -120,7 +125,13 @@ function sortingTests() {
         .reverse(),
     }
 
-    mountComponent()
+    mountComponent({
+      columns: getColumnsWithProps({
+        nameColumnProps: {
+          enableSorting: true,
+        },
+      }),
+    })
 
     cy.wait('@getTableData')
 
@@ -156,7 +167,13 @@ function sortingTests() {
       }),
     }
 
-    mountComponent()
+    mountComponent({
+      columns: getColumnsWithProps({
+        idColumnProps: {
+          enableSorting: true,
+        },
+      }),
+    })
 
     cy.wait('@getTableData')
 

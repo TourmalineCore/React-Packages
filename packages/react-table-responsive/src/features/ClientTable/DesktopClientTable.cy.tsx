@@ -213,6 +213,11 @@ function sortingTests() {
   SHOULD see sorted table contents in asc order by id
 `, () => {
     mountComponent({
+      columns: getColumnsWithProps({
+        idColumnProps: {
+          enableSorting: true,
+        },
+      }),
       tcOrder: {
         id: 'id',
         desc: false,
@@ -230,6 +235,11 @@ function sortingTests() {
   SHOULD see sorted table contents in desc order by id
 `, () => {
     mountComponent({
+      columns: getColumnsWithProps({
+        idColumnProps: {
+          enableSorting: true,
+        },
+      }),
       tcOrder: {
         id: 'id',
         desc: true,
@@ -246,9 +256,17 @@ function sortingTests() {
   WHEN sorting by id in asc order is enabled 
   AND click on header table with the id value
   AND click on header table with the name value
-  SHOULD see sorted table ontents in asc order by name
+  SHOULD see sorted table contents in asc order by name
 `, () => {
     mountComponent({
+      columns: getColumnsWithProps({
+        idColumnProps: {
+          enableSorting: true,
+        },
+        nameColumnProps: {
+          enableSorting: true,
+        },
+      }),
       tcOrder: {
         id: 'id',
         desc: false,
@@ -345,6 +363,7 @@ function filterTests() {
             },
             ...someTypesOptions,
           ],
+          enableColumnFilter: true,
           cell: (cell) => someTypesMetadata[cell.getValue()],
           header: () => <span>Type</span>,
         },

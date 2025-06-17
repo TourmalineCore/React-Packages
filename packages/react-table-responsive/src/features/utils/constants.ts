@@ -5,7 +5,7 @@ import { DefaultColumnFilter } from '../../components/Filters/DefaultColumnFilte
 export const DEFAULT_COLUMN_PARAMS = {
   tcFilter: DefaultColumnFilter,
 
-  enableColumnFilter: true,
+  enableSorting: false,
   minSize: 80,
   size: 150,
   maxSize: 400,
