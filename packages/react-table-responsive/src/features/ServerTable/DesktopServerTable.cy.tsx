@@ -398,7 +398,7 @@ function requestHeadersTests() {
     cy.intercept('GET', '**/table/test*', (req) => {
       expect(req.headers).to.include({
         authorization: `Bearer ${authToken}`,
-        language: 'en',
+        tcLanguage: 'en',
       })
     })
 
@@ -416,7 +416,7 @@ function requestHeadersTests() {
       expect(req.headers).not.to.have.property('authorization')
 
       expect(req.headers).to.include({
-        language: 'en',
+        tcLanguage: 'en',
       })
     })
 

@@ -56,7 +56,7 @@ function initializeBasicComponentTests() {
 function initializeTranslationTests() {
   it(`
   GIVEN mobile client table
-  WHEN language property is 'en'
+  WHEN tcLanguage property is 'en'
   AND 'tcNonMobileColumn' props is true 
   SHOULD see footer with English translations
 `, () => {
@@ -73,7 +73,7 @@ function initializeTranslationTests() {
 
   it(`
   GIVEN mobile client table
-  WHEN language property is 'ru'
+  WHEN tcLanguage property is 'ru'
   AND 'tcNonMobileColumn' props is true 
   SHOULD see footer with Russian translations
 `, () => {
@@ -83,7 +83,7 @@ function initializeTranslationTests() {
           footer: () => <span>Footer Name</span>,
         },
       }),
-      language: 'ru',
+      tcLanguage: 'ru',
     })
 
     cy.contains('Итого')
@@ -91,7 +91,7 @@ function initializeTranslationTests() {
 
   it(`
   GIVEN mobile client table
-  WHEN language property is 'en'
+  WHEN tcLanguage property is 'en'
   AND 'tcPrincipalFilterableColumn' flag is true
   SHOULD see search placeholder with English translations
 `, () => {
@@ -110,7 +110,7 @@ function initializeTranslationTests() {
 
   it(`
   GIVEN mobile client table
-  WHEN language property is 'ru'
+  WHEN tcLanguage property is 'ru'
   AND 'tcPrincipalFilterableColumn' flag is true
   SHOULD see search placeholder with Russian translations
 `, () => {
@@ -121,7 +121,7 @@ function initializeTranslationTests() {
           tcPrincipalFilterableColumn: true,
         },
       }),
-      language: 'ru',
+      tcLanguage: 'ru',
     })
 
     getFilterInputByName()
@@ -257,8 +257,8 @@ function filterTests() {
         {
           id: 'type',
           accessorFn: (row) => row.type,
-          Filter: SelectColumnFilter,
-          selectFilterOptions: [
+          tcFilter: SelectColumnFilter,
+          tcSelectFilterOptions: [
             {
               label: 'All',
               value: '',
@@ -506,8 +506,8 @@ function mountComponent({
   columns = getColumnsWithProps(),
   loading,
   tcPageSizeOptions,
-  actions,
-  language = 'en',
+  tcActions,
+  tcLanguage = 'en',
 }: Partial<ClientTableProps<TestData>> = {}) {
   cy.mount(
     <ClientTable
@@ -517,8 +517,8 @@ function mountComponent({
       loading={loading}
       tcRenderMobileTitle={(row) => row.original.name}
       tcPageSizeOptions={tcPageSizeOptions}
-      actions={actions}
-      language={language}
+      tcActions={tcActions}
+      tcLanguage={tcLanguage}
     />,
   )
 }

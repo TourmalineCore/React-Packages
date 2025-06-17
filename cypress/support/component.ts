@@ -15,7 +15,7 @@
 
 // Import commands.js using ES2015 syntax:
 import './commands'
-import "cypress-localstorage-commands"
+import 'cypress-localstorage-commands'
 import '@tourmalinecore/react-table-responsive/es/index.css';
 import '@tourmalinecore/react-tc-modal/es/index.css';
 import '@tourmalinecore/react-tc-ui-kit/es/index.css';
@@ -37,7 +37,7 @@ declare global {
   }
 }
 
-
+// eslint-disable-next-line jest/require-hook
 Cypress.Commands.add('mount', mount)
 
 // Example use:

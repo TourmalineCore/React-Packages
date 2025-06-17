@@ -1,6 +1,6 @@
 import { useRef, useState } from 'react'
 import { Row } from '@tanstack/react-table'
-import ReactDOM from 'react-dom'
+import * as ReactDOM from 'react-dom'
 import { useOnClickOutside } from '../../features/hooks/useOnClickOutside'
 import { getRelativePosition } from '../../features/utils/getRelativePosition'
 import { getTableById } from '../../features/components/DesktopTable/helpers'

@@ -35,7 +35,7 @@ function initializeTests() {
 function translationsTests() {
   it(`
   GIVEN MobilePagination component
-  WHEN language property is 'en'
+  WHEN tcLanguage property is 'en'
   SHOULD see component with English translations
 `, () => {
     mountComponent()
@@ -49,11 +49,11 @@ function translationsTests() {
 
   it(`
   GIVEN MobilePagination component
-  WHEN language property is 'ru'
+  WHEN tcLanguage property is 'ru'
   SHOULD see component with Russian translations
 `, () => {
     mountComponent({
-      language: 'ru',
+      tcLanguage: 'ru',
     })
 
     cy.contains('Показаны')
@@ -99,11 +99,11 @@ function showMoreTests() {
 function mountComponent({
   totalCount = 10,
   pageSize = 5,
-  language = 'en',
+  tcLanguage = 'en',
 }: {
   totalCount?: number,
   pageSize?: number,
-  language?: string,
+  tcLanguage?: string,
 } = {}) {
   const onClickSpy = cy.spy()
     .as('onClick')
@@ -113,7 +113,7 @@ function mountComponent({
       totalCount={totalCount}
       pageSize={pageSize}
       setPageSize={onClickSpy}
-      languageStrings={i18n(language)}
+      languageStrings={i18n(tcLanguage)}
     />,
   )
 }

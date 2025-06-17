@@ -27,7 +27,7 @@
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
 //
 // declare global {
-//   namespace Cypress {    
+//   namespace Cypress {
 //     interface Chainable {
 //       login(email: string, password: string): Chainable<void>
 //       drag(subject: string, options?: Partial<TypeOptions>): Chainable<Element>
@@ -37,6 +37,7 @@
 //   }
 // }
 
-Cypress.Commands.add(`getByData`, (selector) => cy.get(`[data-cy=${selector}]`))
+// eslint-disable-next-line jest/require-hook
+Cypress.Commands.add('getByData', (selector) => cy.get(`[data-cy=${selector}]`))
 
-export { }  
+export { }

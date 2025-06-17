@@ -7,6 +7,7 @@ describe('loader', () => {
   describe('translation', translationTests)
 })
   
+
 function loadingTests() {
   it(`
   GIVEN loader component
@@ -73,7 +74,7 @@ function mountComponent({
     />,
   )
 }
-  
+
 function getLoader() {
   return cy.getByData('loader')
 }

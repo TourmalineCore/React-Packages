@@ -1,7 +1,7 @@
 import { HeaderGroup } from '@tanstack/react-table'
+import * as React from 'react'
 import { DesktopFilters } from './components/DesktopFilters/DesktopFilters'
 import { DesktopHeaderCell } from './components/DesktopHeaderCell/DesktopHeaderCell'
-import * as React from 'react'
 
 export function DesktopHeader<TData>({
   headerGroups,

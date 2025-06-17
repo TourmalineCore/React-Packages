@@ -11,7 +11,7 @@ export function MobileBody<TData>({
 }: {
   actions: ActionsType<TData>,
   rows: Row<TData>[],
-  tcRenderMobileTitle: GeneralTableProps<TData>['tcRenderMobileTitle'],
+  tcRenderMobileTitle?: GeneralTableProps<TData>['tcRenderMobileTitle'],
 }) {
   const [
     expandedRowId,
@@ -28,7 +28,7 @@ export function MobileBody<TData>({
         >
           <div className="tc-table-mobile__row-header">
             <h2 className="tc-table-mobile__row-title">
-              {tcRenderMobileTitle(row)}
+              {tcRenderMobileTitle?.(row)}
             </h2>
             <button
               type="button"

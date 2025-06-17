@@ -26,8 +26,8 @@ export function ClientTable<TData>({
   tcMaxStillMobileBreakpoint = 800,
   tcRenderMobileTitle = () => null,
   tcPageSizeOptions = AVAILABLE_PAGE_SIZES,
-  actions = [],
-  language = 'en',
+  tcActions = [],
+  tcLanguage = 'en',
   tcOnFiltersChange = () => null,
   tcEnableTableStatePersistence = false,
   ...props
@@ -36,11 +36,11 @@ export function ClientTable<TData>({
     throw new Error('non-empty and globally unique tableId is required')
   }
 
-  if (actions.length > 0) {
+  if (tcActions.length > 0) {
     if (!columns.find((column) => column.id === ACTIONS_COLUMN_ID)) {
       columns.push(getActionsDropdownColumn<TData>({
         tableId,
-        actions,
+        actions: tcActions,
       }))
     }
   }
@@ -162,7 +162,7 @@ export function ClientTable<TData>({
         loading={loading}
         tcIsStriped={tcIsStriped}
         tcPageSizeOptions={tcPageSizeOptions}
-        languageStrings={i18n(language)}
+        languageStrings={i18n(tcLanguage)}
       />
     )
     : (
@@ -171,8 +171,8 @@ export function ClientTable<TData>({
         tcRenderMobileTitle={tcRenderMobileTitle}
         noFooter={noFooter}
         loading={loading}
-        actions={actions}
-        languageStrings={i18n(language)}
+        actions={tcActions}
+        languageStrings={i18n(tcLanguage)}
       />
     )
 }

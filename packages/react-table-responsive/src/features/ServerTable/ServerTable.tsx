@@ -41,8 +41,8 @@ export function ServerTable<TData>({
   tcMaxStillMobileBreakpoint = 800,
   tcRenderMobileTitle = () => null,
   tcPageSizeOptions = AVAILABLE_PAGE_SIZES,
-  actions = [],
-  language = 'en',
+  tcActions = [],
+  tcLanguage = 'en',
   tcEnableTableStatePersistence = false,
   tcOnPageDataLoaded = () => null,
   tcOnFiltersChange = () => null,
@@ -52,11 +52,11 @@ export function ServerTable<TData>({
     throw new Error('non-empty and globally unique tableId is required')
   }
 
-  if (actions.length > 0) {
+  if (tcActions.length > 0) {
     if (!columns.find((column) => column.id === ACTIONS_COLUMN_ID)) {
       columns.push(getActionsDropdownColumn<TData>({
         tableId,
-        actions,
+        actions: tcActions,
       }))
     }
   }
@@ -215,7 +215,7 @@ export function ServerTable<TData>({
         loading={loading || tableDataLoading}
         tcIsStriped={tcIsStriped}
         tcPageSizeOptions={tcPageSizeOptions}
-        languageStrings={i18n(language)}
+        languageStrings={i18n(tcLanguage)}
       />
     )
     : (
@@ -224,8 +224,8 @@ export function ServerTable<TData>({
         tcRenderMobileTitle={tcRenderMobileTitle}
         noFooter={noFooter}
         loading={loading || tableDataLoading}
-        actions={actions}
-        languageStrings={i18n(language)}
+        actions={tcActions}
+        languageStrings={i18n(tcLanguage)}
       />
     )
 
@@ -295,7 +295,7 @@ export function ServerTable<TData>({
       ...(tcAuthToken && {
         Authorization: `Bearer ${tcAuthToken}`,
       }),
-      language,
+      language: tcLanguage,
     }
   }
 }

@@ -73,7 +73,7 @@ export function MobileHeader<TData>({
               <div>
                 {
                   flexRender(
-                    principalFilter.column.columnDef.Filter,
+                    principalFilter.column.columnDef.tcFilter,
                     {
                       ...principalFilter.getContext(),
                       placeholder: searchLabel,

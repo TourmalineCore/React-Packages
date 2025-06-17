@@ -5,7 +5,7 @@ import { MobileSortingPopup } from './MobileSortingPopup'
 describe('mobileSortingPopup', () => {
   describe('initialization', () => {
     describe('initializeComponent', initializeComponentTests)
-    
+
     describe('initializeTranslation', initializeTranslationTests)
   })
 
@@ -62,7 +62,7 @@ function interactionTests() {
 function initializeTranslationTests() {
   it(`
   GIVEN MobileSortingPopup component
-  WHEN language property is 'en'
+  WHEN tcLanguage property is 'en'
   SHOULD see component with English translations
 `, () => {
     mountComponent()
@@ -76,11 +76,11 @@ function initializeTranslationTests() {
 
   it(`
   GIVEN MobileSortingPopup component
-  WHEN language property is 'ru'
+  WHEN tcLanguage property is 'ru'
   SHOULD see component with Russian translations
 `, () => {
     mountComponent({
-      language: 'ru',
+      tcLanguage: 'ru',
     })
 
     cy.contains('Сортировка')
@@ -92,7 +92,7 @@ function initializeTranslationTests() {
 }
 
 function mountComponent({
-  language = 'en',
+  tcLanguage = 'en',
   sortByColumn = {
     desc: false,
     id: 'name',
@@ -108,7 +108,7 @@ function mountComponent({
     },
   ],
 }: {
-  language?: string,
+  tcLanguage?: string,
   columnOptions?: {
     label: ReactNode,
     value: string,
@@ -127,7 +127,7 @@ function mountComponent({
   cy.mount(
     <MobileSortingPopup
       onClose={onClickSpy}
-      languageStrings={i18n(language)}
+      languageStrings={i18n(tcLanguage)}
       sortByColumn={sortByColumn}
       columnOptions={columnOptions}
       setSorting={onChange}

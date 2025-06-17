@@ -3,7 +3,7 @@ import { FilterFn } from '@tanstack/react-table'
 import { DefaultColumnFilter } from '../../components/Filters/DefaultColumnFilter/DefaultColumnFilter'
 
 export const DEFAULT_COLUMN_PARAMS = {
-  Filter: DefaultColumnFilter,
+  tcFilter: DefaultColumnFilter,
 
   enableColumnFilter: true,
   minSize: 80,

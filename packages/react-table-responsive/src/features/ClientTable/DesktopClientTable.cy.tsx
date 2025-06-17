@@ -72,7 +72,7 @@ function initializeBasicComponentTests() {
 function initializeTranslationTests() {
   it(`
   GIVEN desktop client table
-  WHEN language property is 'en'
+  WHEN tcLanguage property is 'en'
   AND table data has one record
   SHOULD see table with English translations
 `, () => {
@@ -88,7 +88,7 @@ function initializeTranslationTests() {
 
   it(`
   GIVEN desktop client table
-  WHEN language property is 'en'
+  WHEN tcLanguage property is 'en'
   AND table data is not empty
   SHOULD see table with English translations
 `, () => {
@@ -107,7 +107,7 @@ function initializeTranslationTests() {
 
   it(`
   GIVEN desktop client table
-  WHEN language property is 'en'
+  WHEN tcLanguage property is 'en'
   AND table data is empty
   SHOULD see table with English translations
 `, () => {
@@ -121,12 +121,12 @@ function initializeTranslationTests() {
 
   it(`
   GIVEN desktop client table
-  WHEN language property is 'ru'
+  WHEN tcLanguage property is 'ru'
   AND table data is not empty
   SHOULD see table with Russian translations
 `, () => {
     mountComponent({
-      language: 'ru',
+      tcLanguage: 'ru',
     })
 
     getPaginationPageCount()
@@ -142,13 +142,13 @@ function initializeTranslationTests() {
 
   it(`
   GIVEN desktop client table
-  WHEN language property is 'ru'
+  WHEN tcLanguage property is 'ru'
   AND table data is empty
   SHOULD see table with Russian translations
 `, () => {
     mountComponent({
       data: [],
-      language: 'ru',
+      tcLanguage: 'ru',
     })
 
     getTablePaginationShowRecords()
@@ -157,7 +157,7 @@ function initializeTranslationTests() {
 
   it(`
   GIVEN desktop client table
-  WHEN language property is 'ru'
+  WHEN tcLanguage property is 'ru'
   AND table data has one record
   SHOULD see table with Russian translations
 `, () => {
@@ -165,7 +165,7 @@ function initializeTranslationTests() {
       data: generateTableTestData({
         recordCount: 1,
       }),
-      language: 'ru',
+      tcLanguage: 'ru',
     })
 
     getTablePaginationShowRecords()
@@ -337,8 +337,8 @@ function filterTests() {
         {
           id: 'type',
           accessorFn: (row) => row.type,
-          Filter: SelectColumnFilter,
-          selectFilterOptions: [
+          tcFilter: SelectColumnFilter,
+          tcSelectFilterOptions: [
             {
               label: 'All',
               value: '',
@@ -557,7 +557,7 @@ function actionsTests() {
   SHOULD see opened dropdown with actions
 `, () => {
     mountComponent({
-      actions: [
+      tcActions: [
         {
           name: 'first-button',
           show: () => true,
@@ -663,8 +663,8 @@ function mountComponent({
   tcIsStriped,
   tcOrder,
   tcPageSizeOptions,
-  actions,
-  language = 'en',
+  tcActions,
+  tcLanguage = 'en',
 }: Partial<ClientTableProps<TestData>> = {}) {
   cy.viewport(900, 900)
 
@@ -681,9 +681,9 @@ function mountComponent({
       tcOrder={tcOrder}
       tcRenderMobileTitle={(row) => row.original.name}
       tcPageSizeOptions={tcPageSizeOptions}
-      actions={actions}
+      tcActions={tcActions}
       tcOnFiltersChange={onFiltersChangeSpy}
-      language={language}
+      tcLanguage={tcLanguage}
     />,
   )
 }

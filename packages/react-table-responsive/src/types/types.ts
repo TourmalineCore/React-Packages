@@ -23,8 +23,8 @@ export interface GeneralTableProps<TData> extends Omit<TableOptions<TData>, 'dat
   tcRenderMobileTitle?: (row: Row<TData>) => ReactNode,
   tcMaxStillMobileBreakpoint?: number,
   tcPageSizeOptions?: number[],
-  actions?: ActionsType<TData>,
-  language?: 'en' | 'ru',
+  tcActions?: ActionsType<TData>,
+  tcLanguage?: 'en' | 'ru',
   tcEnableTableStatePersistence?: boolean,
   tcOnFiltersChange?: (filters: ColumnFiltersState) => void,
 }
@@ -102,8 +102,8 @@ declare module '@tanstack/react-table' {
     tcNonMobileColumn?: boolean,
     tcTwoRowsMobileLayout?: boolean,
     tcNoFooterColumn?: boolean,
-    Filter?: (context: HeaderContext<TData, TValue>) => ReactNode,
-    selectFilterOptions?: {
+    tcFilter?: (context: HeaderContext<TData, TValue>) => ReactNode,
+    tcSelectFilterOptions?: {
       label: string,
       value: string,
     }[],

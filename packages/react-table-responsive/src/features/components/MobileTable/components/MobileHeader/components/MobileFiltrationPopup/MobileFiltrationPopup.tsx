@@ -56,7 +56,7 @@ export function MobileFiltrationPopup<TData>({
                   <div className="tc-table-mobile-filtration__field">
                     {
                       flexRender(
-                        column.column.columnDef.Filter,
+                        column.column.columnDef.tcFilter,
                         {
                           ...column.getContext(),
                           ...column.column.columnDef.tcInputFilterProps,

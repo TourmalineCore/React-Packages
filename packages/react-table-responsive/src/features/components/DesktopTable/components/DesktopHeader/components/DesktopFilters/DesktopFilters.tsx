@@ -25,7 +25,7 @@ export function DesktopFilters<TData>({
               {
                 header.column.getCanFilter()
                   ? flexRender(
-                    header.column.columnDef.Filter,
+                    header.column.columnDef.tcFilter,
                     {
                       ...header.getContext(),
                       ...header.column.columnDef.tcInputFilterProps,

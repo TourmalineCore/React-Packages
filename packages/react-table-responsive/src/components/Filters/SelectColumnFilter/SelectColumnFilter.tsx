@@ -16,7 +16,7 @@ export function SelectColumnFilter<TData>({
     <Select
       value={(setFilterOverride ? filterValueOverride : columnFilterValue) as string}
       dataCy={`table-select-${column.id}`}
-      options={column.columnDef.selectFilterOptions ?? []}
+      options={column.columnDef.tcSelectFilterOptions ?? []}
       onChange={(e) => {
         if (setFilterOverride) {
           setFilterOverride(column.id, e.target.value)
