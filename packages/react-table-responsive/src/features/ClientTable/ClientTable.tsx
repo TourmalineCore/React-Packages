@@ -21,10 +21,7 @@ export function ClientTable<TData>({
   columns,
   loading = false,
   tcIsStriped,
-  tcOrder = {
-    desc: false,
-    id: '',
-  },
+  tcOrder,
   data,
   tcMaxStillMobileBreakpoint = 800,
   tcRenderMobileTitle = () => null,
@@ -65,11 +62,13 @@ export function ClientTable<TData>({
     defaultColumn: DEFAULT_COLUMN_PARAMS,
     getCoreRowModel: getCoreRowModel(),
     initialState: {
-      sorting: tablesState.getDefaultSortBy({
-        tableId,
-        initialState: [
-          tcOrder,
-        ],
+      ...(tcOrder && {
+        sorting: tablesState.getDefaultSortBy({
+          tableId,
+          initialState: [
+            tcOrder,
+          ],
+        }),
       }),
       columnFilters: tablesState.getDefaultFilters({
         tableId,

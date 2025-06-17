@@ -159,7 +159,7 @@ export function MobileHeader<TData>({
   )
 
   function resetPrincipalFilter() {
-    const resettedFilters = filters.map((filter) => (
+    const resetFilters = filters.map((filter) => (
       filter.id === principalFilter?.id
         ? {
           ...filter,
@@ -168,6 +168,6 @@ export function MobileHeader<TData>({
         : filter
     ))
 
-    setColumnFilters(resettedFilters)
+    setColumnFilters(resetFilters)
   }
 }

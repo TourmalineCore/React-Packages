@@ -32,12 +32,12 @@ export function MobileSortingPopup({
   const [
     draftSortById,
     setDraftSortById,
-  ] = useState(sortByColumn.id)
+  ] = useState(sortByColumn?.id)
 
   const [
     draftSortByDesc,
     setSortByDesc,
-  ] = useState(sortByColumn.desc.toString())
+  ] = useState(sortByColumn?.desc.toString())
 
   const directionOptions = useMemo(() => [
     {
