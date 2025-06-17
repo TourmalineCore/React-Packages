@@ -105,7 +105,7 @@ declare module '@tanstack/react-table' {
     tcFilter?: (context: HeaderContext<TData, TValue>) => ReactNode,
     tcSelectFilterOptions?: {
       label: string,
-      value: string,
+      value: string | number,
     }[],
     tcAlign?: 'left' | 'center' | 'right',
     tcInputFilterProps?: InputHTMLAttributes<HTMLInputElement>,

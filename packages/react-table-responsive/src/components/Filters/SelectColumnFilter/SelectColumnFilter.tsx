@@ -7,14 +7,14 @@ export function SelectColumnFilter<TData>({
   setFilterOverride,
 }: {
   column: Column<TData, unknown>,
-  filterValueOverride?: string,
+  filterValueOverride?: string | number,
   setFilterOverride?: (id: string, value: string) => unknown,
 }) {
   const columnFilterValue = column.getFilterValue()
 
   return (
     <Select
-      value={(setFilterOverride ? filterValueOverride : columnFilterValue) as string}
+      value={(setFilterOverride ? filterValueOverride : columnFilterValue) as string | number}
       dataCy={`table-select-${column.id}`}
       options={column.columnDef.tcSelectFilterOptions ?? []}
       onChange={(e) => {
