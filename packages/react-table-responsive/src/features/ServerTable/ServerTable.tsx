@@ -26,10 +26,7 @@ export function ServerTable<TData>({
   columns,
   tcLoading,
   tcIsStriped,
-  tcOrder = {
-    desc: false,
-    id: '',
-  },
+  tcOrder,
   tcRefresh = false,
   tcHttpClient = axios,
   tcCustomDataLoader,
@@ -92,11 +89,13 @@ export function ServerTable<TData>({
     defaultColumn: DEFAULT_COLUMN_PARAMS,
     getCoreRowModel: getCoreRowModel(),
     initialState: {
-      sorting: tablesState.getDefaultSortBy({
-        tableId,
-        initialState: [
-          tcOrder,
-        ],
+      ...(tcOrder && {
+        sorting: tablesState.getDefaultSortBy({
+          tableId,
+          initialState: [
+            tcOrder,
+          ],
+        }),
       }),
       columnFilters: tablesState.getDefaultFilters({
         tableId,

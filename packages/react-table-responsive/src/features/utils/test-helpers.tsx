@@ -42,7 +42,6 @@ export function getColumnsWithProps({
           {cellContext.getValue()}
         </i>
       ),
-      enableColumnFilter: false,
       header: () => <span>Id</span>,
       ...idColumnProps,
     },
@@ -54,7 +53,6 @@ export function getColumnsWithProps({
           {cellContext.getValue()}
         </i>
       ),
-      enableColumnFilter: false,
       header: () => <span>Name</span>,
       ...nameColumnProps,
     },

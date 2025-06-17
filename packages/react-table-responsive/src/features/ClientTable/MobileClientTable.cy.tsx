@@ -155,6 +155,17 @@ function initializeSearchInput() {
 
 function filterTests() {
   it(`
+    GIVEN mobile table 
+    WHEN filtration is disabled
+    SHOULD not see filter button in table header
+  `, () => {
+    mountComponent()
+
+    getTableMobileFiltrationButton()
+      .should('not.exist')
+  })
+
+  it(`
   GIVEN mobile client table
   WHEN 'tcPrincipalFilterableColumn' flag is true
   AND write the value 'Test 2' in the filter input field
@@ -267,6 +278,7 @@ function filterTests() {
           ],
           cell: (cell) => someTypesMetadata[cell.getValue()],
           header: () => <span>Type</span>,
+          enableColumnFilter: true,
         },
       ],
     })

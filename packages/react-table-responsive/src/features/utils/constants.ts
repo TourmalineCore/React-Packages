@@ -6,6 +6,7 @@ export const DEFAULT_COLUMN_PARAMS = {
   tcFilter: DefaultColumnFilter,
 
   enableSorting: false,
+  enableColumnFilter: false,
   minSize: 80,
   size: 150,
   maxSize: 400,
