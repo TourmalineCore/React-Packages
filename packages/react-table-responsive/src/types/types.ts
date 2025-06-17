@@ -17,7 +17,7 @@ export interface GeneralTableProps<TData> extends Omit<TableOptions<TData>, 'dat
   tableId: string,
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   columns: ColumnDef<TData, any>[],
-  loading?: boolean,
+  tcLoading?: boolean,
   tcIsStriped?: boolean,
   tcOrder?: ColumnSort,
   tcRenderMobileTitle?: (row: Row<TData>) => ReactNode,
@@ -82,7 +82,7 @@ export type Params = {
 
 export interface MobileTableProps<TData>
   extends Table<TData>,
-  Pick<ClientTableProps<TData>, 'loading' | 'tcRenderMobileTitle'> {
+  Pick<ClientTableProps<TData>, 'tcLoading' | 'tcRenderMobileTitle'> {
   noFooter: boolean,
   actions: ActionsType<TData>,
   languageStrings: I18StringsProps,
@@ -90,7 +90,7 @@ export interface MobileTableProps<TData>
 
 export interface DesktopTableProps<TData>
   extends Table<TData>,
-  Pick<ClientTableProps<TData>, 'tableId' | 'loading' | 'tcIsStriped'> {
+  Pick<ClientTableProps<TData>, 'tableId' | 'tcLoading' | 'tcIsStriped'> {
   tcPageSizeOptions: number[],
   noFooter: boolean,
   noFilters: boolean,

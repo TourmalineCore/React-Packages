@@ -504,7 +504,7 @@ function mountComponent({
     recordCount: 2,
   }),
   columns = getColumnsWithProps(),
-  loading,
+  tcLoading,
   tcPageSizeOptions,
   tcActions,
   tcLanguage = 'en',
@@ -514,7 +514,7 @@ function mountComponent({
       tableId="mobile-test-table"
       data={data}
       columns={columns}
-      loading={loading}
+      tcLoading={tcLoading}
       tcRenderMobileTitle={(row) => row.original.name}
       tcPageSizeOptions={tcPageSizeOptions}
       tcActions={tcActions}

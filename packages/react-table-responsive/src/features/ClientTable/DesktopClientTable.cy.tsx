@@ -659,7 +659,7 @@ function mountComponent({
     recordCount: 2,
   }),
   columns = getColumnsWithProps(),
-  loading,
+  tcLoading,
   tcIsStriped,
   tcOrder,
   tcPageSizeOptions,
@@ -676,7 +676,7 @@ function mountComponent({
       tableId="desktop-test-table"
       data={data}
       columns={columns}
-      loading={loading}
+      tcLoading={tcLoading}
       tcIsStriped={tcIsStriped}
       tcOrder={tcOrder}
       tcRenderMobileTitle={(row) => row.original.name}

@@ -15,7 +15,7 @@ export function MobileTable<TData>({
   setPageSize,
   getRowCount,
   noFooter,
-  loading,
+  tcLoading,
   setSorting,
   actions,
   languageStrings,
@@ -68,7 +68,7 @@ export function MobileTable<TData>({
       </div>
 
       <Loader
-        loading={loading}
+        loading={tcLoading}
         languageStrings={languageStrings}
       />
     </div>

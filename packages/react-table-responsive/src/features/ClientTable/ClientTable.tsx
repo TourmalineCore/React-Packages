@@ -19,7 +19,7 @@ const tablesState = new TablesState()
 export function ClientTable<TData>({
   tableId,
   columns,
-  loading = false,
+  tcLoading = false,
   tcIsStriped,
   tcOrder,
   data,
@@ -159,7 +159,7 @@ export function ClientTable<TData>({
         tableId={tableId}
         noFooter={noFooter}
         noFilters={noFilters}
-        loading={loading}
+        tcLoading={tcLoading}
         tcIsStriped={tcIsStriped}
         tcPageSizeOptions={tcPageSizeOptions}
         languageStrings={i18n(tcLanguage)}
@@ -170,7 +170,7 @@ export function ClientTable<TData>({
         {...tableProps}
         tcRenderMobileTitle={tcRenderMobileTitle}
         noFooter={noFooter}
-        loading={loading}
+        tcLoading={tcLoading}
         actions={tcActions}
         languageStrings={i18n(tcLanguage)}
       />

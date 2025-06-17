@@ -12,7 +12,7 @@ export function DesktopTable<TData>({
   getFooterGroups,
   noFooter,
   noFilters,
-  loading,
+  tcLoading,
   tcIsStriped,
   getState,
   setPageSize,
@@ -75,7 +75,7 @@ export function DesktopTable<TData>({
       />
 
       <Loader
-        loading={loading}
+        loading={tcLoading}
         languageStrings={languageStrings}
       />
     </div>
