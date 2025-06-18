@@ -262,7 +262,7 @@ export function ServerTable<TData>({
       draw: fetchId,
       page: pageIndex + 1,
       pageSize,
-      orderBy: sortBy.id,
+      orderBy: sortBy.id.toLowerCase(),
       orderingDirection: sortBy.desc
         ? 'desc'
         : 'asc',
