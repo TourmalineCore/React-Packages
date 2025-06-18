@@ -15,6 +15,7 @@ export function DesktopHeaderCell<TData>({
       })}
       className={`
         tc-table-desktop-header-cell tc-table-desktop-header-cell--title 
+        ${headerCell.column.getCanSort() ? 'tc-table-desktop-header-cell--sortable' : ''}
         ${setActionCellClassName(headerCell.column)}
         ${setSortingClassName()}
       `}

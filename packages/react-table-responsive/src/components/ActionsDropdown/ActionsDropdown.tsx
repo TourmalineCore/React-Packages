@@ -31,7 +31,9 @@ export function ActionsDropdown<TData>({
     handler: () => setIsOpened(false),
   })
 
-  return (
+  const availableActions = actions.filter((action) => action.show(rowWithValues))
+
+  return availableActions.length > 0 ? (
     <div
       ref={dropdownContainer}
       className="tc-table-desktop-actions-dropdown"
@@ -58,8 +60,7 @@ export function ActionsDropdown<TData>({
           data-cy="table-dropdown-list"
         >
           {
-            actions
-              .filter((action) => action.show(rowWithValues))
+            availableActions
               .map((action) => (
                 <button
                   key={`${action.name}-${rowWithValues.id}`}
@@ -95,5 +96,5 @@ export function ActionsDropdown<TData>({
         })!,
       )}
     </div>
-  )
+  ) : ''
 }
