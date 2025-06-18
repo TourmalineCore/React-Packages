@@ -22,6 +22,28 @@ more info about packages development\
 - [VSCode](https://code.visualstudio.com/)
 - [Dev Containers Extension](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers)
 
+### Run Cypress tests
+
+IMPORTANT! Before running the tests, run the command:
+
+```bash
+npm run build-packages
+```
+
+## Component tests
+
+To run component tests, run the command:
+
+```bash
+npm run cypress:run:component
+```
+
+To open cypress UI to run component tests, run the command:
+
+```bash
+npm run cypress:open:component
+```
+
 ### Start
 
 If you open this project in VSCode please install Dev Containers extension and agree to re-open this project's folder in it with installing all the rest of recommended extensions.

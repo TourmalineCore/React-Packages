@@ -1,0 +1,22 @@
+.tc-table-mobile-pagination {
+  text-align: center;
+
+  &__counter {
+    padding: 22px 10px;
+  }
+
+  &__showing {
+    color: #4876ec;
+  }
+
+  &__show-more {
+    margin: 16px 0 32px;
+    outline: none;
+    border: none;
+    border-radius: 45px;
+    padding: 16px 32px;
+    color: rgba(0, 0, 0, 0.5);
+    background: #ededed;
+    cursor: pointer;
+  }
+}

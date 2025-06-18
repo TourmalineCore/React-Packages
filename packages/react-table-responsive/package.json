@@ -1,6 +1,6 @@
 {
   "name": "@tourmalinecore/react-table-responsive",
-  "version": "0.6.0",
+  "version": "1.0.0",
   "description": "React Table Responsive",
   "author": "Tourmaline Core",
   "keywords": [
@@ -14,7 +14,7 @@
   "license": "MIT",
   "main": "es/index.js",
   "module": "es/index.js",
-  "source": "src/index.js",
+  "source": "src/index.ts",
   "files": [
     "/es"
   ],
@@ -24,24 +24,27 @@
   "scripts": {
     "build": "run-s cleanup build-package",
     "cleanup": "rimraf dist es",
-    "build-package": "cross-env NODE_ENV=production BABEL_ENV=production rollup -c ../../rollup.config.js",
+    "build-package": "cross-env NODE_ENV=production BABEL_ENV=production rollup -c ../../rollup.config.ts",
     "prepublishOnly": "npm run build"
   },
   "peerDependencies": {
-    "react": "^17",
-    "react-dom": "^17"
+    "react": ">=17",
+    "react-dom": ">=17",
+    "tslib": "^2.3.0"
   },
   "dependencies": {
-    "@tourmalinecore/react-tc-modal": "^0.3.0",
-    "@tourmalinecore/react-tc-ui-kit": "^0.4.4",
-    "axios": "^0.21.0",
-    "lodash": "^4.17.20",
-    "match-sorter": "^6.0.2",
-    "react-table": "^7.6.3"
+    "@tanstack/match-sorter-utils": "^8.15.1",
+    "@tanstack/react-table": "^8.17.3",
+    "@tourmalinecore/react-tc-modal": "^0.4.0",
+    "@tourmalinecore/react-tc-ui-kit": "^0.5.0",
+    "axios": "^1.8.4",
+    "lodash": "^4.17.21",
+    "qs": "^6.14.0"
   },
   "devDependencies": {
-    "@fortawesome/fontawesome-svg-core": "^1.2.32",
-    "@fortawesome/free-solid-svg-icons": "^5.15.1",
-    "@fortawesome/react-fontawesome": "^0.1.13"
+    "react": "18",
+    "react-dom": "18",
+    "@types/react": "^18.3.23",
+    "@types/react-dom": "^18.2.19"
   }
 }

@@ -1,0 +1,17 @@
+.tc-table-filter-input {
+  border: 1px solid #d8dfea;
+  border-radius: 5px;
+  padding: 6px 10px;
+  height: 30px;
+  box-sizing: border-box;
+  font-family: inherit;
+  font-weight: inherit;
+  font-size: inherit;
+  background-clip: padding-box; /* ios inner shadow fix */
+  background-color: #fff;
+
+  &:focus {
+    outline: none;
+    border-color: #334580;
+  }
+}
