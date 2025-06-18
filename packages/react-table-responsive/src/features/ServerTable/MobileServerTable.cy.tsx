@@ -350,7 +350,7 @@ function filtrationTests() {
 }
 
 function showMoreTests() {
-  it.only(`
+  it(`
     GIVEN mobile client table with 10 records visible
     WHEN total count of records is 15
     AND page size is 10

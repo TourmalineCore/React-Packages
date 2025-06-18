@@ -681,7 +681,7 @@ function mountComponent({
   tcLoading,
   tcIsStriped,
   tcOrder = {
-    id: 'Id',
+    id: 'id',
     desc: false,
   },
   tcPageSizeOptions,

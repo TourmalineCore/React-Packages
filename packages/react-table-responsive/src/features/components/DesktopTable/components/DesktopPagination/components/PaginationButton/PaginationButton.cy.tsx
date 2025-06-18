@@ -23,7 +23,7 @@ function initializeTitleTests() {
       title: 'Test title',
     })
 
-    // ToDo hover doesn't work
+    // hover doesn't work in cypress, that's why we check attribute this way
     getButton()
       .should('have.attr', 'title', 'Test title')
   })
