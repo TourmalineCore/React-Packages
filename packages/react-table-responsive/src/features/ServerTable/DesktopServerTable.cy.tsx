@@ -7,6 +7,7 @@ import {
 
 type TableResponse = {
   list: TestData[],
+  totalCount: number,
 }
 
 describe('desktopServerTable', () => {
@@ -15,6 +16,7 @@ describe('desktopServerTable', () => {
       list: generateTableTestData({
         recordCount: 2,
       }),
+      totalCount: 2,
     }
 
     cy.intercept(
@@ -85,6 +87,7 @@ function sortingTests() {
         recordCount: 2,
       })
         .reverse(),
+      totalCount: 2,
     }
 
     mountComponent({
@@ -123,6 +126,7 @@ function sortingTests() {
         recordCount: 2,
       })
         .reverse(),
+      totalCount: 2,
     }
 
     mountComponent({
@@ -165,6 +169,7 @@ function sortingTests() {
       list: generateTableTestData({
         recordCount: 2,
       }),
+      totalCount: 2,
     }
 
     mountComponent({
@@ -210,6 +215,7 @@ function filtrationTests() {
       list: generateTableTestData({
         recordCount: 1,
       }),
+      totalCount: 2,
     }
 
     mountComponent({
@@ -264,6 +270,7 @@ function filtrationTests() {
           type: someTypes.firstType,
         },
       ],
+      totalCount: 2,
     }
 
     mountComponent({
@@ -318,12 +325,14 @@ function paginationTests() {
       list: generateTableTestData({
         recordCount: 10,
       }),
+      totalCount: 11,
     }
 
     const tableResponseWithPageSize20 = {
       list: generateTableTestData({
         recordCount: 11,
       }),
+      totalCount: 11,
     }
 
     mountComponent()
@@ -363,8 +372,9 @@ function paginationTests() {
 `, () => {
     const tableResponseFromPage1: TableResponse = {
       list: generateTableTestData({
-        recordCount: 11,
+        recordCount: 10,
       }),
+      totalCount: 11,
     }
 
     const tableResponseFromPage2 = {
@@ -375,6 +385,7 @@ function paginationTests() {
           type: someTypes.firstType,
         },
       ],
+      totalCount: 11,
     }
 
     mountComponent()
@@ -456,6 +467,7 @@ function requestDataTests() {
         statusCode: 200,
         body: {
           list: [],
+          total: 0,
         },
         headers: {
           'content-type': 'application/json',
@@ -491,6 +503,7 @@ function customDataLoaderTests() {
               type: someTypes.firstType,
             },
           ],
+          totalCount: 1,
         },
       }),
     })
@@ -524,6 +537,7 @@ function onFiltersChangeTests() {
       list: generateTableTestData({
         recordCount: 1,
       }),
+      totalCount: 2,
     }
 
     mountComponent({

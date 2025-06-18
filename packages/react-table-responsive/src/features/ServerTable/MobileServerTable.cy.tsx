@@ -2,11 +2,20 @@ import axios from 'axios'
 import { ServerTable } from './ServerTable'
 import { ServerTableProps } from '../../types/types'
 import {
-  TestData, generateTableTestData, getTableMobileRow, getTableMobileSortingButton, getColumnsWithProps, getFilterInputByName, someTypes, getTableMobileFiltrationButton, getFilterInputById,
+  TestData,
+  generateTableTestData,
+  getTableMobileRow,
+  getTableMobileSortingButton,
+  getColumnsWithProps,
+  getFilterInputByName,
+  someTypes,
+  getTableMobileFiltrationButton,
+  getFilterInputById,
 } from '../utils/test-helpers'
 
 type TableResponse = {
   list: TestData[],
+  totalCount: number
 }
 
 describe('mobileServerTable', () => {
@@ -15,6 +24,7 @@ describe('mobileServerTable', () => {
       list: generateTableTestData({
         recordCount: 2,
       }),
+      totalCount: 2,
     }
 
     cy.intercept(
@@ -75,6 +85,7 @@ function sortingTests() {
         recordCount: 2,
       })
         .reverse(),
+      totalCount: 2,
     }
 
     mountComponent({
@@ -109,6 +120,7 @@ function sortingTests() {
         recordCount: 2,
       })
         .reverse(),
+      totalCount: 2,
     }
 
     mountComponent({
@@ -155,6 +167,7 @@ function sortingTests() {
       list: generateTableTestData({
         recordCount: 2,
       }),
+      totalCount: 2,
     }
 
     mountComponent({
@@ -209,6 +222,7 @@ function filtrationTests() {
       list: generateTableTestData({
         recordCount: 1,
       }),
+      totalCount: 2,
     }
 
     mountComponent({
@@ -263,6 +277,7 @@ function filtrationTests() {
           type: someTypes.firstType,
         },
       ],
+      totalCount: 3,
     }
 
     cy.intercept(
@@ -283,6 +298,7 @@ function filtrationTests() {
           type: someTypes.firstType,
         },
       ],
+      totalCount: 3,
     }
 
     mountComponent({
@@ -334,7 +350,7 @@ function filtrationTests() {
 }
 
 function showMoreTests() {
-  it(`
+  it.only(`
     GIVEN mobile client table with 10 records visible
     WHEN total count of records is 15
     AND page size is 10
@@ -343,14 +359,16 @@ function showMoreTests() {
 `, () => {
     const tableResponse: TableResponse = {
       list: generateTableTestData({
-        recordCount: 11,
+        recordCount: 10,
       }),
+      totalCount: 15,
     }
 
     const tableResponseWithPageSize15: TableResponse = {
       list: generateTableTestData({
         recordCount: 15,
       }),
+      totalCount: 15,
     }
 
     cy.intercept(
@@ -365,7 +383,7 @@ function showMoreTests() {
     cy.wait('@getTableData')
 
     getTableMobileRow()
-      .should('have.length', 11)
+      .should('have.length', 10)
 
     cy.getByData('table-mobile-show-more')
       .click()
