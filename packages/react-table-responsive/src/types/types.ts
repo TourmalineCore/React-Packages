@@ -102,6 +102,7 @@ export interface DesktopTableProps<TData>
 
 declare module '@tanstack/react-table' {
   export interface ColumnDefBase<TData extends RowData, TValue = unknown> {
+    id: string,
     tcNonMobileColumn?: boolean,
     tcTwoRowsMobileLayout?: boolean,
     tcNoFooterColumn?: boolean,
