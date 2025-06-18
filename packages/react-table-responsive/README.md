@@ -89,10 +89,12 @@ return (
     data={data}
     columns={[
       {
+        id: 'Name',
         header: `Name`,
         accessorFn: (row) => row.name,
       },
       {
+        id: 'Data',
         header: `Data`,
         accessorFn: (row) => row.data,
       },
@@ -127,6 +129,7 @@ return (
 
 | Name | Type | Default Value | Description |
 |-|-|-|-|
+| id |  String | undefined | **Required props**. For a server table the id should be identical to the field in the API contract.|
 | [header](https://tanstack.com/table/v8/docs/api/core/column-def#header) |  String \| (header) => unknown | undefined | Displays name for the column 'th'. |
 | [accessorFn](https://tanstack.com/table/v8/docs/api/core/column-def#accessorfn) | (originalRow, index) => any | undefined | Used to build the data model for your column. The data returned by an accessorFn should be primitive and sortable. |
 | [cell](https://tanstack.com/table/v8/docs/api/core/column-def#cell) | String \| (cell) => unknown | undefined | A function for rendering cell's content. By default renders the content of a property with the same name as the `accessorFn` as text. |
@@ -155,11 +158,13 @@ This package implements a single-column sorting. You can use it by adding `tcOrd
   data={data}
   columns={[
     {
+      id: `Name`,
       header: `Name`,
       accessorFn: (row) => row.name,
       enableSorting: true,
     },
     {
+      id: `Data`,
       header: `Data`,
       accessorFn: (row) => row.data,
     },
@@ -178,6 +183,7 @@ You can use your own filtration function for default text input filter:
 ```js
 const columns = [
     {
+      id: 'Status',
       header: 'Status',
       accessorFn: (row) => row.status,
       enableColumnFilter: true,
@@ -223,6 +229,7 @@ You can override the default text input filter the following way:
 ```js
 const columns = [
   {
+    id: 'Status',
     header: 'Status',
     accessorFn: (row) => row.status,
     enableColumnFilter: true,
@@ -242,6 +249,7 @@ import {ClientTable, SelectColumnFilter} from '@tourmalinecore/react-table-respo
 
 const columns = [
     {
+      id: 'Status',
       header: 'Status',
       accessorFn: (row) => row.status,
       tcFilter: SelectColumnFilter,
@@ -293,10 +301,12 @@ return (
     data={data}
     columns={[
       {
+        id: 'Name',
         header: 'Name',
         accessorFn: (row) => row.name
       },
       {
+        id: 'Data',
         header: 'Data',
         accessorFn: (row) => row.data
       },
