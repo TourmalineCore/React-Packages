@@ -62,13 +62,11 @@ export function ClientTable<TData>({
     defaultColumn: DEFAULT_COLUMN_PARAMS,
     getCoreRowModel: getCoreRowModel(),
     initialState: {
-      ...(tcOrder && {
-        sorting: tablesState.getDefaultSortBy({
-          tableId,
-          initialState: [
-            tcOrder,
-          ],
-        }),
+      sorting: tablesState.getDefaultSortBy({
+        tableId,
+        initialState: [
+          tcOrder,
+        ],
       }),
       columnFilters: tablesState.getDefaultFilters({
         tableId,

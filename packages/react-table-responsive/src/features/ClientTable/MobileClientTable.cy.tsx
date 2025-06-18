@@ -519,6 +519,10 @@ function mountComponent({
   tcLoading,
   tcPageSizeOptions,
   tcActions,
+  tcOrder = {
+    desc: false,
+    id: 'name',
+  },
   tcLanguage = 'en',
 }: Partial<ClientTableProps<TestData>> = {}) {
   cy.mount(
@@ -526,6 +530,7 @@ function mountComponent({
       tableId="mobile-test-table"
       data={data}
       columns={columns}
+      tcOrder={tcOrder}
       tcLoading={tcLoading}
       tcRenderMobileTitle={(row) => row.original.name}
       tcPageSizeOptions={tcPageSizeOptions}

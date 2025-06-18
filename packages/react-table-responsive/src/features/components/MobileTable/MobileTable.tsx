@@ -18,6 +18,7 @@ export function MobileTable<TData>({
   tcLoading,
   setSorting,
   actions,
+  totalCount,
   languageStrings,
 }: MobileTableProps<TData>) {
   const rowsIsEmpty = getRowModel().rows.length === 0
@@ -59,7 +60,7 @@ export function MobileTable<TData>({
         }
 
         <MobilePagination
-          totalCount={getRowCount()}
+          totalCount={totalCount || getRowCount()}
           setPageSize={setPageSize}
           pageSize={getState().pagination.pageSize}
           languageStrings={languageStrings}

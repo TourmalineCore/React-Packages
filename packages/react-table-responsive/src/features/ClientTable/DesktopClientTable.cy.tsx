@@ -680,7 +680,10 @@ function mountComponent({
   columns = getColumnsWithProps(),
   tcLoading,
   tcIsStriped,
-  tcOrder,
+  tcOrder = {
+    id: 'Id',
+    desc: false,
+  },
   tcPageSizeOptions,
   tcActions,
   tcLanguage = 'en',

@@ -19,7 +19,7 @@ export interface GeneralTableProps<TData> extends Omit<TableOptions<TData>, 'dat
   columns: ColumnDef<TData, any>[],
   tcLoading?: boolean,
   tcIsStriped?: boolean,
-  tcOrder?: ColumnSort,
+  tcOrder: ColumnSort,
   tcRenderMobileTitle?: (row: Row<TData>) => ReactNode,
   tcMaxStillMobileBreakpoint?: number,
   tcPageSizeOptions?: number[],
@@ -82,19 +82,21 @@ export type Params = {
 
 export interface MobileTableProps<TData>
   extends Table<TData>,
-  Pick<ClientTableProps<TData>, 'tcLoading' | 'tcRenderMobileTitle'> {
+  Pick<GeneralTableProps<TData>, 'tcLoading' | 'tcRenderMobileTitle'> {
   noFooter: boolean,
   actions: ActionsType<TData>,
   languageStrings: I18StringsProps,
+  totalCount?: number,
 }
 
 export interface DesktopTableProps<TData>
   extends Table<TData>,
-  Pick<ClientTableProps<TData>, 'tableId' | 'tcLoading' | 'tcIsStriped'> {
+  Pick<GeneralTableProps<TData>, 'tableId' | 'tcLoading' | 'tcIsStriped'> {
   tcPageSizeOptions: number[],
   noFooter: boolean,
   noFilters: boolean,
   languageStrings: I18StringsProps,
+  totalCount?: number,
 }
 
 declare module '@tanstack/react-table' {

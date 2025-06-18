@@ -67,10 +67,11 @@ export function ServerTable<TData>({
 
   const fetchDataDebounced = useCallback(debounce(fetchData, 300), [])
 
-  const [
-    data,
-    setData,
-  ] = useState([])
+  const [state, setState] = useState({
+    data: [],
+    totalCount: 0,
+    pageCount: 0,
+  });
 
   const [
     pagination,
@@ -83,19 +84,23 @@ export function ServerTable<TData>({
     }),
   })
 
+  const {
+    data,
+    totalCount,
+    pageCount,
+  } = state;
+
   const tableProps = useReactTable({
     columns,
     data,
     defaultColumn: DEFAULT_COLUMN_PARAMS,
     getCoreRowModel: getCoreRowModel(),
     initialState: {
-      ...(tcOrder && {
-        sorting: tablesState.getDefaultSortBy({
-          tableId,
-          initialState: [
-            tcOrder,
-          ],
-        }),
+      sorting: tablesState.getDefaultSortBy({
+        tableId,
+        initialState: [
+          tcOrder,
+        ],
       }),
       columnFilters: tablesState.getDefaultFilters({
         tableId,
@@ -105,6 +110,7 @@ export function ServerTable<TData>({
     state: {
       pagination,
     },
+    pageCount,
     filterFns: {
       fuzzy: fuzzyFilter,
     },
@@ -210,6 +216,7 @@ export function ServerTable<TData>({
         {...tableProps}
         tableId={tableId}
         noFooter={noFooter}
+        totalCount={totalCount}
         noFilters={noFilters}
         tcLoading={tcLoading || tableDataLoading}
         tcIsStriped={tcIsStriped}
@@ -222,6 +229,7 @@ export function ServerTable<TData>({
         {...tableProps}
         tcRenderMobileTitle={tcRenderMobileTitle}
         noFooter={noFooter}
+        totalCount={totalCount}
         tcLoading={tcLoading || tableDataLoading}
         actions={tcActions}
         languageStrings={i18n(tcLanguage)}
@@ -282,7 +290,12 @@ export function ServerTable<TData>({
       }),
     })
 
-    setData(data.list)
+    setState({
+      ...state,
+      data: data.list,
+      totalCount: data.totalCount,
+      pageCount: Math.ceil(data.totalCount / pageSize),
+    });
 
     tcOnPageDataLoaded(data.list)
 
