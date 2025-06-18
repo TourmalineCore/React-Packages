@@ -21,7 +21,7 @@ export function MobileFiltrationPopup<TData>({
     draftFilters,
     setDraftFilters,
   ] = useState(filterableColumns.map((column) => ({
-    id: column.column.columnDef.id,
+    id: column.column.id,
     value: column.column.getFilterValue(),
   })))
 
