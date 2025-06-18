@@ -1,4 +1,3 @@
-// ToDo update Modal to 18.*.* React version before publishing
 import { Modal } from '@tourmalinecore/react-tc-modal'
 import { CheckField } from '@tourmalinecore/react-tc-ui-kit'
 
@@ -32,12 +31,12 @@ export function MobileSortingPopup({
   const [
     draftSortById,
     setDraftSortById,
-  ] = useState(sortByColumn?.id)
+  ] = useState(sortByColumn.id)
 
   const [
     draftSortByDesc,
     setSortByDesc,
-  ] = useState(sortByColumn?.desc.toString())
+  ] = useState(sortByColumn.desc.toString())
 
   const directionOptions = useMemo(() => [
     {

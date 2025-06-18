@@ -53,7 +53,7 @@ export function MobileHeader<TData>({
       header.column.columnDef.header,
       header.getContext(),
     ),
-    value: header.column.columnDef.id,
+    value: header.column.id,
   })), [
     sortableColumns,
   ])
