@@ -67,6 +67,7 @@ export type CustomDataLoader = ({
     list: {
       [tableDataKey: string]: string | number,
     }[],
+    totalCount: number
   },
 }>
 
