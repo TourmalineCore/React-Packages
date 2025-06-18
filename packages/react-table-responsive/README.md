@@ -97,6 +97,10 @@ return (
         accessorFn: (row) => row.data,
       },
     ]}
+    tcOrder={{
+      id: `Name`,
+      desc: true,
+    }}
     tcRenderMobileTitle={(row) => row.original.name}
   />
 );
@@ -109,7 +113,7 @@ return (
 | data | Array\<any\> | [] | Data for table grouped by rows, it maps with **columns** by property key, using columns '*accessor field*'. Each object is a `row`: **key** - column id (use it in columns 'accessor' field), **value** - cell data. |
 | columns | Array\<[Column](#Column-props)\> | [] | Defines table's columns. See the [table](#Column-props) below for more info. |
 | tcActions | Array\<[Action](#Action-props)\> | [] | Defines a special column for action-buttons. See [here](#Actions) for more info. |
-| tcOrder | [ColumnSort](https://tanstack.com/table/v8/docs/guide/sorting#sorting-state)  | { desc: false; id: ''; } | Sorting order. |
+| tcOrder | [ColumnSort](https://tanstack.com/table/v8/docs/guide/sorting#sorting-state)  | undefined | **Required parameter.** Sorting order. |
 | tcLanguage | "en" \| "ru" | "en" | The language used for navigation labels. Accepts "en"/"ru" or Object containing translation for all required strings ([example](https://github.com/TourmalineCore/React-Packages/blob/feature/readme-update/packages/react-table-responsive/src/i18n/en.js)) |
 | tcRenderMobileTitle | ([Row](https://tanstack.com/table/v8/docs/api/core/row)) => ReactNode | () => null | Row's accordion head content for mobile view. |
 | tcMaxStillMobileBreakpoint | Number | 800 | A breakpoint to toggle between mobile/desktop view. |
@@ -127,7 +131,7 @@ return (
 | [accessorFn](https://tanstack.com/table/v8/docs/api/core/column-def#accessorfn) | (originalRow, index) => any | undefined | Used to build the data model for your column. The data returned by an accessorFn should be primitive and sortable. |
 | [cell](https://tanstack.com/table/v8/docs/api/core/column-def#cell) | String \| (cell) => unknown | undefined | A function for rendering cell's content. By default renders the content of a property with the same name as the `accessorFn` as text. |
 | [footer](https://tanstack.com/table/v8/docs/api/core/column-def#footer) | String \| (footer) => unknown | undefined | Renders column's footer. Receives the table instance and column model as props. |
-| [filterFn](https://tanstack.com/table/latest/docs/api/features/column-filtering#filterfn) | FilterFn \| keyof FilterFns \| keyof BuiltInFilterFns | undefined| A function used for column filtration. If a string is passed, the function with that name will be used from either the custom filterTypes table option (if specified) or from the built-in filtering types object. |
+| [filterFn](https://tanstack.com/table/v8/docs/api/features/column-filtering#filterfn) | FilterFn \| keyof FilterFns \| keyof BuiltInFilterFns | 'auto'| A function used for column filtration. If a string is passed, the function with that name will be used from either the custom filterTypes table option (if specified) or from the built-in filtering types object. |
 | tcFilter | (context: HeaderContext) => ReactNode | undefined | Receives the table instance and column model as props. Renders a component that will be used for filtration in the column. A text input is used by default. |
 | tcSelectFilterOptions | Array\<Object\> | [] | If you are using `SelectColumnFilter`, pass options with this property. |
 | minSize | Number | 80 | The minimum allowed size for the column. |
@@ -297,6 +301,10 @@ return (
         accessorFn: (row) => row.data
       },
     ]}
+     tcOrder={{
+      id: 'Name',
+      desc: false,
+    }}
     tcActions={[
       {
         name: `open-dictionaries-action`,
@@ -345,6 +353,11 @@ return (
   <ServerTable
     tableId="unique-table-id"
     columns={[]}
+    tcOrder={{
+      id: '',
+      desc: false,
+    }}
+
     // props for API calls
     tcApiHostUrl="https://hosturl"
     tcDataPath="/api-endpoint"
@@ -367,7 +380,11 @@ return (
     </button>
     <ServerTable
       tableId="unique-table-id"
-      columns={columns}
+      columns={[]}
+      tcOrder={{
+        id: '',
+        desc: false,
+      }}
       tcRefresh={refresh}
       tcApiHostUrl="https://hosturl"
       tcDataPath="/api-endpoint"
@@ -376,7 +393,6 @@ return (
   </div>
 )
 ```
-
 
 ## Configuration
 ServerTable uses some unique props in addition to what the client table has:
@@ -427,6 +443,7 @@ type CustomDataLoader = ({
     list: {
       [tableDataKey: string]: string | number,
     }[],
+    totalCount: number
   },
 }>
 ```
@@ -439,7 +456,7 @@ If you want to use the default GET request method, you will need to ensure that 
 |-|-|-|
 | draw | Number | Used as a query identifier to ensure queries are being executed in the correct order.  |
 | page | Number | Number of the page to take. |
-| pageSize | Number | Determines the size of pages. |
+| pageSize | Number | Determines the number of entries on the page. |
 | orderBy | String | Property name used for sorting. |
 | orderingDirection | String | Any string for ascending order or 'desc' for descending. |
 | filteredByColumns | String[] | Collection of property names to be used for filtering separated by comma. |
