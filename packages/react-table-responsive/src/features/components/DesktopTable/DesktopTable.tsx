@@ -42,7 +42,6 @@ export function DesktopTable<TData>({
 
           <DesktopBody<TData>
             tcIsStriped={tcIsStriped}
-            // ToDo check error in browser runtime
             rows={getRowModel().rows}
             languageStrings={languageStrings}
           />
