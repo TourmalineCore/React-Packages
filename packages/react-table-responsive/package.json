@@ -18,6 +18,13 @@
   "files": [
     "/es"
   ],
+  "exports": {    
+    ".": {
+      "import": "./es/index.js"
+    },
+    "./styles.css": "./es/index.css",
+    "./package.json": "./package.json"
+  },
   "publishConfig": {
     "access": "public"
   },
