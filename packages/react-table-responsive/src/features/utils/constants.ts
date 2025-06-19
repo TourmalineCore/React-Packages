@@ -12,6 +12,8 @@ export const DEFAULT_COLUMN_PARAMS = {
   maxSize: 400,
 }
 
+export const ACTIONS_COLUMN_ID = 'actions-column'
+
 export const AVAILABLE_PAGE_SIZES = [
   10,
   20,

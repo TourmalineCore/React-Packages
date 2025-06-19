@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import {
   PaginationState, getCoreRowModel, getFilteredRowModel, getPaginationRowModel, getSortedRowModel, useReactTable,
 } from '@tanstack/react-table'
-import { ACTIONS_COLUMN_ID, getActionsDropdownColumn } from '../utils/getActionsDropdownColumn'
+import { getActionsDropdownColumn } from '../utils/getActionsDropdownColumn'
 import { useWindowDimensions } from '../hooks/useWindowDimensions'
 import { DesktopTable } from '../components/DesktopTable/DesktopTable'
 import { MobileTable } from '../components/MobileTable/MobileTable'
@@ -11,6 +11,7 @@ import { getDefaultTablePageSize } from '../utils/pagination-utils'
 import { TablesState } from '../state/tables-state'
 import {
   AVAILABLE_PAGE_SIZES, START_PAGE_INDEX, DEFAULT_COLUMN_PARAMS, fuzzyFilter,
+  ACTIONS_COLUMN_ID,
 } from '../utils/constants'
 import { ClientTableProps } from '../../types/types'
 

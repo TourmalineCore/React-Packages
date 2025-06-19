@@ -1,8 +1,7 @@
 import { CellContext, ColumnDef } from '@tanstack/react-table'
 import { ActionsDropdown } from '../../components/ActionsDropdown/ActionsDropdown'
 import { ActionsType } from '../../types/types'
-
-export const ACTIONS_COLUMN_ID = 'actions-column'
+import { ACTIONS_COLUMN_ID } from './constants'
 
 export function getActionsDropdownColumn<TData>({
   tableId,

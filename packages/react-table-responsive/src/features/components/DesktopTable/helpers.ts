@@ -1,5 +1,5 @@
 import { ColumnDef } from '@tanstack/react-table'
-import { ACTIONS_COLUMN_ID } from '../../utils/getActionsDropdownColumn'
+import { ACTIONS_COLUMN_ID } from '../../utils/constants'
 
 export function setActionCellClassName<TData>(column: ColumnDef<TData, unknown>) {
   return column.id === ACTIONS_COLUMN_ID ? 'tc-table-desktop__action-cell' : ''

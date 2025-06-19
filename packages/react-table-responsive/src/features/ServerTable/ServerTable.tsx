@@ -7,7 +7,7 @@ import {
 import axios from 'axios'
 import * as qs from 'qs'
 import { debounce } from 'lodash'
-import { ACTIONS_COLUMN_ID, getActionsDropdownColumn } from '../utils/getActionsDropdownColumn'
+import { getActionsDropdownColumn } from '../utils/getActionsDropdownColumn'
 import { useWindowDimensions } from '../hooks/useWindowDimensions'
 import { DesktopTable } from '../components/DesktopTable/DesktopTable'
 import { MobileTable } from '../components/MobileTable/MobileTable'
@@ -16,6 +16,7 @@ import { getDefaultTablePageSize } from '../utils/pagination-utils'
 import { TablesState } from '../state/tables-state'
 import {
   AVAILABLE_PAGE_SIZES, START_PAGE_INDEX, DEFAULT_COLUMN_PARAMS, fuzzyFilter,
+  ACTIONS_COLUMN_ID,
 } from '../utils/constants'
 import { ServerTableProps, Params } from '../../types/types'
 
