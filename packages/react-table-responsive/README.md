@@ -1,6 +1,6 @@
 # React-Table-Responsive
 
-It's a documentation for version > 1.0.0. If you are using version < 1.0.0, see the old documentation [here](./OLD-README.md).
+It's a documentation for version > 1.0.0. If you are using version < 1.0.0, see the old documentation [here](https://github.com/TourmalineCore/React-Packages/blob/master/packages/react-table-responsive/OLD-README.md).
 
 Mobile-friendly react table component based on [react-table](https://github.com/tannerlinsley/react-table).
 
@@ -18,7 +18,7 @@ Mobile-friendly react table component based on [react-table](https://github.com/
     - [Select Column Filter](#Select-Column-Filter)
   - [Actions](#Actions)
     - [Action props](#Action-props)
-  - [Table State Persistance](#table-state-persistence)
+  - [Table State Persistence](#table-state-persistence)
 - [Server Side Table](#Server-Side-Table)
   - [Table Refresh](#Table-Refresh)
   - [Configuration](#Configuration)
@@ -40,7 +40,7 @@ yarn add @tourmalinecore/react-table-responsive
 ### Do not forget to import styles if you want to use the default styling.
 They should be imported once in your root component:
 ```JSX
-import '@tourmalinecore/react-table-responsive/es/index.css';
+import '@tourmalinecore/react-table-responsive/styles.css'
 import '@tourmalinecore/react-tc-modal/es/index.css';
 import '@tourmalinecore/react-tc-ui-kit/es/index.css';
 ```
