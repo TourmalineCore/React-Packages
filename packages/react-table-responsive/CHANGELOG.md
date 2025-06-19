@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.1](https://github.com/TourmalineCore/React-Packages/compare/%40tourmalinecore/react-table-responsive%401.0.0...%40tourmalinecore/react-table-responsive%401.0.1) (2025-06-19)
+
+### Features
+- change style import 
+
+```js
+// It was
+import '@tourmalinecore/react-table-responsive/es/index.css';
+
+// Has become
+import '@tourmalinecore/react-table-responsive/styles.css;
+```
+
 # [1.0.0](https://github.com/TourmalineCore/React-Packages/compare/@tourmalinecore/react-table-responsive@0.6.0...@tourmalinecore/react-table-responsive@1.0.0) (2025-06-17)
 
 **Note:** Update major version react-table-responsive

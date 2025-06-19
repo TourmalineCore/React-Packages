@@ -1,7 +1,7 @@
 # Old React-Table-Responsive
 
 
-IMPORTANT! It's old documentation for version  < 1.0.0. See new documentation [here](./README.md).
+IMPORTANT! It's old documentation for version  < 1.0.0. See new documentation [here](https://github.com/TourmalineCore/React-Packages/blob/master/packages/react-table-responsive/README.md).
 
 Mobile friendly react table component based on [react-table](https://github.com/tannerlinsley/react-table) using its useFlexLayout hook.
 
