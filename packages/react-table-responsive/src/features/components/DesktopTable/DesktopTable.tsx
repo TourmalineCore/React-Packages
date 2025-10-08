@@ -26,6 +26,7 @@ export function DesktopTable<TData>({
   getCanNextPage,
   getPageCount,
   languageStrings,
+  totalCount,
 }: DesktopTableProps<TData>) {
   return (
     <div
@@ -62,7 +63,7 @@ export function DesktopTable<TData>({
         pageSize={getState().pagination.pageSize}
         pageIndex={getState().pagination.pageIndex}
         tcPageSizeOptions={tcPageSizeOptions}
-        totalCount={getRowCount()}
+        totalCount={totalCount || getRowCount()}
         firstPage={firstPage}
         previousPage={previousPage}
         сanPreviousPage={getCanPreviousPage()}

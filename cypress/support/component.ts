@@ -16,7 +16,7 @@
 // Import commands.js using ES2015 syntax:
 import './commands'
 import 'cypress-localstorage-commands'
-import '@tourmalinecore/react-table-responsive/es/index.css';
+import '@tourmalinecore/react-table-responsive/styles.css'
 import '@tourmalinecore/react-tc-modal/es/index.css';
 import '@tourmalinecore/react-tc-ui-kit/es/index.css';
 
