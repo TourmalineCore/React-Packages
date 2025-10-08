@@ -413,6 +413,57 @@ function paginationTests() {
 
     cy.contains('Test 11')
   })
+
+  it(`
+  GIVEN eleven records from network
+  WHEN change page from 1 to 2
+  SHOULD see the correct number of total count
+`, () => {
+    const tableResponseFromPage1: TableResponse = {
+      list: generateTableTestData({
+        recordCount: 10,
+      }),
+      totalCount: 11,
+    }
+
+    const tableResponseFromPage2 = {
+      list: [
+        {
+          id: '11',
+          name: 'Test 11',
+          type: someTypes.firstType,
+        },
+      ],
+      totalCount: 11,
+    }
+
+    mountComponent()
+
+    cy.intercept(
+      'GET',
+      '**/table/test?draw=**page=1&pageSize=10&orderBy=name&orderingDirection=asc',
+      tableResponseFromPage1,
+    )
+      .as('getTableDataFromPage1')
+
+    cy.wait('@getTableDataFromPage1')
+
+    cy.contains('Shown 1 - 10 of 11')
+
+    cy.getByData('next-page-button')
+      .click()
+
+    cy.intercept(
+      'GET',
+      '**/table/test?draw=**&page=2&pageSize=10&orderBy=name&orderingDirection=asc',
+      tableResponseFromPage2,
+    )
+      .as('getTableDataFromPage2')
+
+    cy.wait('@getTableDataFromPage2')
+
+    cy.contains('Shown 11 - 11 of 11')
+  })
 }
 
 function requestHeadersTests() {
