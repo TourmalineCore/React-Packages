@@ -3,6 +3,11 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.2](https://github.com/TourmalineCore/React-Packages/compare/%40tourmalinecore/react-table-responsive%401.0.1...%40tourmalinecore/react-table-responsive%401.0.2) (2025-10-08)
+
+### Fix
+- fix total count display for the server table
+
 # [1.0.1](https://github.com/TourmalineCore/React-Packages/compare/%40tourmalinecore/react-table-responsive%401.0.0...%40tourmalinecore/react-table-responsive%401.0.1) (2025-06-19)
 
 ### Features
