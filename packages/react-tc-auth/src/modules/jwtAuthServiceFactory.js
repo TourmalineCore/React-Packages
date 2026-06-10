@@ -10,6 +10,8 @@ export const createJwtAuthService = ({
   refreshTokenAccessor = 'refreshToken',
   tokenValueAccessor = 'value',
   tokenExpireAccessor = 'expiresInUtc',
+  disableAccessTokenRefresh = false,
+  accessTokenRefreshIntervalInMs = 1000 * 60,
 }) => {
   const tokenStorage = new LocalStorageService({
     tokenKey: tokenAccessor,
@@ -34,6 +36,8 @@ export const createJwtAuthService = ({
     },
     refreshTokenCall,
   });
+
+  let timeoutId = null
 
   async function refreshTokenCall(refreshTokenValue) {
     return axios({
@@ -113,6 +117,42 @@ export const createJwtAuthService = ({
     tokenProvider.unsubscribe(listener);
   }
 
+  async function startPeriodicalAccessTokenRefresh() {
+    if (disableAccessTokenRefresh) {
+      return
+    }
+
+    subscribeOnTokenChange(setRefreshTimeout)
+
+    if (getRefreshToken()) {
+      try {
+        await refreshToken()
+      } catch {
+        setLoggedOut()
+      }
+    }
+  }
+
+  function setRefreshTimeout(token) {
+    clearTimeout(timeoutId)
+
+    if (!token) {
+      return
+    }
+
+    timeoutId = setTimeout(async () => {
+      if (getRefreshToken()) {
+        try {
+          await refreshToken()
+        } catch {
+          setLoggedOut()
+        }
+      } else {
+        clearTimeout(timeoutId)
+      }
+    }, accessTokenRefreshIntervalInMs)
+  }
+
   return {
     getAuthToken,
     getRefreshToken,
@@ -124,6 +164,7 @@ export const createJwtAuthService = ({
     setLoggedOut,
     subscribeOnTokenChange,
     unsubscribeOnTokenChange,
+    startPeriodicalAccessTokenRefresh,
     ...createJwtReactHelpers({ tokenProvider }),
   };
 };
