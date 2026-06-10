@@ -122,7 +122,7 @@ export const createJwtAuthService = ({
       return
     }
 
-    subscribeOnTokenChange(setRefreshTimeout)
+    subscribeOnTokenChange(setAccessTokenRefreshTimeout)
 
     if (getRefreshToken()) {
       try {
@@ -133,7 +133,7 @@ export const createJwtAuthService = ({
     }
   }
 
-  function setRefreshTimeout(token) {
+  function setAccessTokenRefreshTimeout(token) {
     clearTimeout(timeoutId)
 
     if (!token) {
