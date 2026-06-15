@@ -39,6 +39,8 @@ const authService = createAuthService({
 | refreshTokenAccessor | Name of the property of the response object representing **refresh** token |
 | tokenValueAccessor | Name of the property of the token objects representing the token **value** |
 | tokenExpireAccessor | Name of the property of the token objects representing the **expiration time** of the token in UTC |
+| disableAccessTokenRefresh | Disabling periodic token updates, `false` by default. It should always be disabled in production. |
+| accessTokenRefreshIntervalInMs | The interval for updating the token, by default `1000 * 60` |
 
 # Usage
 
