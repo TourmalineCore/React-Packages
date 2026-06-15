@@ -3,6 +3,10 @@
   "version": "0.4.0",
   "description": "TC React Modal Component",
   "author": "Tourmaline Core",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TourmalineCore/React-Packages.git"
+  },
   "keywords": [
     "react",
     "react-modal",

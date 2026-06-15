@@ -3,6 +3,10 @@
   "version": "1.0.3",
   "description": "React Table Responsive",
   "author": "Tourmaline Core",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TourmalineCore/React-Packages.git"
+  },
   "keywords": [
     "react",
     "table",

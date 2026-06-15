@@ -3,6 +3,10 @@
   "version": "0.5.0",
   "description": "TC React UI-Kit",
   "author": "Tourmaline Core",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TourmalineCore/React-Packages.git"
+  },
   "keywords": [
     "react",
     "button",
