@@ -10,6 +10,8 @@ export const createJwtAuthService = ({
   refreshTokenAccessor = 'refreshToken',
   tokenValueAccessor = 'value',
   tokenExpireAccessor = 'expiresInUtc',
+  disableAccessTokenRefresh = false,
+  accessTokenRefreshIntervalInMs = 1000 * 60,
 }) => {
   const tokenStorage = new LocalStorageService({
     tokenKey: tokenAccessor,
@@ -34,6 +36,8 @@ export const createJwtAuthService = ({
     },
     refreshTokenCall,
   });
+
+  let timeoutId = null
 
   async function refreshTokenCall(refreshTokenValue) {
     return axios({
@@ -113,6 +117,50 @@ export const createJwtAuthService = ({
     tokenProvider.unsubscribe(listener);
   }
 
+  async function startPeriodicalAccessTokenRefresh() {
+    if (disableAccessTokenRefresh) {
+      // eslint-disable-next-line no-console
+      console.warn(`
+        You disabled periodic updating of accessToken. 
+        This behavior may be normal for the development environment, but not for production.
+        If you see this warning in production, you need to configure the authentication package settings correctly.
+        In production, the token update should always be enabled.
+      `)
+
+      return
+    }
+
+    subscribeOnTokenChange(setAccessTokenRefreshTimeout)
+
+    if (getRefreshToken()) {
+      try {
+        await refreshToken()
+      } catch {
+        setLoggedOut()
+      }
+    }
+  }
+
+  function setAccessTokenRefreshTimeout(token) {
+    clearTimeout(timeoutId)
+
+    if (!token) {
+      return
+    }
+
+    timeoutId = setTimeout(async () => {
+      if (getRefreshToken()) {
+        try {
+          await refreshToken()
+        } catch {
+          setLoggedOut()
+        }
+      } else {
+        clearTimeout(timeoutId)
+      }
+    }, accessTokenRefreshIntervalInMs)
+  }
+
   return {
     getAuthToken,
     getRefreshToken,
@@ -124,6 +172,7 @@ export const createJwtAuthService = ({
     setLoggedOut,
     subscribeOnTokenChange,
     unsubscribeOnTokenChange,
+    startPeriodicalAccessTokenRefresh,
     ...createJwtReactHelpers({ tokenProvider }),
   };
 };
