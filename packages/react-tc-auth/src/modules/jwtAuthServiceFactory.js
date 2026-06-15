@@ -119,6 +119,14 @@ export const createJwtAuthService = ({
 
   async function startPeriodicalAccessTokenRefresh() {
     if (disableAccessTokenRefresh) {
+      // eslint-disable-next-line no-console
+      console.warn(`
+        You disabled periodic updating of accessToken. 
+        This behavior may be normal for the development environment, but not for production.
+        If you see this warning in production, you need to configure the authentication package settings correctly.
+        In production, the token update should always be enabled.
+      `)
+
       return
     }
 
