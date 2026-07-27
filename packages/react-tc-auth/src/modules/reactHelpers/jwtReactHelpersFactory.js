@@ -41,9 +41,7 @@ export function createJwtReactHelpers({
     );
   }
 
-  export function RequireAccessToken({
-    children,
-  }) {
+  function RequireAccessToken({ children }) {
     const [
       token,
     ] = useContext(AuthContext)
