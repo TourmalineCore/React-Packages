@@ -41,6 +41,30 @@ export function createJwtReactHelpers({
     );
   }
 
+  function RequireAccessToken({ children }) {
+    const [
+      token,
+    ] = useContext(AuthContext)
+
+    useEffect(() => {
+      if (!token) {
+        window.location.href = `/auth?returnUrl=${encodeURIComponent(window.location.href)}`
+      }
+    }, [
+      token,
+    ])
+
+    if (!token) {
+      return null
+    }
+
+    return (
+      <>
+        {children}
+      </>
+    )
+  }
+
   function withPrivateRoute(ComposedComponent) {
     return function RequireAuthentication(props) {
       const [tokenValue] = useContext(AuthContext);
@@ -64,6 +88,7 @@ export function createJwtReactHelpers({
   return {
     AuthContext,
     AuthProvider,
+    RequireAccessToken,
     useAuth,
     withPrivateRoute,
   };
